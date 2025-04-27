@@ -17,6 +17,8 @@ namespace Shopee
     {
         private DbDapper db;
         DataTable bulan = new DataTable();
+        private List<PendapatanModel> _listPendapatan = new();
+        private int _jenisPendapatan = 0;
 
         public TabelPendapatan()
         {
@@ -33,7 +35,7 @@ namespace Shopee
 
             if (comboBulan.SelectedIndex != 0)
             {
-                var filter = ((Filter)comboBulan.SelectedItem);
+                var filter = ((Filterss)comboBulan.SelectedItem);
                 DateTime Tanggal1 = filter.TimeFilter1;
                 DateTime Tanggal2 = filter.TimeFilter2;
                 listPendapatan = db.FilterPendapatan2(Tanggal1, Tanggal2);
@@ -42,10 +44,11 @@ namespace Shopee
             {
                 DateTime Tanggal1 = dateTimePicker3.Value.Date;
                 DateTime Tanggal2 = dateTimePicker2.Value.Date;
-                listPendapatan = db.FilterPendapatan2(Tanggal1,Tanggal2);
+                listPendapatan = db.FilterPendapatan2(Tanggal1, Tanggal2);
             }
             dataGridView1.DataSource = listPendapatan;
-            Total(listPendapatan);
+            _listPendapatan.AddRange(listPendapatan);
+            Total(_listPendapatan);
         }
 
 
@@ -57,15 +60,15 @@ namespace Shopee
             comboJenisPendapatan.SelectedIndex = 0;
 
             DateTime dateTime = DateTime.Today;
-            List<Filter> listFilter = new List<Filter>
+            List<Filterss> listFilter = new List<Filterss>
             {
-                new Filter{NameFilter = "-- Pilih Waktu --", TimeFilter2 = dateTime, TimeFilter1 = dateTime},
-                new Filter{NameFilter = "Hari ini", TimeFilter2 = dateTime, TimeFilter1 = dateTime},
-                new Filter{NameFilter = "Kemarin", TimeFilter2 = dateTime.AddDays(-1), TimeFilter1 = dateTime.AddDays(-1)},
-                new Filter{NameFilter = "7 hari sebelumnya", TimeFilter2 = dateTime, TimeFilter1 = dateTime.AddDays(-6)},
-                new Filter{NameFilter = "30 hari sebelumnya", TimeFilter2 = dateTime, TimeFilter1 = dateTime.AddDays(-29)},
-                new Filter{NameFilter = "60 hari sebelumnya", TimeFilter2 = dateTime, TimeFilter1 = dateTime.AddDays(-59)},
-                new Filter{NameFilter = "90 hari sebelumnya", TimeFilter2 = dateTime, TimeFilter1 = dateTime.AddDays(-89)}
+                new Filterss{NameFilter = "-- Pilih Waktu --", TimeFilter2 = dateTime, TimeFilter1 = dateTime},
+                new Filterss{NameFilter = "Hari ini", TimeFilter2 = dateTime, TimeFilter1 = dateTime},
+                new Filterss{NameFilter = "Kemarin", TimeFilter2 = dateTime.AddDays(-1), TimeFilter1 = dateTime.AddDays(-1)},
+                new Filterss{NameFilter = "7 hari sebelumnya", TimeFilter2 = dateTime, TimeFilter1 = dateTime.AddDays(-6)},
+                new Filterss{NameFilter = "30 hari sebelumnya", TimeFilter2 = dateTime, TimeFilter1 = dateTime.AddDays(-29)},
+                new Filterss{NameFilter = "60 hari sebelumnya", TimeFilter2 = dateTime, TimeFilter1 = dateTime.AddDays(-59)},
+                new Filterss{NameFilter = "90 hari sebelumnya", TimeFilter2 = dateTime, TimeFilter1 = dateTime.AddDays(-89)}
             };
             comboBulan.DataSource = listFilter;
             comboBulan.DisplayMember = "NameFilter";
@@ -178,20 +181,13 @@ namespace Shopee
             LoadData();
         }
 
-        public void sum(DateTime satu, DateTime dua)
-        {
-            var hsl = db.FilterPendapatan(satu, dua);
-            dataGridView1.DataSource = hsl;
-            Total(hsl);
-        }
-
         private void comboBulan_SelectedIndexChanged(object sender, EventArgs e)
         {
             TanggalRange = false;
             LoadData();
         }
 
-        public void Total(IEnumerable<PendapatanModel> data)
+        public void Total(List<PendapatanModel> data)
         {
             if (!data.Any())
             {
@@ -204,7 +200,11 @@ namespace Shopee
                 lblNoData.Visible = false;
             }
 
-            double totalBersih = data.Sum(x => x.Pendapatan_Bersih);
+
+            double totalBersih = 
+                _jenisPendapatan == 0 ? data.Sum(x => x.Pendapatan_Bersih) :
+                _jenisPendapatan == 1 ? data.Sum(x => x.Pendapatan_Kotor) :
+                data.Sum(x => x.Modal);
             string nominal = totalBersih.ToString("C", new CultureInfo("id-ID"));
             lblTotalBersih.Text = nominal; // format uang indo
         }
@@ -224,12 +224,13 @@ namespace Shopee
             txtProduk.Clear();
             dateTimePicker1.Value = DateTime.Now;
         }
+
+        private void comboJenisPendapatan_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _jenisPendapatan = comboJenisPendapatan.SelectedIndex;
+            Total(_listPendapatan);
+        }
     }
 }
 
-public class Filter
-{
-    public string NameFilter {  get; set; }
-    public DateTime TimeFilter1 {  get; set; }
-    public DateTime TimeFilter2 {  get; set; }
-}
+

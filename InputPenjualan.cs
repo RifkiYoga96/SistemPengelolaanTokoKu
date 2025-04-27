@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Data;
 
 namespace Shopee
 {
@@ -176,9 +168,7 @@ namespace Shopee
 
                 Dictionary<string, int> min = new Dictionary<string, int>();
 
-             
-
-
+           
                 int terkecil = 0;
                 var namaProduk = db.ListProduk2(id_produk).FirstOrDefault()?.Nama_Produk;
                 string bahanTerSitik = "Kebutuhan Belum Dinput!!";
@@ -191,7 +181,7 @@ namespace Shopee
                     {
                         string namaBahan = rowstok.Nama_Bahan;
                         int jumlahstok = rowstok.Stok;
-                        int isodigawe = jumlahstok / bahan.Jumlah;
+                        int isodigawe = bahan.Jumlah == 0 ? 0 : jumlahstok / bahan.Jumlah;
 
                         min[namaBahan] = isodigawe;
                     }

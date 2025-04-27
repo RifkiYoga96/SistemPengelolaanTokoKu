@@ -183,9 +183,6 @@ namespace Shopee
                      FROM pendapatan p INNER JOIN produk pr ON p.ID_Produk = pr.ID_Produk
                      WHERE Tanggal_Input BETWEEN @tglawal AND @tglakhir";
 
-            sql = @"SELECT p.ID_Pendapatan,p.ID_Produk,pr.Nama_Produk,p.Pendapatan_Kotor,p.Modal,p.Pendapatan_Bersih,p.Tanggal_Input,p.Jumlah_Produk 
-                     FROM pendapatan p INNER JOIN produk pr ON p.ID_Produk = pr.ID_Produk
-                     WHERE Tanggal_Input BETWEEN @tglawal AND @tglakhir";
             using var koneksi = new SqlConnection(connstring());
             var data = koneksi.Query<PendapatanModel>(sql, new { tglawal = tglawal, tglakhir = tglakhir });
             return data;
@@ -196,6 +193,7 @@ namespace Shopee
             string sql = @"SELECT p.ID_Pendapatan,p.ID_Produk,pr.Nama_Produk,p.Pendapatan_Kotor,p.Modal,p.Pendapatan_Bersih,p.Tanggal_Input,p.Jumlah_Produk 
                      FROM pendapatan p INNER JOIN produk pr ON p.ID_Produk = pr.ID_Produk
                      WHERE Tanggal_Input BETWEEN @awal AND @akhir";
+
             using var koneksi = new SqlConnection(connstring());
             return koneksi.Query<PendapatanModel>(sql, new { awal = awal, akhir = akhir });
         }

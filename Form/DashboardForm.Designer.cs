@@ -1,0 +1,191 @@
+﻿namespace Shopee
+{
+    partial class DashboardForm
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DashboardForm));
+            pictureBox1 = new PictureBox();
+            panel2 = new Panel();
+            mainPanel = new Panel();
+            btnDashboard = new Button();
+            flowLayoutPanel1 = new FlowLayoutPanel();
+            btnPendapatan = new Button();
+            btnProduk = new Button();
+            btnSparepart = new Button();
+            btnPartsProduk = new Button();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panel2.SuspendLayout();
+            flowLayoutPanel1.SuspendLayout();
+            SuspendLayout();
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
+            pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox1.Location = new Point(12, 8);
+            pictureBox1.Margin = new Padding(3, 4, 3, 4);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(124, 52);
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.FromArgb(10, 17, 40);
+            panel2.Controls.Add(pictureBox1);
+            panel2.Dock = DockStyle.Top;
+            panel2.Location = new Point(0, 0);
+            panel2.Margin = new Padding(3, 4, 3, 4);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(990, 69);
+            panel2.TabIndex = 1;
+            // 
+            // mainPanel
+            // 
+            mainPanel.BackColor = Color.FromArgb(230, 235, 240);
+            mainPanel.Dock = DockStyle.Fill;
+            mainPanel.Location = new Point(280, 69);
+            mainPanel.Margin = new Padding(3, 4, 3, 4);
+            mainPanel.Name = "mainPanel";
+            mainPanel.Size = new Size(710, 608);
+            mainPanel.TabIndex = 2;
+            // 
+            // btnDashboard
+            // 
+            btnDashboard.FlatAppearance.BorderSize = 0;
+            btnDashboard.FlatStyle = FlatStyle.Flat;
+            btnDashboard.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            btnDashboard.Location = new Point(0, 0);
+            btnDashboard.Margin = new Padding(0);
+            btnDashboard.Name = "btnDashboard";
+            btnDashboard.Size = new Size(280, 56);
+            btnDashboard.TabIndex = 0;
+            btnDashboard.Text = "     🏠 Dashboard";
+            btnDashboard.TextAlign = ContentAlignment.MiddleLeft;
+            btnDashboard.UseVisualStyleBackColor = true;
+            // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.Controls.Add(btnDashboard);
+            flowLayoutPanel1.Controls.Add(btnPendapatan);
+            flowLayoutPanel1.Controls.Add(btnProduk);
+            flowLayoutPanel1.Controls.Add(btnSparepart);
+            flowLayoutPanel1.Controls.Add(btnPartsProduk);
+            flowLayoutPanel1.Dock = DockStyle.Left;
+            flowLayoutPanel1.Location = new Point(0, 69);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(280, 608);
+            flowLayoutPanel1.TabIndex = 3;
+            // 
+            // btnPendapatan
+            // 
+            btnPendapatan.BackColor = SystemColors.Control;
+            btnPendapatan.FlatAppearance.BorderSize = 0;
+            btnPendapatan.FlatStyle = FlatStyle.Flat;
+            btnPendapatan.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            btnPendapatan.ForeColor = Color.Black;
+            btnPendapatan.Location = new Point(0, 56);
+            btnPendapatan.Margin = new Padding(0);
+            btnPendapatan.Name = "btnPendapatan";
+            btnPendapatan.Size = new Size(280, 56);
+            btnPendapatan.TabIndex = 1;
+            btnPendapatan.Text = "     💸 Pendapatan";
+            btnPendapatan.TextAlign = ContentAlignment.MiddleLeft;
+            btnPendapatan.UseVisualStyleBackColor = false;
+            // 
+            // btnProduk
+            // 
+            btnProduk.FlatAppearance.BorderSize = 0;
+            btnProduk.FlatStyle = FlatStyle.Flat;
+            btnProduk.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            btnProduk.Location = new Point(0, 112);
+            btnProduk.Margin = new Padding(0);
+            btnProduk.Name = "btnProduk";
+            btnProduk.Size = new Size(280, 56);
+            btnProduk.TabIndex = 2;
+            btnProduk.Text = "     \U0001f6d2 Produk";
+            btnProduk.TextAlign = ContentAlignment.MiddleLeft;
+            btnProduk.UseVisualStyleBackColor = true;
+            // 
+            // btnSparepart
+            // 
+            btnSparepart.FlatAppearance.BorderSize = 0;
+            btnSparepart.FlatStyle = FlatStyle.Flat;
+            btnSparepart.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSparepart.Location = new Point(0, 168);
+            btnSparepart.Margin = new Padding(0);
+            btnSparepart.Name = "btnSparepart";
+            btnSparepart.Size = new Size(280, 56);
+            btnSparepart.TabIndex = 3;
+            btnSparepart.Text = "     🔩 Sparepart";
+            btnSparepart.TextAlign = ContentAlignment.MiddleLeft;
+            btnSparepart.UseVisualStyleBackColor = true;
+            // 
+            // btnPartsProduk
+            // 
+            btnPartsProduk.FlatAppearance.BorderSize = 0;
+            btnPartsProduk.FlatStyle = FlatStyle.Flat;
+            btnPartsProduk.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            btnPartsProduk.Location = new Point(0, 224);
+            btnPartsProduk.Margin = new Padding(0);
+            btnPartsProduk.Name = "btnPartsProduk";
+            btnPartsProduk.Size = new Size(280, 56);
+            btnPartsProduk.TabIndex = 4;
+            btnPartsProduk.Text = "     \U0001f9f0 Parts Produk";
+            btnPartsProduk.TextAlign = ContentAlignment.MiddleLeft;
+            btnPartsProduk.UseVisualStyleBackColor = true;
+            // 
+            // DashboardForm
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(990, 677);
+            Controls.Add(mainPanel);
+            Controls.Add(flowLayoutPanel1);
+            Controls.Add(panel2);
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "DashboardForm";
+            Text = "DashboardForm";
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panel2.ResumeLayout(false);
+            flowLayoutPanel1.ResumeLayout(false);
+            ResumeLayout(false);
+        }
+
+        #endregion
+        private Panel panel2;
+        private Panel mainPanel;
+        private PictureBox pictureBox1;
+        private Button btnDashboard;
+        private FlowLayoutPanel flowLayoutPanel1;
+        private Button btnPendapatan;
+        private Button btnProduk;
+        private Button btnSparepart;
+        private Button btnPartsProduk;
+    }
+}

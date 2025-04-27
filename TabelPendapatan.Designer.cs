@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            label1 = new Label();
             dataGridView1 = new DataGridView();
             panel1 = new Panel();
             btnNew = new Button();
@@ -70,30 +69,16 @@
             contextMenuStrip1.SuspendLayout();
             SuspendLayout();
             // 
-            // label1
-            // 
-            label1.BackColor = SystemColors.Highlight;
-            label1.Dock = DockStyle.Top;
-            label1.FlatStyle = FlatStyle.Flat;
-            label1.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(0, 0);
-            label1.Margin = new Padding(2, 0, 2, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(958, 36);
-            label1.TabIndex = 0;
-            label1.Text = "Tabel Pendapatan";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
-            // 
             // dataGridView1
             // 
             dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(0, 65);
-            dataGridView1.Margin = new Padding(2);
+            dataGridView1.Location = new Point(3, 38);
+            dataGridView1.Margin = new Padding(2, 3, 2, 3);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.RowTemplate.Height = 33;
-            dataGridView1.Size = new Size(722, 232);
+            dataGridView1.Size = new Size(825, 303);
             dataGridView1.TabIndex = 1;
             dataGridView1.DoubleClick += dataGridView1_DoubleClick;
             // 
@@ -112,10 +97,10 @@
             panel1.Controls.Add(label5);
             panel1.Controls.Add(txtKotor);
             panel1.Controls.Add(label4);
-            panel1.Location = new Point(726, 38);
-            panel1.Margin = new Padding(2);
+            panel1.Location = new Point(833, 2);
+            panel1.Margin = new Padding(2, 3, 2, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(229, 362);
+            panel1.Size = new Size(262, 477);
             panel1.TabIndex = 2;
             // 
             // btnNew
@@ -125,10 +110,10 @@
             btnNew.FlatStyle = FlatStyle.Flat;
             btnNew.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btnNew.ForeColor = Color.White;
-            btnNew.Location = new Point(9, 329);
-            btnNew.Margin = new Padding(2);
+            btnNew.Location = new Point(10, 433);
+            btnNew.Margin = new Padding(2, 3, 2, 3);
             btnNew.Name = "btnNew";
-            btnNew.Size = new Size(67, 24);
+            btnNew.Size = new Size(77, 32);
             btnNew.TabIndex = 17;
             btnNew.Text = "New";
             btnNew.UseVisualStyleBackColor = false;
@@ -136,10 +121,10 @@
             // 
             // numericJumlah
             // 
-            numericJumlah.Location = new Point(13, 196);
-            numericJumlah.Margin = new Padding(2);
+            numericJumlah.Location = new Point(15, 261);
+            numericJumlah.Margin = new Padding(2, 3, 2, 3);
             numericJumlah.Name = "numericJumlah";
-            numericJumlah.Size = new Size(192, 23);
+            numericJumlah.Size = new Size(219, 27);
             numericJumlah.TabIndex = 16;
             // 
             // btnDelete
@@ -149,10 +134,10 @@
             btnDelete.FlatStyle = FlatStyle.Flat;
             btnDelete.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btnDelete.ForeColor = Color.White;
-            btnDelete.Location = new Point(80, 329);
-            btnDelete.Margin = new Padding(2);
+            btnDelete.Location = new Point(91, 433);
+            btnDelete.Margin = new Padding(2, 3, 2, 3);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(67, 24);
+            btnDelete.Size = new Size(77, 32);
             btnDelete.TabIndex = 15;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = false;
@@ -165,10 +150,10 @@
             btnSave.FlatStyle = FlatStyle.Flat;
             btnSave.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btnSave.ForeColor = Color.White;
-            btnSave.Location = new Point(151, 329);
-            btnSave.Margin = new Padding(2);
+            btnSave.Location = new Point(173, 433);
+            btnSave.Margin = new Padding(2, 3, 2, 3);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(67, 24);
+            btnSave.Size = new Size(77, 32);
             btnSave.TabIndex = 14;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = false;
@@ -177,64 +162,64 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(13, 178);
+            label8.Location = new Point(15, 237);
             label8.Margin = new Padding(2, 0, 2, 0);
             label8.Name = "label8";
-            label8.Size = new Size(86, 15);
+            label8.Size = new Size(105, 20);
             label8.TabIndex = 13;
             label8.Text = "Jumlah Produk";
             // 
             // txtBersih
             // 
-            txtBersih.Location = new Point(13, 148);
-            txtBersih.Margin = new Padding(2);
+            txtBersih.Location = new Point(15, 197);
+            txtBersih.Margin = new Padding(2, 3, 2, 3);
             txtBersih.Name = "txtBersih";
-            txtBersih.Size = new Size(192, 23);
+            txtBersih.Size = new Size(219, 27);
             txtBersih.TabIndex = 9;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(13, 132);
+            label6.Location = new Point(15, 176);
             label6.Margin = new Padding(2, 0, 2, 0);
             label6.Name = "label6";
-            label6.Size = new Size(105, 15);
+            label6.Size = new Size(131, 20);
             label6.TabIndex = 8;
             label6.Text = "Pendapatan Bersih";
             // 
             // txtModal
             // 
-            txtModal.Location = new Point(13, 100);
-            txtModal.Margin = new Padding(2);
+            txtModal.Location = new Point(15, 133);
+            txtModal.Margin = new Padding(2, 3, 2, 3);
             txtModal.Name = "txtModal";
-            txtModal.Size = new Size(192, 23);
+            txtModal.Size = new Size(219, 27);
             txtModal.TabIndex = 7;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(13, 82);
+            label5.Location = new Point(15, 109);
             label5.Margin = new Padding(2, 0, 2, 0);
             label5.Name = "label5";
-            label5.Size = new Size(41, 15);
+            label5.Size = new Size(52, 20);
             label5.TabIndex = 6;
             label5.Text = "Modal";
             // 
             // txtKotor
             // 
-            txtKotor.Location = new Point(13, 52);
-            txtKotor.Margin = new Padding(2);
+            txtKotor.Location = new Point(15, 69);
+            txtKotor.Margin = new Padding(2, 3, 2, 3);
             txtKotor.Name = "txtKotor";
-            txtKotor.Size = new Size(192, 23);
+            txtKotor.Size = new Size(219, 27);
             txtKotor.TabIndex = 5;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(13, 36);
+            label4.Location = new Point(15, 48);
             label4.Margin = new Padding(2, 0, 2, 0);
             label4.Name = "label4";
-            label4.Size = new Size(102, 15);
+            label4.Size = new Size(128, 20);
             label4.TabIndex = 4;
             label4.Text = "Pendapatan Kotor";
             // 
@@ -248,86 +233,87 @@
             panel2.Controls.Add(label7);
             panel2.Controls.Add(txtPendapatan);
             panel2.Controls.Add(label2);
-            panel2.Location = new Point(0, 328);
-            panel2.Margin = new Padding(2);
+            panel2.Location = new Point(3, 382);
+            panel2.Margin = new Padding(2, 3, 2, 3);
             panel2.Name = "panel2";
-            panel2.Size = new Size(722, 72);
+            panel2.Size = new Size(825, 96);
             panel2.TabIndex = 3;
             // 
             // dateTimePicker1
             // 
-            dateTimePicker1.Location = new Point(364, 31);
-            dateTimePicker1.Margin = new Padding(2);
+            dateTimePicker1.Location = new Point(416, 41);
+            dateTimePicker1.Margin = new Padding(2, 3, 2, 3);
             dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(211, 23);
+            dateTimePicker1.Size = new Size(241, 27);
             dateTimePicker1.TabIndex = 12;
             // 
             // txtProduk
             // 
-            txtProduk.Location = new Point(198, 31);
-            txtProduk.Margin = new Padding(2);
+            txtProduk.Location = new Point(226, 41);
+            txtProduk.Margin = new Padding(2, 3, 2, 3);
             txtProduk.Name = "txtProduk";
-            txtProduk.Size = new Size(135, 23);
+            txtProduk.Size = new Size(154, 27);
             txtProduk.TabIndex = 7;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(198, 14);
+            label3.Location = new Point(226, 19);
             label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new Size(59, 15);
+            label3.Size = new Size(74, 20);
             label3.TabIndex = 6;
             label3.Text = "ID Produk";
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(364, 10);
+            label7.Location = new Point(416, 13);
             label7.Margin = new Padding(2, 0, 2, 0);
             label7.Name = "label7";
-            label7.Size = new Size(79, 15);
+            label7.Size = new Size(99, 20);
             label7.TabIndex = 11;
             label7.Text = "Tanggal Input";
             // 
             // txtPendapatan
             // 
-            txtPendapatan.Location = new Point(30, 31);
-            txtPendapatan.Margin = new Padding(2);
+            txtPendapatan.Location = new Point(34, 41);
+            txtPendapatan.Margin = new Padding(2, 3, 2, 3);
             txtPendapatan.Name = "txtPendapatan";
-            txtPendapatan.Size = new Size(135, 23);
+            txtPendapatan.Size = new Size(154, 27);
             txtPendapatan.TabIndex = 5;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(30, 14);
+            label2.Location = new Point(34, 19);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(84, 15);
+            label2.Size = new Size(106, 20);
             label2.TabIndex = 4;
             label2.Text = "ID Pendapatan";
             // 
             // comboJenisPendapatan
             // 
-            comboJenisPendapatan.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            comboJenisPendapatan.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboJenisPendapatan.Anchor = AnchorStyles.Left;
             comboJenisPendapatan.FlatStyle = FlatStyle.Flat;
             comboJenisPendapatan.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             comboJenisPendapatan.FormattingEnabled = true;
-            comboJenisPendapatan.Location = new Point(1, 298);
+            comboJenisPendapatan.Location = new Point(4, 342);
+            comboJenisPendapatan.Margin = new Padding(3, 4, 3, 4);
             comboJenisPendapatan.Name = "comboJenisPendapatan";
-            comboJenisPendapatan.Size = new Size(252, 29);
+            comboJenisPendapatan.Size = new Size(287, 36);
             comboJenisPendapatan.TabIndex = 13;
+            comboJenisPendapatan.SelectedIndexChanged += comboJenisPendapatan_SelectedIndexChanged;
             // 
             // lblTotalBersih
             // 
-            lblTotalBersih.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            lblTotalBersih.Anchor = AnchorStyles.Right;
             lblTotalBersih.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lblTotalBersih.Location = new Point(541, 300);
+            lblTotalBersih.Location = new Point(621, 345);
             lblTotalBersih.Margin = new Padding(2, 0, 2, 0);
             lblTotalBersih.Name = "lblTotalBersih";
-            lblTotalBersih.Size = new Size(179, 25);
+            lblTotalBersih.Size = new Size(205, 33);
             lblTotalBersih.TabIndex = 1;
             lblTotalBersih.Text = "0.00";
             lblTotalBersih.TextAlign = ContentAlignment.MiddleRight;
@@ -337,19 +323,19 @@
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            label11.Location = new Point(9, 40);
+            label11.Location = new Point(13, 4);
             label11.Margin = new Padding(2, 0, 2, 0);
             label11.Name = "label11";
-            label11.Size = new Size(48, 19);
+            label11.Size = new Size(57, 23);
             label11.TabIndex = 5;
             label11.Text = "Filter :";
             // 
             // dateTimePicker2
             // 
-            dateTimePicker2.Location = new Point(481, 39);
-            dateTimePicker2.Margin = new Padding(2);
+            dateTimePicker2.Location = new Point(553, 3);
+            dateTimePicker2.Margin = new Padding(2, 3, 2, 3);
             dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(156, 23);
+            dateTimePicker2.Size = new Size(178, 27);
             dateTimePicker2.TabIndex = 7;
             dateTimePicker2.ValueChanged += dateTimePicker2_ValueChanged;
             // 
@@ -357,19 +343,19 @@
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            label10.Location = new Point(220, 40);
+            label10.Location = new Point(254, 4);
             label10.Margin = new Padding(2, 0, 2, 0);
             label10.Name = "label10";
-            label10.Size = new Size(68, 19);
+            label10.Size = new Size(84, 23);
             label10.TabIndex = 8;
             label10.Text = "Rentang :";
             // 
             // dateTimePicker3
             // 
-            dateTimePicker3.Location = new Point(293, 39);
-            dateTimePicker3.Margin = new Padding(2);
+            dateTimePicker3.Location = new Point(338, 3);
+            dateTimePicker3.Margin = new Padding(2, 3, 2, 3);
             dateTimePicker3.Name = "dateTimePicker3";
-            dateTimePicker3.Size = new Size(156, 23);
+            dateTimePicker3.Size = new Size(178, 27);
             dateTimePicker3.TabIndex = 9;
             dateTimePicker3.ValueChanged += dateTimePicker3_ValueChanged;
             // 
@@ -377,10 +363,10 @@
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            label12.Location = new Point(453, 39);
+            label12.Location = new Point(521, 3);
             label12.Margin = new Padding(2, 0, 2, 0);
             label12.Name = "label12";
-            label12.Size = new Size(24, 19);
+            label12.Size = new Size(27, 23);
             label12.TabIndex = 10;
             label12.Text = "To";
             // 
@@ -388,10 +374,10 @@
             // 
             comboBulan.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBulan.FormattingEnabled = true;
-            comboBulan.Location = new Point(60, 39);
-            comboBulan.Margin = new Padding(2);
+            comboBulan.Location = new Point(72, 3);
+            comboBulan.Margin = new Padding(2, 3, 2, 3);
             comboBulan.Name = "comboBulan";
-            comboBulan.Size = new Size(148, 23);
+            comboBulan.Size = new Size(169, 28);
             comboBulan.TabIndex = 11;
             comboBulan.SelectedIndexChanged += comboBulan_SelectedIndexChanged;
             // 
@@ -399,47 +385,49 @@
             // 
             lblNoData.AutoSize = true;
             lblNoData.BackColor = SystemColors.ControlDark;
-            lblNoData.Location = new Point(279, 170);
+            lblNoData.Location = new Point(322, 178);
             lblNoData.Margin = new Padding(2, 0, 2, 0);
             lblNoData.Name = "lblNoData";
-            lblNoData.Size = new Size(86, 15);
+            lblNoData.Size = new Size(112, 20);
             lblNoData.TabIndex = 12;
             lblNoData.Text = "Tidak Ada Data";
             lblNoData.Visible = false;
             // 
             // contextMenuStrip1
             // 
+            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
             contextMenuStrip1.Items.AddRange(new ToolStripItem[] { deleteToolStripMenuItem, editToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(108, 48);
+            contextMenuStrip1.Size = new Size(123, 52);
             // 
             // deleteToolStripMenuItem
             // 
             deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            deleteToolStripMenuItem.Size = new Size(107, 22);
+            deleteToolStripMenuItem.Size = new Size(122, 24);
             deleteToolStripMenuItem.Text = "Delete";
             // 
             // editToolStripMenuItem
             // 
             editToolStripMenuItem.Name = "editToolStripMenuItem";
-            editToolStripMenuItem.Size = new Size(107, 22);
+            editToolStripMenuItem.Size = new Size(122, 24);
             editToolStripMenuItem.Text = "Edit";
             // 
             // btnReset
             // 
-            btnReset.Location = new Point(650, 38);
+            btnReset.Location = new Point(746, 2);
+            btnReset.Margin = new Padding(3, 4, 3, 4);
             btnReset.Name = "btnReset";
-            btnReset.Size = new Size(63, 24);
+            btnReset.Size = new Size(72, 32);
             btnReset.TabIndex = 13;
             btnReset.Text = "Reset";
             btnReset.UseVisualStyleBackColor = true;
             // 
             // TabelPendapatan
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(958, 401);
+            ClientSize = new Size(1095, 482);
             Controls.Add(lblTotalBersih);
             Controls.Add(comboJenisPendapatan);
             Controls.Add(btnReset);
@@ -453,8 +441,8 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(dataGridView1);
-            Controls.Add(label1);
-            Margin = new Padding(2);
+            FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(2, 3, 2, 3);
             Name = "TabelPendapatan";
             Text = "TabelPendapatan";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
@@ -469,8 +457,6 @@
         }
 
         #endregion
-
-        private Label label1;
         private DataGridView dataGridView1;
         private Panel panel1;
         private TextBox txtIDPendapatan;
