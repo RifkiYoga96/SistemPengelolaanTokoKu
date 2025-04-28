@@ -35,7 +35,7 @@ namespace Shopee
 
             if (comboBulan.SelectedIndex != 0)
             {
-                var filter = ((Filterss)comboBulan.SelectedItem);
+                var filter = ((RangeTimeModel)comboBulan.SelectedItem);
                 DateTime Tanggal1 = filter.TimeFilter1;
                 DateTime Tanggal2 = filter.TimeFilter2;
                 listPendapatan = db.FilterPendapatan2(Tanggal1, Tanggal2);
@@ -60,15 +60,15 @@ namespace Shopee
             comboJenisPendapatan.SelectedIndex = 0;
 
             DateTime dateTime = DateTime.Today;
-            List<Filterss> listFilter = new List<Filterss>
+            List<RangeTimeModel> listFilter = new List<RangeTimeModel>
             {
-                new Filterss{NameFilter = "-- Pilih Waktu --", TimeFilter2 = dateTime, TimeFilter1 = dateTime},
-                new Filterss{NameFilter = "Hari ini", TimeFilter2 = dateTime, TimeFilter1 = dateTime},
-                new Filterss{NameFilter = "Kemarin", TimeFilter2 = dateTime.AddDays(-1), TimeFilter1 = dateTime.AddDays(-1)},
-                new Filterss{NameFilter = "7 hari sebelumnya", TimeFilter2 = dateTime, TimeFilter1 = dateTime.AddDays(-6)},
-                new Filterss{NameFilter = "30 hari sebelumnya", TimeFilter2 = dateTime, TimeFilter1 = dateTime.AddDays(-29)},
-                new Filterss{NameFilter = "60 hari sebelumnya", TimeFilter2 = dateTime, TimeFilter1 = dateTime.AddDays(-59)},
-                new Filterss{NameFilter = "90 hari sebelumnya", TimeFilter2 = dateTime, TimeFilter1 = dateTime.AddDays(-89)}
+                new RangeTimeModel{NameFilter = "-- Pilih Waktu --", TimeFilter2 = dateTime, TimeFilter1 = dateTime},
+                new RangeTimeModel{NameFilter = "Hari ini", TimeFilter2 = dateTime, TimeFilter1 = dateTime},
+                new RangeTimeModel{NameFilter = "Kemarin", TimeFilter2 = dateTime.AddDays(-1), TimeFilter1 = dateTime.AddDays(-1)},
+                new RangeTimeModel{NameFilter = "7 hari sebelumnya", TimeFilter2 = dateTime, TimeFilter1 = dateTime.AddDays(-6)},
+                new RangeTimeModel{NameFilter = "30 hari sebelumnya", TimeFilter2 = dateTime, TimeFilter1 = dateTime.AddDays(-29)},
+                new RangeTimeModel{NameFilter = "60 hari sebelumnya", TimeFilter2 = dateTime, TimeFilter1 = dateTime.AddDays(-59)},
+                new RangeTimeModel{NameFilter = "90 hari sebelumnya", TimeFilter2 = dateTime, TimeFilter1 = dateTime.AddDays(-89)}
             };
             comboBulan.DataSource = listFilter;
             comboBulan.DisplayMember = "NameFilter";

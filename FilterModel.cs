@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Shopee
 {
-    public class Filterss
+    public class RangeTimeModel
     {
         public string NameFilter { get; set; }
         public DateTime TimeFilter1 { get; set; }

@@ -12,12 +12,17 @@ namespace Shopee
     {
         public IEnumerable<PendapatanModel> ListData(FilterModel filter)
         {
-            const string sql = @"SELECT * FROM Pendapatan
-                        @filter
+            string sql = $@"
+                        SELECT 
+                            p.ID_Pendapatan,pr.Nama_Produk,p.Pendapatan_Kotor,p.Modal,
+                            p.Pendapatan_Bersih,p.Tanggal_Input,p.Jumlah_Produk
+                        FROM pendapatan p 
+                        INNER JOIN produk pr ON p.ID_Produk = pr.ID_Produk
+                        {filter.sql}
                         OFFSET @offset ROWS FETCH NEXT @fetch ROWS ONLY";
 
             using var koneksi = new SqlConnection(conn.connStr);
-            return koneksi.Query<PendapatanModel>(filter.sql, filter.param);
+            return koneksi.Query<PendapatanModel>(sql, filter.param);
         }
 
         public PendapatanModel? GetData(int id)
@@ -36,6 +41,21 @@ namespace Shopee
 
             using var koneksi = new SqlConnection(conn.connStr);
             koneksi.Execute(sql, pendapatan);
+        }
+
+        public void DeleteData(int id)
+        {
+            const string sql = @"DELETE FROM Pendapatan WHERE ID_Pendapatan = @id";
+            using var koneksi = new SqlConnection(conn.connStr);
+            koneksi.Execute(sql, new { id = id });
+        }
+
+        public int CountData(FilterModel filter)
+        {
+            string sql = $@"SELECT COUNT(*) FROM pendapatan p INNER JOIN produk pr ON p.ID_Produk = pr.ID_Produk {filter.sql}";
+            MessageBox.Show(sql);
+            using var koneksi = new SqlConnection(conn.connStr);
+            return koneksi.QuerySingleOrDefault<int>(sql, filter.param);
         }
     }
 }
