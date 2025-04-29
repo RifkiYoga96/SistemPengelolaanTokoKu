@@ -25,6 +25,19 @@ namespace Shopee
             return koneksi.Query<PendapatanModel>(sql, filter.param);
         }
 
+        public int TotalPendapatan(FilterModel filter, string field_name)
+        {
+            string sql = $@"
+                        SELECT 
+                            ISNULL (SUM(p.{field_name}), 0)
+                        FROM pendapatan p 
+                        INNER JOIN produk pr ON p.ID_Produk = pr.ID_Produk
+                        {filter.sql}";
+
+            using var koneksi = new SqlConnection(conn.connStr);
+            return koneksi.QuerySingleOrDefault<int>(sql, filter.param);
+        }
+
         public PendapatanModel? GetData(int id)
         {
             const string sql = @"SELECT * FROM Pendapatan WHERE ID_Pendapatan=@id";
@@ -53,7 +66,6 @@ namespace Shopee
         public int CountData(FilterModel filter)
         {
             string sql = $@"SELECT COUNT(*) FROM pendapatan p INNER JOIN produk pr ON p.ID_Produk = pr.ID_Produk {filter.sql}";
-            MessageBox.Show(sql);
             using var koneksi = new SqlConnection(conn.connStr);
             return koneksi.QuerySingleOrDefault<int>(sql, filter.param);
         }
