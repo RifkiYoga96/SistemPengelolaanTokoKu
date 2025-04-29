@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            comboPendapatan = new ComboBox();
+            comboPendapatanPengeluaran = new ComboBox();
             label1 = new Label();
             panel1 = new Panel();
             dtTanggal = new DateTimePicker();
@@ -40,14 +40,14 @@
             ((System.ComponentModel.ISupportInitialize)numericJumlahOrBiaya).BeginInit();
             SuspendLayout();
             // 
-            // comboPendapatan
+            // comboPendapatanPengeluaran
             // 
-            comboPendapatan.Font = new Font("Segoe UI", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
-            comboPendapatan.FormattingEnabled = true;
-            comboPendapatan.Location = new Point(40, 194);
-            comboPendapatan.Name = "comboPendapatan";
-            comboPendapatan.Size = new Size(288, 31);
-            comboPendapatan.TabIndex = 5;
+            comboPendapatanPengeluaran.Font = new Font("Segoe UI", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
+            comboPendapatanPengeluaran.FormattingEnabled = true;
+            comboPendapatanPengeluaran.Location = new Point(40, 194);
+            comboPendapatanPengeluaran.Name = "comboPendapatanPengeluaran";
+            comboPendapatanPengeluaran.Size = new Size(288, 31);
+            comboPendapatanPengeluaran.TabIndex = 5;
             // 
             // label1
             // 
@@ -147,7 +147,7 @@
             Controls.Add(dtTanggal);
             Controls.Add(panel1);
             Controls.Add(label1);
-            Controls.Add(comboPendapatan);
+            Controls.Add(comboPendapatanPengeluaran);
             Name = "InputTransaksiForm";
             Text = "Input Transaksi";
             ((System.ComponentModel.ISupportInitialize)numericJumlahOrBiaya).EndInit();
@@ -156,7 +156,7 @@
         }
 
         #endregion
-        private ComboBox comboPendapatan;
+        private ComboBox comboPendapatanPengeluaran;
         private Label label1;
         private Panel panel1;
         private DateTimePicker dtTanggal;
