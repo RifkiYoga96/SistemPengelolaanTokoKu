@@ -75,9 +75,16 @@ namespace Shopee
             btnPrevious.Click += BtnPrevious_Click;
             txtSearch.TextChanged += TxtSearch_TextChanged;
             comboTotal.SelectedIndexChanged += (s,e) => Hitung_TotalPendapatan();
+            btnAddData.Click += BtnAddData_Click;
 
             numericUpDown1.ValueChanged += NumericUpDown1_ValueChanged;
             comboSorting.SelectedIndexChanged += ComboSorting_SelectedIndexChanged;
+        }
+
+        private void BtnAddData_Click(object? sender, EventArgs e)
+        {
+            if (new InputTransaksiForm().ShowDialog() != DialogResult.OK) return;
+            LoadData();
         }
 
         private void ComboSorting_SelectedIndexChanged(object? sender, EventArgs e)
@@ -124,7 +131,7 @@ namespace Shopee
             
             if (indexTime == 5)
             {
-                var filterForm = new Filter_Form();
+                var filterForm = new RentangTanggalForm();
                 filterForm.Location = new Point(Cursor.Position.X, Cursor.Position.Y - comboTimeFilter.DropDownHeight);
                 if (filterForm.ShowDialog() == DialogResult.OK)
                     _periode = $"Periode : {_date1.ToString("d/M/yyyy")} - {_date2.ToString("d/M/yyyy")}";

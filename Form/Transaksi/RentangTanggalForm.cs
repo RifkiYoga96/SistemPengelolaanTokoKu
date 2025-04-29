@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Shopee
 {
-    public partial class Filter_Form : Form
+    public partial class RentangTanggalForm : Form
     {
-        public Filter_Form()
+        public RentangTanggalForm()
         {
             InitializeComponent();
             GetData();

@@ -1,6 +1,6 @@
 ﻿namespace Shopee
 {
-    partial class Filter_Form
+    partial class RentangTanggalForm
     {
         /// <summary>
         /// Required designer variable.
@@ -81,7 +81,7 @@
             btnOk.Text = "OK";
             btnOk.UseVisualStyleBackColor = true;
             // 
-            // Filter_Form
+            // RentangTanggalForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -92,7 +92,7 @@
             Controls.Add(label4);
             Controls.Add(dateTime1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
-            Name = "Filter_Form";
+            Name = "RentangTanggalForm";
             StartPosition = FormStartPosition.Manual;
             Text = "Filter_Form";
             ResumeLayout(false);

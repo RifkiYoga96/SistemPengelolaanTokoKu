@@ -44,7 +44,7 @@
             btnNext = new Button();
             comboTimeFilter = new ComboBox();
             txtSearch = new TextBox();
-            button1 = new Button();
+            btnAddData = new Button();
             label2 = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -247,19 +247,19 @@
             txtSearch.Size = new Size(268, 31);
             txtSearch.TabIndex = 3;
             // 
-            // button1
+            // btnAddData
             // 
-            button1.BackColor = Color.FromArgb(0, 86, 179);
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(29, 24);
-            button1.Name = "button1";
-            button1.Size = new Size(146, 43);
-            button1.TabIndex = 1;
-            button1.Text = "➕ Add Data";
-            button1.UseVisualStyleBackColor = false;
+            btnAddData.BackColor = Color.FromArgb(0, 86, 179);
+            btnAddData.FlatAppearance.BorderSize = 0;
+            btnAddData.FlatStyle = FlatStyle.Flat;
+            btnAddData.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
+            btnAddData.ForeColor = Color.White;
+            btnAddData.Location = new Point(29, 24);
+            btnAddData.Name = "btnAddData";
+            btnAddData.Size = new Size(146, 43);
+            btnAddData.TabIndex = 1;
+            btnAddData.Text = "➕ Add Data";
+            btnAddData.UseVisualStyleBackColor = false;
             // 
             // label2
             // 
@@ -279,7 +279,7 @@
             BackColor = Color.FromArgb(230, 235, 240);
             Controls.Add(label2);
             Controls.Add(panel1);
-            Controls.Add(button1);
+            Controls.Add(btnAddData);
             Name = "Pendapatan_UC";
             Size = new Size(1157, 704);
             panel1.ResumeLayout(false);
@@ -294,7 +294,7 @@
         #endregion
 
         private Panel panel1;
-        private Button button1;
+        private Button btnAddData;
         private ComboBox comboTimeFilter;
         private TextBox txtSearch;
         private DataGridView dataGridView1;
