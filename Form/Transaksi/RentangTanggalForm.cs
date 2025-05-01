@@ -21,16 +21,16 @@ namespace Shopee
 
         private void GetData()
         {
-            dateTime1.Value = Pendapatan_UC._date1;
-            dateTime2.Value = Pendapatan_UC._date2;
+            dateTime1.Value = TransaksiUC._date1;
+            dateTime2.Value = TransaksiUC._date2;
         }
 
         private void BtnOk_Click(object? sender, EventArgs e)
         {
             var date1 = dateTime1.Value.Date;
             var date2 = dateTime2.Value.Date.AddDays(1); // +1 supaya di hari itu juga terdeteksi
-            Pendapatan_UC._date1 = date1;
-            Pendapatan_UC._date2 = date2;
+            TransaksiUC._date1 = date1;
+            TransaksiUC._date2 = date2;
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

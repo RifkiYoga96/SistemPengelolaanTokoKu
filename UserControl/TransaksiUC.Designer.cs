@@ -1,6 +1,6 @@
 ﻿namespace Shopee
 {
-    partial class Pendapatan_UC
+    partial class TransaksiUC
     {
         /// <summary> 
         /// Required designer variable.
@@ -272,7 +272,7 @@
             label2.TabIndex = 6;
             label2.Text = "PENDAPATAN";
             // 
-            // Pendapatan_UC
+            // TransaksiUC
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -280,7 +280,7 @@
             Controls.Add(label2);
             Controls.Add(panel1);
             Controls.Add(btnAddData);
-            Name = "Pendapatan_UC";
+            Name = "TransaksiUC";
             Size = new Size(1157, 704);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

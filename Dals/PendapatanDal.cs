@@ -1,10 +1,7 @@
-﻿using Dapper;
+using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Shopee
 {
@@ -14,10 +11,10 @@ namespace Shopee
         {
             string sql = $@"
                         SELECT 
-                            p.ID_Pendapatan,pr.Nama_Produk,p.Pendapatan_Kotor,p.Modal,
-                            p.Pendapatan_Bersih,p.Tanggal_Input,p.Jumlah_Produk
-                        FROM pendapatan p 
-                        INNER JOIN produk pr ON p.ID_Produk = pr.ID_Produk
+                            t.ID_Pendapatan, pr.Nama_Produk, t.Pendapatan_Kotor, t.Modal,
+                            t.Pendapatan_Bersih, t.Tanggal_Input, t.Jumlah_Produk, pr.Tipe
+                        FROM transaksi t
+                        INNER JOIN produk pr ON t.ID_Produk = pr.ID_Produk
                         {filter.sql}
                         OFFSET @offset ROWS FETCH NEXT @fetch ROWS ONLY";
 
@@ -29,9 +26,9 @@ namespace Shopee
         {
             string sql = $@"
                         SELECT 
-                            ISNULL (SUM(p.{field_name}), 0)
-                        FROM pendapatan p 
-                        INNER JOIN produk pr ON p.ID_Produk = pr.ID_Produk
+                            ISNULL(SUM(t.{field_name}), 0)
+                        FROM transaksi t
+                        INNER JOIN produk pr ON t.ID_Produk = pr.ID_Produk
                         {filter.sql}";
 
             using var koneksi = new SqlConnection(conn.connStr);
@@ -40,17 +37,17 @@ namespace Shopee
 
         public PendapatanModel? GetData(int id)
         {
-            const string sql = @"SELECT * FROM Pendapatan WHERE ID_Pendapatan=@id";
-            using var koneksi = new SqlConnection(conn.connStr);    
-            return koneksi.QueryFirstOrDefault<PendapatanModel>(sql, new { id = id });  
+            const string sql = @"SELECT * FROM transaksi WHERE ID_Pendapatan = @id";
+            using var koneksi = new SqlConnection(conn.connStr);
+            return koneksi.QueryFirstOrDefault<PendapatanModel>(sql, new { id = id });
         }
 
         public void InsertData(PendapatanModel pendapatan)
         {
             const string sql =
-                @"INSERT INTO Pendapatan                      
-                        (ID_Produk,Pendapatan_Kotor,Modal,Pendapatan_Bersih,Tanggal_Input,Jumlah_Produk)
-                  VALUES (@ID_Produk,@Pendapatan_Kotor,@Modal,@Pendapatan_Bersih,@Tanggal_Input,@Jumlah_Produk)";
+                @"INSERT INTO transaksi                      
+                        (ID_Produk, Pendapatan_Kotor, Modal, Pendapatan_Bersih, Tanggal_Input, Jumlah_Produk, Tipe)
+                  VALUES (@ID_Produk, @Pendapatan_Kotor, @Modal, @Pendapatan_Bersih, @Tanggal_Input, @Jumlah_Produk, @Tipe)";
 
             using var koneksi = new SqlConnection(conn.connStr);
             koneksi.Execute(sql, pendapatan);
@@ -58,14 +55,14 @@ namespace Shopee
 
         public void DeleteData(int id)
         {
-            const string sql = @"DELETE FROM Pendapatan WHERE ID_Pendapatan = @id";
+            const string sql = @"DELETE FROM transaksi WHERE ID_Pendapatan = @id";
             using var koneksi = new SqlConnection(conn.connStr);
             koneksi.Execute(sql, new { id = id });
         }
 
         public int CountData(FilterModel filter)
         {
-            string sql = $@"SELECT COUNT(*) FROM pendapatan p INNER JOIN produk pr ON p.ID_Produk = pr.ID_Produk {filter.sql}";
+            string sql = $@"SELECT COUNT(*) FROM transaksi t INNER JOIN produk pr ON t.ID_Produk = pr.ID_Produk {filter.sql}";
             using var koneksi = new SqlConnection(conn.connStr);
             return koneksi.QuerySingleOrDefault<int>(sql, filter.param);
         }

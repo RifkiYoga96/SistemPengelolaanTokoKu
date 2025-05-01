@@ -12,6 +12,7 @@ namespace Shopee
         public int ID_Bahan { get; set; }
         public string Nama_Produk { get; set; }
         public int Harga {  get; set; }
+        public bool Tipe {  get; set; }
         
     }
 }

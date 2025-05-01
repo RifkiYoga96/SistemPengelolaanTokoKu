@@ -19,10 +19,17 @@ namespace Shopee
 
         public IEnumerable<produkModel> ListProdukCombo()
         {
-            const string sql = $@"SELECT ID_Produk, Nama_Produk FROM produk
+            const string sql = $@"SELECT ID_Produk, Nama_Produk, Harga, Tipe FROM produk
                                 ";
             using var koneksi = new SqlConnection(conn.connStr);
             return koneksi.Query<produkModel>(sql);
+        }
+
+        public int GetModal(int idProduk)
+        {
+            const string sql = @"SELECT ISNULL (SUM(Harga),0) FROM produk WHERE ID_Produk=@id";
+            using var koneksi = new SqlConnection(conn.connStr);
+            return koneksi.QuerySingleOrDefault<int>(sql, new { id = idProduk });
         }
 
         public produkModel? GetData(int id)

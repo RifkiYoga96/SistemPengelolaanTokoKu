@@ -16,5 +16,6 @@ namespace Shopee
         public double Pendapatan_Bersih {  get; set; }
         public DateTime Tanggal_Input { get; set; }
         public int Jumlah_Produk { get; set; }
+        public bool Tipe { get; set; }
     }
 }
