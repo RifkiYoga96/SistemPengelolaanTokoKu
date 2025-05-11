@@ -14,7 +14,7 @@ namespace Shopee
     public partial class TransaksiUC : UserControl
     {
         // Fields
-        private readonly PendapatanDal _pendapatanDal;
+        private readonly TransaksiDal _transaksiDal;
         public static DateTime _date1 = DateTime.Today;
         public static DateTime _date2 = DateTime.Today;
         private int _indexFilterTimeActive = 0;
@@ -28,7 +28,7 @@ namespace Shopee
         public TransaksiUC()
         {
             InitializeComponent();
-            _pendapatanDal = new PendapatanDal();
+            _transaksiDal = new TransaksiDal();
             _culture = new CultureInfo("id-ID");
             _imageCustomize = new ImageCustomize();
 
@@ -189,20 +189,20 @@ namespace Shopee
 
             if (!string.IsNullOrEmpty(search))
             {
-                listFilter.Add("(pr.Nama_Produk LIKE '%'+@search+'%')");
+                listFilter.Add("(nama_transaksi LIKE '%'+@search+'%')");
                 filter.param.Add("@search", search);
             }
 
             if (indexTime == 5)
             {
-                listFilter.Add("(t.Tanggal_Input BETWEEN @date1 AND @date2)");
+                listFilter.Add("(tanggal_input BETWEEN @date1 AND @date2)");
                 filter.param.Add("@date1", _date1);
                 filter.param.Add("@date2", _date2);
             }
             else
             {
                 var selectedItem = (RangeTimeModel)comboTimeFilter.SelectedItem;
-                listFilter.Add("(t.Tanggal_Input BETWEEN @date1 AND @date2)");
+                listFilter.Add("(tanggal_input BETWEEN @date1 AND @date2)");
                 filter.param.Add("@date1", selectedItem.TimeFilter1);
                 filter.param.Add("@date2", selectedItem.TimeFilter2);
             }
@@ -221,7 +221,7 @@ namespace Shopee
             Image pengeluaran = Properties.Resources.Pengeluaran;
 
             var filterData = CreateFilter();
-            int totalData = _pendapatanDal.CountData(filterData);
+            int totalData = _transaksiDal.CountData(filterData);
             _totalPage = (int)Math.Ceiling((double)totalData / (int)numericUpDown1.Value);
 
             int fetch = (int)numericUpDown1.Value;
@@ -231,21 +231,22 @@ namespace Shopee
             filterData.param.Add("@offset", offset);
 
             filterData.sql += comboSorting.SelectedIndex == 0
-                ? " ORDER BY t.Tanggal_Input DESC, t.ID_Pendapatan DESC"
-                : " ORDER BY t.Tanggal_Input ASC, t.ID_Pendapatan ASC";
+                ? " ORDER BY tanggal_input DESC, id_transaksi DESC"
+                : " ORDER BY tanggal_input ASC, id_transaksi ASC";
 
-            var listData = _pendapatanDal.ListData(filterData)
+            var listData = _transaksiDal.ListData(filterData)
                 .Select((x, index) => new
                 {
-                    x.ID_Pendapatan,
+                    x.id_transaksi,
                     No = index + 1 + offset,
-                    x.Nama_Produk,
-                    Pendapatan_Kotor = x.Pendapatan_Kotor.ToString("C0", _culture),
-                    Modal = x.Modal.ToString("C0", _culture),
-                    Pendapatan_Bersih = x.Pendapatan_Bersih.ToString("C0", _culture),
-                    x.Tanggal_Input,
-                    x.Jumlah_Produk,
-                    Tipe = x.Tipe ? 
+                    x.nama_transaksi,
+                    x.tanggal_input,
+                    pendapatan_kotor = x.pendapatan_kotor?.ToString("C0", _culture),
+                    modal = x.modal?.ToString("C0", _culture),
+                    pendapatan_bersih = x.pendapatan_bersih?.ToString("C0", _culture),
+                    pengeluaran = x.pengeluaran?.ToString("C0", _culture),
+                    x.jumlah,
+                    tipe = x.tipe ? 
                         _imageCustomize.ImageToByteArray(_imageCustomize.ResizeImagePersentase(pendapatan, 15)) 
                         : _imageCustomize.ImageToByteArray(_imageCustomize.ResizeImagePersentase(pengeluaran, 15))
                 }).ToList();
@@ -270,28 +271,30 @@ namespace Shopee
             dgv.CustomDataGrid();
 
             dgv.Columns["No"].HeaderText = "  No";
-            dgv.Columns["Nama_Produk"].HeaderText = "Produk";
-            dgv.Columns["Pendapatan_Kotor"].HeaderText = "Pendapatan Kotor";
-            dgv.Columns["Pendapatan_Bersih"].HeaderText = "Pendapatan Bersih";
-            dgv.Columns["Tanggal_Input"].HeaderText = "Tanggal";
-            dgv.Columns["Jumlah_Produk"].HeaderText = "Jumlah Pembelian";
-            dgv.Columns["Tipe"].HeaderText = "     Tipe";
+            dgv.Columns["nama_transaksi"].HeaderText = "Nama Transaksi";
+            dgv.Columns["tanggal_input"].HeaderText = "Tanggal";
+            dgv.Columns["pendapatan_kotor"].HeaderText = "Pendapatan Kotor";
+            dgv.Columns["pendapatan_bersih"].HeaderText = "Pendapatan Bersih";
+            dgv.Columns["pengeluaran"].HeaderText = "Pengeluaran";
+            dgv.Columns["jumlah"].HeaderText = "Jumlah";
+            dgv.Columns["tipe"].HeaderText = "     Tipe";
 
-            dgv.Columns["ID_Pendapatan"].Visible = false;
+            dgv.Columns["id_transaksi"].Visible = false;
 
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgv.Columns["No"].FillWeight = 7;
-            dgv.Columns["Nama_Produk"].FillWeight = 18;
-            dgv.Columns["Pendapatan_Kotor"].FillWeight = 13;
-            dgv.Columns["Modal"].FillWeight = 13;
-            dgv.Columns["Pendapatan_Bersih"].FillWeight = 13;
-            dgv.Columns["Tanggal_Input"].FillWeight = 12;
-            dgv.Columns["Jumlah_Produk"].FillWeight = 13;
-            dgv.Columns["Tipe"].FillWeight = 11;
+            dgv.Columns["nama_transaksi"].FillWeight = 15;
+            dgv.Columns["tanggal_input"].FillWeight = 12;
+            dgv.Columns["pendapatan_kotor"].FillWeight = 11;
+            dgv.Columns["modal"].FillWeight = 11;
+            dgv.Columns["pendapatan_bersih"].FillWeight = 11;
+            dgv.Columns["pengeluaran"].FillWeight = 11;
+            dgv.Columns["jumlah"].FillWeight = 11;
+            dgv.Columns["tipe"].FillWeight = 11;
 
             dgv.Columns["No"].DefaultCellStyle.Padding = new Padding(15, 0, 0, 0);
-            dgv.Columns["Jumlah_Produk"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv.Columns["Tipe"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dgv.Columns["jumlah"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv.Columns["tipe"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
         }
 
         private void Hitung_TotalPendapatan()
@@ -299,12 +302,12 @@ namespace Shopee
             int indexComboTotal = comboTotal.SelectedIndex;
             string fieldName = indexComboTotal switch
             {
-                0 => "Pendapatan_Bersih",
-                1 => "Pendapatan_Kotor",
-                _ => "Modal"
+                0 => "pendapatan_bersih",
+                1 => "pendapatan_kotor",
+                _ => "modal"
             };
 
-            int totalPendapatan = _pendapatanDal.TotalPendapatan(CreateFilter(), fieldName);
+            int totalPendapatan = _transaksiDal.TotalPendapatan(CreateFilter(), fieldName);
             lblPendapatan.Text = totalPendapatan.ToString("C", _culture);
         }
 

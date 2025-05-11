@@ -39,6 +39,8 @@
             btnSavePendapatan = new Button();
             tabControl1 = new TabControl();
             tabPendapatan = new TabPage();
+            label7 = new Label();
+            numericHargaPendapatan = new NumericUpDown();
             tabPengeluaran = new TabPage();
             dtPengeluaran = new DateTimePicker();
             btnSavePengeluaran = new Button();
@@ -50,6 +52,7 @@
             ((System.ComponentModel.ISupportInitialize)numericJumlahPendapatan).BeginInit();
             tabControl1.SuspendLayout();
             tabPendapatan.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numericHargaPendapatan).BeginInit();
             tabPengeluaran.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericPengeluaran).BeginInit();
             SuspendLayout();
@@ -59,7 +62,7 @@
             comboPendapatan.DropDownStyle = ComboBoxStyle.DropDownList;
             comboPendapatan.Font = new Font("Segoe UI", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
             comboPendapatan.FormattingEnabled = true;
-            comboPendapatan.Location = new Point(26, 132);
+            comboPendapatan.Location = new Point(26, 128);
             comboPendapatan.Name = "comboPendapatan";
             comboPendapatan.Size = new Size(288, 31);
             comboPendapatan.TabIndex = 5;
@@ -96,7 +99,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.Location = new Point(26, 23);
+            label4.Location = new Point(26, 24);
             label4.Name = "label4";
             label4.Size = new Size(76, 25);
             label4.TabIndex = 14;
@@ -107,17 +110,17 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(26, 104);
+            label2.Location = new Point(26, 99);
             label2.Name = "label2";
-            label2.Size = new Size(110, 25);
+            label2.Size = new Size(72, 25);
             label2.TabIndex = 15;
-            label2.Text = "Pendapatan";
+            label2.Text = "Produk";
             label2.TextAlign = ContentAlignment.MiddleRight;
             // 
             // numericJumlahPendapatan
             // 
             numericJumlahPendapatan.Font = new Font("Segoe UI", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
-            numericJumlahPendapatan.Location = new Point(26, 210);
+            numericJumlahPendapatan.Location = new Point(26, 276);
             numericJumlahPendapatan.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numericJumlahPendapatan.Name = "numericJumlahPendapatan";
             numericJumlahPendapatan.Size = new Size(110, 31);
@@ -129,7 +132,7 @@
             // 
             lblJumlah.AutoSize = true;
             lblJumlah.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            lblJumlah.Location = new Point(26, 182);
+            lblJumlah.Location = new Point(26, 247);
             lblJumlah.Name = "lblJumlah";
             lblJumlah.Size = new Size(70, 25);
             lblJumlah.TabIndex = 17;
@@ -143,7 +146,7 @@
             btnSavePendapatan.FlatStyle = FlatStyle.Flat;
             btnSavePendapatan.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             btnSavePendapatan.ForeColor = Color.White;
-            btnSavePendapatan.Location = new Point(192, 290);
+            btnSavePendapatan.Location = new Point(192, 334);
             btnSavePendapatan.Name = "btnSavePendapatan";
             btnSavePendapatan.Size = new Size(122, 39);
             btnSavePendapatan.TabIndex = 18;
@@ -155,14 +158,16 @@
             tabControl1.Controls.Add(tabPendapatan);
             tabControl1.Controls.Add(tabPengeluaran);
             tabControl1.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            tabControl1.Location = new Point(21, 54);
+            tabControl1.Location = new Point(21, 61);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(349, 390);
+            tabControl1.Size = new Size(349, 427);
             tabControl1.TabIndex = 19;
             // 
             // tabPendapatan
             // 
+            tabPendapatan.Controls.Add(label7);
+            tabPendapatan.Controls.Add(numericHargaPendapatan);
             tabPendapatan.Controls.Add(dtPendapatan);
             tabPendapatan.Controls.Add(btnSavePendapatan);
             tabPendapatan.Controls.Add(comboPendapatan);
@@ -174,10 +179,32 @@
             tabPendapatan.Location = new Point(4, 32);
             tabPendapatan.Name = "tabPendapatan";
             tabPendapatan.Padding = new Padding(3);
-            tabPendapatan.Size = new Size(341, 354);
+            tabPendapatan.Size = new Size(341, 391);
             tabPendapatan.TabIndex = 0;
             tabPendapatan.Text = "Pendapatan";
             tabPendapatan.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            label7.Location = new Point(26, 173);
+            label7.Name = "label7";
+            label7.Size = new Size(61, 25);
+            label7.TabIndex = 20;
+            label7.Text = "Harga";
+            label7.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // numericHargaPendapatan
+            // 
+            numericHargaPendapatan.Font = new Font("Segoe UI", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
+            numericHargaPendapatan.Location = new Point(26, 202);
+            numericHargaPendapatan.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numericHargaPendapatan.Name = "numericHargaPendapatan";
+            numericHargaPendapatan.Size = new Size(288, 31);
+            numericHargaPendapatan.TabIndex = 19;
+            numericHargaPendapatan.TextAlign = HorizontalAlignment.Center;
+            numericHargaPendapatan.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // tabPengeluaran
             // 
@@ -191,7 +218,7 @@
             tabPengeluaran.Location = new Point(4, 32);
             tabPengeluaran.Name = "tabPengeluaran";
             tabPengeluaran.Padding = new Padding(3);
-            tabPengeluaran.Size = new Size(341, 354);
+            tabPengeluaran.Size = new Size(341, 391);
             tabPengeluaran.TabIndex = 1;
             tabPengeluaran.Text = "Pengeluaran";
             tabPengeluaran.UseVisualStyleBackColor = true;
@@ -211,7 +238,7 @@
             btnSavePengeluaran.FlatStyle = FlatStyle.Flat;
             btnSavePengeluaran.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             btnSavePengeluaran.ForeColor = Color.White;
-            btnSavePengeluaran.Location = new Point(192, 291);
+            btnSavePengeluaran.Location = new Point(192, 282);
             btnSavePengeluaran.Name = "btnSavePengeluaran";
             btnSavePengeluaran.Size = new Size(122, 39);
             btnSavePengeluaran.TabIndex = 25;
@@ -276,7 +303,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(390, 462);
+            ClientSize = new Size(390, 500);
             Controls.Add(tabControl1);
             Controls.Add(panel1);
             Controls.Add(label1);
@@ -286,6 +313,7 @@
             tabControl1.ResumeLayout(false);
             tabPendapatan.ResumeLayout(false);
             tabPendapatan.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numericHargaPendapatan).EndInit();
             tabPengeluaran.ResumeLayout(false);
             tabPengeluaran.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numericPengeluaran).EndInit();
@@ -312,5 +340,7 @@
         private Label label5;
         private NumericUpDown numericPengeluaran;
         private Label label6;
+        private Label label7;
+        private NumericUpDown numericHargaPendapatan;
     }
 }

@@ -13,56 +13,67 @@ namespace Shopee
     public partial class InputTransaksiForm : Form
     {
         private readonly ProdukDal _produkDal;
-        private readonly PendapatanDal _pendapatanDal;
+        private readonly PengeluaranDal _pengeluaranDal;
+        private readonly TransaksiDal _transaksiDal;
         public InputTransaksiForm()
         {
             InitializeComponent();
             this.IsDialogForm();
              _produkDal = new ProdukDal();
-            _pendapatanDal = new PendapatanDal();
+            _transaksiDal = new TransaksiDal();
+            _pengeluaranDal = new PengeluaranDal();
 
             InitComponent();
+            RegisterEvent();
         }
 
         private void InitComponent()
         {
-            var listProduk = _produkDal.ListProdukCombo()
-                .Select(x => new produkModel
-                {
-                    ID_Produk = x.ID_Produk,
-                    Nama_Produk = x.Nama_Produk,
-                    Harga = x.Harga,
-                    Tipe = x.Tipe
-                }).ToList();
-
             //PENDAPATAN
             //ComboBox
-            comboPendapatan.DataSource = listProduk.Where(x => x.Tipe == true).ToList();
+            var listProduk = _produkDal.ListProdukCombo();
+            comboPendapatan.DataSource = listProduk;
             comboPendapatan.DisplayMember = "Nama_Produk";
             comboPendapatan.ValueMember = "ID_Produk";
 
-
             //PENGELUARAN
             //ComboBox
-            comboPengeluaran.DataSource = listProduk.Where(x => x.Tipe == false).ToList();
-            comboPengeluaran.DisplayMember = "Nama_Produk";
-            comboPengeluaran.ValueMember = "ID_Produk";
-
-            //numericUpDown
-            int biaya = comboPengeluaran.SelectedItem != null ? 
-                ((produkModel)comboPengeluaran.SelectedItem).Harga : 0;
-            numericPengeluaran.Value = biaya;
+            var listPengeluaran = _pengeluaranDal.ListPengeluaranCombo();
+            comboPengeluaran.DataSource = listPengeluaran;
+            comboPengeluaran.DisplayMember = "nama_pengeluaran";
+            comboPengeluaran.ValueMember = "id_pengeluaran";
         }
 
         private void RegisterEvent()
         {
-            btnSavePendapatan.Click += BtnSavePendapatan_Click;
+            btnSavePendapatan.Click += SaveDataPendapatan;
+            btnSavePengeluaran.Click += SaveDataPengeluaran;
+            comboPengeluaran.SelectedIndexChanged += UpdateBiayaPengeluaran;
+            comboPendapatan.SelectedIndexChanged += UpdateHargaProduk;
         }
 
-        private void BtnSavePendapatan_Click(object? sender, EventArgs e)
+
+        private void UpdateHargaProduk(object? sender, EventArgs e)
+        {
+            if (comboPendapatan.SelectedItem == null) return;
+
+            int harga = ((produkModel)comboPendapatan.SelectedItem).Harga;
+            numericHargaPendapatan.Value = harga;
+        }
+
+        private void UpdateBiayaPengeluaran(object? sender, EventArgs e)
+        {
+            if (comboPengeluaran.SelectedItem == null) return;
+
+            int harga = ((produkModel)comboPengeluaran.SelectedItem).Harga;
+            numericPengeluaran.Value = harga;
+        }
+
+        private void SaveDataPendapatan(object? sender, EventArgs e)
         {
             DateTime date = dtPendapatan.Value.Date;
             int idProduk = (int)(comboPendapatan.SelectedValue ?? 0);
+            string nama_produk = ((produkModel)comboPendapatan.SelectedItem).Nama_Produk;
             int jumlah = (int)numericJumlahPendapatan.Value;
             int harga = (((produkModel)comboPendapatan.SelectedItem).Harga) * jumlah;
             int modal = (_produkDal.GetModal(idProduk) * jumlah);
@@ -75,18 +86,44 @@ namespace Shopee
             }
             if (!MessageBoxShow.Confirmation()) return;
 
-            var produk = new PendapatanModel
+            var produk = new TransaksiModel
             {
-                ID_Produk = idProduk,
-                Tanggal_Input = date,
-                Jumlah_Produk = jumlah,
-                Pendapatan_Kotor = harga,
-                Modal = modal,
-                Pendapatan_Bersih = labaBersih,
-                Tipe = true // true karena pendapatan
+                nama_transaksi = nama_produk,
+                tanggal_input = date,
+                pendapatan_kotor = harga,
+                modal = modal,
+                pendapatan_bersih = labaBersih,
+                pengeluaran = null,
+                jumlah = jumlah,
+                tipe = true //true karena pendapatan
             };
 
-            _pendapatanDal.InsertData(produk);
+            _transaksiDal.InsertData(produk);
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+        private void SaveDataPengeluaran(object? sender, EventArgs e)
+        {
+
+            DateTime date = dtPendapatan.Value.Date;
+            string nama_pengeluaran = ((produkModel)comboPendapatan.SelectedItem).Nama_Produk;
+            int biaya_pengeluaran = (int)numericPengeluaran.Value;
+
+            if (!MessageBoxShow.Confirmation()) return;
+
+            var pengeluaran = new TransaksiModel
+            {
+                nama_transaksi = nama_pengeluaran,
+                tanggal_input = date,
+                pendapatan_kotor = null,
+                modal = null,
+                pendapatan_bersih = null,
+                pengeluaran = biaya_pengeluaran,
+                jumlah = null,
+                tipe = false //false karena pengeluaran
+            };
+
+            _transaksiDal.InsertData(pengeluaran);
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

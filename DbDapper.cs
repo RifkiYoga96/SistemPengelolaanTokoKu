@@ -123,7 +123,7 @@ namespace Shopee
 
         public int InsertPendapatan(int ID_Produk, double Pendapatan_Kotor, int Modal, double Pendapatan_Bersih, DateTime Tanggal_Input, int Jumlah_Produk)
         {
-            string sql = @"INSERT INTO Pendapatan(ID_Produk,Pendapatan_Kotor,Modal,Pendapatan_Bersih,Tanggal_Input,Jumlah_Produk)
+            string sql = @"INSERT INTO transaksi(ID_Produk,transaksi_Kotor,Modal,transaksi_Bersih,Tanggal_Input,Jumlah_Produk)
                      VALUES(@id_produk,@pk,@m,@pb,@ti,@jp)";
 
             using var koneksi = new SqlConnection(connstring());
@@ -137,11 +137,11 @@ namespace Shopee
             string sql;
             if (ID == 0)
             {
-                sql = @"SELECT p.ID_Pendapatan,p.ID_Produk,pr.Nama_Produk,p.Pendapatan_Kotor,p.Modal,p.Pendapatan_Bersih,p.Tanggal_Input,p.Jumlah_Produk FROM pendapatan p INNER JOIN produk pr ON p.ID_Produk = pr.ID_Produk";
+                sql = @"SELECT p.ID_Pendapatan,p.ID_Produk,pr.Nama_Produk,p.Pendapatan_Kotor,p.Modal,p.Pendapatan_Bersih,p.Tanggal_Input,p.Jumlah_Produk FROM transaksi p INNER JOIN produk pr ON p.ID_Produk = pr.ID_Produk";
             }
             else
             {
-                sql = @"SELECT ID_Pendapatan,ID_Produk,Pendapatan_Kotor,Modal,Pendapatan_Bersih,Tanggal_Input,Jumlah_Produk FROM pendapatan WHERE ID_Pendapatan=@id";
+                sql = @"SELECT ID_Pendapatan,ID_Produk,Pendapatan_Kotor,Modal,Pendapatan_Bersih,Tanggal_Input,Jumlah_Produk FROM transaksi WHERE ID_Pendapatan=@id";
             }
 
             using var koneksi = new SqlConnection(connstring());
@@ -191,7 +191,7 @@ namespace Shopee
         public IEnumerable<PendapatanModel> FilterPendapatan2(DateTime awal, DateTime akhir)
         {
             string sql = @"SELECT p.ID_Pendapatan,p.ID_Produk,pr.Nama_Produk,p.Pendapatan_Kotor,p.Modal,p.Pendapatan_Bersih,p.Tanggal_Input,p.Jumlah_Produk 
-                     FROM pendapatan p INNER JOIN produk pr ON p.ID_Produk = pr.ID_Produk
+                     FROM transaksi p INNER JOIN produk pr ON p.ID_Produk = pr.ID_Produk
                      WHERE Tanggal_Input BETWEEN @awal AND @akhir";
 
             using var koneksi = new SqlConnection(connstring());

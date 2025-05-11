@@ -10,54 +10,52 @@ namespace Shopee
 {
     public class ProdukDal
     {
-        public IEnumerable<produkModel> ListData(FilterModel filter)
+        public IEnumerable<ProdukModel> ListData(FilterModel filter)
         {
             string sql = $@"SELECT * FROM produk {filter.sql}";
             using var koneksi = new SqlConnection(conn.connStr);  
-            return koneksi.Query<produkModel>(sql, filter.param);
+            return koneksi.Query<ProdukModel>(sql, filter.param);
         }
 
-        public IEnumerable<produkModel> ListProdukCombo()
+        public IEnumerable<ProdukModel> ListProdukCombo()
         {
-            const string sql = $@"SELECT ID_Produk, Nama_Produk, Harga, Tipe FROM produk
-                                ";
+            const string sql = $@"SELECT id_produk, nama_produk, harga FROM produk";
             using var koneksi = new SqlConnection(conn.connStr);
-            return koneksi.Query<produkModel>(sql);
+            return koneksi.Query<ProdukModel>(sql);
         }
 
         public int GetModal(int idProduk)
         {
-            const string sql = @"SELECT ISNULL (SUM(Harga),0) FROM produk WHERE ID_Produk=@id";
+            const string sql = @"SELECT ISNULL (SUM(harga),0) FROM produk WHERE id_produk=@id";
             using var koneksi = new SqlConnection(conn.connStr);
             return koneksi.QuerySingleOrDefault<int>(sql, new { id = idProduk });
         }
 
-        public produkModel? GetData(int id)
+        public ProdukModel? GetData(int id)
         {
-            const string sql = @"SELECT * FROM produk WHERE ID_Produk=@id";
+            const string sql = @"SELECT * FROM produk WHERE id_produk=@id";
             using var koneksi = new SqlConnection(conn.connStr);
-            return koneksi.QueryFirstOrDefault<produkModel>(sql, new { id = id });
+            return koneksi.QueryFirstOrDefault<ProdukModel>(sql, new { id = id });
         }
 
-        public void InsertData(produkModel produk)
+        public void InsertData(ProdukModel produk)
         {
             const string sql =
                 @"INSERT INTO produk                      
-                        (ID_Bahan,Nama_Produk,Harga)
-                   VALUES (@ID_Bahan,@Nama_Produk,@Harga)";
+                        (nama_produk,harga)
+                   VALUES (@nama_produk,@harga)";
 
             using var koneksi = new SqlConnection(conn.connStr);
             koneksi.Execute(sql, produk);
         }
 
-        public void UpdateData(produkModel produk)
+        public void UpdateData(ProdukModel produk)
         {
             const string sql =
                 @"UPDATE produk SET 
-                        ID_Bahan=@ID_Bahan,
-                        Nama_Produk=@Nama_Produk,
-                        Harga=@Harga
-                   WHERE ID_Produk=@ID_Produk";
+                        nama_produk=@nama_produk,
+                        harga=@harga
+                   WHERE id_produk=@id_produk";
 
             using var koneksi = new SqlConnection(conn.connStr);
             koneksi.Execute(sql, produk);
@@ -65,7 +63,7 @@ namespace Shopee
 
         public void DeleteData(int id)
         {
-            const string sql = @"DELETE FROM produk WHERE ID_Produk=@id";
+            const string sql = @"DELETE FROM produk WHERE id_produk=@id";
             using var koneksi = new SqlConnection(conn.connStr);
             koneksi.Execute(sql, new { id = id });
         }
