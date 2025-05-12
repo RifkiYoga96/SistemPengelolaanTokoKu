@@ -12,7 +12,6 @@ CREATE TABLE komponen (
 );
 
 CREATE TABLE komponen_produk (
-    id_komponen_produk INT IDENTITY(1,1) PRIMARY KEY,
     id_produk INT,
     id_komponen INT,
     jumlah INT

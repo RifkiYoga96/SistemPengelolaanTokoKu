@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TransaksiUC));
             panel1 = new Panel();
             lblPaginationInfo = new Label();
             panel2 = new Panel();
@@ -46,10 +48,14 @@
             txtSearch = new TextBox();
             btnAddData = new Button();
             label2 = new Label();
+            menuStrip = new ContextMenuStrip(components);
+            editMenuStrip = new ToolStripMenuItem();
+            deleteMenuStrip = new ToolStripMenuItem();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            menuStrip.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -272,6 +278,29 @@
             label2.TabIndex = 6;
             label2.Text = "PENDAPATAN";
             // 
+            // menuStrip
+            // 
+            menuStrip.ImageScalingSize = new Size(20, 20);
+            menuStrip.Items.AddRange(new ToolStripItem[] { editMenuStrip, deleteMenuStrip });
+            menuStrip.Name = "menuStrip";
+            menuStrip.Size = new Size(141, 64);
+            // 
+            // editMenuStrip
+            // 
+            editMenuStrip.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            editMenuStrip.Image = (Image)resources.GetObject("editMenuStrip.Image");
+            editMenuStrip.Name = "editMenuStrip";
+            editMenuStrip.Size = new Size(140, 30);
+            editMenuStrip.Text = "Edit";
+            // 
+            // deleteMenuStrip
+            // 
+            deleteMenuStrip.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            deleteMenuStrip.Image = (Image)resources.GetObject("deleteMenuStrip.Image");
+            deleteMenuStrip.Name = "deleteMenuStrip";
+            deleteMenuStrip.Size = new Size(140, 30);
+            deleteMenuStrip.Text = "Delete";
+            // 
             // TransaksiUC
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -287,6 +316,7 @@
             panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            menuStrip.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -311,5 +341,8 @@
         private ComboBox comboTotal;
         private Label lblPendapatan;
         private Label lblPaginationInfo;
+        private ContextMenuStrip menuStrip;
+        private ToolStripMenuItem editMenuStrip;
+        private ToolStripMenuItem deleteMenuStrip;
     }
 }

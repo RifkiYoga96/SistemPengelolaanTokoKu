@@ -21,11 +21,19 @@ namespace Shopee
             return koneksi.Query<TransaksiModel>(sql, filter.param);
         }
 
-        public int TotalPendapatan(FilterModel filter, string field_name)
+        public int TotalPendapatan(FilterModel filter, string field_name, bool isLabaBersih)
         {
             string sql = $@"
                         SELECT 
                             ISNULL(SUM({field_name}), 0)
+                        FROM transaksi
+                        {filter.sql}";
+
+            if (isLabaBersih)
+                sql = $@"
+                        SELECT 
+                            ISNULL(SUM({field_name}), 0) -
+                            ISNULL(SUM(pengeluaran), 0)     
                         FROM transaksi
                         {filter.sql}";
 

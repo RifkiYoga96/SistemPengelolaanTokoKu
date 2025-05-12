@@ -26,7 +26,11 @@ namespace Shopee
 
         public int GetModal(int idProduk)
         {
-            const string sql = @"SELECT ISNULL (SUM(harga),0) FROM produk WHERE id_produk=@id";
+            const string sql = @"SELECT ISNULL (SUM(k.harga * kp.jumlah),0) 
+                    FROM komponen k
+                    INNER JOIN komponen_produk kp
+                        ON k.id_komponen = kp.id_komponen
+                    WHERE id_produk = @id";
             using var koneksi = new SqlConnection(conn.connStr);
             return koneksi.QuerySingleOrDefault<int>(sql, new { id = idProduk });
         }

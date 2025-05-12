@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            comboPendapatan = new ComboBox();
+            comboProduk = new ComboBox();
             label1 = new Label();
             panel1 = new Panel();
             dtPendapatan = new DateTimePicker();
@@ -57,15 +57,15 @@
             ((System.ComponentModel.ISupportInitialize)numericPengeluaran).BeginInit();
             SuspendLayout();
             // 
-            // comboPendapatan
+            // comboProduk
             // 
-            comboPendapatan.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboPendapatan.Font = new Font("Segoe UI", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
-            comboPendapatan.FormattingEnabled = true;
-            comboPendapatan.Location = new Point(26, 128);
-            comboPendapatan.Name = "comboPendapatan";
-            comboPendapatan.Size = new Size(288, 31);
-            comboPendapatan.TabIndex = 5;
+            comboProduk.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboProduk.Font = new Font("Segoe UI", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
+            comboProduk.FormattingEnabled = true;
+            comboProduk.Location = new Point(26, 128);
+            comboProduk.Name = "comboProduk";
+            comboProduk.Size = new Size(288, 31);
+            comboProduk.TabIndex = 5;
             // 
             // label1
             // 
@@ -121,6 +121,7 @@
             // 
             numericJumlahPendapatan.Font = new Font("Segoe UI", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
             numericJumlahPendapatan.Location = new Point(26, 276);
+            numericJumlahPendapatan.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             numericJumlahPendapatan.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numericJumlahPendapatan.Name = "numericJumlahPendapatan";
             numericJumlahPendapatan.Size = new Size(110, 31);
@@ -170,7 +171,7 @@
             tabPendapatan.Controls.Add(numericHargaPendapatan);
             tabPendapatan.Controls.Add(dtPendapatan);
             tabPendapatan.Controls.Add(btnSavePendapatan);
-            tabPendapatan.Controls.Add(comboPendapatan);
+            tabPendapatan.Controls.Add(comboProduk);
             tabPendapatan.Controls.Add(lblJumlah);
             tabPendapatan.Controls.Add(label4);
             tabPendapatan.Controls.Add(numericJumlahPendapatan);
@@ -199,7 +200,7 @@
             // 
             numericHargaPendapatan.Font = new Font("Segoe UI", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
             numericHargaPendapatan.Location = new Point(26, 202);
-            numericHargaPendapatan.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numericHargaPendapatan.Maximum = new decimal(new int[] { 100000000, 0, 0, 0 });
             numericHargaPendapatan.Name = "numericHargaPendapatan";
             numericHargaPendapatan.Size = new Size(288, 31);
             numericHargaPendapatan.TabIndex = 19;
@@ -321,7 +322,7 @@
         }
 
         #endregion
-        private ComboBox comboPendapatan;
+        private ComboBox comboProduk;
         private Label label1;
         private Panel panel1;
         private DateTimePicker dtPendapatan;

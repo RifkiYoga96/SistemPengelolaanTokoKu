@@ -15,7 +15,7 @@ namespace Shopee
         public int? modal { get; set; }
         public int? pendapatan_bersih { get; set; }
         public int? pengeluaran { get; set; }
-        public int jumlah { get; set; }
+        public int? jumlah { get; set; }
         public bool tipe { get; set; }
     }
 }

@@ -59,7 +59,7 @@ namespace Shopee
 
             // Total ComboBox
             comboTotal.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboTotal.Items.AddRange(new[] { "Total Pendapatan Bersih", "Total Pendapatan Kotor", "Total Modal" });
+            comboTotal.Items.AddRange(new[] { "Total Pendapatan Bersih", "Total Pendapatan Kotor", "Total Modal", "Total Pengeluaran" });
             comboTotal.SelectedIndex = 0;
         }
 
@@ -90,15 +90,51 @@ namespace Shopee
             btnAddData.Click += BtnAddData_Click;
             numericUpDown1.ValueChanged += NumericUpDown1_ValueChanged;
             comboSorting.SelectedIndexChanged += ComboSorting_SelectedIndexChanged;
+            dataGridView1.CellMouseClick += ShowMenuStrip;
+            editMenuStrip.Click += ShowEditForm;
+            deleteMenuStrip.Click += DeleteData;
         }
+
+
+
 
         #endregion
 
         #region Event Handlers
+        private void DeleteData(object? sender, EventArgs e)
+        {
+            if (!MessageBoxShow.Confirmation()) return;
+
+            int id = (int)dataGridView1.CurrentRow.Cells[0].Value;
+            _transaksiDal.DeleteData(id);
+            LoadData();
+        }
+
+        private void ShowEditForm(object? sender, EventArgs e)
+        {
+            var currentRow = dataGridView1.CurrentRow;
+            int index = currentRow.Cells["pengeluaran"].Value == null
+                ? 0 : 1;
+            int id = (int)currentRow.Cells[0].Value;
+
+            var modal = new InputTransaksiForm(index, id);
+            if (modal.ShowDialog() != DialogResult.OK) return;
+
+            LoadData();
+        }
+
+        private void ShowMenuStrip(object? sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left) return;
+            dataGridView1.ClearSelection();
+            dataGridView1.Rows[e.RowIndex].Selected = true;
+
+            menuStrip.Show(Cursor.Position);
+        }
 
         private void BtnAddData_Click(object? sender, EventArgs e)
         {
-            if (new InputTransaksiForm().ShowDialog() == DialogResult.OK)
+            if (new InputTransaksiForm(0).ShowDialog() == DialogResult.OK)
             {
                 LoadData();
             }
@@ -304,10 +340,13 @@ namespace Shopee
             {
                 0 => "pendapatan_bersih",
                 1 => "pendapatan_kotor",
-                _ => "modal"
+                2 => "modal",
+                _ => "pengeluaran"
             };
 
-            int totalPendapatan = _transaksiDal.TotalPendapatan(CreateFilter(), fieldName);
+            bool isLabaBersih = indexComboTotal == 0;
+
+            int totalPendapatan = _transaksiDal.TotalPendapatan(CreateFilter(), fieldName, isLabaBersih);
             lblPendapatan.Text = totalPendapatan.ToString("C", _culture);
         }
 
