@@ -42,6 +42,8 @@
             contextMenuStrip1 = new ContextMenuStrip(components);
             editModeTool = new ToolStripMenuItem();
             normalModeTool = new ToolStripMenuItem();
+            txtSearch = new TextBox();
+            label4 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DaftarGrid).BeginInit();
             panel2.SuspendLayout();
@@ -57,9 +59,10 @@
             panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(label1);
             panel1.Controls.Add(DaftarGrid);
-            panel1.Location = new Point(250, 12);
+            panel1.Location = new Point(286, 16);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(362, 426);
+            panel1.Size = new Size(413, 567);
             panel1.TabIndex = 0;
             // 
             // label1
@@ -69,7 +72,7 @@
             label1.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             label1.Location = new Point(0, 0);
             label1.Name = "label1";
-            label1.Size = new Size(360, 33);
+            label1.Size = new Size(411, 44);
             label1.TabIndex = 1;
             label1.Text = "Daftar Komponen";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -78,10 +81,12 @@
             // 
             DaftarGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DaftarGrid.GridColor = SystemColors.ControlDarkDark;
-            DaftarGrid.Location = new Point(8, 41);
+            DaftarGrid.Location = new Point(9, 55);
+            DaftarGrid.Margin = new Padding(3, 4, 3, 4);
             DaftarGrid.Name = "DaftarGrid";
+            DaftarGrid.RowHeadersWidth = 51;
             DaftarGrid.RowTemplate.Height = 25;
-            DaftarGrid.Size = new Size(344, 375);
+            DaftarGrid.Size = new Size(393, 500);
             DaftarGrid.TabIndex = 0;
             // 
             // panel2
@@ -91,9 +96,10 @@
             panel2.BorderStyle = BorderStyle.FixedSingle;
             panel2.Controls.Add(label2);
             panel2.Controls.Add(KebutuhanGrid);
-            panel2.Location = new Point(627, 12);
+            panel2.Location = new Point(717, 16);
+            panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(362, 426);
+            panel2.Size = new Size(413, 567);
             panel2.TabIndex = 3;
             // 
             // label2
@@ -103,7 +109,7 @@
             label2.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             label2.Location = new Point(0, 0);
             label2.Name = "label2";
-            label2.Size = new Size(360, 33);
+            label2.Size = new Size(411, 44);
             label2.TabIndex = 1;
             label2.Text = "Kebutuhan Komponen";
             label2.TextAlign = ContentAlignment.MiddleCenter;
@@ -112,29 +118,32 @@
             // 
             KebutuhanGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             KebutuhanGrid.GridColor = SystemColors.ControlDarkDark;
-            KebutuhanGrid.Location = new Point(8, 41);
+            KebutuhanGrid.Location = new Point(9, 55);
+            KebutuhanGrid.Margin = new Padding(3, 4, 3, 4);
             KebutuhanGrid.Name = "KebutuhanGrid";
+            KebutuhanGrid.RowHeadersWidth = 51;
             KebutuhanGrid.RowTemplate.Height = 25;
-            KebutuhanGrid.Size = new Size(344, 375);
+            KebutuhanGrid.Size = new Size(393, 500);
             KebutuhanGrid.TabIndex = 0;
             // 
             // comboProduk
             // 
             comboProduk.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboProduk.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            comboProduk.Font = new Font("Segoe UI Semibold", 10.5F, FontStyle.Bold, GraphicsUnit.Point);
             comboProduk.FormattingEnabled = true;
-            comboProduk.Location = new Point(20, 38);
+            comboProduk.Location = new Point(23, 51);
+            comboProduk.Margin = new Padding(3, 4, 3, 4);
             comboProduk.Name = "comboProduk";
-            comboProduk.Size = new Size(180, 23);
+            comboProduk.Size = new Size(205, 31);
             comboProduk.TabIndex = 0;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(23, 17);
+            label3.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.Location = new Point(26, 23);
             label3.Name = "label3";
-            label3.Size = new Size(52, 17);
+            label3.Size = new Size(72, 25);
             label3.TabIndex = 1;
             label3.Text = "Produk";
             // 
@@ -143,12 +152,15 @@
             panel3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             panel3.BackColor = SystemColors.ControlLight;
             panel3.BorderStyle = BorderStyle.FixedSingle;
+            panel3.Controls.Add(label4);
+            panel3.Controls.Add(txtSearch);
             panel3.Controls.Add(btnSave);
             panel3.Controls.Add(label3);
             panel3.Controls.Add(comboProduk);
-            panel3.Location = new Point(12, 12);
+            panel3.Location = new Point(14, 16);
+            panel3.Margin = new Padding(3, 4, 3, 4);
             panel3.Name = "panel3";
-            panel3.Size = new Size(223, 426);
+            panel3.Size = new Size(255, 567);
             panel3.TabIndex = 4;
             // 
             // btnSave
@@ -156,41 +168,63 @@
             btnSave.BackColor = SystemColors.Highlight;
             btnSave.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btnSave.ForeColor = Color.White;
-            btnSave.Location = new Point(134, 385);
+            btnSave.Location = new Point(153, 513);
+            btnSave.Margin = new Padding(3, 4, 3, 4);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(75, 29);
+            btnSave.Size = new Size(86, 39);
             btnSave.TabIndex = 2;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = false;
             // 
             // contextMenuStrip1
             // 
+            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
             contextMenuStrip1.Items.AddRange(new ToolStripItem[] { editModeTool, normalModeTool });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(181, 70);
+            contextMenuStrip1.Size = new Size(175, 52);
             // 
             // editModeTool
             // 
             editModeTool.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             editModeTool.Name = "editModeTool";
-            editModeTool.Size = new Size(180, 22);
+            editModeTool.Size = new Size(174, 24);
             editModeTool.Text = "Edit Mode ✔";
             // 
             // normalModeTool
             // 
             normalModeTool.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             normalModeTool.Name = "normalModeTool";
-            normalModeTool.Size = new Size(180, 22);
+            normalModeTool.Size = new Size(174, 24);
             normalModeTool.Text = "Normal Mode";
+            // 
+            // txtSearch
+            // 
+            txtSearch.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
+            txtSearch.Location = new Point(26, 279);
+            txtSearch.Name = "txtSearch";
+            txtSearch.Size = new Size(205, 31);
+            txtSearch.TabIndex = 4;
+            txtSearch.TextChanged += txtSearch_TextChanged;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.Location = new Point(26, 120);
+            label4.Name = "label4";
+            label4.Size = new Size(106, 25);
+            label4.TabIndex = 5;
+            label4.Text = "Total Harga";
             // 
             // KomponenProduk
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1001, 450);
+            ClientSize = new Size(1144, 600);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "KomponenProduk";
             Text = "Komponen Produk";
             panel1.ResumeLayout(false);
@@ -218,5 +252,7 @@
         private ContextMenuStrip contextMenuStrip1;
         private ToolStripMenuItem editModeTool;
         private ToolStripMenuItem normalModeTool;
+        private TextBox txtSearch;
+        private Label label4;
     }
 }

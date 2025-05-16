@@ -80,11 +80,11 @@ namespace Shopee
 
         private void InitDataTable()
         {
-            _dtDaftar.Columns.Add("No",typeof(int));
-            _dtDaftar.Columns.Add("BahanId",typeof(int));
-            _dtDaftar.Columns.Add("BahanName",typeof(string));
-            _dtDaftar.Columns.Add("KebutuhanId",typeof(int));
-            _dtDaftar.Columns.Add("Jumlah",typeof(int));
+            _dtDaftar.Columns.Add("No", typeof(int));
+            _dtDaftar.Columns.Add("BahanId", typeof(int));
+            _dtDaftar.Columns.Add("BahanName", typeof(string));
+            _dtDaftar.Columns.Add("KebutuhanId", typeof(int));
+            _dtDaftar.Columns.Add("Jumlah", typeof(int));
 
             _dtKebutuhan.Columns.Add("No", typeof(int));
             _dtKebutuhan.Columns.Add("BahanId", typeof(int));
@@ -112,7 +112,7 @@ namespace Shopee
                 _dtKebutuhan.Rows[i]["No"] = i + 1;
         }
 
-        
+
         private void DaftarGrid_CellDoubleClick(object? sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
@@ -136,9 +136,9 @@ namespace Shopee
             var cekAvaible = _dbDapper.ListKebutuhan(idProduk);
             const string sql = @"INSERT INTO Kebutuhan(ID_Produk,ID_Bahan,Jumlah)
                                  VALUES(@ID_Produk,@ID_Bahan,@Jumlah)";
-            _dbDapper.InsertUpdateDelete("DELETE Kebutuhan WHERE ID_Produk = @idProduk", new {idProduk = idProduk });
+            _dbDapper.InsertUpdateDelete("DELETE Kebutuhan WHERE ID_Produk = @idProduk", new { idProduk = idProduk });
 
-            for(int i = 0; i < _dtKebutuhan.Rows.Count; i++)
+            for (int i = 0; i < _dtKebutuhan.Rows.Count; i++)
             {
                 var row = _dtKebutuhan.Rows[i];
 
@@ -149,7 +149,7 @@ namespace Shopee
                 _dbDapper.InsertUpdateDelete(sql, dp);
             }
 
-            MessageBox.Show("Data Berhasil Disimpan","Information",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            MessageBox.Show("Data Berhasil Disimpan", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void ComboProduk_SelectedIndexChanged(object? sender, EventArgs e)
@@ -189,7 +189,7 @@ namespace Shopee
             listAllBahan.RemoveAll(x => IdBahanInProduk.Contains(x.ID_Bahan));
 
             _dtDaftar.Rows.Clear();
-            foreach(var item in listAllBahan)
+            foreach (var item in listAllBahan)
             {
                 var NewRowDaftar = _dtDaftar.NewRow();
                 NewRowDaftar["No"] = _dtDaftar.Rows.Count + 1;
@@ -205,7 +205,7 @@ namespace Shopee
                 NewRow["No"] = _dtKebutuhan.Rows.Count + 1;
                 NewRow["BahanId"] = item.ID_Bahan;
                 NewRow["BahanName"] = item.Nama_Bahan;
-                NewRow["Jumlah"] = item .Jumlah;
+                NewRow["Jumlah"] = item.Jumlah;
                 _dtKebutuhan.Rows.Add(NewRow);
             }
         }
@@ -225,6 +225,11 @@ namespace Shopee
             KebutuhanGrid.Columns[0].Width = 35;
             KebutuhanGrid.Columns[2].Width = 150;
             KebutuhanGrid.Columns[4].Width = 80;
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

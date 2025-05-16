@@ -95,9 +95,6 @@ namespace Shopee
             deleteMenuStrip.Click += DeleteData;
         }
 
-
-
-
         #endregion
 
         #region Event Handlers

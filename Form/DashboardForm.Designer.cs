@@ -37,7 +37,7 @@
             btnPendapatan = new Button();
             btnProduk = new Button();
             btnSparepart = new Button();
-            btnPartsProduk = new Button();
+            btnKomponenProduk = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
             flowLayoutPanel1.SuspendLayout();
@@ -95,7 +95,7 @@
             flowLayoutPanel1.Controls.Add(btnPendapatan);
             flowLayoutPanel1.Controls.Add(btnProduk);
             flowLayoutPanel1.Controls.Add(btnSparepart);
-            flowLayoutPanel1.Controls.Add(btnPartsProduk);
+            flowLayoutPanel1.Controls.Add(btnKomponenProduk);
             flowLayoutPanel1.Dock = DockStyle.Left;
             flowLayoutPanel1.Location = new Point(0, 69);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -142,23 +142,23 @@
             btnSparepart.Name = "btnSparepart";
             btnSparepart.Size = new Size(280, 56);
             btnSparepart.TabIndex = 3;
-            btnSparepart.Text = "     🔩 Sparepart";
+            btnSparepart.Text = "     🔩 Komponen";
             btnSparepart.TextAlign = ContentAlignment.MiddleLeft;
             btnSparepart.UseVisualStyleBackColor = true;
             // 
-            // btnPartsProduk
+            // btnKomponenProduk
             // 
-            btnPartsProduk.FlatAppearance.BorderSize = 0;
-            btnPartsProduk.FlatStyle = FlatStyle.Flat;
-            btnPartsProduk.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            btnPartsProduk.Location = new Point(0, 224);
-            btnPartsProduk.Margin = new Padding(0);
-            btnPartsProduk.Name = "btnPartsProduk";
-            btnPartsProduk.Size = new Size(280, 56);
-            btnPartsProduk.TabIndex = 4;
-            btnPartsProduk.Text = "     \U0001f9f0 Parts Produk";
-            btnPartsProduk.TextAlign = ContentAlignment.MiddleLeft;
-            btnPartsProduk.UseVisualStyleBackColor = true;
+            btnKomponenProduk.FlatAppearance.BorderSize = 0;
+            btnKomponenProduk.FlatStyle = FlatStyle.Flat;
+            btnKomponenProduk.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            btnKomponenProduk.Location = new Point(0, 224);
+            btnKomponenProduk.Margin = new Padding(0);
+            btnKomponenProduk.Name = "btnKomponenProduk";
+            btnKomponenProduk.Size = new Size(280, 56);
+            btnKomponenProduk.TabIndex = 4;
+            btnKomponenProduk.Text = "     \U0001f9f0 Komponen Produk";
+            btnKomponenProduk.TextAlign = ContentAlignment.MiddleLeft;
+            btnKomponenProduk.UseVisualStyleBackColor = true;
             // 
             // DashboardForm
             // 
@@ -186,6 +186,6 @@
         private Button btnPendapatan;
         private Button btnProduk;
         private Button btnSparepart;
-        private Button btnPartsProduk;
+        private Button btnKomponenProduk;
     }
 }

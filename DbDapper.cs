@@ -91,7 +91,6 @@ namespace Shopee
 
         public IEnumerable<KebutuhanModel> ListKebutuhan(int ID)
         {
-
             string sql = @"SELECT k.ID_Bahan,k.Jumlah,p.Nama_Produk,b.Nama_Bahan FROM kebutuhan k
                      INNER JOIN produk p ON k.ID_Produk = p.ID_Produk
                      INNER JOIN Bahan b ON k.ID_Bahan = b.ID_Bahan
