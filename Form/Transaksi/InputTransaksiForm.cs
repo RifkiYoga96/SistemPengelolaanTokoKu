@@ -68,9 +68,11 @@ namespace Shopee
             int jumlah = (int)numericJumlahPendapatan.Value;
             int harga = (((ProdukModel)comboProduk.SelectedItem).harga) * jumlah;
             int modal = (_produkDal.GetModal(idProduk) * jumlah);
-            int labaBersih = harga - modal;
 
-            MessageBox.Show(labaBersih.ToString());
+            decimal admin = _pengeluaranDal.GetAdmin();
+            int labaBersih = Convert.ToInt32((harga * admin) - modal);
+
+            MessageBox.Show($"{labaBersih.ToString()}  {admin.ToString()}");
 
             if (idProduk == 0)
             {

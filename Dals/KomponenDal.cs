@@ -12,7 +12,7 @@ namespace Shopee
     {
         public IEnumerable<KomponenModel> ListData()
         {
-            string sql = @"SELECT id_komponen, nama_komponen, stok, harga FROM komponen";
+            string sql = @"SELECT id_komponen, nama_komponen, harga FROM komponen";
 
             using var koneksi = new SqlConnection(conn.connStr);
             var listKomponen = koneksi.Query<KomponenModel>(sql);

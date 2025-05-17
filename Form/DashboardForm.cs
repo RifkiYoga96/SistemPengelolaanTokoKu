@@ -67,7 +67,7 @@ namespace Shopee
                     form = new TransaksiUC();
                     break;
                 case "btnKomponenProduk":
-                    form = new Komponen_UC();
+                    form = new KomponenProduk_UC();
                     break;
             }
 

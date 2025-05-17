@@ -35,5 +35,13 @@ namespace Shopee
             using var koneksi = new SqlConnection(conn.connStr);
             koneksi.Execute(sql, pengeluaran);
         }
+
+        public decimal GetAdmin()
+        {
+            const string sql = @"SELECT jumlah_pengeluaran FROM pengeluaran 
+                                WHERE nama_pengeluaran = 'Biaya Admin'";
+            using var koneksi = new SqlConnection( conn.connStr);
+            return koneksi.QuerySingleOrDefault<decimal>(sql);
+        }
     }
 }
