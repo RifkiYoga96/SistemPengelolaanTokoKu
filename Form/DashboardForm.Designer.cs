@@ -38,6 +38,7 @@
             btnProduk = new Button();
             btnKomponen = new Button();
             btnKomponenProduk = new Button();
+            btnOperasional = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
             flowLayoutPanel1.SuspendLayout();
@@ -96,6 +97,7 @@
             flowLayoutPanel1.Controls.Add(btnProduk);
             flowLayoutPanel1.Controls.Add(btnKomponen);
             flowLayoutPanel1.Controls.Add(btnKomponenProduk);
+            flowLayoutPanel1.Controls.Add(btnOperasional);
             flowLayoutPanel1.Dock = DockStyle.Left;
             flowLayoutPanel1.Location = new Point(0, 69);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -160,6 +162,20 @@
             btnKomponenProduk.TextAlign = ContentAlignment.MiddleLeft;
             btnKomponenProduk.UseVisualStyleBackColor = true;
             // 
+            // btnOperasional
+            // 
+            btnOperasional.FlatAppearance.BorderSize = 0;
+            btnOperasional.FlatStyle = FlatStyle.Flat;
+            btnOperasional.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            btnOperasional.Location = new Point(0, 280);
+            btnOperasional.Margin = new Padding(0);
+            btnOperasional.Name = "btnOperasional";
+            btnOperasional.Size = new Size(280, 56);
+            btnOperasional.TabIndex = 5;
+            btnOperasional.Text = "     \U0001f9f0 Operasional";
+            btnOperasional.TextAlign = ContentAlignment.MiddleLeft;
+            btnOperasional.UseVisualStyleBackColor = true;
+            // 
             // DashboardForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -187,5 +203,6 @@
         private Button btnProduk;
         private Button btnKomponen;
         private Button btnKomponenProduk;
+        private Button btnOperasional;
     }
 }

@@ -14,7 +14,7 @@ namespace Shopee
     public partial class InputTransaksiForm : Form
     {
         private readonly ProdukDal _produkDal;
-        private readonly PengeluaranDal _pengeluaranDal;
+        private readonly OperasionalDal _pengeluaranDal;
         private readonly TransaksiDal _transaksiDal;
         private readonly int _id;
         public InputTransaksiForm(int tabIndex,int id = 0)
@@ -23,7 +23,7 @@ namespace Shopee
             this.IsDialogForm();
             _produkDal = new ProdukDal();
             _transaksiDal = new TransaksiDal();
-            _pengeluaranDal = new PengeluaranDal();
+            _pengeluaranDal = new OperasionalDal();
 
             _id = id;
             CheckingUpdateData(tabIndex);
@@ -101,7 +101,7 @@ namespace Shopee
         {
 
             DateTime date = dtPendapatan.Value.Date;
-            string nama_pengeluaran = ((PengeluaranModel)comboPengeluaran.SelectedItem).nama_pengeluaran;
+            string nama_pengeluaran = ((OperasionalModel)comboPengeluaran.SelectedItem).nama_pengeluaran;
             int biaya_pengeluaran = (int)numericPengeluaran.Value;
 
             if (!MessageBoxShow.Confirmation()) return;
@@ -135,7 +135,7 @@ namespace Shopee
         {
             if (comboPengeluaran.SelectedItem == null) return;
 
-            decimal harga = ((PengeluaranModel)comboPengeluaran.SelectedItem).jumlah_pengeluaran;
+            decimal harga = ((OperasionalModel)comboPengeluaran.SelectedItem).jumlah_pengeluaran;
             numericPengeluaran.Value = Convert.ToInt32(harga);
         }
 
@@ -176,7 +176,7 @@ namespace Shopee
 
             dtPengeluaran.Value = data.tanggal_input; //dateTime Tanggal
             foreach (var item in comboPengeluaran.Items) //combobox Produk
-                if (item is PengeluaranModel p)
+                if (item is OperasionalModel p)
                     if (p.nama_pengeluaran == data.nama_transaksi)
                         comboPengeluaran.SelectedItem = item;
             numericPengeluaran.Value = Convert.ToInt32(data.pengeluaran); //numericUpDown Harga

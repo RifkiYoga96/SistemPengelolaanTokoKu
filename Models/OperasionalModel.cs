@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Shopee
 {
-    public class PengeluaranModel
+    public class OperasionalModel
     {
         public int id_pengeluaran { get; set; }
         public string nama_pengeluaran { get; set; }
