@@ -8,6 +8,6 @@ namespace Shopee
 {
     public class DashboardModel
     {
-        
+       
     }
 }

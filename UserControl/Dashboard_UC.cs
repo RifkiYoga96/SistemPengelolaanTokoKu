@@ -20,6 +20,7 @@ namespace Shopee
             InitializeComponent();
             InitComponent();
             RegisterEvent();
+            LoadData();
         }
 
         private void InitComponent()
@@ -47,6 +48,13 @@ namespace Shopee
         private void RegisterEvent()
         {
             comboRangeTime.SelectedIndexChanged += (s, e) => LoadData();
+            numericAdmin.ValueChanged += UpdateAdmin;
+        }
+
+        private void UpdateAdmin(object? sender, EventArgs e)
+        {
+            var admin = Convert.ToDecimal(100 - (int)numericAdmin.Value) / 100;
+            _dashboardDal.UpdateAdminFee(admin);
         }
 
         private FilterModel CreateFilter()
@@ -75,6 +83,8 @@ namespace Shopee
             var filter = CreateFilter();
 
             LoadChart(filter);
+            LoadAdmin();
+            LoadTabels(filter);
         }
 
         private void LoadChart(FilterModel filter)
@@ -86,6 +96,27 @@ namespace Shopee
             lblProdukTerjual.Text = produkTerjual.ToString();
             lblPendapatanKotor.Text = pendapatanKotor.ToString("C0", _culture);
             lblPendapatanBersih.Text = pendapatanBersih.ToString("C0", _culture);
+        }
+
+        private void LoadAdmin()
+        {
+            decimal admin = _dashboardDal.GetAdminFee();
+            int adminPercent = Convert.ToInt32((1 - admin) * 100);
+
+            numericAdmin.Value = adminPercent;
+        }
+
+        private void LoadTabels(FilterModel filter)
+        {
+            filter.sql += " AND tipe = 1";
+            var data = _dashboardDal.TopProdukTerjual(filter);
+            gridProdukTerjual.DataSource = data.
+                Select((x, index) => new 
+                { 
+                    No = index + 1,
+                    NamaProduk = x.nama_transaksi,
+                    Terjual = x.jumlah
+                }).ToList();
         }
     }
 }

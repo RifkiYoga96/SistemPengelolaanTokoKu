@@ -47,10 +47,10 @@
             panel3 = new Panel();
             tableLayoutPanel2 = new TableLayoutPanel();
             panel8 = new Panel();
-            gridProdukTerlaris = new DataGridView();
+            gridProdukProfit = new DataGridView();
             label3 = new Label();
             panel7 = new Panel();
-            gridProfitProduk = new DataGridView();
+            gridProdukTerjual = new DataGridView();
             label1 = new Label();
             label2 = new Label();
             tableLayoutPanel1.SuspendLayout();
@@ -63,9 +63,9 @@
             panel3.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             panel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)gridProdukTerlaris).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gridProdukProfit).BeginInit();
             panel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)gridProfitProduk).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gridProdukTerjual).BeginInit();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -260,6 +260,7 @@
             // 
             // tableLayoutPanel2
             // 
+            tableLayoutPanel2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             tableLayoutPanel2.ColumnCount = 2;
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
@@ -275,22 +276,23 @@
             // panel8
             // 
             panel8.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            panel8.Controls.Add(gridProdukTerlaris);
+            panel8.Controls.Add(gridProdukProfit);
             panel8.Controls.Add(label3);
             panel8.Location = new Point(536, 3);
             panel8.Name = "panel8";
             panel8.Size = new Size(527, 167);
             panel8.TabIndex = 9;
             // 
-            // gridProdukTerlaris
+            // gridProdukProfit
             // 
-            gridProdukTerlaris.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridProdukTerlaris.Location = new Point(10, 38);
-            gridProdukTerlaris.Name = "gridProdukTerlaris";
-            gridProdukTerlaris.RowHeadersWidth = 51;
-            gridProdukTerlaris.RowTemplate.Height = 29;
-            gridProdukTerlaris.Size = new Size(490, 126);
-            gridProdukTerlaris.TabIndex = 1;
+            gridProdukProfit.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            gridProdukProfit.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridProdukProfit.Location = new Point(10, 38);
+            gridProdukProfit.Name = "gridProdukProfit";
+            gridProdukProfit.RowHeadersWidth = 51;
+            gridProdukProfit.RowTemplate.Height = 29;
+            gridProdukProfit.Size = new Size(490, 126);
+            gridProdukProfit.TabIndex = 1;
             // 
             // label3
             // 
@@ -298,29 +300,30 @@
             label3.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
             label3.Location = new Point(3, 0);
             label3.Name = "label3";
-            label3.Size = new Size(203, 30);
+            label3.Size = new Size(227, 30);
             label3.TabIndex = 8;
-            label3.Text = "PRODUK TERLARIS";
+            label3.Text = "TOP PRODUK PROFIT";
             // 
             // panel7
             // 
             panel7.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            panel7.Controls.Add(gridProfitProduk);
+            panel7.Controls.Add(gridProdukTerjual);
             panel7.Controls.Add(label1);
             panel7.Location = new Point(3, 3);
             panel7.Name = "panel7";
             panel7.Size = new Size(527, 167);
             panel7.TabIndex = 8;
             // 
-            // gridProfitProduk
+            // gridProdukTerjual
             // 
-            gridProfitProduk.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridProfitProduk.Location = new Point(10, 38);
-            gridProfitProduk.Name = "gridProfitProduk";
-            gridProfitProduk.RowHeadersWidth = 51;
-            gridProfitProduk.RowTemplate.Height = 29;
-            gridProfitProduk.Size = new Size(476, 126);
-            gridProfitProduk.TabIndex = 1;
+            gridProdukTerjual.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            gridProdukTerjual.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridProdukTerjual.Location = new Point(10, 38);
+            gridProdukTerjual.Name = "gridProdukTerjual";
+            gridProdukTerjual.RowHeadersWidth = 51;
+            gridProdukTerjual.RowTemplate.Height = 29;
+            gridProdukTerjual.Size = new Size(476, 126);
+            gridProdukTerjual.TabIndex = 1;
             // 
             // label1
             // 
@@ -328,9 +331,9 @@
             label1.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
             label1.Location = new Point(3, 0);
             label1.Name = "label1";
-            label1.Size = new Size(203, 30);
+            label1.Size = new Size(242, 30);
             label1.TabIndex = 8;
-            label1.Text = "PRODUK TERLARIS";
+            label1.Text = "TOP PRODUK TERJUAL";
             // 
             // label2
             // 
@@ -370,10 +373,10 @@
             tableLayoutPanel2.ResumeLayout(false);
             panel8.ResumeLayout(false);
             panel8.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)gridProdukTerlaris).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gridProdukProfit).EndInit();
             panel7.ResumeLayout(false);
             panel7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)gridProfitProduk).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gridProdukTerjual).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -384,7 +387,7 @@
         private Panel panel1;
         private Panel panel2;
         private Panel panel3;
-        private DataGridView gridProfitProduk;
+        private DataGridView gridProdukTerjual;
         private Label label1;
         private Label label2;
         private Label label4;
@@ -402,7 +405,7 @@
         private ComboBox comboRangeTime;
         private TableLayoutPanel tableLayoutPanel2;
         private Panel panel8;
-        private DataGridView gridProdukTerlaris;
+        private DataGridView gridProdukProfit;
         private Label label3;
         private Panel panel7;
     }
