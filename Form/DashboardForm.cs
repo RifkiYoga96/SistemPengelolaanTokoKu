@@ -31,7 +31,7 @@ namespace Shopee
             btnDashboard.Click += btnMenu_Click;
             btnPendapatan.Click += btnMenu_Click;
             btnProduk.Click += btnMenu_Click;
-            btnSparepart.Click += btnMenu_Click;
+            btnKomponen.Click += btnMenu_Click;
             btnKomponenProduk.Click += btnMenu_Click;
         }
 
@@ -68,6 +68,9 @@ namespace Shopee
                     break;
                 case "btnKomponenProduk":
                     form = new KomponenProduk_UC();
+                    break;
+                case "btnKomponen":
+                    form = new Komponen_UC();
                     break;
             }
 

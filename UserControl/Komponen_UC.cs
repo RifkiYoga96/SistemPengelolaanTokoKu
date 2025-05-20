@@ -59,7 +59,10 @@ namespace Shopee
             dataGridView1.CellMouseClick += ShowMenuStrip;
             editMenuStrip.Click += ShowEditForm;
             deleteMenuStrip.Click += DeleteData;
+            comboKeteranganStok.SelectedIndexChanged += ComboKeteranganStok_SelectedIndexChanged;
         }
+
+
 
         #endregion
 
@@ -77,7 +80,7 @@ namespace Shopee
         {
             int id = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value);
 
-            if (new InputKomponenForm().ShowDialog() != DialogResult.OK) return;
+            if (new InputKomponenForm(id).ShowDialog() != DialogResult.OK) return;
             LoadData();
         }
 
@@ -92,13 +95,13 @@ namespace Shopee
 
         private void BtnAddData_Click(object? sender, EventArgs e)
         {
-            if (new InputTransaksiForm(0).ShowDialog() == DialogResult.OK)
+            if (new InputKomponenForm().ShowDialog() == DialogResult.OK)
             {
                 LoadData();
-            }
+            } 
         }
 
-        private void ComboSorting_SelectedIndexChanged(object? sender, EventArgs e)
+        private void ComboKeteranganStok_SelectedIndexChanged(object? sender, EventArgs e)
         {
             ResetPage();
             LoadData();
@@ -153,14 +156,9 @@ namespace Shopee
                 filter.param.Add("@search", search);
             }
 
-            string filterStok = indexFilter switch
-            {
-                1 => "(stok < stok_minimum AND stok > 0)",
-                2 => "(stok == 0)",
-                _=> ""
-            };
-
-            listFilter.Add(filterStok);
+            if (indexFilter is 1 or 2)
+                listFilter.Add(indexFilter == 1 ? 
+                    "(stok < stok_minimum AND stok > 0)" : "(stok = 0)");
 
             if (listFilter.Any())
             {
@@ -172,8 +170,13 @@ namespace Shopee
 
         private void LoadData()
         {
-            Image pendapatan = Properties.Resources.Pendapatan;
-            Image pengeluaran = Properties.Resources.Pengeluaran;
+            Image tersedia = Properties.Resources.Tersedia;
+            Image menipis = Properties.Resources.Menipis;
+            Image habis = Properties.Resources.Habis;
+
+            byte[] tersediaByte = _imageCustomize.ImageToByteArray(_imageCustomize.ResizeImagePersentase(tersedia, 15));
+            byte[] menipisByte = _imageCustomize.ImageToByteArray(_imageCustomize.ResizeImagePersentase(menipis, 15));
+            byte[] habisByte = _imageCustomize.ImageToByteArray(_imageCustomize.ResizeImagePersentase(habis, 15));
 
             var filterData = CreateFilter();
             int totalData = _komponenDal.CountData(filterData);
@@ -191,18 +194,11 @@ namespace Shopee
                     x.id_komponen,
                     No = index + 1 + offset,
                     x.nama_komponen,
-                    x.harga,
+                    harga = x.harga.ToString("C0",_culture),
                     x.stok,
                     x.stok_minimum,
-                    keterangan_stok
-                    pendapatan_kotor = x.pendapatan_kotor?.ToString("C0", _culture),
-                    modal = x.modal?.ToString("C0", _culture),
-                    pendapatan_bersih = x.pendapatan_bersih?.ToString("C0", _culture),
-                    pengeluaran = x.pengeluaran?.ToString("C0", _culture),
-                    x.jumlah,
-                    tipe = x.tipe ?
-                        _imageCustomize.ImageToByteArray(_imageCustomize.ResizeImagePersentase(pendapatan, 15))
-                        : _imageCustomize.ImageToByteArray(_imageCustomize.ResizeImagePersentase(pengeluaran, 15))
+                    keterangan_stok = x.stok < x.stok_minimum && x.stok > 0 ?menipisByte
+                        : x.stok == 0 ? habisByte : tersediaByte,
                 }).ToList();
 
             dataGridView1.DataSource = listData;
@@ -211,8 +207,6 @@ namespace Shopee
             int endShow = Math.Min(offset + fetch, totalData);
             int startShow = endShow == 0 ? 0 : offset + 1;
             lblPaginationInfo.Text = $"Showing {startShow} to {endShow} of {totalData} entries";
-
-            Hitung_TotalPendapatan();
         }
 
         #endregion
@@ -225,47 +219,30 @@ namespace Shopee
             dgv.CustomDataGrid();
 
             dgv.Columns["No"].HeaderText = "  No";
-            dgv.Columns["nama_transaksi"].HeaderText = "Nama Transaksi";
-            dgv.Columns["tanggal_input"].HeaderText = "Tanggal";
-            dgv.Columns["pendapatan_kotor"].HeaderText = "Pendapatan Kotor";
-            dgv.Columns["pendapatan_bersih"].HeaderText = "Pendapatan Bersih";
-            dgv.Columns["pengeluaran"].HeaderText = "Pengeluaran";
-            dgv.Columns["jumlah"].HeaderText = "Jumlah";
-            dgv.Columns["tipe"].HeaderText = "     Tipe";
+            dgv.Columns["nama_komponen"].HeaderText = "Nama Komponen";
+            dgv.Columns["harga"].HeaderText = "Harga";
+            dgv.Columns["stok"].HeaderText = " Stok";
+            dgv.Columns["stok_minimum"].HeaderText = " Stok Minimum";
+            dgv.Columns["keterangan_stok"].HeaderText = "Keterangan Stok";
 
-            dgv.Columns["id_transaksi"].Visible = false;
+            dgv.Columns["id_komponen"].Visible = false;
 
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgv.Columns["No"].FillWeight = 7;
-            dgv.Columns["nama_transaksi"].FillWeight = 15;
-            dgv.Columns["tanggal_input"].FillWeight = 12;
-            dgv.Columns["pendapatan_kotor"].FillWeight = 11;
-            dgv.Columns["modal"].FillWeight = 11;
-            dgv.Columns["pendapatan_bersih"].FillWeight = 11;
-            dgv.Columns["pengeluaran"].FillWeight = 11;
-            dgv.Columns["jumlah"].FillWeight = 11;
-            dgv.Columns["tipe"].FillWeight = 11;
+            dgv.Columns["nama_komponen"].FillWeight = 20;
+            dgv.Columns["harga"].FillWeight = 17;
+            dgv.Columns["stok"].FillWeight = 17;
+            dgv.Columns["stok_minimum"].FillWeight = 17;
+            dgv.Columns["keterangan_stok"].FillWeight = 22;
 
             dgv.Columns["No"].DefaultCellStyle.Padding = new Padding(15, 0, 0, 0);
-            dgv.Columns["jumlah"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv.Columns["tipe"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-        }
+            dgv.Columns["stok"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv.Columns["stok_minimum"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv.Columns["keterangan_stok"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-        private void Hitung_TotalPendapatan()
-        {
-            int indexComboTotal = comboTotal.SelectedIndex;
-            string fieldName = indexComboTotal switch
-            {
-                0 => "pendapatan_bersih",
-                1 => "pendapatan_kotor",
-                2 => "modal",
-                _ => "pengeluaran"
-            };
-
-            bool isLabaBersih = indexComboTotal == 0;
-
-            int totalPendapatan = _transaksiDal.TotalPendapatan(CreateFilter(), fieldName, isLabaBersih);
-            lblPendapatan.Text = totalPendapatan.ToString("C", _culture);
+            dgv.Columns["stok"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv.Columns["stok_minimum"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv.Columns["keterangan_stok"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
 
         private void ResetPage()

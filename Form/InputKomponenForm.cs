@@ -51,6 +51,7 @@ namespace Shopee
             string nama = txtNama.Text.Trim();
             int harga = Convert.ToInt32(numericHarga.Value);
             int stok = Convert.ToInt32(numericStok.Value);
+            int stokMinimum = Convert.ToInt32(numericStokMinimum.Value);
 
             bool valid = nama != string.Empty
                 && harga != 0
@@ -69,7 +70,8 @@ namespace Shopee
                 id_komponen = _id,
                 nama_komponen = nama,
                 harga = harga,
-                stok = stok
+                stok = stok,
+                stok_minimum = stokMinimum
             };
 
             if (_id == 0)
@@ -77,7 +79,6 @@ namespace Shopee
             else
                 _komponenDal.UpdateData(komponen);
 
-            MessageBoxShow.Information("Data berhasil disimpan");
             this.DialogResult = DialogResult.OK;
         }
 
@@ -95,6 +96,7 @@ namespace Shopee
             txtNama.Text = data.nama_komponen;
             numericHarga.Value = (int)data.harga;
             numericStok.Value = (int)data.stok;
+            numericStokMinimum.Value = (int)data.stok_minimum;
         }
         #endregion
     }

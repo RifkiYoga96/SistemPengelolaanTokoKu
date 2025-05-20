@@ -37,8 +37,11 @@
             txtNama = new TextBox();
             numericStok = new NumericUpDown();
             btnSave = new Button();
+            numericStokMinimum = new NumericUpDown();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)numericHarga).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericStok).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericStokMinimum).BeginInit();
             SuspendLayout();
             // 
             // labelHeader
@@ -119,7 +122,7 @@
             numericStok.Location = new Point(43, 249);
             numericStok.Maximum = new decimal(new int[] { 100000000, 0, 0, 0 });
             numericStok.Name = "numericStok";
-            numericStok.Size = new Size(105, 31);
+            numericStok.Size = new Size(135, 31);
             numericStok.TabIndex = 22;
             numericStok.TextAlign = HorizontalAlignment.Center;
             numericStok.Value = new decimal(new int[] { 1, 0, 0, 0 });
@@ -138,12 +141,36 @@
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = false;
             // 
+            // numericStokMinimum
+            // 
+            numericStokMinimum.Font = new Font("Segoe UI", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
+            numericStokMinimum.Location = new Point(193, 249);
+            numericStokMinimum.Maximum = new decimal(new int[] { 100000000, 0, 0, 0 });
+            numericStokMinimum.Name = "numericStokMinimum";
+            numericStokMinimum.Size = new Size(138, 31);
+            numericStokMinimum.TabIndex = 25;
+            numericStokMinimum.TextAlign = HorizontalAlignment.Center;
+            numericStokMinimum.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(193, 221);
+            label1.Name = "label1";
+            label1.Size = new Size(134, 25);
+            label1.TabIndex = 24;
+            label1.Text = "Stok Minimum";
+            label1.TextAlign = ContentAlignment.MiddleRight;
+            // 
             // InputKomponenForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(373, 405);
+            Controls.Add(numericStokMinimum);
+            Controls.Add(label1);
             Controls.Add(btnSave);
             Controls.Add(numericStok);
             Controls.Add(txtNama);
@@ -157,6 +184,7 @@
             Text = "Input Transaksi";
             ((System.ComponentModel.ISupportInitialize)numericHarga).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericStok).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericStokMinimum).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -175,5 +203,7 @@
         private NumericUpDown numericHarga;
         private TextBox txtNama;
         private NumericUpDown numericStok;
+        private NumericUpDown numericStokMinimum;
+        private Label label1;
     }
 }

@@ -36,7 +36,7 @@
             flowLayoutPanel1 = new FlowLayoutPanel();
             btnPendapatan = new Button();
             btnProduk = new Button();
-            btnSparepart = new Button();
+            btnKomponen = new Button();
             btnKomponenProduk = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
@@ -94,7 +94,7 @@
             flowLayoutPanel1.Controls.Add(btnDashboard);
             flowLayoutPanel1.Controls.Add(btnPendapatan);
             flowLayoutPanel1.Controls.Add(btnProduk);
-            flowLayoutPanel1.Controls.Add(btnSparepart);
+            flowLayoutPanel1.Controls.Add(btnKomponen);
             flowLayoutPanel1.Controls.Add(btnKomponenProduk);
             flowLayoutPanel1.Dock = DockStyle.Left;
             flowLayoutPanel1.Location = new Point(0, 69);
@@ -132,19 +132,19 @@
             btnProduk.TextAlign = ContentAlignment.MiddleLeft;
             btnProduk.UseVisualStyleBackColor = true;
             // 
-            // btnSparepart
+            // btnKomponen
             // 
-            btnSparepart.FlatAppearance.BorderSize = 0;
-            btnSparepart.FlatStyle = FlatStyle.Flat;
-            btnSparepart.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            btnSparepart.Location = new Point(0, 168);
-            btnSparepart.Margin = new Padding(0);
-            btnSparepart.Name = "btnSparepart";
-            btnSparepart.Size = new Size(280, 56);
-            btnSparepart.TabIndex = 3;
-            btnSparepart.Text = "     🔩 Komponen";
-            btnSparepart.TextAlign = ContentAlignment.MiddleLeft;
-            btnSparepart.UseVisualStyleBackColor = true;
+            btnKomponen.FlatAppearance.BorderSize = 0;
+            btnKomponen.FlatStyle = FlatStyle.Flat;
+            btnKomponen.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            btnKomponen.Location = new Point(0, 168);
+            btnKomponen.Margin = new Padding(0);
+            btnKomponen.Name = "btnKomponen";
+            btnKomponen.Size = new Size(280, 56);
+            btnKomponen.TabIndex = 3;
+            btnKomponen.Text = "     🔩 Komponen";
+            btnKomponen.TextAlign = ContentAlignment.MiddleLeft;
+            btnKomponen.UseVisualStyleBackColor = true;
             // 
             // btnKomponenProduk
             // 
@@ -185,7 +185,7 @@
         private FlowLayoutPanel flowLayoutPanel1;
         private Button btnPendapatan;
         private Button btnProduk;
-        private Button btnSparepart;
+        private Button btnKomponen;
         private Button btnKomponenProduk;
     }
 }

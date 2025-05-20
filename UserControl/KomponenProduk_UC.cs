@@ -127,7 +127,7 @@ namespace Shopee
                 return;
             }
 
-            var listAllKomponen = _komponenDal.ListData()?.ToList() ?? new();
+            var listAllKomponen = _komponenDal.ListData(new FilterModel())?.ToList() ?? new();
             var listKomponenProduk = _komponenProdukDal.ListData(idProduk)?.ToList() ?? new();
             var komponenUsed = listKomponenProduk.Select(x => x.id_komponen).ToHashSet();
 

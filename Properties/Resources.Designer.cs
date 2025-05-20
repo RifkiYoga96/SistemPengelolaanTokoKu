@@ -63,6 +63,36 @@ namespace Shopee.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Habis {
+            get {
+                object obj = ResourceManager.GetObject("Habis", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Menipis {
+            get {
+                object obj = ResourceManager.GetObject("Menipis", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pencil {
+            get {
+                object obj = ResourceManager.GetObject("pencil", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Pendapatan {
             get {
                 object obj = ResourceManager.GetObject("Pendapatan", resourceCulture);
@@ -76,6 +106,26 @@ namespace Shopee.Properties {
         internal static System.Drawing.Bitmap Pengeluaran {
             get {
                 object obj = ResourceManager.GetObject("Pengeluaran", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sampah {
+            get {
+                object obj = ResourceManager.GetObject("sampah", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Tersedia {
+            get {
+                object obj = ResourceManager.GetObject("Tersedia", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

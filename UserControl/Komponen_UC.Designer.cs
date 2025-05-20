@@ -30,8 +30,8 @@
         {
             components = new System.ComponentModel.Container();
             panel1 = new Panel();
-            lblPaginationInfo = new Label();
             dataGridView1 = new DataGridView();
+            lblPaginationInfo = new Label();
             label4 = new Label();
             label3 = new Label();
             numericUpDown1 = new NumericUpDown();
@@ -70,17 +70,6 @@
             panel1.Size = new Size(1095, 592);
             panel1.TabIndex = 0;
             // 
-            // lblPaginationInfo
-            // 
-            lblPaginationInfo.Anchor = AnchorStyles.Bottom;
-            lblPaginationInfo.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            lblPaginationInfo.Location = new Point(378, 538);
-            lblPaginationInfo.Name = "lblPaginationInfo";
-            lblPaginationInfo.Size = new Size(331, 25);
-            lblPaginationInfo.TabIndex = 17;
-            lblPaginationInfo.Text = "Showing 1 to 20 of 40 entries";
-            lblPaginationInfo.TextAlign = ContentAlignment.MiddleCenter;
-            // 
             // dataGridView1
             // 
             dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
@@ -93,6 +82,17 @@
             dataGridView1.RowTemplate.Height = 29;
             dataGridView1.Size = new Size(1045, 434);
             dataGridView1.TabIndex = 2;
+            // 
+            // lblPaginationInfo
+            // 
+            lblPaginationInfo.Anchor = AnchorStyles.Bottom;
+            lblPaginationInfo.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            lblPaginationInfo.Location = new Point(378, 538);
+            lblPaginationInfo.Name = "lblPaginationInfo";
+            lblPaginationInfo.Size = new Size(331, 25);
+            lblPaginationInfo.TabIndex = 17;
+            lblPaginationInfo.Text = "Showing 1 to 20 of 40 entries";
+            lblPaginationInfo.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label4
             // 
@@ -219,20 +219,22 @@
             menuStrip.ImageScalingSize = new Size(20, 20);
             menuStrip.Items.AddRange(new ToolStripItem[] { editMenuStrip, deleteMenuStrip });
             menuStrip.Name = "menuStrip";
-            menuStrip.Size = new Size(137, 64);
+            menuStrip.Size = new Size(215, 92);
             // 
             // editMenuStrip
             // 
             editMenuStrip.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            editMenuStrip.Image = Properties.Resources.pencil;
             editMenuStrip.Name = "editMenuStrip";
-            editMenuStrip.Size = new Size(136, 30);
+            editMenuStrip.Size = new Size(214, 30);
             editMenuStrip.Text = "Edit";
             // 
             // deleteMenuStrip
             // 
             deleteMenuStrip.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            deleteMenuStrip.Image = Properties.Resources.sampah;
             deleteMenuStrip.Name = "deleteMenuStrip";
-            deleteMenuStrip.Size = new Size(136, 30);
+            deleteMenuStrip.Size = new Size(214, 30);
             deleteMenuStrip.Text = "Delete";
             // 
             // Komponen_UC
