@@ -43,18 +43,24 @@
             numericHargaPendapatan = new NumericUpDown();
             tabPengeluaran = new TabPage();
             dtPengeluaran = new DateTimePicker();
-            btnSavePengeluaran = new Button();
             comboPengeluaran = new ComboBox();
             label3 = new Label();
             label5 = new Label();
             numericPengeluaran = new NumericUpDown();
             label6 = new Label();
+            gridPendapatan = new DataGridView();
+            gridPengeluaran = new DataGridView();
+            btnAdd = new Button();
+            button1 = new Button();
+            button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)numericJumlahPendapatan).BeginInit();
             tabControl1.SuspendLayout();
             tabPendapatan.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericHargaPendapatan).BeginInit();
             tabPengeluaran.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericPengeluaran).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gridPendapatan).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gridPengeluaran).BeginInit();
             SuspendLayout();
             // 
             // comboProduk
@@ -71,7 +77,7 @@
             // 
             label1.Anchor = AnchorStyles.Top;
             label1.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(31, -3);
+            label1.Location = new Point(183, -3);
             label1.Name = "label1";
             label1.Size = new Size(330, 41);
             label1.TabIndex = 6;
@@ -84,7 +90,7 @@
             panel1.BackColor = Color.DimGray;
             panel1.Location = new Point(21, 42);
             panel1.Name = "panel1";
-            panel1.Size = new Size(347, 4);
+            panel1.Size = new Size(651, 4);
             panel1.TabIndex = 7;
             // 
             // dtPendapatan
@@ -147,7 +153,7 @@
             btnSavePendapatan.FlatStyle = FlatStyle.Flat;
             btnSavePendapatan.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             btnSavePendapatan.ForeColor = Color.White;
-            btnSavePendapatan.Location = new Point(192, 334);
+            btnSavePendapatan.Location = new Point(59, 334);
             btnSavePendapatan.Name = "btnSavePendapatan";
             btnSavePendapatan.Size = new Size(122, 39);
             btnSavePendapatan.TabIndex = 4;
@@ -162,15 +168,17 @@
             tabControl1.Location = new Point(21, 61);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(349, 427);
+            tabControl1.Size = new Size(661, 427);
             tabControl1.TabIndex = 19;
             // 
             // tabPendapatan
             // 
+            tabPendapatan.Controls.Add(button1);
+            tabPendapatan.Controls.Add(button2);
+            tabPendapatan.Controls.Add(gridPendapatan);
             tabPendapatan.Controls.Add(label7);
             tabPendapatan.Controls.Add(numericHargaPendapatan);
             tabPendapatan.Controls.Add(dtPendapatan);
-            tabPendapatan.Controls.Add(btnSavePendapatan);
             tabPendapatan.Controls.Add(comboProduk);
             tabPendapatan.Controls.Add(lblJumlah);
             tabPendapatan.Controls.Add(label4);
@@ -180,7 +188,7 @@
             tabPendapatan.Location = new Point(4, 32);
             tabPendapatan.Name = "tabPendapatan";
             tabPendapatan.Padding = new Padding(3);
-            tabPendapatan.Size = new Size(341, 391);
+            tabPendapatan.Size = new Size(653, 391);
             tabPendapatan.TabIndex = 0;
             tabPendapatan.Text = "Pendapatan";
             tabPendapatan.UseVisualStyleBackColor = true;
@@ -209,8 +217,10 @@
             // 
             // tabPengeluaran
             // 
+            tabPengeluaran.Controls.Add(btnAdd);
+            tabPengeluaran.Controls.Add(gridPengeluaran);
             tabPengeluaran.Controls.Add(dtPengeluaran);
-            tabPengeluaran.Controls.Add(btnSavePengeluaran);
+            tabPengeluaran.Controls.Add(btnSavePendapatan);
             tabPengeluaran.Controls.Add(comboPengeluaran);
             tabPengeluaran.Controls.Add(label3);
             tabPengeluaran.Controls.Add(label5);
@@ -219,7 +229,7 @@
             tabPengeluaran.Location = new Point(4, 32);
             tabPengeluaran.Name = "tabPengeluaran";
             tabPengeluaran.Padding = new Padding(3);
-            tabPengeluaran.Size = new Size(341, 391);
+            tabPengeluaran.Size = new Size(653, 391);
             tabPengeluaran.TabIndex = 1;
             tabPengeluaran.Text = "Pengeluaran";
             tabPengeluaran.UseVisualStyleBackColor = true;
@@ -231,20 +241,6 @@
             dtPengeluaran.Name = "dtPengeluaran";
             dtPengeluaran.Size = new Size(288, 31);
             dtPengeluaran.TabIndex = 0;
-            // 
-            // btnSavePengeluaran
-            // 
-            btnSavePengeluaran.BackColor = Color.FromArgb(0, 86, 179);
-            btnSavePengeluaran.FlatAppearance.BorderSize = 0;
-            btnSavePengeluaran.FlatStyle = FlatStyle.Flat;
-            btnSavePengeluaran.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            btnSavePengeluaran.ForeColor = Color.White;
-            btnSavePengeluaran.Location = new Point(192, 282);
-            btnSavePengeluaran.Name = "btnSavePengeluaran";
-            btnSavePengeluaran.Size = new Size(122, 39);
-            btnSavePengeluaran.TabIndex = 3;
-            btnSavePengeluaran.Text = "Save";
-            btnSavePengeluaran.UseVisualStyleBackColor = false;
             // 
             // comboPengeluaran
             // 
@@ -299,12 +295,74 @@
             label6.Text = "Pengeluaran";
             label6.TextAlign = ContentAlignment.MiddleRight;
             // 
+            // gridPendapatan
+            // 
+            gridPendapatan.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridPendapatan.Location = new Point(341, 24);
+            gridPendapatan.Name = "gridPendapatan";
+            gridPendapatan.RowHeadersWidth = 51;
+            gridPendapatan.RowTemplate.Height = 29;
+            gridPendapatan.Size = new Size(291, 349);
+            gridPendapatan.TabIndex = 20;
+            // 
+            // gridPengeluaran
+            // 
+            gridPengeluaran.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridPengeluaran.Location = new Point(337, 24);
+            gridPengeluaran.Name = "gridPengeluaran";
+            gridPengeluaran.RowHeadersWidth = 51;
+            gridPengeluaran.RowTemplate.Height = 29;
+            gridPengeluaran.Size = new Size(291, 349);
+            gridPengeluaran.TabIndex = 25;
+            // 
+            // btnAdd
+            // 
+            btnAdd.BackColor = Color.Coral;
+            btnAdd.FlatAppearance.BorderSize = 0;
+            btnAdd.FlatStyle = FlatStyle.Flat;
+            btnAdd.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            btnAdd.ForeColor = Color.White;
+            btnAdd.Location = new Point(192, 334);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(122, 39);
+            btnAdd.TabIndex = 26;
+            btnAdd.Text = "Add";
+            btnAdd.UseVisualStyleBackColor = false;
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.Coral;
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(192, 334);
+            button1.Name = "button1";
+            button1.Size = new Size(122, 39);
+            button1.TabIndex = 28;
+            button1.Text = "Add";
+            button1.UseVisualStyleBackColor = false;
+            // 
+            // button2
+            // 
+            button2.BackColor = Color.FromArgb(0, 86, 179);
+            button2.FlatAppearance.BorderSize = 0;
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            button2.ForeColor = Color.White;
+            button2.Location = new Point(59, 334);
+            button2.Name = "button2";
+            button2.Size = new Size(122, 39);
+            button2.TabIndex = 27;
+            button2.Text = "Save";
+            button2.UseVisualStyleBackColor = false;
+            // 
             // InputTransaksiForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(390, 500);
+            ClientSize = new Size(694, 503);
             Controls.Add(tabControl1);
             Controls.Add(panel1);
             Controls.Add(label1);
@@ -318,6 +376,8 @@
             tabPengeluaran.ResumeLayout(false);
             tabPengeluaran.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numericPengeluaran).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gridPendapatan).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gridPengeluaran).EndInit();
             ResumeLayout(false);
         }
 
@@ -335,7 +395,6 @@
         private TabPage tabPendapatan;
         private TabPage tabPengeluaran;
         private DateTimePicker dtPengeluaran;
-        private Button btnSavePengeluaran;
         private ComboBox comboPengeluaran;
         private Label label3;
         private Label label5;
@@ -343,5 +402,10 @@
         private Label label6;
         private Label label7;
         private NumericUpDown numericHargaPendapatan;
+        private DataGridView gridPendapatan;
+        private DataGridView gridPengeluaran;
+        private Button button1;
+        private Button button2;
+        private Button btnAdd;
     }
 }

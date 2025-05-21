@@ -17,7 +17,9 @@ namespace Shopee
         private readonly OperasionalDal _pengeluaranDal;
         private readonly TransaksiDal _transaksiDal;
         private readonly int _id;
-        public InputTransaksiForm(int tabIndex,int id = 0)
+        private BindingList<TransaksiModel> _listTransaksiPendapatan = new();
+        private BindingList<TransaksiModel> _listTransaksiPengeluaran = new();
+        public InputTransaksiForm(int tabIndex, int id = 0)
         {
             InitializeComponent();
             this.IsDialogForm();
@@ -27,7 +29,7 @@ namespace Shopee
 
             _id = id;
             CheckingUpdateData(tabIndex);
-            
+
             InitComponent();
             RegisterEvent();
         }
@@ -181,5 +183,16 @@ namespace Shopee
                         comboPengeluaran.SelectedItem = item;
             numericPengeluaran.Value = Convert.ToInt32(data.pengeluaran); //numericUpDown Harga
         }
+
+        #region ADD DATA TO GRID
+
+        private void AddDataPendapatan(TransaksiModel transaksi)
+        {
+            _listTransaksiPendapatan.Add(transaksi);
+
+            gridPendapatan.DataSource = _listTransaksiPendapatan;
+        }
+
+        #endregion
     }
 }
