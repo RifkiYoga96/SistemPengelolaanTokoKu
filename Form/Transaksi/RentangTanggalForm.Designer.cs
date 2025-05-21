@@ -69,7 +69,7 @@
             dateTime2.Location = new Point(28, 114);
             dateTime2.Name = "dateTime2";
             dateTime2.Size = new Size(200, 27);
-            dateTime2.TabIndex = 15;
+            dateTime2.TabIndex = 1;
             // 
             // btnOk
             // 
@@ -77,7 +77,7 @@
             btnOk.Location = new Point(124, 163);
             btnOk.Name = "btnOk";
             btnOk.Size = new Size(104, 31);
-            btnOk.TabIndex = 17;
+            btnOk.TabIndex = 2;
             btnOk.Text = "OK";
             btnOk.UseVisualStyleBackColor = true;
             // 

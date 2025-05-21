@@ -87,7 +87,7 @@
             numericHarga.Maximum = new decimal(new int[] { 100000000, 0, 0, 0 });
             numericHarga.Name = "numericHarga";
             numericHarga.Size = new Size(288, 31);
-            numericHarga.TabIndex = 19;
+            numericHarga.TabIndex = 1;
             numericHarga.TextAlign = HorizontalAlignment.Center;
             numericHarga.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
@@ -97,7 +97,7 @@
             txtNama.Location = new Point(43, 97);
             txtNama.Name = "txtNama";
             txtNama.Size = new Size(288, 31);
-            txtNama.TabIndex = 21;
+            txtNama.TabIndex = 0;
             // 
             // btnSave
             // 
@@ -109,7 +109,7 @@
             btnSave.Location = new Point(209, 252);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(122, 39);
-            btnSave.TabIndex = 23;
+            btnSave.TabIndex = 2;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = false;
             // 

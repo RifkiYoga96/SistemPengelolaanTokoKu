@@ -318,16 +318,18 @@ namespace Shopee
             dgv.Columns["No"].FillWeight = 7;
             dgv.Columns["nama_transaksi"].FillWeight = 15;
             dgv.Columns["tanggal_input"].FillWeight = 12;
-            dgv.Columns["pendapatan_kotor"].FillWeight = 11;
-            dgv.Columns["modal"].FillWeight = 11;
-            dgv.Columns["pendapatan_bersih"].FillWeight = 11;
-            dgv.Columns["pengeluaran"].FillWeight = 11;
+            dgv.Columns["pendapatan_kotor"].FillWeight = 12;
+            dgv.Columns["modal"].FillWeight = 10;
+            dgv.Columns["pendapatan_bersih"].FillWeight = 14;
+            dgv.Columns["pengeluaran"].FillWeight = 8;
             dgv.Columns["jumlah"].FillWeight = 11;
             dgv.Columns["tipe"].FillWeight = 11;
 
             dgv.Columns["No"].DefaultCellStyle.Padding = new Padding(15, 0, 0, 0);
             dgv.Columns["jumlah"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv.Columns["tipe"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+
+            dgv.Columns["jumlah"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
 
         private void Hitung_TotalPendapatan()

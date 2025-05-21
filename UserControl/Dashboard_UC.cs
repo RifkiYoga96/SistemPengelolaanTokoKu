@@ -21,6 +21,7 @@ namespace Shopee
             InitComponent();
             RegisterEvent();
             LoadData();
+            CustomGrids();
         }
 
         private void InitComponent()
@@ -109,14 +110,72 @@ namespace Shopee
         private void LoadTabels(FilterModel filter)
         {
             filter.sql += " AND tipe = 1";
-            var data = _dashboardDal.TopProdukTerjual(filter);
-            gridProdukTerjual.DataSource = data.
+
+            //Top Produk Terjual
+            var listTerjual = _dashboardDal.TopProdukTerjual(filter);
+            gridProdukTerjual.DataSource = listTerjual.
                 Select((x, index) => new 
                 { 
                     No = index + 1,
                     NamaProduk = x.nama_transaksi,
                     Terjual = x.jumlah
                 }).ToList();
+
+            //Top Produk Profit
+            var listProfit = _dashboardDal.TopProdukProfit(filter);
+            gridProdukProfit.DataSource = listProfit.
+                Select((x, index) => new
+                {
+                    No = index + 1,
+                    NamaProduk = x.nama_transaksi,
+                    Keuntungan = x.pendapatan_bersih?.ToString("C0",_culture)
+                }).ToList();
+        }
+
+        private void CustomGrids()
+        {
+            CustomGridPenjualan();
+            CustomGridProfit();
+        }
+
+        private void CustomGridPenjualan()
+        {
+            var dgv = gridProdukTerjual;
+            CustomGrid.CustomDataGrid(dgv);
+
+            dgv.Columns["No"].HeaderText = "   No";
+            dgv.Columns["NamaProduk"].HeaderText = "Nama Produk";
+
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv.Columns["No"].FillWeight = 20;
+            dgv.Columns["NamaProduk"].FillWeight = 50;
+            dgv.Columns["Terjual"].FillWeight = 30;
+
+            dgv.Columns["No"].DefaultCellStyle.Padding = new Padding(15, 0, 0, 0);
+
+            // Menonaktifkan warna seleksi untuk sel
+            dgv.DefaultCellStyle.SelectionBackColor = Color.White;
+            dgv.DefaultCellStyle.SelectionForeColor = dgv.DefaultCellStyle.ForeColor;
+        }
+
+        private void CustomGridProfit()
+        {
+            var dgv = gridProdukProfit;
+            CustomGrid.CustomDataGrid(dgv);
+
+            dgv.Columns["No"].HeaderText = "   No";
+            dgv.Columns["NamaProduk"].HeaderText = "Nama Produk";
+
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv.Columns["No"].FillWeight = 20;
+            dgv.Columns["NamaProduk"].FillWeight = 50;
+            dgv.Columns["Keuntungan"].FillWeight = 30;
+
+            dgv.Columns["No"].DefaultCellStyle.Padding = new Padding(15, 0, 0, 0);
+
+            // Menonaktifkan warna seleksi untuk sel
+            dgv.DefaultCellStyle.SelectionBackColor = Color.White;
+            dgv.DefaultCellStyle.SelectionForeColor = dgv.DefaultCellStyle.ForeColor;
         }
     }
 }

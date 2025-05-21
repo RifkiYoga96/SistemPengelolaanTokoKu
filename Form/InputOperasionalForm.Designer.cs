@@ -87,7 +87,7 @@
             numericBiaya.Maximum = new decimal(new int[] { 100000000, 0, 0, 0 });
             numericBiaya.Name = "numericBiaya";
             numericBiaya.Size = new Size(288, 31);
-            numericBiaya.TabIndex = 19;
+            numericBiaya.TabIndex = 1;
             numericBiaya.TextAlign = HorizontalAlignment.Center;
             numericBiaya.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
@@ -97,7 +97,7 @@
             txtNama.Location = new Point(43, 97);
             txtNama.Name = "txtNama";
             txtNama.Size = new Size(288, 31);
-            txtNama.TabIndex = 21;
+            txtNama.TabIndex = 0;
             // 
             // btnSave
             // 
@@ -109,7 +109,7 @@
             btnSave.Location = new Point(209, 252);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(122, 39);
-            btnSave.TabIndex = 23;
+            btnSave.TabIndex = 2;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = false;
             // 

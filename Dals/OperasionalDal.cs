@@ -58,7 +58,7 @@ namespace Shopee
 
         public decimal GetAdmin()
         {
-            const string sql = @"SELECT jumlah_pengeluaran FROM pengeluaran 
+            const string sql = @"SELECT jumlah_pengeluaran FROM operasional 
                                 WHERE nama_pengeluaran = 'Biaya Admin'";
             using var koneksi = new SqlConnection( conn.connStr);
             return koneksi.QuerySingleOrDefault<decimal>(sql);

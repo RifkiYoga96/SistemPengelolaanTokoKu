@@ -65,7 +65,7 @@
             comboProduk.Location = new Point(26, 128);
             comboProduk.Name = "comboProduk";
             comboProduk.Size = new Size(288, 31);
-            comboProduk.TabIndex = 5;
+            comboProduk.TabIndex = 1;
             // 
             // label1
             // 
@@ -93,7 +93,7 @@
             dtPendapatan.Location = new Point(26, 53);
             dtPendapatan.Name = "dtPendapatan";
             dtPendapatan.Size = new Size(288, 31);
-            dtPendapatan.TabIndex = 9;
+            dtPendapatan.TabIndex = 0;
             // 
             // label4
             // 
@@ -125,7 +125,7 @@
             numericJumlahPendapatan.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numericJumlahPendapatan.Name = "numericJumlahPendapatan";
             numericJumlahPendapatan.Size = new Size(110, 31);
-            numericJumlahPendapatan.TabIndex = 16;
+            numericJumlahPendapatan.TabIndex = 3;
             numericJumlahPendapatan.TextAlign = HorizontalAlignment.Center;
             numericJumlahPendapatan.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
@@ -150,7 +150,7 @@
             btnSavePendapatan.Location = new Point(192, 334);
             btnSavePendapatan.Name = "btnSavePendapatan";
             btnSavePendapatan.Size = new Size(122, 39);
-            btnSavePendapatan.TabIndex = 18;
+            btnSavePendapatan.TabIndex = 4;
             btnSavePendapatan.Text = "Save";
             btnSavePendapatan.UseVisualStyleBackColor = false;
             // 
@@ -203,7 +203,7 @@
             numericHargaPendapatan.Maximum = new decimal(new int[] { 100000000, 0, 0, 0 });
             numericHargaPendapatan.Name = "numericHargaPendapatan";
             numericHargaPendapatan.Size = new Size(288, 31);
-            numericHargaPendapatan.TabIndex = 19;
+            numericHargaPendapatan.TabIndex = 2;
             numericHargaPendapatan.TextAlign = HorizontalAlignment.Center;
             numericHargaPendapatan.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
@@ -230,7 +230,7 @@
             dtPengeluaran.Location = new Point(26, 54);
             dtPengeluaran.Name = "dtPengeluaran";
             dtPengeluaran.Size = new Size(288, 31);
-            dtPengeluaran.TabIndex = 20;
+            dtPengeluaran.TabIndex = 0;
             // 
             // btnSavePengeluaran
             // 
@@ -242,7 +242,7 @@
             btnSavePengeluaran.Location = new Point(192, 282);
             btnSavePengeluaran.Name = "btnSavePengeluaran";
             btnSavePengeluaran.Size = new Size(122, 39);
-            btnSavePengeluaran.TabIndex = 25;
+            btnSavePengeluaran.TabIndex = 3;
             btnSavePengeluaran.Text = "Save";
             btnSavePengeluaran.UseVisualStyleBackColor = false;
             // 
@@ -254,7 +254,7 @@
             comboPengeluaran.Location = new Point(26, 133);
             comboPengeluaran.Name = "comboPengeluaran";
             comboPengeluaran.Size = new Size(288, 31);
-            comboPengeluaran.TabIndex = 19;
+            comboPengeluaran.TabIndex = 1;
             // 
             // label3
             // 
@@ -285,7 +285,7 @@
             numericPengeluaran.Maximum = new decimal(new int[] { 10000000, 0, 0, 0 });
             numericPengeluaran.Name = "numericPengeluaran";
             numericPengeluaran.Size = new Size(288, 31);
-            numericPengeluaran.TabIndex = 23;
+            numericPengeluaran.TabIndex = 2;
             numericPengeluaran.TextAlign = HorizontalAlignment.Center;
             // 
             // label6

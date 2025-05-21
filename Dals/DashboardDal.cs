@@ -56,5 +56,17 @@ namespace Shopee
             using var koneksi = new SqlConnection(conn.connStr);
             return koneksi.Query<TransaksiModel>(sql, filter.param);
         }
+
+        public IEnumerable<TransaksiModel> TopProdukProfit(FilterModel filter)
+        {
+            string sql = $@"SELECT TOP 5 nama_transaksi, COALESCE(SUM(pendapatan_bersih), 0) AS pendapatan_bersih
+                            FROM transaksi
+                            {filter.sql}
+                            GROUP BY nama_transaksi
+                            ORDER BY pendapatan_bersih DESC";
+
+            using var koneksi = new SqlConnection(conn.connStr);
+            return koneksi.Query<TransaksiModel>(sql, filter.param);
+        }
     }
 }
