@@ -221,20 +221,20 @@ namespace Shopee
 
             if (!string.IsNullOrEmpty(search))
             {
-                listFilter.Add("(nama_transaksi LIKE '%'+@search+'%')");
+                listFilter.Add("(t.nama_transaksi LIKE '%'+@search+'%')");
                 filter.param.Add("@search", search);
             }
 
             if (indexTime == 5)
             {
-                listFilter.Add("(tanggal_input BETWEEN @date1 AND @date2)");
+                listFilter.Add("(t.tanggal BETWEEN @date1 AND @date2)");
                 filter.param.Add("@date1", _date1);
                 filter.param.Add("@date2", _date2);
             }
             else
             {
                 var selectedItem = (RangeTimeModel)comboTimeFilter.SelectedItem;
-                listFilter.Add("(tanggal_input BETWEEN @date1 AND @date2)");
+                listFilter.Add("(t.tanggal BETWEEN @date1 AND @date2)");
                 filter.param.Add("@date1", selectedItem.TimeFilter1);
                 filter.param.Add("@date2", selectedItem.TimeFilter2);
             }
@@ -263,8 +263,8 @@ namespace Shopee
             filterData.param.Add("@offset", offset);
 
             filterData.sql += comboSorting.SelectedIndex == 0
-                ? " ORDER BY tanggal_input DESC, id_transaksi DESC"
-                : " ORDER BY tanggal_input ASC, id_transaksi ASC";
+                ? " ORDER BY t.tanggal DESC, t.id_transaksi DESC"
+                : " ORDER BY t.tanggal ASC, t.id_transaksi ASC";
 
             var listData = _transaksiDal.ListData(filterData)
                 .Select((x, index) => new

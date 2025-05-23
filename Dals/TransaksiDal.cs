@@ -14,9 +14,9 @@ namespace Shopee
         {
             string sql = $@"
                         SELECT 
-                            t.id_transaksi, t.nama_transaksi, t.tanggal, t.tipe,
+                            t.id_transaksi, t.nama_transaksi, t.tanggal, t.tipe, t.pengeluaran,
                             td.nama_produk, td.harga, td.jumlah, td.modal, td.pendapatan_bersih
-                        FROM transaksi
+                        FROM transaksi t
                         INNER JOIN transaksi_detail td
                             ON t.id_transaksi = td.id_transaksi  
                         {filter.sql}
@@ -31,7 +31,9 @@ namespace Shopee
             string sql = $@"
                         SELECT 
                             ISNULL(SUM({field_name}), 0)
-                        FROM transaksi
+                        FROM transaksi t
+                        INNER JOIN transaksi_detail td
+                            ON t.id_transaksi = td.id_transaksi
                         {filter.sql}";
 
             if (isFilter)
@@ -39,7 +41,8 @@ namespace Shopee
                         SELECT 
                             ISNULL(SUM({field_name}), 0) -
                             ISNULL(SUM(pengeluaran), 0)     
-                        FROM transaksi
+                        FROM transaksi t
+                        INNER JOIN transaksi_detail td
                         {filter.sql}";
 
             using var koneksi = new SqlConnection(conn.connStr);
@@ -48,7 +51,14 @@ namespace Shopee
 
         public TransaksiModel? GetData(int id)
         {
-            const string sql = @"SELECT * FROM transaksi WHERE id_transaksi = @id";
+            const string sql = @" SELECT 
+                            t.id_transaksi, t.nama_transaksi, t.tanggal, t.tipe, t.admin
+                            td.nama_produk, td.harga, td.jumlah, td.modal, td.pendapatan_bersih
+                        FROM transaksi t
+                        INNER JOIN transaksi_detail td
+                            ON t.id_transaksi = td.id_transaksi
+                        WHERE t.id_transaksi = @id";
+
             using var koneksi = new SqlConnection(conn.connStr);
             return koneksi.QueryFirstOrDefault<TransaksiModel>(sql, new { id = id });
         }
@@ -57,9 +67,9 @@ namespace Shopee
         {
             const string sql = @"
                 INSERT INTO transaksi 
-                    (nama_transaksi, tanggal_input, pendapatan_kotor, modal, pendapatan_bersih, pengeluaran, jumlah, tipe, id_checkout, admin) 
+                    (nama_transaksi, tanggal, pengeluaran, tipe, admin) 
                 VALUES 
-                    (@nama_transaksi, @tanggal_input, @pendapatan_kotor, @modal, @pendapatan_bersih, @pengeluaran, @jumlah, @tipe, @id_checkout, @admin)";
+                    (@nama_transaksi, @tanggal, @pengeluaran, @tipe, @admin)";
 
 
             using var koneksi = new SqlConnection(conn.connStr);
