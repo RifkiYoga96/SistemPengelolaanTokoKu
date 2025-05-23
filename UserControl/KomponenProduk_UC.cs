@@ -156,7 +156,7 @@ namespace Shopee
                     KomponenId = item.id_komponen,
                     No = no++,
                     KomponenName = item.nama_komponen,
-                    Harga = item.harga * item.jumlah,
+                    Harga = item.harga,
                     HargaStr = item.harga.ToString("C0", _culture),
                     Jumlah = item.jumlah
                 });
@@ -275,7 +275,7 @@ namespace Shopee
             KebutuhanGrid.Columns["No"].HeaderText = "  No";
             KebutuhanGrid.Columns["KomponenName"].HeaderText = "Nama Komponen";
             KebutuhanGrid.Columns["Jumlah"].HeaderText = "    Jumlah";
-            KebutuhanGrid.Columns["HargaStr"].HeaderText = "Harga";
+            KebutuhanGrid.Columns["HargaStr"].HeaderText = "Harga Satuan";
 
 
             // Atur Fill dan lebar kolom
@@ -301,7 +301,7 @@ namespace Shopee
             // Atur nama kolom
             DaftarGrid.Columns["No"].HeaderText = "  No";
             DaftarGrid.Columns["KomponenName"].HeaderText = "Nama Komponen";
-            DaftarGrid.Columns["HargaStr"].HeaderText = "Harga";
+            DaftarGrid.Columns["HargaStr"].HeaderText = "Harga Satuan";
 
             // Atur Fill dan lebar kolom
             DaftarGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;

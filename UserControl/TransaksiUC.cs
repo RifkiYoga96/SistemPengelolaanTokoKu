@@ -91,7 +91,6 @@ namespace Shopee
             numericUpDown1.ValueChanged += NumericUpDown1_ValueChanged;
             comboSorting.SelectedIndexChanged += ComboSorting_SelectedIndexChanged;
             dataGridView1.CellMouseClick += ShowMenuStrip;
-            editMenuStrip.Click += ShowEditForm;
             deleteMenuStrip.Click += DeleteData;
         }
 
@@ -275,6 +274,7 @@ namespace Shopee
                     x.nama_transaksi,
                     x.tanggal_input,
                     pendapatan_kotor = x.pendapatan_kotor?.ToString("C0", _culture),
+                    admin = x.admin.ToString() + "%",
                     modal = x.modal?.ToString("C0", _culture),
                     pendapatan_bersih = x.pendapatan_bersih?.ToString("C0", _culture),
                     pengeluaran = x.pengeluaran?.ToString("C0", _culture),
@@ -311,16 +311,18 @@ namespace Shopee
             dgv.Columns["pengeluaran"].HeaderText = "Pengeluaran";
             dgv.Columns["jumlah"].HeaderText = "Jumlah";
             dgv.Columns["tipe"].HeaderText = "     Tipe";
+            dgv.Columns["admin"].HeaderText = "Admin Fee";
 
             dgv.Columns["id_transaksi"].Visible = false;
 
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgv.Columns["No"].FillWeight = 7;
-            dgv.Columns["nama_transaksi"].FillWeight = 15;
-            dgv.Columns["tanggal_input"].FillWeight = 12;
-            dgv.Columns["pendapatan_kotor"].FillWeight = 12;
-            dgv.Columns["modal"].FillWeight = 10;
-            dgv.Columns["pendapatan_bersih"].FillWeight = 14;
+            dgv.Columns["No"].FillWeight = 6;
+            dgv.Columns["nama_transaksi"].FillWeight = 13;
+            dgv.Columns["tanggal_input"].FillWeight = 11;
+            dgv.Columns["pendapatan_kotor"].FillWeight = 11;
+            dgv.Columns["modal"].FillWeight = 8;
+            dgv.Columns["admin"].FillWeight = 10;
+            dgv.Columns["pendapatan_bersih"].FillWeight = 11;
             dgv.Columns["pengeluaran"].FillWeight = 8;
             dgv.Columns["jumlah"].FillWeight = 11;
             dgv.Columns["tipe"].FillWeight = 11;
@@ -337,10 +339,10 @@ namespace Shopee
             int indexComboTotal = comboTotal.SelectedIndex;
             string fieldName = indexComboTotal switch
             {
-                0 => "pendapatan_bersih",
-                1 => "pendapatan_kotor",
-                2 => "modal",
-                _ => "pengeluaran"
+                0 => "td.pendapatan_bersih",
+                1 => "td.harga",
+                2 => "td.modal",
+                _ => "t.pengeluaran"
             };
 
             bool isLabaBersih = indexComboTotal == 0;

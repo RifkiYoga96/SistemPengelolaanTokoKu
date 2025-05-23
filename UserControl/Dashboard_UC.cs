@@ -28,7 +28,7 @@ namespace Shopee
         {
             comboRangeTime.DropDownStyle = ComboBoxStyle.DropDownList;
 
-            comboRangeTime.DataSource = GetTimeFilterOptions(DateTime.Now);
+            comboRangeTime.DataSource = GetTimeFilterOptions(DateTime.Today);
             comboRangeTime.DisplayMember = "NameFilter";
             comboRangeTime.ValueMember = "NameFilter";
             comboRangeTime.SelectedIndex = 3;
@@ -67,7 +67,7 @@ namespace Shopee
             var filter = new FilterModel();
             var listFilter = new List<string>();
 
-            listFilter.Add($"tanggal_input BETWEEN @tanggal1 AND @tanggal2");
+            listFilter.Add("tanggal_input BETWEEN @tanggal1 AND @tanggal2");
             filter.param.Add("@tanggal1", tanggal1);
             filter.param.Add("@tanggal2", tanggal2);
 

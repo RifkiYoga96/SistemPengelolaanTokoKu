@@ -4,195 +4,246 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace Shopee
 {
     public partial class InputTransaksiForm : Form
     {
-        private readonly ProdukDal _produkDal;
-        private readonly OperasionalDal _pengeluaranDal;
-        private readonly TransaksiDal _transaksiDal;
+        private readonly ProdukDal _produkDal = new();
+        private readonly OperasionalDal _pengeluaranDal = new();
+        private readonly TransaksiDal _transaksiDal = new();
         private readonly int _id;
-        private BindingList<TransaksiModel> _listTransaksiPendapatan = new();
-        private BindingList<TransaksiModel> _listTransaksiPengeluaran = new();
+        private readonly BindingList<TransaksiModel> _listTransaksiPendapatan = new();
+        private readonly BindingList<TransaksiModel> _listTransaksiPengeluaran = new();
+
         public InputTransaksiForm(int tabIndex, int id = 0)
         {
             InitializeComponent();
             this.IsDialogForm();
-            _produkDal = new ProdukDal();
-            _transaksiDal = new TransaksiDal();
-            _pengeluaranDal = new OperasionalDal();
 
             _id = id;
-            CheckingUpdateData(tabIndex);
 
-            InitComponent();
-            RegisterEvent();
+            InitComponents();
+            RegisterEvents();
+            SetupPendapatanGrid();
+
+            if (_id != 0)
+                LoadUpdateData(tabIndex);
         }
 
-        private void InitComponent()
+        private void InitComponents()
         {
-            //PENDAPATAN
-            //ComboBox
-            var listProduk = _produkDal.ListProdukCombo();
-            comboProduk.DataSource = listProduk;
+            // Pendapatan
+            comboProduk.DataSource = _produkDal.ListProdukCombo();
             comboProduk.DisplayMember = "Nama_Produk";
             comboProduk.ValueMember = "ID_Produk";
             UpdateHargaProduk();
 
-            //PENGELUARAN
-            //ComboBox
-            var listPengeluaran = _pengeluaranDal.ListPengeluaranCombo();
-            comboPengeluaran.DataSource = listPengeluaran;
+            // Pengeluaran
+            comboPengeluaran.DataSource = _pengeluaranDal.ListPengeluaranCombo();
             comboPengeluaran.DisplayMember = "nama_pengeluaran";
             comboPengeluaran.ValueMember = "id_pengeluaran";
             UpdateBiayaPengeluaran();
         }
 
-        private void RegisterEvent()
+        private void RegisterEvents()
         {
             btnSavePendapatan.Click += SaveDataPendapatan;
             btnSavePengeluaran.Click += SaveDataPengeluaran;
-            comboPengeluaran.SelectedIndexChanged += (s, e) => UpdateBiayaPengeluaran();
-            comboProduk.SelectedIndexChanged += (s, e) => UpdateHargaProduk();
+            btnAddPendapatan.Click += AddPendapatan;
+
+            comboProduk.SelectedIndexChanged += (_, _) => UpdateHargaProduk();
+            comboPengeluaran.SelectedIndexChanged += (_, _) => UpdateBiayaPengeluaran();
         }
 
-
-        private void SaveDataPendapatan(object? sender, EventArgs e)
+        private void AddPendapatan(object? sender, EventArgs e)
         {
-            DateTime date = dtPendapatan.Value.Date;
-            int idProduk = (int)(comboProduk.SelectedValue ?? 0);
-            string nama_produk = ((ProdukModel)comboProduk.SelectedItem).nama_produk;
-            int jumlah = (int)numericJumlahPendapatan.Value;
-            int harga = (((ProdukModel)comboProduk.SelectedItem).harga) * jumlah;
-            int modal = (_produkDal.GetModal(idProduk) * jumlah);
-
-            decimal admin = _pengeluaranDal.GetAdmin();
-            int labaBersih = Convert.ToInt32((harga * admin) - modal);
-
-            MessageBox.Show($"{labaBersih.ToString()}  {admin.ToString()}");
-
-            if (idProduk == 0)
+            if (comboProduk.SelectedItem is not ProdukModel produk)
             {
                 MessageBoxShow.Warning();
                 return;
             }
-            if (!MessageBoxShow.Confirmation()) return;
 
-            var produk = new TransaksiModel
+            var tanggal = dtPendapatan.Value.Date;
+            var jumlah = (int)numericJumlahPendapatan.Value;
+            var harga = produk.harga * jumlah;
+            var nominalDiskon = (int)numericNominalDiskon.Value;
+            var kotor = (harga * jumlah) - nominalDiskon;
+            var modal = _produkDal.GetModal(produk.id_produk) * jumlah;
+            var admin = _pengeluaranDal.GetAdmin();
+            var labaBersih = Convert.ToInt32((kotor * admin) - modal);
+
+            var transaksi = new TransaksiModel
             {
-                nama_transaksi = nama_produk,
-                tanggal_input = date,
+                nama_transaksi = produk.nama_produk,
+                tanggal_input = tanggal,
                 pendapatan_kotor = harga,
                 modal = modal,
                 pendapatan_bersih = labaBersih,
-                pengeluaran = null,
                 jumlah = jumlah,
-                tipe = true //true karena pendapatan
+                tipe = true,
+                admin = (1 - admin) * 100
             };
 
-            _transaksiDal.InsertData(produk);
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            _listTransaksiPendapatan.Add(transaksi);
+            gridPendapatan.DataSource = _listTransaksiPendapatan;
         }
+
+        private void SaveDataPendapatan(object? sender, EventArgs e)
+        {
+            if (_listTransaksiPendapatan.Count == 0)
+            {
+                MessageBoxShow.Warning("Transaksi masih kosong!");
+                return;
+            }
+
+            var checkoutId = _transaksiDal.GenerateCheckoutId();
+            foreach (var transaksi in _listTransaksiPendapatan)
+            {
+                transaksi.id_checkout = checkoutId;
+                
+                _transaksiDal.InsertData(transaksi);
+            }
+
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
         private void SaveDataPengeluaran(object? sender, EventArgs e)
         {
-
-            DateTime date = dtPendapatan.Value.Date;
-            string nama_pengeluaran = ((OperasionalModel)comboPengeluaran.SelectedItem).nama_pengeluaran;
-            int biaya_pengeluaran = (int)numericPengeluaran.Value;
+            if (comboPengeluaran.SelectedItem is not OperasionalModel pengeluaran) return;
 
             if (!MessageBoxShow.Confirmation()) return;
 
-            var pengeluaran = new TransaksiModel
+            var data = new TransaksiModel
             {
-                nama_transaksi = nama_pengeluaran,
-                tanggal_input = date,
-                pendapatan_kotor = null,
-                modal = null,
-                pendapatan_bersih = null,
-                pengeluaran = biaya_pengeluaran,
-                jumlah = null,
-                tipe = false //false karena pengeluaran
+                nama_transaksi = pengeluaran.nama_pengeluaran,
+                tanggal_input = dtPendapatan.Value.Date,
+                pengeluaran = (int)numericPengeluaran.Value,
+                tipe = false
             };
 
-            _transaksiDal.InsertData(pengeluaran);
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            _transaksiDal.InsertData(data);
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void UpdateHargaProduk()
         {
-            if (comboProduk.SelectedItem == null) return;
-
-            int harga = ((ProdukModel)comboProduk.SelectedItem).harga;
-            numericHargaPendapatan.Value = harga;
+            if (comboProduk.SelectedItem is ProdukModel produk)
+                numericHargaPendapatan.Value = produk.harga;
         }
 
         private void UpdateBiayaPengeluaran()
         {
-            if (comboPengeluaran.SelectedItem == null) return;
-
-            decimal harga = ((OperasionalModel)comboPengeluaran.SelectedItem).jumlah_pengeluaran;
-            numericPengeluaran.Value = Convert.ToInt32(harga);
+            if (comboPengeluaran.SelectedItem is OperasionalModel item)
+                numericPengeluaran.Value = Convert.ToInt32(item.jumlah_pengeluaran);
         }
 
-        private void CheckingUpdateData(int tabIndex)
+        private void LoadUpdateData(int tabIndex)
         {
-            if (_id == 0) return; //jika id = 0, tidak ada data yang diupdate
             if (tabIndex == 0)
             {
-                GetDataPendapatan(_id);
+                LoadDataPendapatan(_id);
                 tabControl1.SelectedTab = tabPendapatan;
             }
             else
             {
-                GetDataPengeluaran(_id);
+                LoadDataPengeluaran(_id);
                 tabControl1.SelectedTab = tabPengeluaran;
             }
-            tabControl1.Selecting += (s, e) => e.Cancel = true; //cancel tab lain
+
+            tabControl1.Selecting += (_, e) => e.Cancel = true;
         }
 
-        private void GetDataPendapatan(int id)
+        private void LoadDataPendapatan(int id)
         {
             var data = _transaksiDal.GetData(id);
-            if (data is null) return;
+            if (data == null) return;
 
-            dtPendapatan.Value = data.tanggal_input; //dateTime Tanggal
-            foreach (var item in comboProduk.Items) //combobox Produk
-                if (item is ProdukModel p)
-                    if (p.nama_produk == data.nama_transaksi)
-                        comboProduk.SelectedItem = item;
-            numericJumlahPendapatan.Value = Convert.ToInt32(data.jumlah); //numericUpDown Harga
-            numericHargaPendapatan.Value = Convert.ToInt32(data.pendapatan_kotor); //numericUpDown Jumlah
+            dtPendapatan.Value = data.tanggal_input;
+            comboProduk.SelectedItem = comboProduk.Items
+                .OfType<ProdukModel>()
+                .FirstOrDefault(p => p.nama_produk == data.nama_transaksi);
+            numericJumlahPendapatan.Value = Convert.ToInt32(data.jumlah);
+            numericHargaPendapatan.Value = Convert.ToInt32(data.pendapatan_kotor);
         }
 
-        private void GetDataPengeluaran(int id)
+        private void LoadDataPengeluaran(int id)
         {
             var data = _transaksiDal.GetData(id);
-            if (data is null) return;
+            if (data == null) return;
 
-            dtPengeluaran.Value = data.tanggal_input; //dateTime Tanggal
-            foreach (var item in comboPengeluaran.Items) //combobox Produk
-                if (item is OperasionalModel p)
-                    if (p.nama_pengeluaran == data.nama_transaksi)
-                        comboPengeluaran.SelectedItem = item;
-            numericPengeluaran.Value = Convert.ToInt32(data.pengeluaran); //numericUpDown Harga
+            dtPengeluaran.Value = data.tanggal_input;
+            comboPengeluaran.SelectedItem = comboPengeluaran.Items
+                .OfType<OperasionalModel>()
+                .FirstOrDefault(p => p.nama_pengeluaran == data.nama_transaksi);
+            numericPengeluaran.Value = Convert.ToInt32(data.pengeluaran);
         }
 
-        #region ADD DATA TO GRID
-
-        private void AddDataPendapatan(TransaksiModel transaksi)
+        private void SetupPendapatanGrid()
         {
-            _listTransaksiPendapatan.Add(transaksi);
+            var dgv = gridPendapatan;
+            dgv.DataSource = _listTransaksiPendapatan;
+            CustomizeGridStyle(dgv);
 
-            gridPendapatan.DataSource = _listTransaksiPendapatan;
+            foreach (var colName in new[] {
+                "id_transaksi", "tanggal_input", "pendapatan_kotor", "modal",
+                "pendapatan_bersih", "pengeluaran", "tipe", "id_checkout", "admin" })
+                dgv.Columns[colName].Visible = false;
+
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv.Columns["nama_transaksi"].FillWeight = 70;
+            dgv.Columns["jumlah"].FillWeight = 30;
+
+            dgv.Columns["nama_transaksi"].HeaderText = "  Nama Produk";
+            dgv.Columns["jumlah"].HeaderText = "Jumlah";
+            dgv.Columns["nama_transaksi"].DefaultCellStyle.Padding = new Padding(10, 0, 0, 0);
+            dgv.Columns["jumlah"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv.Columns["jumlah"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
 
-        #endregion
+        private void CustomizeGridStyle(DataGridView dgv)
+        {
+            dgv.BackgroundColor = Color.White;
+            dgv.EnableHeadersVisualStyles = false;
+            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
+            dgv.DefaultCellStyle.Font = new Font("Segoe UI", 9);
+            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgv.GridColor = Color.Silver;
+            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(52, 152, 219);
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgv.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(52, 152, 219);
+            dgv.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
+
+            dgv.ForeColor = Color.DimGray;
+            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(240, 240, 240);
+            dgv.DefaultCellStyle.SelectionForeColor = dgv.DefaultCellStyle.ForeColor;
+
+            dgv.ColumnHeadersHeight = 35;
+            dgv.RowTemplate.Height = 40;
+            dgv.RowHeadersVisible = false;
+            dgv.AllowUserToOrderColumns = false;
+            dgv.AllowUserToResizeColumns = true;
+            dgv.AllowUserToResizeRows = false;
+            dgv.AllowUserToAddRows = false;
+
+            dgv.RowPrePaint += (s, e) =>
+            {
+                dgv.Rows[e.RowIndex].DefaultCellStyle.BackColor =
+                    e.RowIndex % 2 == 0 ? Color.White : Color.FromArgb(251, 251, 251);
+            };
+        }
+
     }
 }

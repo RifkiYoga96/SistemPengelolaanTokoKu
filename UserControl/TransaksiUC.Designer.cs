@@ -49,7 +49,6 @@
             btnAddData = new Button();
             label2 = new Label();
             menuStrip = new ContextMenuStrip(components);
-            editMenuStrip = new ToolStripMenuItem();
             deleteMenuStrip = new ToolStripMenuItem();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -281,24 +280,16 @@
             // menuStrip
             // 
             menuStrip.ImageScalingSize = new Size(20, 20);
-            menuStrip.Items.AddRange(new ToolStripItem[] { editMenuStrip, deleteMenuStrip });
+            menuStrip.Items.AddRange(new ToolStripItem[] { deleteMenuStrip });
             menuStrip.Name = "menuStrip";
-            menuStrip.Size = new Size(141, 64);
-            // 
-            // editMenuStrip
-            // 
-            editMenuStrip.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            editMenuStrip.Image = (Image)resources.GetObject("editMenuStrip.Image");
-            editMenuStrip.Name = "editMenuStrip";
-            editMenuStrip.Size = new Size(140, 30);
-            editMenuStrip.Text = "Edit";
+            menuStrip.Size = new Size(215, 62);
             // 
             // deleteMenuStrip
             // 
             deleteMenuStrip.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
             deleteMenuStrip.Image = (Image)resources.GetObject("deleteMenuStrip.Image");
             deleteMenuStrip.Name = "deleteMenuStrip";
-            deleteMenuStrip.Size = new Size(140, 30);
+            deleteMenuStrip.Size = new Size(214, 30);
             deleteMenuStrip.Text = "Delete";
             // 
             // TransaksiUC
@@ -342,7 +333,6 @@
         private Label lblPendapatan;
         private Label lblPaginationInfo;
         private ContextMenuStrip menuStrip;
-        private ToolStripMenuItem editMenuStrip;
         private ToolStripMenuItem deleteMenuStrip;
     }
 }
