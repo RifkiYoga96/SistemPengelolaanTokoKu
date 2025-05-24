@@ -9,10 +9,9 @@ namespace Shopee
     public class TransaksiModel
     {
         public int id_transaksi { get; set; }
-        public string nama_transaksi { get; set; }
-        public DateTime tanggal_input { get; set; }
-        public int? pengeluaran { get; set; }
-        public bool tipe { get; set; }
+        public DateTime tanggal { get; set; }
         public decimal? admin { get; set; }
+        public int? nominal_diskon { get; set; }
+        public bool tipe { get; set; }
     }
 }

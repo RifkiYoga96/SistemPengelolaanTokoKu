@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Shopee
 {
-    public partial class DetailTransaksiForm : Form
+    public partial class DetailTransaksiPengeluaranForm : Form
     {
-        public DetailTransaksiForm()
+        public DetailTransaksiPengeluaranForm()
         {
             InitializeComponent();
         }
