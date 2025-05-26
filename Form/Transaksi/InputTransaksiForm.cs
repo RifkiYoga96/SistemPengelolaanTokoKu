@@ -198,9 +198,7 @@ namespace Shopee
             dgv.DataSource = _listTransaksiPendapatan;
             CustomizeGridStyle(dgv);
 
-            foreach (var colName in new[] {
-                "id_transaksi", "tanggal", "modal", "harga",
-                "pendapatan_bersih", "tipe", "admin", "nominal_diskon" })
+            foreach (var colName in new[] {"id_transaksi", "modal", "harga"})
                 dgv.Columns[colName].Visible = false;
 
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;

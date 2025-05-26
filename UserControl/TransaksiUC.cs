@@ -221,7 +221,7 @@ namespace Shopee
 
             if (!string.IsNullOrEmpty(search))
             {
-                listFilter.Add("(t.nama_transaksi LIKE '%'+@search+'%')");
+                listFilter.Add("(td.nama_transaksi LIKE '%'+@search+'%')");
                 filter.param.Add("@search", search);
             }
 
@@ -262,7 +262,7 @@ namespace Shopee
             filterData.param.Add("@fetch", fetch);
             filterData.param.Add("@offset", offset);
 
-            filterData.sql += comboSorting.SelectedIndex == 0
+            filterData.sql2 += comboSorting.SelectedIndex == 0
                 ? " ORDER BY t.tanggal DESC, t.id_transaksi DESC"
                 : " ORDER BY t.tanggal ASC, t.id_transaksi ASC";
 
@@ -305,7 +305,7 @@ namespace Shopee
             dgv.Columns["No"].HeaderText = "  No";
             dgv.Columns["nama_transaksi"].HeaderText = "Nama Transaksi";
             dgv.Columns["tanggal"].HeaderText = "Tanggal";
-            dgv.Columns["harga"].HeaderText = "";
+            dgv.Columns["harga"].HeaderText = "Harga";
             dgv.Columns["admin"].HeaderText = "Admin Fee";
             dgv.Columns["modal"].HeaderText = "Modal";
             dgv.Columns["pendapatan_bersih"].HeaderText = "Pendapatan Bersih";
