@@ -14,9 +14,9 @@ namespace Shopee
         {
             const string sql = @"
                         INSERT INTO transaksi_detail
-                            (id_transaksi, nama_produk, harga, jumlah, modal, pendapatan_bersih)
+                            (id_transaksi, nama_transaksi, harga, jumlah, modal)
                         VALUES
-                            (@id_transaksi, @nama_produk, @harga, @jumlah, @modal, @pendapatan_bersih)";
+                            (@id_transaksi, @nama_transaksi, @harga, @jumlah, @modal)";
             using var koneksi = new SqlConnection(conn.connStr);
             koneksi.Execute(sql, td);
         }

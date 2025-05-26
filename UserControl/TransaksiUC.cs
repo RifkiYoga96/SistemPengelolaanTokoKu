@@ -59,7 +59,7 @@ namespace Shopee
 
             // Total ComboBox
             comboTotal.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboTotal.Items.AddRange(new[] { "Total Pendapatan Bersih", "Total Pendapatan Kotor", "Total Modal", "Total Pengeluaran" });
+            comboTotal.Items.AddRange(new[] { "Total Pendapatan Bersih", "Total Pendapatan Kotor", "Total Modal" });
             comboTotal.SelectedIndex = 0;
         }
 
@@ -272,12 +272,11 @@ namespace Shopee
                     x.id_transaksi,
                     No = index + 1 + offset,
                     x.nama_transaksi,
-                    x.tanggal_input,
-                    pendapatan_kotor = x.pendapatan_kotor?.ToString("C0", _culture),
+                    x.tanggal,
+                    harga = x.harga.ToString("C0", _culture),
                     admin = x.admin.ToString() + "%",
                     modal = x.modal?.ToString("C0", _culture),
                     pendapatan_bersih = x.pendapatan_bersih?.ToString("C0", _culture),
-                    pengeluaran = x.pengeluaran?.ToString("C0", _culture),
                     x.jumlah,
                     tipe = x.tipe ? 
                         _imageCustomize.ImageToByteArray(_imageCustomize.ResizeImagePersentase(pendapatan, 15)) 
@@ -305,25 +304,24 @@ namespace Shopee
 
             dgv.Columns["No"].HeaderText = "  No";
             dgv.Columns["nama_transaksi"].HeaderText = "Nama Transaksi";
-            dgv.Columns["tanggal_input"].HeaderText = "Tanggal";
-            dgv.Columns["pendapatan_kotor"].HeaderText = "Pendapatan Kotor";
+            dgv.Columns["tanggal"].HeaderText = "Tanggal";
+            dgv.Columns["harga"].HeaderText = "";
+            dgv.Columns["admin"].HeaderText = "Admin Fee";
+            dgv.Columns["modal"].HeaderText = "Modal";
             dgv.Columns["pendapatan_bersih"].HeaderText = "Pendapatan Bersih";
-            dgv.Columns["pengeluaran"].HeaderText = "Pengeluaran";
             dgv.Columns["jumlah"].HeaderText = "Jumlah";
             dgv.Columns["tipe"].HeaderText = "     Tipe";
-            dgv.Columns["admin"].HeaderText = "Admin Fee";
 
             dgv.Columns["id_transaksi"].Visible = false;
 
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgv.Columns["No"].FillWeight = 6;
             dgv.Columns["nama_transaksi"].FillWeight = 13;
-            dgv.Columns["tanggal_input"].FillWeight = 11;
-            dgv.Columns["pendapatan_kotor"].FillWeight = 11;
-            dgv.Columns["modal"].FillWeight = 8;
+            dgv.Columns["tanggal"].FillWeight = 11;
+            dgv.Columns["harga"].FillWeight = 11;
             dgv.Columns["admin"].FillWeight = 10;
+            dgv.Columns["modal"].FillWeight = 8;
             dgv.Columns["pendapatan_bersih"].FillWeight = 11;
-            dgv.Columns["pengeluaran"].FillWeight = 8;
             dgv.Columns["jumlah"].FillWeight = 11;
             dgv.Columns["tipe"].FillWeight = 11;
 
@@ -340,14 +338,12 @@ namespace Shopee
             string fieldName = indexComboTotal switch
             {
                 0 => "td.pendapatan_bersih",
-                1 => "td.harga",
+                1 => "CASE WHEN td.tipe = 1 THEN td.harga", //kotor
                 2 => "td.modal",
-                _ => "t.pengeluaran"
+                _ => "CASE WHEN td.tipe = 0 THEN td.harga" //pengeluaran
             };
 
-            bool isLabaBersih = indexComboTotal == 0;
-
-            int totalPendapatan = _transaksiDal.TotalPendapatan(CreateFilter(), fieldName, isLabaBersih);
+            int totalPendapatan = _transaksiDal.TotalPendapatan(CreateFilter(), fieldName);
             lblPendapatan.Text = totalPendapatan.ToString("C", _culture);
         }
 

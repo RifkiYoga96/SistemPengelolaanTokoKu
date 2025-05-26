@@ -9,6 +9,7 @@ using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Shopee.Input_Iklan;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace Shopee
@@ -18,9 +19,10 @@ namespace Shopee
         private readonly ProdukDal _produkDal = new();
         private readonly OperasionalDal _pengeluaranDal = new();
         private readonly TransaksiDal _transaksiDal = new();
+        private readonly TransaksiDetailDal _transaksiDetailDal = new();
         private readonly int _id;
-        private readonly BindingList<TransaksiModel> _listTransaksiPendapatan = new();
-        private readonly BindingList<TransaksiModel> _listTransaksiPengeluaran = new();
+        private readonly BindingList<TransaksiDetailModel> _listTransaksiPendapatan = new();
+        private readonly BindingList<TransaksiDetailModel> _listTransaksiPengeluaran = new();
 
         public InputTransaksiForm(int tabIndex, int id = 0)
         {
@@ -69,29 +71,21 @@ namespace Shopee
                 MessageBoxShow.Warning();
                 return;
             }
-
-            var tanggal = dtPendapatan.Value.Date;
+            
+            var namaTransaksi = produk.nama_produk;
             var jumlah = (int)numericJumlahPendapatan.Value;
-            var harga = produk.harga * jumlah;
-            var nominalDiskon = (int)numericNominalDiskon.Value;
-            var kotor = (harga * jumlah) - nominalDiskon;
-            var modal = _produkDal.GetModal(produk.id_produk) * jumlah;
-            var admin = _pengeluaranDal.GetAdmin();
-            var labaBersih = Convert.ToInt32((kotor * admin) - modal);
+            var harga = produk.harga;
+            var modal = _produkDal.GetModal(produk.id_produk);
 
-            var transaksi = new TransaksiModel
+            var transaksiDetail = new TransaksiDetailModel
             {
-                nama_transaksi = produk.nama_produk,
-                tanggal_input = tanggal,
-                pendapatan_kotor = harga,
+                nama_transaksi = namaTransaksi,
+                harga = harga,
                 modal = modal,
-                pendapatan_bersih = labaBersih,
-                jumlah = jumlah,
-                tipe = true,
-                admin = (1 - admin) * 100
+                jumlah = jumlah
             };
 
-            _listTransaksiPendapatan.Add(transaksi);
+            _listTransaksiPendapatan.Add(transaksiDetail);
             gridPendapatan.DataSource = _listTransaksiPendapatan;
         }
 
@@ -103,12 +97,24 @@ namespace Shopee
                 return;
             }
 
-            var checkoutId = _transaksiDal.GenerateCheckoutId();
-            foreach (var transaksi in _listTransaksiPendapatan)
+            var tanggal = dtPendapatan.Value.Date;
+            var nominalDiskon = (int)numericNominalDiskon.Value;
+            var admin = _pengeluaranDal.GetAdmin();
+
+            var transaksi = new TransaksiModel
             {
-                transaksi.id_checkout = checkoutId;
-                
-                _transaksiDal.InsertData(transaksi);
+                tanggal = tanggal,
+                admin = admin,
+                tipe = true, // true karena pendapatan
+                nominal_diskon = nominalDiskon
+            };
+
+            int id_transaksi = _transaksiDal.InsertData(transaksi); //data induk
+
+            foreach (var transaksiDetail in _listTransaksiPendapatan)
+            {
+                transaksiDetail.id_transaksi = id_transaksi;
+                _transaksiDetailDal.InsertData(transaksiDetail); // data detail
             }
 
             DialogResult = DialogResult.OK;
@@ -124,8 +130,8 @@ namespace Shopee
             var data = new TransaksiModel
             {
                 nama_transaksi = pengeluaran.nama_pengeluaran,
-                tanggal_input = dtPendapatan.Value.Date,
-                pengeluaran = (int)numericPengeluaran.Value,
+                tanggal = dtPendapatan.Value.Date,
+                harga = (int)numericPengeluaran.Value,
                 tipe = false
             };
 
@@ -167,12 +173,12 @@ namespace Shopee
             var data = _transaksiDal.GetData(id);
             if (data == null) return;
 
-            dtPendapatan.Value = data.tanggal_input;
+            dtPendapatan.Value = data.tanggal;
             comboProduk.SelectedItem = comboProduk.Items
                 .OfType<ProdukModel>()
                 .FirstOrDefault(p => p.nama_produk == data.nama_transaksi);
             numericJumlahPendapatan.Value = Convert.ToInt32(data.jumlah);
-            numericHargaPendapatan.Value = Convert.ToInt32(data.pendapatan_kotor);
+            numericHargaPendapatan.Value = Convert.ToInt32(data.harga);
         }
 
         private void LoadDataPengeluaran(int id)
@@ -180,11 +186,10 @@ namespace Shopee
             var data = _transaksiDal.GetData(id);
             if (data == null) return;
 
-            dtPengeluaran.Value = data.tanggal_input;
+            dtPengeluaran.Value = data.tanggal;
             comboPengeluaran.SelectedItem = comboPengeluaran.Items
                 .OfType<OperasionalModel>()
                 .FirstOrDefault(p => p.nama_pengeluaran == data.nama_transaksi);
-            numericPengeluaran.Value = Convert.ToInt32(data.pengeluaran);
         }
 
         private void SetupPendapatanGrid()
@@ -194,8 +199,8 @@ namespace Shopee
             CustomizeGridStyle(dgv);
 
             foreach (var colName in new[] {
-                "id_transaksi", "tanggal_input", "pendapatan_kotor", "modal",
-                "pendapatan_bersih", "pengeluaran", "tipe", "id_checkout", "admin" })
+                "id_transaksi", "tanggal", "modal", "harga",
+                "pendapatan_bersih", "tipe", "admin", "nominal_diskon" })
                 dgv.Columns[colName].Visible = false;
 
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;

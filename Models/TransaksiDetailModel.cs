@@ -13,6 +13,5 @@ namespace Shopee
         public int harga { get; set; }
         public int jumlah { get; set; }
         public int? modal { get; set; }
-        public int? pendapatan_bersih { get; set; }
     }
 }

@@ -14,8 +14,7 @@ namespace Shopee
         {
             string sql = $@"
                         SELECT 
-                            t.id_transaksi, t.nama_transaksi, t.tanggal, t.tipe, t.pengeluaran,
-                            td.nama_produk, td.harga, td.jumlah, td.modal, td.pendapatan_bersih
+                            t.id_transaksi, td.nama_transaksi, td.harga, td.jumlah, td.modal, td.pendapatan_bersih
                         FROM transaksi t
                         INNER JOIN transaksi_detail td
                             ON t.id_transaksi = td.id_transaksi  
@@ -26,7 +25,7 @@ namespace Shopee
             return koneksi.Query<TransaksiModel>(sql, filter.param);
         }
 
-        public int TotalPendapatan(FilterModel filter, string field_name, bool isFilter)
+        public int TotalPendapatan(FilterModel filter, string field_name)
         {
             string sql = $@"
                         SELECT 
@@ -34,15 +33,6 @@ namespace Shopee
                         FROM transaksi t
                         INNER JOIN transaksi_detail td
                             ON t.id_transaksi = td.id_transaksi
-                        {filter.sql}";
-
-            if (isFilter)
-                sql = $@"
-                        SELECT 
-                            ISNULL(SUM({field_name}), 0) -
-                            ISNULL(SUM(pengeluaran), 0)     
-                        FROM transaksi t
-                        INNER JOIN transaksi_detail td
                         {filter.sql}";
 
             using var koneksi = new SqlConnection(conn.connStr);
@@ -63,17 +53,17 @@ namespace Shopee
             return koneksi.QueryFirstOrDefault<TransaksiModel>(sql, new { id = id });
         }
 
-        public void InsertData(TransaksiModel pendapatan)
+        public int InsertData(TransaksiModel pendapatan)
         {
             const string sql = @"
                 INSERT INTO transaksi 
-                    (nama_transaksi, tanggal, pengeluaran, tipe, admin) 
+                    (tanggal, tipe, admin, nominal_diskon) 
+                OUTPUT INSERTED.id_transaksi
                 VALUES 
-                    (@nama_transaksi, @tanggal, @pengeluaran, @tipe, @admin)";
-
+                    (@tanggal, @tipe, @admin, @nominal_diskon)";
 
             using var koneksi = new SqlConnection(conn.connStr);
-            koneksi.Execute(sql, pendapatan);
+            return koneksi.QuerySingle<int>(sql, pendapatan);
         }
 
         public void DeleteData(int id)
@@ -85,16 +75,11 @@ namespace Shopee
 
         public int CountData(FilterModel filter)
         {
-            string sql = $@"SELECT COUNT(*) FROM transaksi {filter.sql}";
+            string sql = $@"SELECT COUNT(*) FROM transaksi t
+                            INNER JOIN transaksi_detail td 
+                                ON t.id_transaksi = td.id_transaksi {filter.sql}";
             using var koneksi = new SqlConnection(conn.connStr);
             return koneksi.QuerySingleOrDefault<int>(sql, filter.param);
-        }
-
-        public int GenerateCheckoutId()
-        {
-            const string sql = @"SELECT ISNULL(MAX(id_checkout), 0) + 1 FROM transaksi";
-            using var koneksi = new SqlConnection(conn.connStr);
-            return koneksi.QuerySingleOrDefault<int>(sql);
         }
     }
 }

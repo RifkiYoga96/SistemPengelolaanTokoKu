@@ -67,7 +67,7 @@ namespace Shopee
             var filter = new FilterModel();
             var listFilter = new List<string>();
 
-            listFilter.Add("tanggal_input BETWEEN @tanggal1 AND @tanggal2");
+            listFilter.Add("tanggal BETWEEN @tanggal1 AND @tanggal2");
             filter.param.Add("@tanggal1", tanggal1);
             filter.param.Add("@tanggal2", tanggal2);
 

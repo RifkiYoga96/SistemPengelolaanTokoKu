@@ -13,5 +13,11 @@ namespace Shopee
         public decimal? admin { get; set; }
         public int? nominal_diskon { get; set; }
         public bool tipe { get; set; }
+
+        public string nama_transaksi { get; set; }
+        public int harga { get; set; }
+        public int jumlah { get; set; }
+        public int? modal { get; set; }
+        public int? pendapatan_bersih { get; set; }
     }
 }
