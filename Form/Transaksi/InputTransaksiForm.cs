@@ -76,6 +76,24 @@ namespace Shopee
             btnSavePendapatan.Click += SaveDataPendapatan;
             btnAddPendapatan.Click += AddPendapatan;
             comboProdukPendapatan.SelectedIndexChanged += (_, _) => UpdateHargaProduk();
+            gridPendapatan.CellMouseClick += GridPendapatan_CellMouseClick;
+            deletePendapatan.Click += DeletePendapatan_Click;
+        }
+
+        private void DeletePendapatan_Click(object? sender, EventArgs e)
+        {
+            int index = gridPendapatan.CurrentCell?.RowIndex ?? -1;
+            if (index < 0 || index >= _listTransaksiPendapatan.Count)
+            {
+                MessageBoxShow.Warning("Tidak ada data yang dipilih untuk dihapus.");
+                return;
+            }
+            _listTransaksiPendapatan.RemoveAt(index);
+        }
+
+        private void GridPendapatan_CellMouseClick(object? sender, DataGridViewCellMouseEventArgs e)
+        {
+            menuStripPendapatan.Show(Cursor.Position);
         }
 
         private void AddPendapatan(object? sender, EventArgs e)
@@ -87,8 +105,8 @@ namespace Shopee
             }
 
             var namaTransaksi = produk.nama_produk;
-            var jumlah = (int)numericJumlahPendapatan.Value;
-            var harga = produk.harga;
+            var jumlah = Convert.ToInt32(numericJumlahPendapatan.Value);
+            var harga = Convert.ToInt32(numericHargaPendapatan.Value);
             var modal = _produkDal.GetModal(produk.id_produk);
 
             var transaksiDetail = new TransaksiDetailModel
@@ -159,15 +177,18 @@ namespace Shopee
             dgv.DataSource = _listTransaksiPendapatan;
             CustomizeGridStyle(dgv);
 
-            foreach (var colName in new[] { "id_transaksi", "modal", "harga" })
+            foreach (var colName in new[] { "id_transaksi", "modal" })
                 dgv.Columns[colName].Visible = false;
 
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgv.Columns["nama_transaksi"].FillWeight = 70;
-            dgv.Columns["jumlah"].FillWeight = 30;
+            dgv.Columns["nama_transaksi"].FillWeight = 60;
+            dgv.Columns["harga"].FillWeight = 20;
+            dgv.Columns["jumlah"].FillWeight = 20;
 
             dgv.Columns["nama_transaksi"].HeaderText = "  Nama Produk";
+            dgv.Columns["harga"].HeaderText = "Harga";
             dgv.Columns["jumlah"].HeaderText = "Jumlah";
+
             dgv.Columns["nama_transaksi"].DefaultCellStyle.Padding = new Padding(10, 0, 0, 0);
             dgv.Columns["jumlah"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv.Columns["jumlah"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -193,11 +214,30 @@ namespace Shopee
             UpdateBiayaPengeluaran();
         }
 
+
         private void RegisterEventPengeluaran()
         {
             btnSavePengeluaran.Click += SaveDataPengeluaran;
             comboPengeluaran.SelectedIndexChanged += (_, _) => UpdateBiayaPengeluaran();
             btnAddPengeluaran.Click += AddPengeluaran;
+            gridPengeluaran.CellMouseClick += GridPengeluaran_CellMouseClick;
+            deletePengeluaran.Click += DeletePengeluaran_Click;
+        }
+
+        private void DeletePengeluaran_Click(object? sender, EventArgs e)
+        {
+            int index = gridPengeluaran.CurrentCell?.RowIndex ?? -1;
+            if (index < 0 || index >= _listTransaksiPengeluaran.Count)
+            {
+                MessageBoxShow.Warning("Tidak ada data yang dipilih untuk dihapus.");
+                return;
+            }
+            _listTransaksiPengeluaran.RemoveAt(index);
+        }
+
+        private void GridPengeluaran_CellMouseClick(object? sender, DataGridViewCellMouseEventArgs e)
+        {
+            menuStripPengeluaran.Show(Cursor.Position);
         }
 
         private void AddPengeluaran(object? sender, EventArgs e)
@@ -210,7 +250,7 @@ namespace Shopee
 
             var namaTransaksi = operasional.nama_pengeluaran;
             var jumlah = (int)numericJumlahPengeluaran.Value;
-            var harga = Convert.ToInt32(operasional.jumlah_pengeluaran);
+            var harga = Convert.ToInt32(numericHargaPengeluaran.Value);
 
             var transaksiDetail = new TransaksiDetailModel
             {
@@ -276,15 +316,18 @@ namespace Shopee
             dgv.DataSource = _listTransaksiPengeluaran;
             CustomizeGridStyle(dgv);
 
-            foreach (var colName in new[] { "id_transaksi", "modal", "harga" })
+            foreach (var colName in new[] { "id_transaksi", "modal" })
                 dgv.Columns[colName].Visible = false;
 
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgv.Columns["nama_transaksi"].FillWeight = 70;
-            dgv.Columns["jumlah"].FillWeight = 30;
+            dgv.Columns["nama_transaksi"].FillWeight = 60;
+            dgv.Columns["harga"].FillWeight = 20;
+            dgv.Columns["jumlah"].FillWeight = 20;
 
             dgv.Columns["nama_transaksi"].HeaderText = "  Nama Produk";
+            dgv.Columns["harga"].HeaderText = "Harga";
             dgv.Columns["jumlah"].HeaderText = "Jumlah";
+
             dgv.Columns["nama_transaksi"].DefaultCellStyle.Padding = new Padding(10, 0, 0, 0);
             dgv.Columns["jumlah"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv.Columns["jumlah"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -327,6 +370,5 @@ namespace Shopee
                     e.RowIndex % 2 == 0 ? Color.White : Color.FromArgb(251, 251, 251);
             };
         }
-
     }
 }

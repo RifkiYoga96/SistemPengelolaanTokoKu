@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InputTransaksiForm));
             comboProdukPendapatan = new ComboBox();
             label1 = new Label();
             panel1 = new Panel();
@@ -57,6 +59,10 @@
             label9 = new Label();
             numericJumlahPengeluaran = new NumericUpDown();
             label10 = new Label();
+            menuStripPendapatan = new ContextMenuStrip(components);
+            deletePendapatan = new ToolStripMenuItem();
+            menuStripPengeluaran = new ContextMenuStrip(components);
+            deletePengeluaran = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)numericJumlahPendapatan).BeginInit();
             tabControl1.SuspendLayout();
             tabPendapatan.SuspendLayout();
@@ -67,6 +73,8 @@
             ((System.ComponentModel.ISupportInitialize)gridPengeluaran).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericHargaPengeluaran).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericJumlahPengeluaran).BeginInit();
+            menuStripPendapatan.SuspendLayout();
+            menuStripPengeluaran.SuspendLayout();
             SuspendLayout();
             // 
             // comboProdukPendapatan
@@ -76,7 +84,7 @@
             comboProdukPendapatan.FormattingEnabled = true;
             comboProdukPendapatan.Location = new Point(26, 128);
             comboProdukPendapatan.Name = "comboProdukPendapatan";
-            comboProdukPendapatan.Size = new Size(288, 31);
+            comboProdukPendapatan.Size = new Size(254, 31);
             comboProdukPendapatan.TabIndex = 1;
             // 
             // label1
@@ -104,7 +112,7 @@
             dtPendapatan.Font = new Font("Segoe UI", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
             dtPendapatan.Location = new Point(26, 53);
             dtPendapatan.Name = "dtPendapatan";
-            dtPendapatan.Size = new Size(288, 31);
+            dtPendapatan.Size = new Size(254, 31);
             dtPendapatan.TabIndex = 0;
             // 
             // label4
@@ -191,7 +199,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.Location = new Point(341, 317);
+            label8.Location = new Point(309, 315);
             label8.Name = "label8";
             label8.Size = new Size(145, 25);
             label8.TabIndex = 30;
@@ -201,10 +209,10 @@
             // numericNominalDiskon
             // 
             numericNominalDiskon.Font = new Font("Segoe UI", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
-            numericNominalDiskon.Location = new Point(341, 346);
+            numericNominalDiskon.Location = new Point(309, 344);
             numericNominalDiskon.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             numericNominalDiskon.Name = "numericNominalDiskon";
-            numericNominalDiskon.Size = new Size(288, 31);
+            numericNominalDiskon.Size = new Size(213, 31);
             numericNominalDiskon.TabIndex = 29;
             numericNominalDiskon.TextAlign = HorizontalAlignment.Center;
             // 
@@ -239,11 +247,11 @@
             // gridPendapatan
             // 
             gridPendapatan.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridPendapatan.Location = new Point(341, 24);
+            gridPendapatan.Location = new Point(309, 24);
             gridPendapatan.Name = "gridPendapatan";
             gridPendapatan.RowHeadersWidth = 51;
             gridPendapatan.RowTemplate.Height = 29;
-            gridPendapatan.Size = new Size(291, 283);
+            gridPendapatan.Size = new Size(323, 283);
             gridPendapatan.TabIndex = 20;
             // 
             // label7
@@ -263,7 +271,7 @@
             numericHargaPendapatan.Location = new Point(26, 202);
             numericHargaPendapatan.Maximum = new decimal(new int[] { 100000000, 0, 0, 0 });
             numericHargaPendapatan.Name = "numericHargaPendapatan";
-            numericHargaPendapatan.Size = new Size(288, 31);
+            numericHargaPendapatan.Size = new Size(254, 31);
             numericHargaPendapatan.TabIndex = 2;
             numericHargaPendapatan.TextAlign = HorizontalAlignment.Center;
             numericHargaPendapatan.Value = new decimal(new int[] { 1, 0, 0, 0 });
@@ -320,11 +328,11 @@
             // gridPengeluaran
             // 
             gridPengeluaran.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridPengeluaran.Location = new Point(339, 29);
+            gridPengeluaran.Location = new Point(305, 29);
             gridPengeluaran.Name = "gridPengeluaran";
             gridPengeluaran.RowHeadersWidth = 51;
             gridPengeluaran.RowTemplate.Height = 29;
-            gridPengeluaran.Size = new Size(291, 353);
+            gridPengeluaran.Size = new Size(321, 353);
             gridPengeluaran.TabIndex = 38;
             // 
             // label5
@@ -344,7 +352,7 @@
             numericHargaPengeluaran.Location = new Point(24, 207);
             numericHargaPengeluaran.Maximum = new decimal(new int[] { 100000000, 0, 0, 0 });
             numericHargaPengeluaran.Name = "numericHargaPengeluaran";
-            numericHargaPengeluaran.Size = new Size(288, 31);
+            numericHargaPengeluaran.Size = new Size(254, 31);
             numericHargaPengeluaran.TabIndex = 33;
             numericHargaPengeluaran.TextAlign = HorizontalAlignment.Center;
             numericHargaPengeluaran.Value = new decimal(new int[] { 1, 0, 0, 0 });
@@ -354,7 +362,7 @@
             dtPengeluaran.Font = new Font("Segoe UI", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
             dtPengeluaran.Location = new Point(24, 58);
             dtPengeluaran.Name = "dtPengeluaran";
-            dtPengeluaran.Size = new Size(288, 31);
+            dtPengeluaran.Size = new Size(254, 31);
             dtPengeluaran.TabIndex = 31;
             // 
             // comboPengeluaran
@@ -364,7 +372,7 @@
             comboPengeluaran.FormattingEnabled = true;
             comboPengeluaran.Location = new Point(24, 133);
             comboPengeluaran.Name = "comboPengeluaran";
-            comboPengeluaran.Size = new Size(288, 31);
+            comboPengeluaran.Size = new Size(254, 31);
             comboPengeluaran.TabIndex = 32;
             // 
             // label6
@@ -412,6 +420,36 @@
             label10.Text = "Pengeluaran";
             label10.TextAlign = ContentAlignment.MiddleRight;
             // 
+            // menuStripPendapatan
+            // 
+            menuStripPendapatan.ImageScalingSize = new Size(20, 20);
+            menuStripPendapatan.Items.AddRange(new ToolStripItem[] { deletePendapatan });
+            menuStripPendapatan.Name = "menuStrip";
+            menuStripPendapatan.Size = new Size(215, 62);
+            // 
+            // deletePendapatan
+            // 
+            deletePendapatan.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            deletePendapatan.Image = (Image)resources.GetObject("deletePendapatan.Image");
+            deletePendapatan.Name = "deletePendapatan";
+            deletePendapatan.Size = new Size(214, 30);
+            deletePendapatan.Text = "Delete";
+            // 
+            // menuStripPengeluaran
+            // 
+            menuStripPengeluaran.ImageScalingSize = new Size(20, 20);
+            menuStripPengeluaran.Items.AddRange(new ToolStripItem[] { deletePengeluaran });
+            menuStripPengeluaran.Name = "menuStrip";
+            menuStripPengeluaran.Size = new Size(141, 34);
+            // 
+            // deletePengeluaran
+            // 
+            deletePengeluaran.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            deletePengeluaran.Image = (Image)resources.GetObject("deletePengeluaran.Image");
+            deletePengeluaran.Name = "deletePengeluaran";
+            deletePengeluaran.Size = new Size(140, 30);
+            deletePengeluaran.Text = "Delete";
+            // 
             // InputTransaksiForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -435,6 +473,8 @@
             ((System.ComponentModel.ISupportInitialize)gridPengeluaran).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericHargaPengeluaran).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericJumlahPengeluaran).EndInit();
+            menuStripPendapatan.ResumeLayout(false);
+            menuStripPengeluaran.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -468,5 +508,9 @@
         private Label label9;
         private NumericUpDown numericJumlahPengeluaran;
         private Label label10;
+        private ContextMenuStrip menuStripPendapatan;
+        private ToolStripMenuItem deletePendapatan;
+        private ContextMenuStrip menuStripPengeluaran;
+        private ToolStripMenuItem deletePengeluaran;
     }
 }

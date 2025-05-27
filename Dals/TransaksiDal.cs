@@ -61,7 +61,7 @@ namespace Shopee
                     {filter.sql}
                     GROUP BY t.id_transaksi, t.nominal_diskon, t.admin
                 )
-                SELECT SUM(pendapatan_bersih) FROM PerTransaksi;
+                SELECT ISNULL(SUM(pendapatan_bersih), 0) FROM PerTransaksi;
                 ";
 
 
@@ -73,7 +73,7 @@ namespace Shopee
         {
             string sql = $@"
                         SELECT 
-                            SUM(CASE WHEN t.tipe = 1 THEN td.harga * td.jumlah ELSE 0 END)
+                            ISNULL(SUM(CASE WHEN t.tipe = 1 THEN td.harga * td.jumlah ELSE 0 END), 0)
                         FROM transaksi t
                         INNER JOIN transaksi_detail td
                             ON t.id_transaksi = td.id_transaksi
@@ -101,7 +101,7 @@ namespace Shopee
         {
             string sql = $@"
                         SELECT 
-                            SUM(CASE WHEN t.tipe = 0 THEN td.harga * td.jumlah ELSE 0 END)
+                            ISNULL(SUM(CASE WHEN t.tipe = 0 THEN td.harga * td.jumlah ELSE 0 END), 0)
                         FROM transaksi t
                         INNER JOIN transaksi_detail td
                             ON t.id_transaksi = td.id_transaksi
