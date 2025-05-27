@@ -30,9 +30,22 @@ namespace Shopee
 
         public int GetPendapatanBersih(FilterModel filter)
         {
-            string sql = $@"SELECT COALESCE(SUM(td.pendapatan_bersih), 0) FROM transaksi t
-                            INNER JOIN transaksi_detail td 
-                                ON t.id_transaksi = td.id_transaksi {filter.sql}";
+            string sql = $@"
+                    WITH PerTransaksi AS (
+                    SELECT
+                        t.id_transaksi,
+                        (
+                            (ISNULL(SUM(CASE WHEN t.tipe = 1 THEN td.harga ELSE 0 END), 0) * ISNULL(SUM(td.jumlah), 0))
+                            - ISNULL(t.nominal_diskon, 0)
+                        ) * ISNULL(t.admin, 0)
+                        - ISNULL(SUM(td.modal), 0) AS pendapatan_bersih
+                    FROM transaksi t
+                    INNER JOIN transaksi_detail td ON t.id_transaksi = td.id_transaksi
+                    {filter.sql}
+                    GROUP BY t.id_transaksi, t.nominal_diskon, t.admin
+                )
+                SELECT SUM(pendapatan_bersih) FROM PerTransaksi;
+                ";
             using var koneksi = new SqlConnection(conn.connStr);
             return koneksi.QuerySingleOrDefault<int>(sql, filter.param);
         }
@@ -67,12 +80,17 @@ namespace Shopee
 
         public IEnumerable<TransaksiModel> TopProdukProfit(FilterModel filter)
         {
-            string sql = $@"SELECT TOP 5 td.nama_transaksi, COALESCE(SUM(td.pendapatan_bersih), 0) AS pendapatan_bersih
+            string sql = $@"SELECT TOP 5 td.nama_transaksi,
+                                (
+                                    (ISNULL(SUM(CASE WHEN t.tipe = 1 THEN td.harga ELSE 0 END), 0) * ISNULL(SUM(td.jumlah), 0))
+                                    - ISNULL(t.nominal_diskon, 0)
+                                ) * ISNULL(t.admin, 0)
+                                - ISNULL(SUM(td.modal), 0) AS pendapatan_bersih
                             FROM transaksi t
                             INNER JOIN transaksi_detail td 
                                 ON t.id_transaksi = td.id_transaksi
                             {filter.sql}
-                            GROUP BY td.nama_transaksi
+                            GROUP BY td.nama_transaksi, t.nominal_diskon, t.admin
                             ORDER BY pendapatan_bersih DESC";
 
             using var koneksi = new SqlConnection(conn.connStr);

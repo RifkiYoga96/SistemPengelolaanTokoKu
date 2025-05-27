@@ -20,7 +20,7 @@ namespace Shopee
         public IEnumerable<OperasionalModel> ListPengeluaranCombo()
         {
             const string sql = $@"SELECT id_pengeluaran, nama_pengeluaran, jumlah_pengeluaran FROM operasional
-                                 WHERE nama_pengeluaran <> 'Admin'";
+                                 WHERE nama_pengeluaran <> 'Biaya Admin'";
             using var koneksi = new SqlConnection(conn.connStr);
             return koneksi.Query<OperasionalModel>(sql);
         }

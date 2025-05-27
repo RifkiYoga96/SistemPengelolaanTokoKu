@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            comboProduk = new ComboBox();
+            comboProdukPendapatan = new ComboBox();
             label1 = new Label();
             panel1 = new Panel();
             dtPendapatan = new DateTimePicker();
@@ -36,7 +36,6 @@
             label2 = new Label();
             numericJumlahPendapatan = new NumericUpDown();
             lblJumlah = new Label();
-            btnSavePengeluaran = new Button();
             tabControl1 = new TabControl();
             tabPendapatan = new TabPage();
             label8 = new Label();
@@ -47,12 +46,17 @@
             label7 = new Label();
             numericHargaPendapatan = new NumericUpDown();
             tabPengeluaran = new TabPage();
+            btnAddPengeluaran = new Button();
+            btnSavePengeluaran = new Button();
+            gridPengeluaran = new DataGridView();
+            label5 = new Label();
+            numericHargaPengeluaran = new NumericUpDown();
             dtPengeluaran = new DateTimePicker();
             comboPengeluaran = new ComboBox();
-            label3 = new Label();
-            label5 = new Label();
-            numericPengeluaran = new NumericUpDown();
             label6 = new Label();
+            label9 = new Label();
+            numericJumlahPengeluaran = new NumericUpDown();
+            label10 = new Label();
             ((System.ComponentModel.ISupportInitialize)numericJumlahPendapatan).BeginInit();
             tabControl1.SuspendLayout();
             tabPendapatan.SuspendLayout();
@@ -60,18 +64,20 @@
             ((System.ComponentModel.ISupportInitialize)gridPendapatan).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericHargaPendapatan).BeginInit();
             tabPengeluaran.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericPengeluaran).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)gridPengeluaran).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericHargaPengeluaran).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericJumlahPengeluaran).BeginInit();
             SuspendLayout();
             // 
-            // comboProduk
+            // comboProdukPendapatan
             // 
-            comboProduk.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboProduk.Font = new Font("Segoe UI", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
-            comboProduk.FormattingEnabled = true;
-            comboProduk.Location = new Point(26, 128);
-            comboProduk.Name = "comboProduk";
-            comboProduk.Size = new Size(288, 31);
-            comboProduk.TabIndex = 1;
+            comboProdukPendapatan.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboProdukPendapatan.Font = new Font("Segoe UI", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
+            comboProdukPendapatan.FormattingEnabled = true;
+            comboProdukPendapatan.Location = new Point(26, 128);
+            comboProdukPendapatan.Name = "comboProdukPendapatan";
+            comboProdukPendapatan.Size = new Size(288, 31);
+            comboProdukPendapatan.TabIndex = 1;
             // 
             // label1
             // 
@@ -146,20 +152,6 @@
             lblJumlah.Text = "Jumlah";
             lblJumlah.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // btnSavePengeluaran
-            // 
-            btnSavePengeluaran.BackColor = Color.FromArgb(0, 86, 179);
-            btnSavePengeluaran.FlatAppearance.BorderSize = 0;
-            btnSavePengeluaran.FlatStyle = FlatStyle.Flat;
-            btnSavePengeluaran.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            btnSavePengeluaran.ForeColor = Color.White;
-            btnSavePengeluaran.Location = new Point(337, 277);
-            btnSavePengeluaran.Name = "btnSavePengeluaran";
-            btnSavePengeluaran.Size = new Size(122, 39);
-            btnSavePengeluaran.TabIndex = 4;
-            btnSavePengeluaran.Text = "Save";
-            btnSavePengeluaran.UseVisualStyleBackColor = false;
-            // 
             // tabControl1
             // 
             tabControl1.Controls.Add(tabPendapatan);
@@ -181,7 +173,7 @@
             tabPendapatan.Controls.Add(label7);
             tabPendapatan.Controls.Add(numericHargaPendapatan);
             tabPendapatan.Controls.Add(dtPendapatan);
-            tabPendapatan.Controls.Add(comboProduk);
+            tabPendapatan.Controls.Add(comboProdukPendapatan);
             tabPendapatan.Controls.Add(lblJumlah);
             tabPendapatan.Controls.Add(label4);
             tabPendapatan.Controls.Add(numericJumlahPendapatan);
@@ -278,13 +270,17 @@
             // 
             // tabPengeluaran
             // 
-            tabPengeluaran.Controls.Add(dtPengeluaran);
+            tabPengeluaran.Controls.Add(btnAddPengeluaran);
             tabPengeluaran.Controls.Add(btnSavePengeluaran);
-            tabPengeluaran.Controls.Add(comboPengeluaran);
-            tabPengeluaran.Controls.Add(label3);
+            tabPengeluaran.Controls.Add(gridPengeluaran);
             tabPengeluaran.Controls.Add(label5);
-            tabPengeluaran.Controls.Add(numericPengeluaran);
+            tabPengeluaran.Controls.Add(numericHargaPengeluaran);
+            tabPengeluaran.Controls.Add(dtPengeluaran);
+            tabPengeluaran.Controls.Add(comboPengeluaran);
             tabPengeluaran.Controls.Add(label6);
+            tabPengeluaran.Controls.Add(label9);
+            tabPengeluaran.Controls.Add(numericJumlahPengeluaran);
+            tabPengeluaran.Controls.Add(label10);
             tabPengeluaran.Location = new Point(4, 32);
             tabPengeluaran.Name = "tabPengeluaran";
             tabPengeluaran.Padding = new Padding(3);
@@ -293,66 +289,128 @@
             tabPengeluaran.Text = "Pengeluaran";
             tabPengeluaran.UseVisualStyleBackColor = true;
             // 
+            // btnAddPengeluaran
+            // 
+            btnAddPengeluaran.BackColor = Color.Coral;
+            btnAddPengeluaran.FlatAppearance.BorderSize = 0;
+            btnAddPengeluaran.FlatStyle = FlatStyle.Flat;
+            btnAddPengeluaran.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            btnAddPengeluaran.ForeColor = Color.White;
+            btnAddPengeluaran.Location = new Point(156, 343);
+            btnAddPengeluaran.Name = "btnAddPengeluaran";
+            btnAddPengeluaran.Size = new Size(122, 39);
+            btnAddPengeluaran.TabIndex = 41;
+            btnAddPengeluaran.Text = "Add";
+            btnAddPengeluaran.UseVisualStyleBackColor = false;
+            // 
+            // btnSavePengeluaran
+            // 
+            btnSavePengeluaran.BackColor = Color.FromArgb(0, 86, 179);
+            btnSavePengeluaran.FlatAppearance.BorderSize = 0;
+            btnSavePengeluaran.FlatStyle = FlatStyle.Flat;
+            btnSavePengeluaran.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSavePengeluaran.ForeColor = Color.White;
+            btnSavePengeluaran.Location = new Point(23, 343);
+            btnSavePengeluaran.Name = "btnSavePengeluaran";
+            btnSavePengeluaran.Size = new Size(122, 39);
+            btnSavePengeluaran.TabIndex = 40;
+            btnSavePengeluaran.Text = "Save";
+            btnSavePengeluaran.UseVisualStyleBackColor = false;
+            // 
+            // gridPengeluaran
+            // 
+            gridPengeluaran.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridPengeluaran.Location = new Point(339, 29);
+            gridPengeluaran.Name = "gridPengeluaran";
+            gridPengeluaran.RowHeadersWidth = 51;
+            gridPengeluaran.RowTemplate.Height = 29;
+            gridPengeluaran.Size = new Size(291, 353);
+            gridPengeluaran.TabIndex = 38;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.Location = new Point(24, 178);
+            label5.Name = "label5";
+            label5.Size = new Size(61, 25);
+            label5.TabIndex = 39;
+            label5.Text = "Harga";
+            label5.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // numericHargaPengeluaran
+            // 
+            numericHargaPengeluaran.Font = new Font("Segoe UI", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
+            numericHargaPengeluaran.Location = new Point(24, 207);
+            numericHargaPengeluaran.Maximum = new decimal(new int[] { 100000000, 0, 0, 0 });
+            numericHargaPengeluaran.Name = "numericHargaPengeluaran";
+            numericHargaPengeluaran.Size = new Size(288, 31);
+            numericHargaPengeluaran.TabIndex = 33;
+            numericHargaPengeluaran.TextAlign = HorizontalAlignment.Center;
+            numericHargaPengeluaran.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
             // dtPengeluaran
             // 
             dtPengeluaran.Font = new Font("Segoe UI", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
-            dtPengeluaran.Location = new Point(171, 57);
+            dtPengeluaran.Location = new Point(24, 58);
             dtPengeluaran.Name = "dtPengeluaran";
             dtPengeluaran.Size = new Size(288, 31);
-            dtPengeluaran.TabIndex = 0;
+            dtPengeluaran.TabIndex = 31;
             // 
             // comboPengeluaran
             // 
             comboPengeluaran.DropDownStyle = ComboBoxStyle.DropDownList;
             comboPengeluaran.Font = new Font("Segoe UI", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
             comboPengeluaran.FormattingEnabled = true;
-            comboPengeluaran.Location = new Point(171, 136);
+            comboPengeluaran.Location = new Point(24, 133);
             comboPengeluaran.Name = "comboPengeluaran";
             comboPengeluaran.Size = new Size(288, 31);
-            comboPengeluaran.TabIndex = 1;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(171, 186);
-            label3.Name = "label3";
-            label3.Size = new Size(55, 25);
-            label3.TabIndex = 24;
-            label3.Text = "Biaya";
-            label3.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.Location = new Point(171, 27);
-            label5.Name = "label5";
-            label5.Size = new Size(76, 25);
-            label5.TabIndex = 21;
-            label5.Text = "Tanggal";
-            label5.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // numericPengeluaran
-            // 
-            numericPengeluaran.Font = new Font("Segoe UI", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
-            numericPengeluaran.Location = new Point(171, 214);
-            numericPengeluaran.Maximum = new decimal(new int[] { 10000000, 0, 0, 0 });
-            numericPengeluaran.Name = "numericPengeluaran";
-            numericPengeluaran.Size = new Size(288, 31);
-            numericPengeluaran.TabIndex = 2;
-            numericPengeluaran.TextAlign = HorizontalAlignment.Center;
+            comboPengeluaran.TabIndex = 32;
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.Location = new Point(171, 108);
+            label6.Location = new Point(24, 252);
             label6.Name = "label6";
-            label6.Size = new Size(116, 25);
-            label6.TabIndex = 22;
-            label6.Text = "Pengeluaran";
+            label6.Size = new Size(70, 25);
+            label6.TabIndex = 37;
+            label6.Text = "Jumlah";
             label6.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            label9.Location = new Point(24, 29);
+            label9.Name = "label9";
+            label9.Size = new Size(76, 25);
+            label9.TabIndex = 35;
+            label9.Text = "Tanggal";
+            label9.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // numericJumlahPengeluaran
+            // 
+            numericJumlahPengeluaran.Font = new Font("Segoe UI", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
+            numericJumlahPengeluaran.Location = new Point(24, 281);
+            numericJumlahPengeluaran.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
+            numericJumlahPengeluaran.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numericJumlahPengeluaran.Name = "numericJumlahPengeluaran";
+            numericJumlahPengeluaran.Size = new Size(110, 31);
+            numericJumlahPengeluaran.TabIndex = 34;
+            numericJumlahPengeluaran.TextAlign = HorizontalAlignment.Center;
+            numericJumlahPengeluaran.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            label10.Location = new Point(24, 104);
+            label10.Name = "label10";
+            label10.Size = new Size(116, 25);
+            label10.TabIndex = 36;
+            label10.Text = "Pengeluaran";
+            label10.TextAlign = ContentAlignment.MiddleRight;
             // 
             // InputTransaksiForm
             // 
@@ -374,12 +432,14 @@
             ((System.ComponentModel.ISupportInitialize)numericHargaPendapatan).EndInit();
             tabPengeluaran.ResumeLayout(false);
             tabPengeluaran.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericPengeluaran).EndInit();
+            ((System.ComponentModel.ISupportInitialize)gridPengeluaran).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericHargaPengeluaran).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericJumlahPengeluaran).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
-        private ComboBox comboProduk;
+        private ComboBox comboProdukPendapatan;
         private Label label1;
         private Panel panel1;
         private DateTimePicker dtPendapatan;
@@ -387,16 +447,9 @@
         private Label label2;
         private NumericUpDown numericJumlahPendapatan;
         private Label lblJumlah;
-        private Button btnSavePengeluaran;
         private TabControl tabControl1;
         private TabPage tabPendapatan;
         private TabPage tabPengeluaran;
-        private DateTimePicker dtPengeluaran;
-        private ComboBox comboPengeluaran;
-        private Label label3;
-        private Label label5;
-        private NumericUpDown numericPengeluaran;
-        private Label label6;
         private Label label7;
         private NumericUpDown numericHargaPendapatan;
         private DataGridView gridPendapatan;
@@ -404,5 +457,16 @@
         private Button btnSavePendapatan;
         private Label label8;
         private NumericUpDown numericNominalDiskon;
+        private Button btnAddPengeluaran;
+        private Button btnSavePengeluaran;
+        private DataGridView gridPengeluaran;
+        private Label label5;
+        private NumericUpDown numericHargaPengeluaran;
+        private DateTimePicker dtPengeluaran;
+        private ComboBox comboPengeluaran;
+        private Label label6;
+        private Label label9;
+        private NumericUpDown numericJumlahPengeluaran;
+        private Label label10;
     }
 }

@@ -31,47 +31,61 @@ namespace Shopee
 
             _id = id;
 
-            InitComponents();
-            RegisterEvents();
-            SetupPendapatanGrid();
+            InitializePendapatan();
+            InitializePengeluaran();
 
             if (_id != 0)
                 LoadUpdateData(tabIndex);
         }
 
-        private void InitComponents()
+        private void LoadUpdateData(int tabIndex)
         {
-            // Pendapatan
-            comboProduk.DataSource = _produkDal.ListProdukCombo();
-            comboProduk.DisplayMember = "Nama_Produk";
-            comboProduk.ValueMember = "ID_Produk";
-            UpdateHargaProduk();
+            if (tabIndex == 0)
+            {
+                LoadDataPendapatan(_id);
+                tabControl1.SelectedTab = tabPendapatan;
+            }
+            else
+            {
+                LoadDataPengeluaran(_id);
+                tabControl1.SelectedTab = tabPengeluaran;
+            }
 
-            // Pengeluaran
-            comboPengeluaran.DataSource = _pengeluaranDal.ListPengeluaranCombo();
-            comboPengeluaran.DisplayMember = "nama_pengeluaran";
-            comboPengeluaran.ValueMember = "id_pengeluaran";
-            UpdateBiayaPengeluaran();
+            tabControl1.Selecting += (_, e) => e.Cancel = true;
         }
 
-        private void RegisterEvents()
+        #region PENDAPATAN
+
+        private void InitializePendapatan()
+        {
+            InitComponentPendapatan();
+            RegisterEventPendapatan();
+            SetupPendapatanGrid();
+        }
+
+        private void InitComponentPendapatan()
+        {
+            comboProdukPendapatan.DataSource = _produkDal.ListProdukCombo();
+            comboProdukPendapatan.DisplayMember = "Nama_Produk";
+            comboProdukPendapatan.ValueMember = "ID_Produk";
+            UpdateHargaProduk();
+        }
+
+        private void RegisterEventPendapatan()
         {
             btnSavePendapatan.Click += SaveDataPendapatan;
-            btnSavePengeluaran.Click += SaveDataPengeluaran;
             btnAddPendapatan.Click += AddPendapatan;
-
-            comboProduk.SelectedIndexChanged += (_, _) => UpdateHargaProduk();
-            comboPengeluaran.SelectedIndexChanged += (_, _) => UpdateBiayaPengeluaran();
+            comboProdukPendapatan.SelectedIndexChanged += (_, _) => UpdateHargaProduk();
         }
 
         private void AddPendapatan(object? sender, EventArgs e)
         {
-            if (comboProduk.SelectedItem is not ProdukModel produk)
+            if (comboProdukPendapatan.SelectedItem is not ProdukModel produk)
             {
                 MessageBoxShow.Warning();
                 return;
             }
-            
+
             var namaTransaksi = produk.nama_produk;
             var jumlah = (int)numericJumlahPendapatan.Value;
             var harga = produk.harga;
@@ -86,7 +100,6 @@ namespace Shopee
             };
 
             _listTransaksiPendapatan.Add(transaksiDetail);
-            gridPendapatan.DataSource = _listTransaksiPendapatan;
         }
 
         private void SaveDataPendapatan(object? sender, EventArgs e)
@@ -121,64 +134,123 @@ namespace Shopee
             Close();
         }
 
-        private void SaveDataPengeluaran(object? sender, EventArgs e)
-        {
-            if (comboPengeluaran.SelectedItem is not OperasionalModel pengeluaran) return;
-
-            if (!MessageBoxShow.Confirmation()) return;
-
-            var data = new TransaksiModel
-            {
-                nama_transaksi = pengeluaran.nama_pengeluaran,
-                tanggal = dtPendapatan.Value.Date,
-                harga = (int)numericPengeluaran.Value,
-                tipe = false
-            };
-
-            _transaksiDal.InsertData(data);
-            DialogResult = DialogResult.OK;
-            Close();
-        }
-
-        private void UpdateHargaProduk()
-        {
-            if (comboProduk.SelectedItem is ProdukModel produk)
-                numericHargaPendapatan.Value = produk.harga;
-        }
-
-        private void UpdateBiayaPengeluaran()
-        {
-            if (comboPengeluaran.SelectedItem is OperasionalModel item)
-                numericPengeluaran.Value = Convert.ToInt32(item.jumlah_pengeluaran);
-        }
-
-        private void LoadUpdateData(int tabIndex)
-        {
-            if (tabIndex == 0)
-            {
-                LoadDataPendapatan(_id);
-                tabControl1.SelectedTab = tabPendapatan;
-            }
-            else
-            {
-                LoadDataPengeluaran(_id);
-                tabControl1.SelectedTab = tabPengeluaran;
-            }
-
-            tabControl1.Selecting += (_, e) => e.Cancel = true;
-        }
-
         private void LoadDataPendapatan(int id)
         {
             var data = _transaksiDal.GetData(id);
             if (data == null) return;
 
             dtPendapatan.Value = data.tanggal;
-            comboProduk.SelectedItem = comboProduk.Items
+            comboProdukPendapatan.SelectedItem = comboProdukPendapatan.Items
                 .OfType<ProdukModel>()
                 .FirstOrDefault(p => p.nama_produk == data.nama_transaksi);
             numericJumlahPendapatan.Value = Convert.ToInt32(data.jumlah);
             numericHargaPendapatan.Value = Convert.ToInt32(data.harga);
+        }
+
+        private void UpdateHargaProduk()
+        {
+            if (comboProdukPendapatan.SelectedItem is ProdukModel produk)
+                numericHargaPendapatan.Value = produk.harga;
+        }
+
+        private void SetupPendapatanGrid()
+        {
+            var dgv = gridPendapatan;
+            dgv.DataSource = _listTransaksiPendapatan;
+            CustomizeGridStyle(dgv);
+
+            foreach (var colName in new[] { "id_transaksi", "modal", "harga" })
+                dgv.Columns[colName].Visible = false;
+
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv.Columns["nama_transaksi"].FillWeight = 70;
+            dgv.Columns["jumlah"].FillWeight = 30;
+
+            dgv.Columns["nama_transaksi"].HeaderText = "  Nama Produk";
+            dgv.Columns["jumlah"].HeaderText = "Jumlah";
+            dgv.Columns["nama_transaksi"].DefaultCellStyle.Padding = new Padding(10, 0, 0, 0);
+            dgv.Columns["jumlah"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv.Columns["jumlah"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        }
+
+        #endregion
+
+
+        #region PENGELUARAN
+
+        private void InitializePengeluaran()
+        {
+            InitComponentPengeluaran();
+            RegisterEventPengeluaran();
+            SetupPengeluaranGrid();
+        }
+
+        private void InitComponentPengeluaran()
+        {
+            comboPengeluaran.DataSource = _pengeluaranDal.ListPengeluaranCombo();
+            comboPengeluaran.DisplayMember = "nama_pengeluaran";
+            comboPengeluaran.ValueMember = "id_pengeluaran";
+            UpdateBiayaPengeluaran();
+        }
+
+        private void RegisterEventPengeluaran()
+        {
+            btnSavePengeluaran.Click += SaveDataPengeluaran;
+            comboPengeluaran.SelectedIndexChanged += (_, _) => UpdateBiayaPengeluaran();
+            btnAddPengeluaran.Click += AddPengeluaran;
+        }
+
+        private void AddPengeluaran(object? sender, EventArgs e)
+        {
+            if (comboPengeluaran.SelectedItem is not OperasionalModel operasional)
+            {
+                MessageBoxShow.Warning();
+                return;
+            }
+
+            var namaTransaksi = operasional.nama_pengeluaran;
+            var jumlah = (int)numericJumlahPengeluaran.Value;
+            var harga = Convert.ToInt32(operasional.jumlah_pengeluaran);
+
+            var transaksiDetail = new TransaksiDetailModel
+            {
+                nama_transaksi = namaTransaksi,
+                harga = harga,
+                modal = null,
+                jumlah = jumlah
+            };
+
+            _listTransaksiPengeluaran.Add(transaksiDetail);
+        }
+
+        private void SaveDataPengeluaran(object? sender, EventArgs e)
+        {
+            if (_listTransaksiPengeluaran.Count == 0)
+            {
+                MessageBoxShow.Warning("Transaksi masih kosong!");
+                return;
+            }
+
+            var tanggal = dtPengeluaran.Value.Date;
+
+            var transaksi = new TransaksiModel
+            {
+                tanggal = tanggal,
+                admin = null,
+                tipe = false, // false karena pengeluaran
+                nominal_diskon = null
+            };
+
+            int id_transaksi = _transaksiDal.InsertData(transaksi); //data induk
+
+            foreach (var transaksiDetail in _listTransaksiPengeluaran)
+            {
+                transaksiDetail.id_transaksi = id_transaksi;
+                _transaksiDetailDal.InsertData(transaksiDetail); // data detail
+            }
+
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void LoadDataPengeluaran(int id)
@@ -192,13 +264,19 @@ namespace Shopee
                 .FirstOrDefault(p => p.nama_pengeluaran == data.nama_transaksi);
         }
 
-        private void SetupPendapatanGrid()
+        private void UpdateBiayaPengeluaran()
         {
-            var dgv = gridPendapatan;
-            dgv.DataSource = _listTransaksiPendapatan;
+            if (comboPengeluaran.SelectedItem is OperasionalModel item)
+                numericHargaPengeluaran.Value = Convert.ToInt32(item.jumlah_pengeluaran);
+        }
+
+        private void SetupPengeluaranGrid()
+        {
+            var dgv = gridPengeluaran;
+            dgv.DataSource = _listTransaksiPengeluaran;
             CustomizeGridStyle(dgv);
 
-            foreach (var colName in new[] {"id_transaksi", "modal", "harga"})
+            foreach (var colName in new[] { "id_transaksi", "modal", "harga" })
                 dgv.Columns[colName].Visible = false;
 
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -211,6 +289,8 @@ namespace Shopee
             dgv.Columns["jumlah"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv.Columns["jumlah"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
+
+        #endregion
 
         private void CustomizeGridStyle(DataGridView dgv)
         {

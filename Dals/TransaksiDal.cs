@@ -19,15 +19,15 @@ namespace Shopee
                             (1 - t.admin) * 100 AS admin,
                             t.tipe,
                             STRING_AGG(td.nama_transaksi, ', ') AS nama_transaksi,
-                            SUM(td.harga) AS harga,
+                            SUM(td.harga * td.jumlah) AS harga,
                             SUM(td.jumlah) AS jumlah,
-                            SUM(td.modal) AS modal,
+                            SUM(td.modal * td.jumlah) AS modal,
                             -- Perhitungan pendapatan bersih
                             (
-                                (SUM(CASE WHEN t.tipe = 1 THEN td.harga ELSE 0 END) * SUM(td.jumlah)) -- total penjualan
-                                - t.nominal_diskon                                                  -- dikurangi diskon
-                            ) * t.admin                                                             -- dikali admin
-                            - SUM(td.modal)                                                        -- dikurangi modal
+                                SUM(td.harga * td.jumlah)           -- total penjualan
+                                - t.nominal_diskon                  -- dikurangi diskon
+                            ) * t.admin                             -- dikali admin
+                            - SUM(td.modal * td.jumlah)             -- dikurangi modal
                             AS pendapatan_bersih
                         FROM transaksi t
                         INNER JOIN transaksi_detail td ON t.id_transaksi = td.id_transaksi
@@ -45,11 +45,35 @@ namespace Shopee
             return koneksi.Query<TransaksiModel>(sql, filter.param);
         }
 
-        public int TotalPendapatan(FilterModel filter, string field_name)
+        public int TotalPendapatanSubBersih(FilterModel filter)
+        {
+            string sql = $@"
+                    WITH PerTransaksi AS (
+                    SELECT
+                        t.id_transaksi,
+                        (
+                          SUM(CASE WHEN t.tipe = 1 THEN td.harga * td.jumlah ELSE 0 END)                                      
+                        ) * t.admin                                            
+                            - SUM(td.modal * td.jumlah)                      
+                            AS pendapatan_bersih
+                    FROM transaksi t
+                    INNER JOIN transaksi_detail td ON t.id_transaksi = td.id_transaksi
+                    {filter.sql}
+                    GROUP BY t.id_transaksi, t.nominal_diskon, t.admin
+                )
+                SELECT SUM(pendapatan_bersih) FROM PerTransaksi;
+                ";
+
+
+            using var koneksi = new SqlConnection(conn.connStr);
+            return koneksi.QuerySingleOrDefault<int>(sql, filter.param);
+        }
+
+        public int TotalPendapatanKotor(FilterModel filter)
         {
             string sql = $@"
                         SELECT 
-                            ISNULL(SUM({field_name}), 0)
+                            SUM(CASE WHEN t.tipe = 1 THEN td.harga * td.jumlah ELSE 0 END)
                         FROM transaksi t
                         INNER JOIN transaksi_detail td
                             ON t.id_transaksi = td.id_transaksi
@@ -58,6 +82,35 @@ namespace Shopee
             using var koneksi = new SqlConnection(conn.connStr);
             return koneksi.QuerySingleOrDefault<int>(sql, filter.param);
         }
+
+        public int TotalModal(FilterModel filter)
+        {
+            string sql = $@"
+                        SELECT 
+                            ISNULL(SUM(td.modal * td.jumlah), 0)
+                        FROM transaksi t
+                        INNER JOIN transaksi_detail td
+                            ON t.id_transaksi = td.id_transaksi
+                        {filter.sql}";
+
+            using var koneksi = new SqlConnection(conn.connStr);
+            return koneksi.QuerySingleOrDefault<int>(sql, filter.param);
+        }
+
+        public int TotalPengeluaran(FilterModel filter)
+        {
+            string sql = $@"
+                        SELECT 
+                            SUM(CASE WHEN t.tipe = 0 THEN td.harga * td.jumlah ELSE 0 END)
+                        FROM transaksi t
+                        INNER JOIN transaksi_detail td
+                            ON t.id_transaksi = td.id_transaksi
+                        {filter.sql}";
+
+            using var koneksi = new SqlConnection(conn.connStr);
+            return koneksi.QuerySingleOrDefault<int>(sql, filter.param);
+        }
+
 
         public TransaksiModel? GetData(int id)
         {

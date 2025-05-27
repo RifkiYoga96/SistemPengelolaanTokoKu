@@ -59,7 +59,7 @@ namespace Shopee
 
             // Total ComboBox
             comboTotal.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboTotal.Items.AddRange(new[] { "Total Pendapatan Bersih", "Total Pendapatan Kotor", "Total Modal" });
+            comboTotal.Items.AddRange(new[] { "Total Pendapatan Bersih", "Total Pendapatan Kotor", "Total Modal", "Total Pengeluaran" });
             comboTotal.SelectedIndex = 0;
         }
 
@@ -274,7 +274,7 @@ namespace Shopee
                     x.nama_transaksi,
                     x.tanggal,
                     harga = x.harga.ToString("C0", _culture),
-                    admin = x.admin.ToString() + "%",
+                    admin = x.admin != null ? x.admin?.ToString() + "%" : "",
                     modal = x.modal?.ToString("C0", _culture),
                     pendapatan_bersih = x.pendapatan_bersih?.ToString("C0", _culture),
                     x.jumlah,
@@ -334,16 +334,15 @@ namespace Shopee
 
         private void Hitung_TotalPendapatan()
         {
-            int indexComboTotal = comboTotal.SelectedIndex;
-            string fieldName = indexComboTotal switch
+            int index = comboTotal.SelectedIndex;
+           
+            int totalPendapatan = index switch
             {
-                0 => "td.pendapatan_bersih",
-                1 => "CASE WHEN td.tipe = 1 THEN td.harga", //kotor
-                2 => "td.modal",
-                _ => "CASE WHEN td.tipe = 0 THEN td.harga" //pengeluaran
+                0 => _transaksiDal.TotalPendapatanSubBersih(CreateFilter()) - _transaksiDal.TotalPengeluaran(CreateFilter()),
+                1 => _transaksiDal.TotalPendapatanKotor(CreateFilter()),
+                2 => _transaksiDal.TotalModal(CreateFilter()),
+                _ => _transaksiDal.TotalPengeluaran(CreateFilter())
             };
-
-            int totalPendapatan = _transaksiDal.TotalPendapatan(CreateFilter(), fieldName);
             lblPendapatan.Text = totalPendapatan.ToString("C", _culture);
         }
 
