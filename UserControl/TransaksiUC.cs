@@ -97,8 +97,14 @@ namespace Shopee
 
         private void DetailMenuStrip_Click(object? sender, EventArgs e)
         {
-            int id = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value);
-            new DetailTransaksiPemasukanForm(id).ShowDialog();
+            var currentRow = dataGridView1.CurrentRow;
+            int id = Convert.ToInt32(currentRow.Cells[0].Value);
+            bool tipe = Convert.ToBoolean(currentRow.Cells["tipe"].Value);
+
+            if (tipe)
+                new DetailTransaksiPemasukanForm(id).ShowDialog();
+            else
+                new DetailTransaksiPengeluaranForm(id).ShowDialog();
         }
 
         #endregion
@@ -113,25 +119,14 @@ namespace Shopee
             LoadData();
         }
 
-        private void ShowEditForm(object? sender, EventArgs e)
-        {
-            var currentRow = dataGridView1.CurrentRow;
-            int index = currentRow.Cells["pengeluaran"].Value == null
-                ? 0 : 1;
-            int id = (int)currentRow.Cells[0].Value;
-
-            var modal = new InputTransaksiForm(index, id);
-            if (modal.ShowDialog() != DialogResult.OK) return;
-
-            LoadData();
-        }
 
         private void ShowMenuStrip(object? sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left) return;
             dataGridView1.ClearSelection();
+            dataGridView1.CurrentCell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex]; // agar current row pindah
             dataGridView1.Rows[e.RowIndex].Selected = true;
 
+            if (e.Button == MouseButtons.Left) return;
             menuStrip.Show(Cursor.Position);
         }
 
@@ -285,7 +280,8 @@ namespace Shopee
                     modal = x.modal?.ToString("C0", _culture),
                     pendapatan_bersih = x.pendapatan_bersih?.ToString("C0", _culture),
                     x.jumlah,
-                    tipe = x.tipe ? 
+                    x.tipe,
+                    tipe_image = x.tipe ? 
                         _imageCustomize.ImageToByteArray(_imageCustomize.ResizeImagePersentase(pendapatan, 15)) 
                         : _imageCustomize.ImageToByteArray(_imageCustomize.ResizeImagePersentase(pengeluaran, 15))
                 }).ToList();
@@ -317,9 +313,10 @@ namespace Shopee
             dgv.Columns["modal"].HeaderText = "Modal";
             dgv.Columns["pendapatan_bersih"].HeaderText = "Pendapatan Bersih";
             dgv.Columns["jumlah"].HeaderText = "Jumlah";
-            dgv.Columns["tipe"].HeaderText = "     Tipe";
+            dgv.Columns["tipe_image"].HeaderText = "     Tipe";
 
             dgv.Columns["id_transaksi"].Visible = false;
+            dgv.Columns["tipe"].Visible = false;
 
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgv.Columns["No"].FillWeight = 6;
@@ -330,11 +327,11 @@ namespace Shopee
             dgv.Columns["modal"].FillWeight = 8;
             dgv.Columns["pendapatan_bersih"].FillWeight = 11;
             dgv.Columns["jumlah"].FillWeight = 11;
-            dgv.Columns["tipe"].FillWeight = 11;
+            dgv.Columns["tipe_image"].FillWeight = 11;
 
             dgv.Columns["No"].DefaultCellStyle.Padding = new Padding(15, 0, 0, 0);
             dgv.Columns["jumlah"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv.Columns["tipe"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dgv.Columns["tipe_image"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
             dgv.Columns["jumlah"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }

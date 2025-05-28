@@ -31,15 +31,15 @@
             panel1 = new Panel();
             label1 = new Label();
             panel2 = new Panel();
+            gridPengeluaran = new DataGridView();
             lblTanggal = new Label();
             label7 = new Label();
             panel3 = new Panel();
             lblTotal = new Label();
             label4 = new Label();
-            gridPengeluaran = new DataGridView();
             panel2.SuspendLayout();
-            panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridPengeluaran).BeginInit();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -73,6 +73,17 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(578, 205);
             panel2.TabIndex = 0;
+            // 
+            // gridPengeluaran
+            // 
+            gridPengeluaran.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            gridPengeluaran.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridPengeluaran.Location = new Point(9, 38);
+            gridPengeluaran.Name = "gridPengeluaran";
+            gridPengeluaran.RowHeadersWidth = 51;
+            gridPengeluaran.RowTemplate.Height = 29;
+            gridPengeluaran.Size = new Size(560, 157);
+            gridPengeluaran.TabIndex = 26;
             // 
             // lblTanggal
             // 
@@ -113,9 +124,9 @@
             // lblTotal
             // 
             lblTotal.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            lblTotal.Font = new Font("Segoe UI Semibold", 9.8F, FontStyle.Bold, GraphicsUnit.Point);
+            lblTotal.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
             lblTotal.ForeColor = Color.Black;
-            lblTotal.Location = new Point(439, 14);
+            lblTotal.Location = new Point(430, 14);
             lblTotal.Name = "lblTotal";
             lblTotal.Size = new Size(130, 23);
             lblTotal.TabIndex = 20;
@@ -126,25 +137,14 @@
             // 
             label4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI Semibold", 9.8F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
             label4.ForeColor = SystemColors.ControlDarkDark;
-            label4.Location = new Point(399, 14);
+            label4.Location = new Point(378, 14);
             label4.Name = "label4";
-            label4.Size = new Size(46, 23);
+            label4.Size = new Size(52, 25);
             label4.TabIndex = 14;
             label4.Text = "Total";
             label4.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // gridPengeluaran
-            // 
-            gridPengeluaran.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            gridPengeluaran.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            gridPengeluaran.Location = new Point(9, 38);
-            gridPengeluaran.Name = "gridPengeluaran";
-            gridPengeluaran.RowHeadersWidth = 51;
-            gridPengeluaran.RowTemplate.Height = 29;
-            gridPengeluaran.Size = new Size(560, 157);
-            gridPengeluaran.TabIndex = 26;
             // 
             // DetailTransaksiPengeluaranForm
             // 
@@ -160,9 +160,9 @@
             Text = "DetailTransaksiForm";
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)gridPengeluaran).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)gridPengeluaran).EndInit();
             ResumeLayout(false);
         }
 

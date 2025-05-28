@@ -71,8 +71,16 @@ namespace Shopee
         {
             if (!MessageBoxShow.Confirmation()) return;
 
-            int id = (int)dataGridView1.CurrentRow.Cells[0].Value;
-            _komponenDal.DeleteData(id);
+            try
+            {
+                int id = (int)dataGridView1.CurrentRow.Cells[0].Value;
+                _komponenDal.DeleteData(id);
+            }
+            catch (Exception ex)
+            {
+                MessageBoxShow.Error("Komponen tidak dapat dihapus \nkarena terdapat data yang terhubung!");
+                return;
+            }
             LoadData();
         }
 

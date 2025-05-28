@@ -44,7 +44,7 @@ namespace Shopee
                     {filter.sql}
                     GROUP BY t.id_transaksi, t.nominal_diskon, t.admin
                 )
-                SELECT SUM(pendapatan_bersih) FROM PerTransaksi;
+                SELECT ISNULL(SUM(pendapatan_bersih), 0) FROM PerTransaksi;
                 ";
             using var koneksi = new SqlConnection(conn.connStr);
             return koneksi.QuerySingleOrDefault<int>(sql, filter.param);
