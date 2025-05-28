@@ -24,6 +24,7 @@ namespace Shopee
             SetupGridPendapatan();
         }
 
+
         private void GetData(int id)
         {
             var transaksi = _transaksiDal.GetData(id);
