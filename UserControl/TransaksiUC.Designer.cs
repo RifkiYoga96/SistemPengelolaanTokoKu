@@ -50,6 +50,7 @@
             label2 = new Label();
             menuStrip = new ContextMenuStrip(components);
             deleteMenuStrip = new ToolStripMenuItem();
+            detailMenuStrip = new ToolStripMenuItem();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -280,17 +281,25 @@
             // menuStrip
             // 
             menuStrip.ImageScalingSize = new Size(20, 20);
-            menuStrip.Items.AddRange(new ToolStripItem[] { deleteMenuStrip });
+            menuStrip.Items.AddRange(new ToolStripItem[] { deleteMenuStrip, detailMenuStrip });
             menuStrip.Name = "menuStrip";
-            menuStrip.Size = new Size(215, 62);
+            menuStrip.Size = new Size(141, 64);
             // 
             // deleteMenuStrip
             // 
             deleteMenuStrip.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
             deleteMenuStrip.Image = (Image)resources.GetObject("deleteMenuStrip.Image");
             deleteMenuStrip.Name = "deleteMenuStrip";
-            deleteMenuStrip.Size = new Size(214, 30);
+            deleteMenuStrip.Size = new Size(140, 30);
             deleteMenuStrip.Text = "Delete";
+            // 
+            // detailMenuStrip
+            // 
+            detailMenuStrip.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            detailMenuStrip.Image = Properties.Resources.pencil;
+            detailMenuStrip.Name = "detailMenuStrip";
+            detailMenuStrip.Size = new Size(140, 30);
+            detailMenuStrip.Text = "Edit";
             // 
             // TransaksiUC
             // 
@@ -334,5 +343,6 @@
         private Label lblPaginationInfo;
         private ContextMenuStrip menuStrip;
         private ToolStripMenuItem deleteMenuStrip;
+        private ToolStripMenuItem detailMenuStrip;
     }
 }

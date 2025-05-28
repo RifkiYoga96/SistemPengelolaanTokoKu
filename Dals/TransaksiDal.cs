@@ -44,6 +44,16 @@ namespace Shopee
             using var koneksi = new SqlConnection(conn.connStr);
             return koneksi.Query<TransaksiModel>(sql, filter.param);
         }
+        public TransaksiModel? GetData(int id)
+        {
+            const string sql = @" SELECT 
+                            id_transaksi, tanggal, tipe, admin, nominal_diskon
+                        FROM transaksi
+                        WHERE id_transaksi = @id";
+
+            using var koneksi = new SqlConnection(conn.connStr);
+            return koneksi.QueryFirstOrDefault<TransaksiModel>(sql, new { id = id });
+        }
 
         public int TotalPendapatanSubBersih(FilterModel filter)
         {
@@ -112,19 +122,6 @@ namespace Shopee
         }
 
 
-        public TransaksiModel? GetData(int id)
-        {
-            const string sql = @" SELECT 
-                            t.id_transaksi, t.nama_transaksi, t.tanggal, t.tipe, t.admin
-                            td.nama_produk, td.harga, td.jumlah, td.modal, td.pendapatan_bersih
-                        FROM transaksi t
-                        INNER JOIN transaksi_detail td
-                            ON t.id_transaksi = td.id_transaksi
-                        WHERE t.id_transaksi = @id";
-
-            using var koneksi = new SqlConnection(conn.connStr);
-            return koneksi.QueryFirstOrDefault<TransaksiModel>(sql, new { id = id });
-        }
 
         public int InsertData(TransaksiModel pendapatan)
         {

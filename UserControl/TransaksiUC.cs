@@ -92,6 +92,13 @@ namespace Shopee
             comboSorting.SelectedIndexChanged += ComboSorting_SelectedIndexChanged;
             dataGridView1.CellMouseClick += ShowMenuStrip;
             deleteMenuStrip.Click += DeleteData;
+            detailMenuStrip.Click += DetailMenuStrip_Click;
+        }
+
+        private void DetailMenuStrip_Click(object? sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value);
+            new DetailTransaksiPemasukanForm(id).ShowDialog();
         }
 
         #endregion
