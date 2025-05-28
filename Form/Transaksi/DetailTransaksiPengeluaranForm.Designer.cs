@@ -33,13 +33,13 @@
             panel2 = new Panel();
             lblTanggal = new Label();
             label7 = new Label();
-            this.gridPengeluaran = new DataGridView();
             panel3 = new Panel();
             lblTotal = new Label();
             label4 = new Label();
+            gridPengeluaran = new DataGridView();
             panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)this.gridPengeluaran).BeginInit();
             panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)gridPengeluaran).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -65,9 +65,9 @@
             // panel2
             // 
             panel2.BackColor = Color.White;
+            panel2.Controls.Add(gridPengeluaran);
             panel2.Controls.Add(lblTanggal);
             panel2.Controls.Add(label7);
-            panel2.Controls.Add(this.gridPengeluaran);
             panel2.Location = new Point(9, 46);
             panel2.Margin = new Padding(0);
             panel2.Name = "panel2";
@@ -98,17 +98,6 @@
             label7.TabIndex = 25;
             label7.Text = "Tanggal : ";
             label7.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // gridPengeluaran
-            // 
-            this.gridPengeluaran.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            this.gridPengeluaran.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridPengeluaran.Location = new Point(9, 40);
-            this.gridPengeluaran.Name = "gridPengeluaran";
-            this.gridPengeluaran.RowHeadersWidth = 51;
-            this.gridPengeluaran.RowTemplate.Height = 29;
-            this.gridPengeluaran.Size = new Size(560, 157);
-            this.gridPengeluaran.TabIndex = 0;
             // 
             // panel3
             // 
@@ -146,6 +135,17 @@
             label4.Text = "Total";
             label4.TextAlign = ContentAlignment.MiddleRight;
             // 
+            // gridPengeluaran
+            // 
+            gridPengeluaran.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            gridPengeluaran.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            gridPengeluaran.Location = new Point(9, 38);
+            gridPengeluaran.Name = "gridPengeluaran";
+            gridPengeluaran.RowHeadersWidth = 51;
+            gridPengeluaran.RowTemplate.Height = 29;
+            gridPengeluaran.Size = new Size(560, 157);
+            gridPengeluaran.TabIndex = 26;
+            // 
             // DetailTransaksiPengeluaranForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -160,9 +160,9 @@
             Text = "DetailTransaksiForm";
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)this.gridPengeluaran).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)gridPengeluaran).EndInit();
             ResumeLayout(false);
         }
 
@@ -171,7 +171,7 @@
         private Panel panel1;
         private Label label1;
         private Panel panel2;
-        private DataGridView gridPendapatan;
+        private DataGridView gridPengeluaran;
         private Panel panel3;
         private Label lblAdminKet;
         private Label label2;

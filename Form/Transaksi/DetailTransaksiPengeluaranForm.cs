@@ -29,7 +29,7 @@ namespace Shopee
             var transaksi = _transaksiDal.GetData(id);
             var listTransaksiDetail = _transaksiDetailDal.ListData(id);
 
-            gridPendapatan.DataSource = listTransaksiDetail
+            gridPengeluaran.DataSource = listTransaksiDetail
                 .Select((x, index) => new
                 {
                     No = index + 1,
@@ -47,7 +47,7 @@ namespace Shopee
 
         private void SetupGridPendapatan()
         {
-            var dgv = gridPendapatan;
+            var dgv = gridPengeluaran;
             CustomizeGridStyle(dgv);
 
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
