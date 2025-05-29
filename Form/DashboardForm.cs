@@ -29,7 +29,7 @@ namespace Shopee
         private void RegisterEvent()
         {
             btnDashboard.Click += btnMenu_Click;
-            btnPendapatan.Click += btnMenu_Click;
+            btnTransaksi.Click += btnMenu_Click;
             btnProduk.Click += btnMenu_Click;
             btnKomponen.Click += btnMenu_Click;
             btnKomponenProduk.Click += btnMenu_Click;

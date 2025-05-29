@@ -272,11 +272,11 @@
             label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(951, 28);
+            label2.Location = new Point(976, 25);
             label2.Name = "label2";
-            label2.Size = new Size(173, 35);
+            label2.Size = new Size(148, 35);
             label2.TabIndex = 6;
-            label2.Text = "PENDAPATAN";
+            label2.Text = "TRANSAKSI";
             // 
             // menuStrip
             // 

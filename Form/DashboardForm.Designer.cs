@@ -34,7 +34,7 @@
             mainPanel = new Panel();
             btnDashboard = new Button();
             flowLayoutPanel1 = new FlowLayoutPanel();
-            btnPendapatan = new Button();
+            btnTransaksi = new Button();
             btnProduk = new Button();
             btnKomponen = new Button();
             btnKomponenProduk = new Button();
@@ -93,7 +93,7 @@
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.Controls.Add(btnDashboard);
-            flowLayoutPanel1.Controls.Add(btnPendapatan);
+            flowLayoutPanel1.Controls.Add(btnTransaksi);
             flowLayoutPanel1.Controls.Add(btnProduk);
             flowLayoutPanel1.Controls.Add(btnKomponen);
             flowLayoutPanel1.Controls.Add(btnKomponenProduk);
@@ -104,21 +104,21 @@
             flowLayoutPanel1.Size = new Size(280, 608);
             flowLayoutPanel1.TabIndex = 3;
             // 
-            // btnPendapatan
+            // btnTransaksi
             // 
-            btnPendapatan.BackColor = SystemColors.Control;
-            btnPendapatan.FlatAppearance.BorderSize = 0;
-            btnPendapatan.FlatStyle = FlatStyle.Flat;
-            btnPendapatan.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            btnPendapatan.ForeColor = Color.Black;
-            btnPendapatan.Location = new Point(0, 56);
-            btnPendapatan.Margin = new Padding(0);
-            btnPendapatan.Name = "btnPendapatan";
-            btnPendapatan.Size = new Size(280, 56);
-            btnPendapatan.TabIndex = 1;
-            btnPendapatan.Text = "     💸 Pendapatan";
-            btnPendapatan.TextAlign = ContentAlignment.MiddleLeft;
-            btnPendapatan.UseVisualStyleBackColor = false;
+            btnTransaksi.BackColor = SystemColors.Control;
+            btnTransaksi.FlatAppearance.BorderSize = 0;
+            btnTransaksi.FlatStyle = FlatStyle.Flat;
+            btnTransaksi.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            btnTransaksi.ForeColor = Color.Black;
+            btnTransaksi.Location = new Point(0, 56);
+            btnTransaksi.Margin = new Padding(0);
+            btnTransaksi.Name = "btnTransaksi";
+            btnTransaksi.Size = new Size(280, 56);
+            btnTransaksi.TabIndex = 1;
+            btnTransaksi.Text = "     💸 Transaksi";
+            btnTransaksi.TextAlign = ContentAlignment.MiddleLeft;
+            btnTransaksi.UseVisualStyleBackColor = false;
             // 
             // btnProduk
             // 
@@ -199,7 +199,7 @@
         private PictureBox pictureBox1;
         private Button btnDashboard;
         private FlowLayoutPanel flowLayoutPanel1;
-        private Button btnPendapatan;
+        private Button btnTransaksi;
         private Button btnProduk;
         private Button btnKomponen;
         private Button btnKomponenProduk;
