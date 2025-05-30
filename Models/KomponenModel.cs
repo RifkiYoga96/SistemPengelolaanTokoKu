@@ -13,5 +13,6 @@ namespace Shopee
         public int stok { get; set; }
         public int stok_minimum { get; set; }
         public int harga { get; set; }
+        public string satuan { get; set; }
     }
 }

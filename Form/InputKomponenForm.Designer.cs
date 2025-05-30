@@ -39,6 +39,8 @@
             btnSave = new Button();
             numericStokMinimum = new NumericUpDown();
             label1 = new Label();
+            comboSatuan = new ComboBox();
+            label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)numericHarga).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericStok).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericStokMinimum).BeginInit();
@@ -103,7 +105,7 @@
             numericHarga.Location = new Point(43, 172);
             numericHarga.Maximum = new decimal(new int[] { 100000000, 0, 0, 0 });
             numericHarga.Name = "numericHarga";
-            numericHarga.Size = new Size(288, 31);
+            numericHarga.Size = new Size(175, 31);
             numericHarga.TabIndex = 1;
             numericHarga.TextAlign = HorizontalAlignment.Center;
             numericHarga.Value = new decimal(new int[] { 1, 0, 0, 0 });
@@ -163,12 +165,34 @@
             label1.Text = "Stok Minimum";
             label1.TextAlign = ContentAlignment.MiddleRight;
             // 
+            // comboSatuan
+            // 
+            comboSatuan.Font = new Font("Segoe UI", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
+            comboSatuan.FormattingEnabled = true;
+            comboSatuan.Location = new Point(233, 172);
+            comboSatuan.Name = "comboSatuan";
+            comboSatuan.Size = new Size(98, 31);
+            comboSatuan.TabIndex = 25;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.Location = new Point(233, 144);
+            label3.Name = "label3";
+            label3.Size = new Size(69, 25);
+            label3.TabIndex = 26;
+            label3.Text = "Satuan";
+            label3.TextAlign = ContentAlignment.MiddleRight;
+            // 
             // InputKomponenForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(373, 405);
+            Controls.Add(label3);
+            Controls.Add(comboSatuan);
             Controls.Add(numericStokMinimum);
             Controls.Add(label1);
             Controls.Add(btnSave);
@@ -205,5 +229,7 @@
         private NumericUpDown numericStok;
         private NumericUpDown numericStokMinimum;
         private Label label1;
+        private ComboBox comboSatuan;
+        private Label label3;
     }
 }

@@ -38,7 +38,7 @@ namespace Shopee
                             (ISNULL(SUM(CASE WHEN t.tipe = 1 THEN td.harga ELSE 0 END), 0) * ISNULL(SUM(td.jumlah), 0))
                             - ISNULL(t.nominal_diskon, 0)
                         ) * ISNULL(t.admin, 0)
-                        - ISNULL(SUM(td.modal), 0) AS pendapatan_bersih
+                        - ISNULL(SUM(dbo.HitungModalTransaksi(td.id_transaksi_detail)), 0) AS pendapatan_bersih
                     FROM transaksi t
                     INNER JOIN transaksi_detail td ON t.id_transaksi = td.id_transaksi
                     {filter.sql}
@@ -85,7 +85,7 @@ namespace Shopee
                                     (ISNULL(SUM(CASE WHEN t.tipe = 1 THEN td.harga ELSE 0 END), 0) * ISNULL(SUM(td.jumlah), 0))
                                     - ISNULL(t.nominal_diskon, 0)
                                 ) * ISNULL(t.admin, 0)
-                                - ISNULL(SUM(td.modal), 0) AS pendapatan_bersih
+                                - ISNULL(SUM(dbo.HitungModalTransaksi(td.id_transaksi_detail)), 0) AS pendapatan_bersih
                             FROM transaksi t
                             INNER JOIN transaksi_detail td 
                                 ON t.id_transaksi = td.id_transaksi

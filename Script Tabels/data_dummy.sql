@@ -1,32 +1,44 @@
 ﻿INSERT INTO produk (nama_produk, harga) VALUES
-('Alarm', 20000),
-('Alarm Saklar', 15000);
+('Meja Belajar', 500000),
+('Kursi Kantor', 350000),
+('Rak Buku', 400000);
 
-INSERT INTO komponen (nama_komponen, harga, stok) VALUES
-('Buzzer', 5000, 100),
-('Resistor', 2000, 100),
-('Transistor', 3000, 100),
-('Saklar', 10000, 100),
-('LED', 5000, 100);
+INSERT INTO komponen (nama_komponen, satuan, harga, stok, stok_minimum) VALUES
+('Kayu Jati', 'Lembar', 100000, 50, 10),
+('Skrup', 'Pcs', 500, 1000, 100),
+('Cat Kayu', 'Liter', 25000, 20, 5),
+('Kaca', 'Lembar', 75000, 10, 2);
 
+-- Asumsi id_produk dimulai dari 1 dan id_komponen juga dari 1
 INSERT INTO komponen_produk (id_produk, id_komponen, jumlah) VALUES
-(1, 1, 1),
-(1, 2, 2),
-(1, 3, 1),
-(2, 4, 1),
-(2, 5, 2);
+(1, 1, 3), -- Meja Belajar pakai 3 Kayu Jati
+(1, 2, 20), -- Meja Belajar pakai 20 Skrup
+(1, 3, 1),  -- Meja Belajar pakai 1 Liter Cat Kayu
 
-INSERT INTO pengeluaran (nama_pengeluaran, jumlah_pengeluaran) VALUES
-('Biaya Iklan', 8000.00),
-('Biaya Admin',0.12);
+(2, 1, 2),  -- Kursi Kantor pakai 2 Kayu Jati
+(2, 2, 15), -- Kursi Kantor pakai 15 Skrup
 
-INSERT INTO transaksi (nama_transaksi, tanggal_input, pendapatan_kotor, modal, pendapatan_bersih, pengeluaran, jumlah) VALUES
-('Penjualan Alarm Basic', '2025-05-11', 150000, 80000, 70000, 0, 1),
-('Penjualan Alarm Pro', '2025-05-11', 300000, 160000, 140000, 0, 2),
-('Pengeluaran: Beli Solder', '2025-05-11', NULL, NULL, NULL, 50000, 1),
-('Pengeluaran: Beli Kabel', '2025-05-11', NULL, NULL, NULL, 20000, 1);
+(3, 1, 2),  -- Rak Buku pakai 2 Kayu Jati
+(3, 4, 1);  -- Rak Buku pakai 1 Kaca
 
+INSERT INTO transaksi (tanggal, status, tipe, admin, nominal_diskon) VALUES
+('2024-05-30', 'selesai', 1, 0.88, 8000),
+('2024-05-29', 'proses', 1,  0.88, 0),
+('2024-05-28', 'batal', 1,  0.88, 0);
 
+INSERT INTO transaksi_detail (id_transaksi, id_produk, nama_transaksi, harga, jumlah) VALUES
+(1, 1, 'Meja Belajar', 50000, 1), -- 2 meja
+(1, 2, 'Kursi Kantor', 50000, 1), -- 1 kursi
+(2, 3, 'Rak Buku', 40000, 1);     -- 1 rak
 
---Query Tambaahan--
-DELETE FROM pengeluaran;
+-- Transaksi_detail_id = 1 (Meja Belajar, qty 2) → total komponen dikali 2
+INSERT INTO transaksi_komponen_detail (id_transaksi_detail, id_komponen, nama_komponen, satuan, jumlah, harga) VALUES
+(1, 1, 'Kayu Jati', 'Lembar', 6, 400),
+(1, 2, 'Skrup', 'Pcs', 40, 500),
+(1, 3, 'Cat Kayu', 'Liter', 2, 450);
+
+-- Transaksi_detail_id = 2 (Kursi Kantor, qty 1)
+INSERT INTO transaksi_komponen_detail (id_transaksi_detail, id_komponen, nama_komponen, satuan, jumlah, harga) VALUES
+(2, 1, 'Kayu Jati', 'Lembar', 2, 1000),
+(2, 2, 'Skrup', 'Pcs', 15, 500);
+

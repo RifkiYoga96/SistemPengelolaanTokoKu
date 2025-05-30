@@ -12,7 +12,7 @@ namespace Shopee
     {
         public IEnumerable<KomponenModel> ListData(FilterModel filter)
         {
-            string sql = $@"SELECT id_komponen, nama_komponen, harga, stok, stok_minimum FROM komponen {filter.sql}";
+            string sql = $@"SELECT id_komponen, nama_komponen, harga, satuan,  stok, stok_minimum FROM komponen {filter.sql}";
 
             using var koneksi = new SqlConnection(conn.connStr);
             var listKomponen = koneksi.Query<KomponenModel>(sql, filter.param);
@@ -22,7 +22,7 @@ namespace Shopee
 
         public KomponenModel? GetData(int id)
         {
-            const string sql = @"SELECT nama_komponen, harga, stok, stok_minimum FROM komponen WHERE id_komponen = @id";
+            const string sql = @"SELECT nama_komponen, harga, satuan, stok, stok_minimum FROM komponen WHERE id_komponen = @id";
 
             using var koneksi = new SqlConnection(conn.connStr);
             var listKomponen = koneksi.QueryFirstOrDefault<KomponenModel>(sql, new {id = id});
@@ -38,13 +38,14 @@ namespace Shopee
 
         public void InsertData(KomponenModel komponen)
         {
-            const string sql = @"INSERT INTO komponen (nama_komponen, harga, stok, stok_minimum)
-                         VALUES (@nama_komponen, @harga, @stok, @stok_minimum)";
+            const string sql = @"INSERT INTO komponen (nama_komponen, harga, satuan, stok, stok_minimum)
+                         VALUES (@nama_komponen, @harga, @satuan, @stok, @stok_minimum)";
 
             using var koneksi = new SqlConnection(conn.connStr);
             var dp = new DynamicParameters();
             dp.Add("@nama_komponen", komponen.nama_komponen);
             dp.Add("@harga", komponen.harga);
+            dp.Add("@satuan", komponen.satuan);
             dp.Add("@stok", komponen.stok);
             dp.Add("@stok_minimum", komponen.stok_minimum);
 
@@ -56,6 +57,7 @@ namespace Shopee
             const string sql = @"UPDATE komponen 
                          SET nama_komponen = @nama_komponen, 
                              harga = @harga,
+                             satuan = @satuan,
                              stok = @stok,
                              stok_minimum = @stok_minimum
                          WHERE id_komponen = @id_komponen";
@@ -65,6 +67,7 @@ namespace Shopee
             dp.Add("@id_komponen", komponen.id_komponen);
             dp.Add("@nama_komponen", komponen.nama_komponen);
             dp.Add("@harga", komponen.harga);
+            dp.Add("@satuan", komponen.satuan);
             dp.Add("@stok", komponen.stok);
             dp.Add("@stok_minimum", komponen.stok_minimum);
 

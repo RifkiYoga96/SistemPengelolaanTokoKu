@@ -57,3 +57,10 @@ CREATE TABLE transaksi_komponen_detail (
   FOREIGN KEY (id_transaksi_detail) REFERENCES transaksi_detail(id_transaksi_detail)
 );
 
+
+CREATE TABLE operasional (
+  id_pengeluaran INT IDENTITY(1,1) PRIMARY KEY,
+  nama_pengeluaran VARCHAR(30) NOT NULL,
+  jumlah_pengeluaran DECIMAL(10,2) NOT NULL,
+);
+

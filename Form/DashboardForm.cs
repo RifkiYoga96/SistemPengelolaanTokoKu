@@ -64,7 +64,7 @@ namespace Shopee
                 case "btnDashboard":
                     form = new Dashboard_UC();
                     break;
-                case "btnPendapatan":
+                case "btnTransaksi":
                     form = new TransaksiUC();
                     break;
                 case "btnKomponenProduk":

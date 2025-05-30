@@ -203,6 +203,7 @@ namespace Shopee
                     No = index + 1 + offset,
                     x.nama_komponen,
                     harga = x.harga.ToString("C0",_culture),
+                    x.satuan,
                     x.stok,
                     x.stok_minimum,
                     keterangan_stok = x.stok < x.stok_minimum && x.stok > 0 ?menipisByte
@@ -229,6 +230,7 @@ namespace Shopee
             dgv.Columns["No"].HeaderText = "  No";
             dgv.Columns["nama_komponen"].HeaderText = "Nama Komponen";
             dgv.Columns["harga"].HeaderText = "Harga";
+            dgv.Columns["satuan"].HeaderText = "Satuan";
             dgv.Columns["stok"].HeaderText = " Stok";
             dgv.Columns["stok_minimum"].HeaderText = " Stok Minimum";
             dgv.Columns["keterangan_stok"].HeaderText = "Keterangan Stok";
@@ -237,11 +239,12 @@ namespace Shopee
 
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgv.Columns["No"].FillWeight = 7;
-            dgv.Columns["nama_komponen"].FillWeight = 20;
-            dgv.Columns["harga"].FillWeight = 17;
-            dgv.Columns["stok"].FillWeight = 17;
-            dgv.Columns["stok_minimum"].FillWeight = 17;
-            dgv.Columns["keterangan_stok"].FillWeight = 22;
+            dgv.Columns["nama_komponen"].FillWeight = 17;
+            dgv.Columns["harga"].FillWeight = 14;
+            dgv.Columns["satuan"].FillWeight = 14;
+            dgv.Columns["stok"].FillWeight = 14;
+            dgv.Columns["stok_minimum"].FillWeight = 14;
+            dgv.Columns["keterangan_stok"].FillWeight = 20;
 
             dgv.Columns["No"].DefaultCellStyle.Padding = new Padding(15, 0, 0, 0);
             dgv.Columns["stok"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;

@@ -37,6 +37,10 @@ namespace Shopee
             numericStok.Maximum = 10000;
 
             txtNama.Focus();
+
+            comboSatuan.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboSatuan.Items.AddRange(new object[] { "pcs", "cm" });
+            comboSatuan.SelectedIndex = 0;
         }
 
         #endregion
@@ -52,6 +56,7 @@ namespace Shopee
         {
             string nama = txtNama.Text.Trim();
             int harga = Convert.ToInt32(numericHarga.Value);
+            string satuan = comboSatuan.SelectedItem?.ToString() ?? "pcs";
             int stok = Convert.ToInt32(numericStok.Value);
             int stokMinimum = Convert.ToInt32(numericStokMinimum.Value);
 
@@ -72,6 +77,7 @@ namespace Shopee
                 id_komponen = _id,
                 nama_komponen = nama,
                 harga = harga,
+                satuan = satuan,
                 stok = stok,
                 stok_minimum = stokMinimum
             };
@@ -96,6 +102,7 @@ namespace Shopee
             if (data is null) return;
 
             txtNama.Text = data.nama_komponen;
+            comboSatuan.SelectedItem = data.satuan ?? "pcs";
             numericHarga.Value = (int)data.harga;
             numericStok.Value = (int)data.stok;
             numericStokMinimum.Value = (int)data.stok_minimum;

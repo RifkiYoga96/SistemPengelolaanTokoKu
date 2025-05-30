@@ -21,13 +21,13 @@ namespace Shopee
                             STRING_AGG(td.nama_transaksi, ', ') AS nama_transaksi,
                             SUM(td.harga * td.jumlah) AS harga,
                             SUM(td.jumlah) AS jumlah,
-                            SUM(td.modal * td.jumlah) AS modal,
+                            SUM(dbo.HitungModalTransaksi(td.id_transaksi_detail)) AS modal,
                             -- Perhitungan pendapatan bersih
                             (
                                 SUM(td.harga * td.jumlah)           -- total penjualan
                                 - t.nominal_diskon                  -- dikurangi diskon
                             ) * t.admin                             -- dikali admin
-                            - SUM(td.modal * td.jumlah)             -- dikurangi modal
+                            - SUM(dbo.HitungModalTransaksi(td.id_transaksi_detail))             -- dikurangi modal
                             AS pendapatan_bersih
                         FROM transaksi t
                         INNER JOIN transaksi_detail td ON t.id_transaksi = td.id_transaksi
@@ -64,7 +64,7 @@ namespace Shopee
                         (
                           SUM(CASE WHEN t.tipe = 1 THEN td.harga * td.jumlah ELSE 0 END)                                      
                         ) * t.admin                                            
-                            - SUM(td.modal * td.jumlah)                      
+                            - SUM(dbo.HitungModalTransaksi(td.id_transaksi_detail))                      
                             AS pendapatan_bersih
                     FROM transaksi t
                     INNER JOIN transaksi_detail td ON t.id_transaksi = td.id_transaksi
@@ -97,7 +97,7 @@ namespace Shopee
         {
             string sql = $@"
                         SELECT 
-                            ISNULL(SUM(td.modal * td.jumlah), 0)
+                            ISNULL(SUM(dbo.HitungModalTransaksi(td.id_transaksi_detail)), 0)
                         FROM transaksi t
                         INNER JOIN transaksi_detail td
                             ON t.id_transaksi = td.id_transaksi
