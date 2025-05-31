@@ -127,10 +127,10 @@ namespace Shopee
         {
             const string sql = @"
                 INSERT INTO transaksi 
-                    (tanggal, tipe, admin, nominal_diskon) 
+                    (tanggal, tipe, admin, nominal_diskon, status) 
                 OUTPUT INSERTED.id_transaksi
                 VALUES 
-                    (@tanggal, @tipe, @admin, @nominal_diskon)";
+                    (@tanggal, @tipe, @admin, @nominal_diskon, @status)";
 
             using var koneksi = new SqlConnection(conn.connStr);
             return koneksi.QuerySingle<int>(sql, pendapatan);

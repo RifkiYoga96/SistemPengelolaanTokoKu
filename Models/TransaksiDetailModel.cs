@@ -14,4 +14,9 @@ namespace Shopee
         public int jumlah { get; set; }
         public int? modal { get; set; }
     }
+
+    public class  TransaksiDetailDto : TransaksiDetailModel
+    {
+        public int id_produk { get; set; }
+    }
 }

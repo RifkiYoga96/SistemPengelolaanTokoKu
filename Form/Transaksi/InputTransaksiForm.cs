@@ -21,9 +21,10 @@ namespace Shopee
         private readonly OperasionalDal _pengeluaranDal = new();
         private readonly TransaksiDal _transaksiDal = new();
         private readonly TransaksiDetailDal _transaksiDetailDal = new();
+        private readonly TransaksiKomponenDetailDal _transaksiKomponenDetailDal = new();
         private readonly int _id;
-        private readonly BindingList<TransaksiDetailModel> _listTransaksiPendapatan = new();
-        private readonly BindingList<TransaksiDetailModel> _listTransaksiPengeluaran = new();
+        private readonly BindingList<TransaksiDetailDto> _listTransaksiPendapatan = new();
+        private readonly BindingList<TransaksiDetailDto> _listTransaksiPengeluaran = new();
         private readonly BindingList<ProdukModel> _produkComboList = new();
         private bool _isUpdatingUICombo = true;
 
@@ -148,13 +149,12 @@ namespace Shopee
             var namaTransaksi = Regex.Replace(produk.nama_produk, @" \(\d+\)$", "");
             var jumlah = Convert.ToInt32(numericJumlahPendapatan.Value);
             var harga = Convert.ToInt32(numericHargaPendapatan.Value);
-            var modal = _produkDal.GetModal(idProduk);
 
-            var transaksiDetail = new TransaksiDetailModel
+            var transaksiDetail = new TransaksiDetailDto
             {
+                id_produk = idProduk,
                 nama_transaksi = namaTransaksi,
                 harga = harga,
-                modal = modal,
                 jumlah = jumlah
             };
 
@@ -179,7 +179,8 @@ namespace Shopee
                 tanggal = tanggal,
                 admin = admin,
                 tipe = true, // true karena pendapatan
-                nominal_diskon = nominalDiskon
+                nominal_diskon = nominalDiskon,
+                status = "selesai"
             };
 
             int id_transaksi = _transaksiDal.InsertData(transaksi); //data induk
@@ -187,7 +188,8 @@ namespace Shopee
             foreach (var transaksiDetail in _listTransaksiPendapatan)
             {
                 transaksiDetail.id_transaksi = id_transaksi;
-                _transaksiDetailDal.InsertData(transaksiDetail); // data detail
+                int id_transaksi_detail = _transaksiDetailDal.InsertData(transaksiDetail); // data detail
+                _transaksiKomponenDetailDal.InsertData(transaksiDetail.id_produk, id_transaksi_detail);
             }
 
             DialogResult = DialogResult.OK;
@@ -242,7 +244,7 @@ namespace Shopee
             dgv.DataSource = _listTransaksiPendapatan;
             CustomizeGridStyle(dgv);
 
-            foreach (var colName in new[] { "id_transaksi", "modal" })
+            foreach (var colName in new[] { "id_transaksi", "modal", "id_produk" })
                 dgv.Columns[colName].Visible = false;
 
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -317,11 +319,10 @@ namespace Shopee
             var jumlah = (int)numericJumlahPengeluaran.Value;
             var harga = Convert.ToInt32(numericHargaPengeluaran.Value);
 
-            var transaksiDetail = new TransaksiDetailModel
+            var transaksiDetail = new TransaksiDetailDto
             {
                 nama_transaksi = namaTransaksi,
                 harga = harga,
-                modal = null,
                 jumlah = jumlah
             };
 
@@ -343,7 +344,8 @@ namespace Shopee
                 tanggal = tanggal,
                 admin = null,
                 tipe = false, // false karena pengeluaran
-                nominal_diskon = null
+                nominal_diskon = null,
+                status = "selesai"
             };
 
             int id_transaksi = _transaksiDal.InsertData(transaksi); //data induk
@@ -381,7 +383,7 @@ namespace Shopee
             dgv.DataSource = _listTransaksiPengeluaran;
             CustomizeGridStyle(dgv);
 
-            foreach (var colName in new[] { "id_transaksi", "modal" })
+            foreach (var colName in new[] { "id_transaksi", "modal", "id_produk" })
                 dgv.Columns[colName].Visible = false;
 
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;

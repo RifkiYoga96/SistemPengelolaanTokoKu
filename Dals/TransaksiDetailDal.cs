@@ -11,15 +11,16 @@ namespace Shopee
 {
     public class TransaksiDetailDal
     {
-        public void InsertData(TransaksiDetailModel td)
+        public int InsertData(TransaksiDetailModel td)
         {
             const string sql = @"
                         INSERT INTO transaksi_detail
-                            (id_transaksi, nama_transaksi, harga, jumlah, modal)
+                            (id_transaksi, nama_transaksi, harga, jumlah)
+                        OUTPUT INSERTED.id_transaksi
                         VALUES
-                            (@id_transaksi, @nama_transaksi, @harga, @jumlah, @modal)";
+                            (@id_transaksi, @nama_transaksi, @harga, @jumlah)";
             using var koneksi = new SqlConnection(conn.connStr);
-            koneksi.Execute(sql, td);
+            return koneksi.Execute(sql, td);
         }
 
         public IEnumerable<TransaksiDetailModel> ListData(int id)

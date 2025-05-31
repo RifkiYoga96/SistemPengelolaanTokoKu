@@ -10,14 +10,18 @@ namespace Shopee
 {
     public class TransaksiKomponenDetailDal
     {
-        public void InsertData(TransaksiKomponenDetailModel model)
+        public void InsertData(int id_produk, int id_transaksi_detail)
         {
             const string sql = @"
-                INSERT INTO transaksi_komponen_detail (id_transaksi, id_komponen, nama_komponen, satuan, jumlah, harga)
-                VALUES (@id_transaksi, @id_komponen, @nama_komponen, @satuan, @jumlah, @harga)";
+                INSERT INTO transaksi_komponen_detail (id_transaksi_detail, id_komponen, nama_komponen, satuan, jumlah, harga)
+                SELECT @id_transaksi_detail, kp.id_komponen, k.nama_komponen, k.satuan, kp.jumlah, k.harga
+                FROM komponen k
+                INNER JOIN komponen_produk kp ON k.id_komponen = kp.id_komponen
+                WHERE kp.id_produk = @id_produk
+                ";
 
             using var koneksi = new SqlConnection(conn.connStr);
-            koneksi.Execute(sql, model);
+            koneksi.Execute(sql, new {id_transaksi_detail = id_transaksi_detail, id_produk = id_produk});
         }
     }
 }
