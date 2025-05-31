@@ -21,7 +21,7 @@ namespace Shopee
                             STRING_AGG(td.nama_transaksi, ', ') AS nama_transaksi,
                             SUM(td.harga * td.jumlah) AS harga,
                             SUM(td.jumlah) AS jumlah,
-                            SUM(dbo.HitungModalTransaksi(td.id_transaksi_detail)) AS modal,
+                            SUM(dbo.HitungModalTransaksi(td.id_transaksi_detail) * td.jumlah) AS modal,
                             -- Perhitungan pendapatan bersih
                             (
                                 SUM(td.harga * td.jumlah)           -- total penjualan

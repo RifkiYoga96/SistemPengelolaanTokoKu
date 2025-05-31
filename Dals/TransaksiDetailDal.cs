@@ -16,11 +16,11 @@ namespace Shopee
             const string sql = @"
                         INSERT INTO transaksi_detail
                             (id_transaksi, nama_transaksi, harga, jumlah)
-                        OUTPUT INSERTED.id_transaksi
+                        OUTPUT INSERTED.id_transaksi_detail
                         VALUES
                             (@id_transaksi, @nama_transaksi, @harga, @jumlah)";
             using var koneksi = new SqlConnection(conn.connStr);
-            return koneksi.Execute(sql, td);
+            return koneksi.ExecuteScalar<int>(sql, td);
         }
 
         public IEnumerable<TransaksiDetailModel> ListData(int id)

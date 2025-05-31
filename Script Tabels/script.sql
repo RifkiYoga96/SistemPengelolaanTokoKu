@@ -55,6 +55,8 @@ CREATE TABLE transaksi_komponen_detail (
   jumlah INT NOT NULL,
   harga INT NOT NULL,
   FOREIGN KEY (id_transaksi_detail) REFERENCES transaksi_detail(id_transaksi_detail)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE,
 );
 
 

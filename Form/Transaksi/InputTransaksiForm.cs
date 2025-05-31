@@ -189,6 +189,7 @@ namespace Shopee
             {
                 transaksiDetail.id_transaksi = id_transaksi;
                 int id_transaksi_detail = _transaksiDetailDal.InsertData(transaksiDetail); // data detail
+                MessageBox.Show(id_transaksi_detail.ToString());
                 _transaksiKomponenDetailDal.InsertData(transaksiDetail.id_produk, id_transaksi_detail);
             }
 
