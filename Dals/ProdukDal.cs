@@ -19,7 +19,7 @@ namespace Shopee
 
         public IEnumerable<ProdukModel> ListProdukCombo()
         {
-            const string sql = $@"SELECT id_produk, nama_produk, harga FROM produk";
+            const string sql = $@"SELECT id_produk, nama_produk, harga, dbo.GetStokProduk(id_produk) AS stok FROM produk";
             using var koneksi = new SqlConnection(conn.connStr);
             return koneksi.Query<ProdukModel>(sql);
         }

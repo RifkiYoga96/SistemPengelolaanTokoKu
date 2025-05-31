@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static Shopee.Input_Iklan;
@@ -23,6 +24,8 @@ namespace Shopee
         private readonly int _id;
         private readonly BindingList<TransaksiDetailModel> _listTransaksiPendapatan = new();
         private readonly BindingList<TransaksiDetailModel> _listTransaksiPengeluaran = new();
+        private readonly BindingList<ProdukModel> _produkComboList = new();
+        private bool _isUpdatingUICombo = true;
 
         public InputTransaksiForm(int tabIndex, int id = 0)
         {
@@ -65,19 +68,53 @@ namespace Shopee
 
         private void InitComponentPendapatan()
         {
-            comboProdukPendapatan.DataSource = _produkDal.ListProdukCombo();
-            comboProdukPendapatan.DisplayMember = "Nama_Produk";
-            comboProdukPendapatan.ValueMember = "ID_Produk";
+            var listProduk = _produkDal.ListProdukCombo()
+                .Select(x => new ProdukModel
+                {
+                    id_produk = x.id_produk,
+                    nama_produk = $"{x.nama_produk} ({x.stok})",
+                    harga = x.harga,
+                    stok = x.stok
+                }).ToList();
+
+            foreach (var item in listProduk)
+                _produkComboList.Add(item);
+
+            comboProdukPendapatan.DataSource = _produkComboList;
+            comboProdukPendapatan.DisplayMember = "nama_produk";
+            comboProdukPendapatan.ValueMember = "id_produk";
             UpdateHargaProduk();
         }
 
         private void RegisterEventPendapatan()
         {
             btnSavePendapatan.Click += SaveDataPendapatan;
-            btnAddPendapatan.Click += AddPendapatan;
-            comboProdukPendapatan.SelectedIndexChanged += (_, _) => UpdateHargaProduk();
+            btnAddPendapatan.Click += AddPendapatan_UpdateStok;
+            comboProdukPendapatan.SelectedIndexChanged += ComboProdukPendapatan_SelectedIndexChanged; ;
             gridPendapatan.CellMouseClick += GridPendapatan_CellMouseClick;
             deletePendapatan.Click += DeletePendapatan_Click;
+            numericHargaPendapatan.ValueChanged += (_,_) => CekStok_UpdateHarga();
+        }
+
+        private void ComboProdukPendapatan_SelectedIndexChanged(object? sender, EventArgs e)
+        {
+            if (!_isUpdatingUICombo) return;
+            CekStok_UpdateHarga();
+        }
+
+        private bool CekStok_UpdateHarga()
+        {
+            int jumlah = Convert.ToInt32(numericJumlahPendapatan.Value);
+            var item = comboProdukPendapatan.SelectedItem as ProdukModel;
+            int stokTersedia = item?.stok ?? 0;
+
+            if (stokTersedia < jumlah)
+            {
+                MessageBoxShow.Warning($"Stok produk {item?.nama_produk} tidak mencukupi. Stok tersedia: {stokTersedia}");
+                return false;
+            }
+            UpdateHargaProduk();
+            return true;
         }
 
         private void DeletePendapatan_Click(object? sender, EventArgs e)
@@ -89,6 +126,7 @@ namespace Shopee
                 return;
             }
             _listTransaksiPendapatan.RemoveAt(index);
+            UpdateValueCombobox(false);
         }
 
         private void GridPendapatan_CellMouseClick(object? sender, DataGridViewCellMouseEventArgs e)
@@ -96,18 +134,21 @@ namespace Shopee
             menuStripPendapatan.Show(Cursor.Position);
         }
 
-        private void AddPendapatan(object? sender, EventArgs e)
+        private void AddPendapatan_UpdateStok(object? sender, EventArgs e)
         {
+            if (!CekStok_UpdateHarga()) return;
+
             if (comboProdukPendapatan.SelectedItem is not ProdukModel produk)
             {
                 MessageBoxShow.Warning();
                 return;
             }
 
-            var namaTransaksi = produk.nama_produk;
+            var idProduk = produk.id_produk;
+            var namaTransaksi = Regex.Replace(produk.nama_produk, @" \(\d+\)$", "");
             var jumlah = Convert.ToInt32(numericJumlahPendapatan.Value);
             var harga = Convert.ToInt32(numericHargaPendapatan.Value);
-            var modal = _produkDal.GetModal(produk.id_produk);
+            var modal = _produkDal.GetModal(idProduk);
 
             var transaksiDetail = new TransaksiDetailModel
             {
@@ -118,6 +159,7 @@ namespace Shopee
             };
 
             _listTransaksiPendapatan.Add(transaksiDetail);
+            UpdateValueCombobox(true);
         }
 
         private void SaveDataPendapatan(object? sender, EventArgs e)
@@ -169,6 +211,29 @@ namespace Shopee
         {
             if (comboProdukPendapatan.SelectedItem is ProdukModel produk)
                 numericHargaPendapatan.Value = produk.harga;
+        }
+
+        private void UpdateValueCombobox(bool addData)
+        {
+            var produk = comboProdukPendapatan.SelectedItem as ProdukModel;
+
+            int idProduk = produk?.id_produk ?? 0;
+            int jumlah = (int)numericJumlahPendapatan.Value;
+            var produkUpdate = _produkComboList.FirstOrDefault(x => x.id_produk == idProduk);
+
+            _isUpdatingUICombo = false;
+            if (produkUpdate != null)
+            {
+                string namaProduk = Regex.Replace(produkUpdate.nama_produk, @" \(\d+\)$", "");
+
+                if(addData)
+                    produkUpdate.stok -= jumlah; // Kurangi stok produk
+                else
+                    produkUpdate.stok += jumlah; // Tambah stok produk
+
+                produkUpdate.nama_produk = $"{namaProduk} ({produkUpdate.stok})"; //Update Nama
+            }
+            _isUpdatingUICombo = true;
         }
 
         private void SetupPendapatanGrid()
