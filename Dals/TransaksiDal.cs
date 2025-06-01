@@ -121,8 +121,6 @@ namespace Shopee
             return koneksi.QuerySingleOrDefault<int>(sql, filter.param);
         }
 
-
-
         public int InsertData(TransaksiModel pendapatan)
         {
             const string sql = @"
@@ -138,7 +136,21 @@ namespace Shopee
 
         public void DeleteData(int id)
         {
-            const string sql = @"DELETE FROM transaksi WHERE id_transaksi = @id";
+            const string sql = @"
+                        -- Hapus transaksi_komponen_detail (anak-anak level 2)
+                        DELETE tkd
+                        FROM transaksi_komponen_detail tkd
+                        INNER JOIN transaksi_detail td ON td.id_transaksi_detail = tkd.id_transaksi_detail
+                        WHERE td.id_transaksi = @id;
+
+                        -- Hapus transaksi_detail (anak level 1)
+                        DELETE FROM transaksi_detail
+                        WHERE id_transaksi = @id;
+
+                        -- Hapus transaksi (induk)
+                        DELETE FROM transaksi
+                        WHERE id_transaksi = @id;
+                        ";
             using var koneksi = new SqlConnection(conn.connStr);
             koneksi.Execute(sql, new { id = id });
         }

@@ -122,9 +122,12 @@ namespace Shopee
 
         private void ShowMenuStrip(object? sender, DataGridViewCellMouseEventArgs e)
         {
-            dataGridView1.ClearSelection();
-            dataGridView1.CurrentCell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex]; // agar current row pindah
-            dataGridView1.Rows[e.RowIndex].Selected = true;
+
+                dataGridView1.ClearSelection();
+                dataGridView1.CurrentCell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex]; // agar current row pindah
+                dataGridView1.Rows[e.RowIndex].Selected = true;
+
+            
 
             if (e.Button == MouseButtons.Left) return;
             menuStrip.Show(Cursor.Position);
