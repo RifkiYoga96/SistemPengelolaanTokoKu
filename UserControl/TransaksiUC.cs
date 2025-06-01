@@ -277,7 +277,7 @@ namespace Shopee
                     x.tanggal,
                     harga = x.harga.ToString("C0", _culture),
                     admin = x.admin != null ? x.admin?.ToString() + "%" : "",
-                    modal = x.modal?.ToString("C0", _culture),
+                    modal = x.modal == 0 ? null : x.modal?.ToString("C0", _culture),
                     pendapatan_bersih = x.pendapatan_bersih?.ToString("C0", _culture),
                     x.jumlah,
                     x.tipe,

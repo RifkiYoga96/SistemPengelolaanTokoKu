@@ -25,7 +25,10 @@ namespace Shopee
 
         public IEnumerable<TransaksiDetailModel> ListData(int id)
         {
-            const string sql = @"SELECT nama_transaksi, harga, modal, jumlah FROM transaksi_detail WHERE id_transaksi = @id";
+            const string sql = @"
+                    SELECT nama_transaksi, harga, jumlah,
+                    dbo.HitungModalTransaksi(id_transaksi_detail) AS modal
+                    FROM transaksi_detail WHERE id_transaksi = @id";
 
             using var koneksi = new SqlConnection(conn.connStr);
             return koneksi.Query<TransaksiDetailModel>(sql, new { id = id });
