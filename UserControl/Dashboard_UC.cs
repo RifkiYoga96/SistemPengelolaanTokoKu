@@ -15,6 +15,7 @@ namespace Shopee
     {
         private readonly DashboardDal _dashboardDal = new();
         private readonly CultureInfo _culture = new CultureInfo("id-ID");
+        private ToolTip _toolTip = new ToolTip();
         public Dashboard_UC()
         {
             InitializeComponent();
@@ -32,6 +33,8 @@ namespace Shopee
             comboRangeTime.DisplayMember = "NameFilter";
             comboRangeTime.ValueMember = "NameFilter";
             comboRangeTime.SelectedIndex = 3;
+
+            _toolTip.SetToolTip(infoProfit, "Daftar produk profit tertinggi.\nTidak termasuk nominal diskon");
         }
 
         private List<RangeTimeModel> GetTimeFilterOptions(DateTime now)
@@ -89,8 +92,6 @@ namespace Shopee
             int pendapatanKotor = _dashboardDal.GetPendapatanKotor(filter);
             int pendapatanBersih = 
                 (_dashboardDal.GetPemasukanBersih(filter)) - (_dashboardDal.GetPengeluaran(filter));
-
-            //MessageBox.Show((_dashboardDal.GetPemasukanBersih(filter)).ToString() + " bbb " + (_dashboardDal.GetPengeluaran(filter).ToString()));
 
             lblProdukTerjual.Text = produkTerjual.ToString();
             lblPendapatanKotor.Text = pendapatanKotor.ToString("C0", _culture);

@@ -47,6 +47,7 @@
             panel3 = new Panel();
             tableLayoutPanel2 = new TableLayoutPanel();
             panel8 = new Panel();
+            infoProfit = new PictureBox();
             gridProdukProfit = new DataGridView();
             label3 = new Label();
             panel7 = new Panel();
@@ -70,6 +71,7 @@
             panel3.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             panel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)infoProfit).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridProdukProfit).BeginInit();
             panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridProdukTerjual).BeginInit();
@@ -286,12 +288,23 @@
             // panel8
             // 
             panel8.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panel8.Controls.Add(infoProfit);
             panel8.Controls.Add(gridProdukProfit);
             panel8.Controls.Add(label3);
             panel8.Location = new Point(536, 3);
             panel8.Name = "panel8";
             panel8.Size = new Size(527, 167);
             panel8.TabIndex = 9;
+            // 
+            // infoProfit
+            // 
+            infoProfit.BackgroundImage = Properties.Resources.TandaTanya;
+            infoProfit.BackgroundImageLayout = ImageLayout.Zoom;
+            infoProfit.Location = new Point(217, 0);
+            infoProfit.Name = "infoProfit";
+            infoProfit.Size = new Size(30, 30);
+            infoProfit.TabIndex = 9;
+            infoProfit.TabStop = false;
             // 
             // gridProdukProfit
             // 
@@ -458,6 +471,7 @@
             tableLayoutPanel2.ResumeLayout(false);
             panel8.ResumeLayout(false);
             panel8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)infoProfit).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridProdukProfit).EndInit();
             panel7.ResumeLayout(false);
             panel7.PerformLayout();
@@ -504,5 +518,6 @@
         private Panel panel11;
         private Label lblBiayaIklan;
         private Label label12;
+        private PictureBox infoProfit;
     }
 }

@@ -123,6 +123,16 @@ namespace Shopee.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap TandaTanya {
+            get {
+                object obj = ResourceManager.GetObject("TandaTanya", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Tersedia {
             get {
                 object obj = ResourceManager.GetObject("Tersedia", resourceCulture);

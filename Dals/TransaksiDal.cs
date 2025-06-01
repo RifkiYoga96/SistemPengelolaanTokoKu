@@ -58,20 +58,21 @@ namespace Shopee
         public int TotalPemasukanBersih(FilterModel filter)
         {
             string sql = $@"
-                    WITH PerTransaksi AS (
+                    WITH Pemasukan AS (
                     SELECT
                         t.id_transaksi,
                         (
-                          SUM(CASE WHEN t.tipe = 1 THEN td.harga * td.jumlah ELSE 0 END)                                      
+                          SUM(CASE WHEN t.tipe = 1 THEN td.harga * td.jumlah ELSE 0 END)
+                          - ISNULL(t.nominal_diskon, 0)                          
                         ) * t.admin                                            
-                            - SUM(dbo.HitungModalTransaksi(td.id_transaksi_detail))                      
+                            - SUM(dbo.HitungModalTransaksi(td.id_transaksi_detail) * td.jumlah)                      
                             AS pendapatan_bersih
                     FROM transaksi t
                     INNER JOIN transaksi_detail td ON t.id_transaksi = td.id_transaksi
                     {filter.sql}
                     GROUP BY t.id_transaksi, t.nominal_diskon, t.admin
                 )
-                SELECT ISNULL(SUM(pendapatan_bersih), 0) FROM PerTransaksi;
+                SELECT ISNULL(SUM(pendapatan_bersih), 0) FROM Pemasukan;
                 ";
 
 
@@ -97,7 +98,7 @@ namespace Shopee
         {
             string sql = $@"
                         SELECT 
-                            ISNULL(SUM(dbo.HitungModalTransaksi(td.id_transaksi_detail)), 0)
+                            ISNULL(SUM(dbo.HitungModalTransaksi(td.id_transaksi_detail) * td.jumlah), 0)
                         FROM transaksi t
                         INNER JOIN transaksi_detail td
                             ON t.id_transaksi = td.id_transaksi

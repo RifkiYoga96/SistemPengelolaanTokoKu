@@ -101,7 +101,6 @@ namespace Shopee
                         td.nama_transaksi,
                         (
                             ISNULL(td.harga * td.jumlah, 0)
-                            - ISNULL(t.nominal_diskon, 0)
                         ) * ISNULL(t.admin, 0)
                         - ISNULL(dbo.HitungModalTransaksi(td.id_transaksi_detail) * td.jumlah, 0) AS pendapatan_bersih
                     FROM transaksi t

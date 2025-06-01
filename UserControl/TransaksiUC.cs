@@ -341,7 +341,7 @@ namespace Shopee
         private void Hitung_TotalPendapatan()
         {
             int index = comboTotal.SelectedIndex;
-           
+
             int totalPendapatan = index switch
             {
                 0 => _transaksiDal.TotalPemasukanBersih(CreateFilter()) - _transaksiDal.TotalPengeluaran(CreateFilter()),
