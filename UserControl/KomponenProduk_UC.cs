@@ -216,12 +216,6 @@ namespace Shopee
                 return;
             }
 
-            if (_kebutuhanList.Count == 0)
-            {
-                MessageBoxShow.Warning("Tidak ada komponen yang dipilih");
-                return;
-            }
-
             if (!MessageBoxShow.Confirmation("Apakah anda yakin ingin menyimpan data?")) return;
 
             _komponenProdukDal.DeleteData(idProduk);

@@ -50,9 +50,17 @@ namespace Shopee
         #region Event Handlers
         private void DeleteData(object? sender, EventArgs e)
         {
+            var currentRow = dataGridView1.CurrentRow;
+
+            if (currentRow.Cells["nama_pengeluaran"].Value.ToString() == "Biaya Iklan")
+            {
+                MessageBoxShow.Warning("Biaya Iklan tidak dapat dihapus!");
+                return;
+            }
+
             if (!MessageBoxShow.Confirmation()) return;
 
-            int id = (int)dataGridView1.CurrentRow.Cells[0].Value;
+            int id = (int)currentRow.Cells[0].Value;
             _operasionalDal.DeleteData(id);
             LoadData();
         }

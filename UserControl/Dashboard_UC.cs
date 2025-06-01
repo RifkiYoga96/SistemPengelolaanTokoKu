@@ -113,7 +113,7 @@ namespace Shopee
             int pendapatanKotor = _dashboardDal.GetPendapatanKotor(filter);
             decimal roas = biayaIklan == 0 ? 0.00m : pendapatanKotor/(decimal)biayaIklan;
 
-            lblRoas.Text = roas.ToString();
+            lblRoas.Text = roas.ToString("N2");
         }
 
         private void LoadTabels(FilterModel filter)

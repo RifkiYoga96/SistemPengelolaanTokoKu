@@ -57,7 +57,7 @@ namespace Shopee
         {
             const string sql = @"
                         SELECT 
-                            SUM(td.harga * td.jumlah)
+                            ISNULL(SUM(td.harga * td.jumlah),0)
                         FROM transaksi t
                         INNER JOIN transaksi_detail td
                             ON t.id_transaksi = td.id_transaksi

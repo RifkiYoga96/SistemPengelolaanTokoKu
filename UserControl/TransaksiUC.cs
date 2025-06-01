@@ -310,7 +310,7 @@ namespace Shopee
             dgv.Columns["No"].HeaderText = "  No";
             dgv.Columns["nama_transaksi"].HeaderText = "Nama Transaksi";
             dgv.Columns["tanggal"].HeaderText = "Tanggal";
-            dgv.Columns["harga"].HeaderText = "Harga";
+            dgv.Columns["harga"].HeaderText = "Total Transaksi";
             dgv.Columns["admin"].HeaderText = "Admin Fee";
             dgv.Columns["modal"].HeaderText = "Modal";
             dgv.Columns["pendapatan_bersih"].HeaderText = "Pendapatan Bersih";

@@ -87,6 +87,12 @@ namespace Shopee
             var data = _operasionalDal.GetData(id);
             if (data is null) return;
 
+            if(data.nama_pengeluaran == "Biaya Iklan")
+            {
+                txtNama.ReadOnly = true;
+                numericBiaya.Focus();
+            }
+
             txtNama.Text = data.nama_pengeluaran;
             numericBiaya.Value = (int)data.jumlah_pengeluaran;
         }
