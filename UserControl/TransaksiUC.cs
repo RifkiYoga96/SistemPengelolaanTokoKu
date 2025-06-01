@@ -122,12 +122,11 @@ namespace Shopee
 
         private void ShowMenuStrip(object? sender, DataGridViewCellMouseEventArgs e)
         {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
 
-                dataGridView1.ClearSelection();
-                dataGridView1.CurrentCell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex]; // agar current row pindah
-                dataGridView1.Rows[e.RowIndex].Selected = true;
-
-            
+            dataGridView1.ClearSelection();
+            dataGridView1.CurrentCell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex]; // agar current row pindah
+            dataGridView1.Rows[e.RowIndex].Selected = true;
 
             if (e.Button == MouseButtons.Left) return;
             menuStrip.Show(Cursor.Position);
@@ -345,7 +344,7 @@ namespace Shopee
            
             int totalPendapatan = index switch
             {
-                0 => _transaksiDal.TotalPendapatanSubBersih(CreateFilter()) - _transaksiDal.TotalPengeluaran(CreateFilter()),
+                0 => _transaksiDal.TotalPemasukanBersih(CreateFilter()) - _transaksiDal.TotalPengeluaran(CreateFilter()),
                 1 => _transaksiDal.TotalPendapatanKotor(CreateFilter()),
                 2 => _transaksiDal.TotalModal(CreateFilter()),
                 _ => _transaksiDal.TotalPengeluaran(CreateFilter())

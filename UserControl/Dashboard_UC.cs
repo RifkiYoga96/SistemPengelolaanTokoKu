@@ -67,14 +67,8 @@ namespace Shopee
             var filter = new FilterModel();
             var listFilter = new List<string>();
 
-            listFilter.Add("tanggal BETWEEN @tanggal1 AND @tanggal2");
             filter.param.Add("@tanggal1", tanggal1);
             filter.param.Add("@tanggal2", tanggal2);
-
-            if (listFilter.Any())
-            {
-                filter.sql = " WHERE " + string.Join(" AND ", listFilter);
-            }
 
             return filter;
         }
@@ -86,13 +80,17 @@ namespace Shopee
             LoadChart(filter);
             LoadAdmin();
             LoadTabels(filter);
+            LoadIklan(filter);
         }
 
         private void LoadChart(FilterModel filter)
         {
             int produkTerjual = _dashboardDal.GetProdukTerjual(filter);
             int pendapatanKotor = _dashboardDal.GetPendapatanKotor(filter);
-            int pendapatanBersih = _dashboardDal.GetPendapatanBersih(filter);
+            int pendapatanBersih = 
+                (_dashboardDal.GetPemasukanBersih(filter)) - (_dashboardDal.GetPengeluaran(filter));
+
+            //MessageBox.Show((_dashboardDal.GetPemasukanBersih(filter)).ToString() + " bbb " + (_dashboardDal.GetPengeluaran(filter).ToString()));
 
             lblProdukTerjual.Text = produkTerjual.ToString();
             lblPendapatanKotor.Text = pendapatanKotor.ToString("C0", _culture);
@@ -107,6 +105,17 @@ namespace Shopee
             numericAdmin.Value = adminPercent;
         }
 
+        private void LoadIklan(FilterModel filter)
+        {
+            int biayaIklan = _dashboardDal.GetBiayaIklan(filter);
+            lblBiayaIklan.Text = biayaIklan.ToString("C0", _culture);
+
+            int pendapatanKotor = _dashboardDal.GetPendapatanKotor(filter);
+            decimal roas = biayaIklan == 0 ? 0.00m : pendapatanKotor/(decimal)biayaIklan;
+
+            lblRoas.Text = roas.ToString();
+        }
+
         private void LoadTabels(FilterModel filter)
         {
             filter.sql += " AND tipe = 1";
@@ -114,8 +123,8 @@ namespace Shopee
             //Top Produk Terjual
             var listTerjual = _dashboardDal.TopProdukTerjual(filter);
             gridProdukTerjual.DataSource = listTerjual.
-                Select((x, index) => new 
-                { 
+                Select((x, index) => new
+                {
                     No = index + 1,
                     NamaProduk = x.nama_transaksi,
                     Terjual = x.jumlah
@@ -128,7 +137,7 @@ namespace Shopee
                 {
                     No = index + 1,
                     NamaProduk = x.nama_transaksi,
-                    Keuntungan = x.pendapatan_bersih?.ToString("C0",_culture)
+                    Keuntungan = x.pendapatan_bersih?.ToString("C0", _culture)
                 }).ToList();
         }
 

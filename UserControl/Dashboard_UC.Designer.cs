@@ -53,6 +53,13 @@
             gridProdukTerjual = new DataGridView();
             label1 = new Label();
             label2 = new Label();
+            panel9 = new Panel();
+            panel11 = new Panel();
+            lblBiayaIklan = new Label();
+            label12 = new Label();
+            panel10 = new Panel();
+            lblRoas = new Label();
+            label7 = new Label();
             tableLayoutPanel1.SuspendLayout();
             panel6.SuspendLayout();
             panel5.SuspendLayout();
@@ -66,6 +73,9 @@
             ((System.ComponentModel.ISupportInitialize)gridProdukProfit).BeginInit();
             panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridProdukTerjual).BeginInit();
+            panel9.SuspendLayout();
+            panel11.SuspendLayout();
+            panel10.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -241,10 +251,10 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.Location = new Point(20, 11);
+            label4.Font = new Font("Segoe UI Semibold", 12.5F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.Location = new Point(27, 11);
             label4.Name = "label4";
-            label4.Size = new Size(87, 30);
+            label4.Size = new Size(83, 30);
             label4.TabIndex = 10;
             label4.Text = "ADMIN";
             // 
@@ -297,10 +307,10 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.Font = new Font("Segoe UI Semibold", 12.5F, FontStyle.Bold, GraphicsUnit.Point);
             label3.Location = new Point(3, 0);
             label3.Name = "label3";
-            label3.Size = new Size(227, 30);
+            label3.Size = new Size(218, 30);
             label3.TabIndex = 8;
             label3.Text = "TOP PRODUK PROFIT";
             // 
@@ -328,10 +338,10 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Font = new Font("Segoe UI Semibold", 12.5F, FontStyle.Bold, GraphicsUnit.Point);
             label1.Location = new Point(3, 0);
             label1.Name = "label1";
-            label1.Size = new Size(242, 30);
+            label1.Size = new Size(232, 30);
             label1.TabIndex = 8;
             label1.Text = "TOP PRODUK TERJUAL";
             // 
@@ -346,11 +356,86 @@
             label2.TabIndex = 7;
             label2.Text = "DASHBOARD";
             // 
+            // panel9
+            // 
+            panel9.BackColor = Color.White;
+            panel9.Controls.Add(panel11);
+            panel9.Controls.Add(label12);
+            panel9.Controls.Add(panel10);
+            panel9.Controls.Add(label7);
+            panel9.Location = new Point(307, 308);
+            panel9.Name = "panel9";
+            panel9.Size = new Size(559, 115);
+            panel9.TabIndex = 8;
+            // 
+            // panel11
+            // 
+            panel11.BackColor = Color.White;
+            panel11.Controls.Add(lblBiayaIklan);
+            panel11.Location = new Point(254, 44);
+            panel11.Name = "panel11";
+            panel11.Size = new Size(286, 52);
+            panel11.TabIndex = 18;
+            // 
+            // lblBiayaIklan
+            // 
+            lblBiayaIklan.BackColor = Color.MistyRose;
+            lblBiayaIklan.Dock = DockStyle.Fill;
+            lblBiayaIklan.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            lblBiayaIklan.Location = new Point(0, 0);
+            lblBiayaIklan.Name = "lblBiayaIklan";
+            lblBiayaIklan.Size = new Size(286, 52);
+            lblBiayaIklan.TabIndex = 12;
+            lblBiayaIklan.Text = "Rp245.000";
+            lblBiayaIklan.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Font = new Font("Segoe UI Semibold", 12.5F, FontStyle.Bold, GraphicsUnit.Point);
+            label12.Location = new Point(254, 11);
+            label12.Name = "label12";
+            label12.Size = new Size(134, 30);
+            label12.TabIndex = 17;
+            label12.Text = "BIAYA IKLAN";
+            // 
+            // panel10
+            // 
+            panel10.BackColor = Color.White;
+            panel10.Controls.Add(lblRoas);
+            panel10.Location = new Point(20, 44);
+            panel10.Name = "panel10";
+            panel10.Size = new Size(158, 52);
+            panel10.TabIndex = 16;
+            // 
+            // lblRoas
+            // 
+            lblRoas.BackColor = Color.MistyRose;
+            lblRoas.Dock = DockStyle.Fill;
+            lblRoas.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            lblRoas.Location = new Point(0, 0);
+            lblRoas.Name = "lblRoas";
+            lblRoas.Size = new Size(158, 52);
+            lblRoas.TabIndex = 12;
+            lblRoas.Text = "66,77";
+            lblRoas.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI Semibold", 12.5F, FontStyle.Bold, GraphicsUnit.Point);
+            label7.Location = new Point(20, 11);
+            label7.Name = "label7";
+            label7.Size = new Size(67, 30);
+            label7.TabIndex = 10;
+            label7.Text = "ROAS";
+            // 
             // Dashboard_UC
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(230, 235, 240);
+            Controls.Add(panel9);
             Controls.Add(comboRangeTime);
             Controls.Add(label2);
             Controls.Add(panel3);
@@ -377,6 +462,10 @@
             panel7.ResumeLayout(false);
             panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)gridProdukTerjual).EndInit();
+            panel9.ResumeLayout(false);
+            panel9.PerformLayout();
+            panel11.ResumeLayout(false);
+            panel10.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -408,5 +497,12 @@
         private DataGridView gridProdukProfit;
         private Label label3;
         private Panel panel7;
+        private Panel panel9;
+        private Label lblRoas;
+        private Label label7;
+        private Panel panel10;
+        private Panel panel11;
+        private Label lblBiayaIklan;
+        private Label label12;
     }
 }

@@ -27,7 +27,7 @@ namespace Shopee
                                 SUM(td.harga * td.jumlah)           -- total penjualan
                                 - t.nominal_diskon                  -- dikurangi diskon
                             ) * t.admin                             -- dikali admin
-                            - SUM(dbo.HitungModalTransaksi(td.id_transaksi_detail))             -- dikurangi modal
+                            - SUM(dbo.HitungModalTransaksi(td.id_transaksi_detail) * td.jumlah)   -- dikurangi modal
                             AS pendapatan_bersih
                         FROM transaksi t
                         INNER JOIN transaksi_detail td ON t.id_transaksi = td.id_transaksi
@@ -55,7 +55,7 @@ namespace Shopee
             return koneksi.QueryFirstOrDefault<TransaksiModel>(sql, new { id = id });
         }
 
-        public int TotalPendapatanSubBersih(FilterModel filter)
+        public int TotalPemasukanBersih(FilterModel filter)
         {
             string sql = $@"
                     WITH PerTransaksi AS (

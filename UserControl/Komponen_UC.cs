@@ -62,8 +62,6 @@ namespace Shopee
             comboKeteranganStok.SelectedIndexChanged += ComboKeteranganStok_SelectedIndexChanged;
         }
 
-
-
         #endregion
 
         #region Event Handlers
@@ -94,10 +92,13 @@ namespace Shopee
 
         private void ShowMenuStrip(object? sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left) return;
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+
             dataGridView1.ClearSelection();
+            dataGridView1.CurrentCell = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex]; // agar current row pindah
             dataGridView1.Rows[e.RowIndex].Selected = true;
 
+            if (e.Button == MouseButtons.Left) return;
             menuStrip.Show(Cursor.Position);
         }
 
