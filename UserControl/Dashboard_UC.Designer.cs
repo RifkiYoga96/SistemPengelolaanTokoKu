@@ -61,6 +61,8 @@
             panel10 = new Panel();
             lblRoas = new Label();
             label7 = new Label();
+            infoRoas = new PictureBox();
+            infoAdmin = new PictureBox();
             tableLayoutPanel1.SuspendLayout();
             panel6.SuspendLayout();
             panel5.SuspendLayout();
@@ -78,6 +80,8 @@
             panel9.SuspendLayout();
             panel11.SuspendLayout();
             panel10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)infoRoas).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)infoAdmin).BeginInit();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -218,6 +222,7 @@
             // panel2
             // 
             panel2.BackColor = Color.White;
+            panel2.Controls.Add(infoAdmin);
             panel2.Controls.Add(label11);
             panel2.Controls.Add(numericAdmin);
             panel2.Controls.Add(label4);
@@ -372,6 +377,7 @@
             // panel9
             // 
             panel9.BackColor = Color.White;
+            panel9.Controls.Add(infoRoas);
             panel9.Controls.Add(panel11);
             panel9.Controls.Add(label12);
             panel9.Controls.Add(panel10);
@@ -443,6 +449,26 @@
             label7.TabIndex = 10;
             label7.Text = "ROAS";
             // 
+            // infoRoas
+            // 
+            infoRoas.BackgroundImage = Properties.Resources.TandaTanya;
+            infoRoas.BackgroundImageLayout = ImageLayout.Zoom;
+            infoRoas.Location = new Point(82, 11);
+            infoRoas.Name = "infoRoas";
+            infoRoas.Size = new Size(30, 30);
+            infoRoas.TabIndex = 10;
+            infoRoas.TabStop = false;
+            // 
+            // infoAdmin
+            // 
+            infoAdmin.BackgroundImage = Properties.Resources.TandaTanya;
+            infoAdmin.BackgroundImageLayout = ImageLayout.Zoom;
+            infoAdmin.Location = new Point(102, 11);
+            infoAdmin.Name = "infoAdmin";
+            infoAdmin.Size = new Size(30, 30);
+            infoAdmin.TabIndex = 19;
+            infoAdmin.TabStop = false;
+            // 
             // Dashboard_UC
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -480,6 +506,8 @@
             panel9.PerformLayout();
             panel11.ResumeLayout(false);
             panel10.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)infoRoas).EndInit();
+            ((System.ComponentModel.ISupportInitialize)infoAdmin).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -519,5 +547,7 @@
         private Label lblBiayaIklan;
         private Label label12;
         private PictureBox infoProfit;
+        private PictureBox infoAdmin;
+        private PictureBox infoRoas;
     }
 }

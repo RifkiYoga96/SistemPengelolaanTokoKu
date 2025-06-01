@@ -35,6 +35,8 @@ namespace Shopee
             comboRangeTime.SelectedIndex = 3;
 
             _toolTip.SetToolTip(infoProfit, "Daftar produk profit tertinggi.\nTidak termasuk nominal diskon");
+            _toolTip.SetToolTip(infoAdmin, "Persentase biaya iklan setiap kali \nterjadi transaksi");
+            _toolTip.SetToolTip(infoRoas, "ROAS (Return on Ad Spend) adalah rasio pendapatan\n yang dihasilkan dibanding biaya iklan.");
         }
 
         private List<RangeTimeModel> GetTimeFilterOptions(DateTime now)
