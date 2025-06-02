@@ -252,7 +252,7 @@ namespace Shopee
 
         private void CustomKebutuhanGrid()
         {
-            CustomGrids(KebutuhanGrid);
+            CustomComponent.CustomDataGrid_SmallFont(KebutuhanGrid);
 
             // Atur urutan kolom
             KebutuhanGrid.Columns["KomponenId"].DisplayIndex = 0;
@@ -286,7 +286,7 @@ namespace Shopee
 
         private void CustomDaftarGrid()
         {
-            CustomGrids(this.DaftarGrid);
+            CustomComponent.CustomDataGrid_SmallFont(this.DaftarGrid);
 
             //sembunyikan kolom
             DaftarGrid.Columns["KomponenId"].Visible = false;
@@ -305,59 +305,6 @@ namespace Shopee
 
             // Atur padding
             DaftarGrid.Columns["No"].DefaultCellStyle.Padding = new Padding(10, 0, 0, 0);
-        }
-
-        private void CustomGrids(DataGridView dgv)
-        {
-            dgv.BackgroundColor = Color.White;
-
-            dgv.EnableHeadersVisualStyles = false;
-            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-
-            // Mengatur ukuran font header kolom
-            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
-            dgv.DefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Regular);
-            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgv.GridColor = Color.Silver;
-            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
-            // Mengatur warna header kolom
-            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(52, 152, 219);
-            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgv.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(52, 152, 219);
-            dgv.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
-            dgv.ForeColor = Color.DimGray;
-
-
-            // Menonaktifkan warna seleksi untuk sel
-            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(240, 240, 240);
-            dgv.DefaultCellStyle.SelectionForeColor = dgv.DefaultCellStyle.ForeColor;
-
-            dgv.ColumnHeadersHeight = 35;
-            dgv.RowTemplate.Height = 40;
-
-            dgv.RowHeadersVisible = false;
-
-            // Mencegah penggeseran kolom
-            dgv.AllowUserToOrderColumns = false;
-
-            // Mencegah pengubahan ukuran kolom
-            dgv.AllowUserToResizeColumns = true;
-
-            // Mencegah pengubahan ukuran baris
-            dgv.AllowUserToResizeRows = false;
-
-            // Mencegah penambahan baris baru
-            dgv.AllowUserToAddRows = false;
-
-            dgv.RowPrePaint += (s, e) =>
-            {
-                if (e.RowIndex % 2 == 0) // Baris genap (putih)
-                    dgv.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
-                else // Baris ganjil (abu-abu)
-                    dgv.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(251, 251, 251);
-            };
         }
 
         #endregion

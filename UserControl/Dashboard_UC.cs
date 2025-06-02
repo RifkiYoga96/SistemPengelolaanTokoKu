@@ -153,7 +153,7 @@ namespace Shopee
         private void CustomGridPenjualan()
         {
             var dgv = gridProdukTerjual;
-            CustomGrid.CustomDataGrid(dgv);
+            CustomComponent.CustomDataGrid(dgv);
 
             dgv.Columns["No"].HeaderText = "   No";
             dgv.Columns["NamaProduk"].HeaderText = "Nama Produk";
@@ -173,7 +173,7 @@ namespace Shopee
         private void CustomGridProfit()
         {
             var dgv = gridProdukProfit;
-            CustomGrid.CustomDataGrid(dgv);
+            CustomComponent.CustomDataGrid(dgv);
 
             dgv.Columns["No"].HeaderText = "   No";
             dgv.Columns["NamaProduk"].HeaderText = "Nama Produk";

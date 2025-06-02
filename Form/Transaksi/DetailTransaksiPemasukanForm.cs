@@ -21,7 +21,6 @@ namespace Shopee
             InitializeComponent();
             this.IsDialogForm();
             GetData(id);
-            ResizeGrid();
             SetupGridPendapatan();
         }
 
@@ -59,15 +58,10 @@ namespace Shopee
 
         }
 
-        private void ResizeGrid()
-        {
-
-        }
-
         private void SetupGridPendapatan()
         {
             var dgv = gridPendapatan;
-            CustomizeGridStyle(dgv);
+            CustomComponent.CustomDataGrid_SmallFont(dgv);
 
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgv.Columns["No"].FillWeight = 10;
@@ -82,44 +76,6 @@ namespace Shopee
             dgv.Columns["No"].DefaultCellStyle.Padding = new Padding(10, 0, 0, 0);
             dgv.Columns["Jumlah"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgv.Columns["Jumlah"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-
-        }
-
-        private void CustomizeGridStyle(DataGridView dgv)
-        {
-            dgv.BackgroundColor = Color.White;
-            dgv.EnableHeadersVisualStyles = false;
-            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
-            dgv.DefaultCellStyle.Font = new Font("Segoe UI", 9);
-            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgv.GridColor = Color.Silver;
-            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
-            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(52, 152, 219);
-            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgv.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(52, 152, 219);
-            dgv.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
-
-            dgv.ForeColor = Color.DimGray;
-            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(240, 240, 240);
-            dgv.DefaultCellStyle.SelectionForeColor = dgv.DefaultCellStyle.ForeColor;
-
-            dgv.ColumnHeadersHeight = 35;
-            dgv.RowTemplate.Height = 40;
-            dgv.RowHeadersVisible = false;
-            dgv.AllowUserToOrderColumns = false;
-            dgv.AllowUserToResizeColumns = true;
-            dgv.AllowUserToResizeRows = false;
-            dgv.AllowUserToAddRows = false;
-
-            dgv.RowPrePaint += (s, e) =>
-            {
-                dgv.Rows[e.RowIndex].DefaultCellStyle.BackColor =
-                    e.RowIndex % 2 == 0 ? Color.White : Color.FromArgb(251, 251, 251);
-            };
         }
     }
 }
