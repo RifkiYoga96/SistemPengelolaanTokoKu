@@ -1,4 +1,3 @@
-using ShopeeApiWinForms;
 
 namespace Shopee
 {
