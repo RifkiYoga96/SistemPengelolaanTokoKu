@@ -54,7 +54,7 @@ namespace Shopee
 
             if (currentRow.Cells["nama_pengeluaran"].Value.ToString() == "Biaya Iklan")
             {
-                MessageBoxShow.Warning("Biaya Iklan tidak dapat dihapus!");
+                MessageBoxShow.Error("Biaya Iklan tidak dapat dihapus!");
                 return;
             }
 
