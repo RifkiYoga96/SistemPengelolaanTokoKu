@@ -125,7 +125,7 @@
             numericStok.Maximum = new decimal(new int[] { 100000000, 0, 0, 0 });
             numericStok.Name = "numericStok";
             numericStok.Size = new Size(135, 31);
-            numericStok.TabIndex = 2;
+            numericStok.TabIndex = 3;
             numericStok.TextAlign = HorizontalAlignment.Center;
             numericStok.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
@@ -139,7 +139,7 @@
             btnSave.Location = new Point(209, 325);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(122, 39);
-            btnSave.TabIndex = 4;
+            btnSave.TabIndex = 5;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = false;
             // 
@@ -150,7 +150,7 @@
             numericStokMinimum.Maximum = new decimal(new int[] { 100000000, 0, 0, 0 });
             numericStokMinimum.Name = "numericStokMinimum";
             numericStokMinimum.Size = new Size(138, 31);
-            numericStokMinimum.TabIndex = 3;
+            numericStokMinimum.TabIndex = 4;
             numericStokMinimum.TextAlign = HorizontalAlignment.Center;
             numericStokMinimum.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
@@ -172,7 +172,7 @@
             comboSatuan.Location = new Point(233, 172);
             comboSatuan.Name = "comboSatuan";
             comboSatuan.Size = new Size(98, 31);
-            comboSatuan.TabIndex = 25;
+            comboSatuan.TabIndex = 2;
             // 
             // label3
             // 

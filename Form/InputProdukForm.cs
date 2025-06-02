@@ -34,6 +34,7 @@ namespace Shopee
             txtNama.MaxLength = 50;
             numericHarga.Minimum = 1;
             numericHarga.Maximum = 10000000;
+            numericHarga.Text = null;
         }
 
         #endregion

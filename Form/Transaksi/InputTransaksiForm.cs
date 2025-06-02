@@ -68,6 +68,8 @@ namespace Shopee
 
         private void InitComponentPendapatan()
         {
+            numericHargaPendapatan.Text = null;
+
             var listProduk = _produkDal.ListProdukCombo()
                 .Select(x => new ProdukModel
                 {
@@ -93,16 +95,17 @@ namespace Shopee
             comboProdukPendapatan.SelectedIndexChanged += ComboProdukPendapatan_SelectedIndexChanged; ;
             gridPendapatan.CellMouseClick += GridPendapatan_CellMouseClick;
             deletePendapatan.Click += DeletePendapatan_Click;
-            numericHargaPendapatan.ValueChanged += (_,_) => CekStok_UpdateHarga();
+            //numericHargaPendapatan.ValueChanged += (_,_) => CekStok_UpdateHarga();
         }
 
         private void ComboProdukPendapatan_SelectedIndexChanged(object? sender, EventArgs e)
         {
             if (!_isUpdatingUICombo) return;
-            CekStok_UpdateHarga();
+            CekStok();
+            UpdateHargaProduk();
         }
 
-        private bool CekStok_UpdateHarga()
+        private bool CekStok()
         {
             int jumlah = Convert.ToInt32(numericJumlahPendapatan.Value);
             var item = comboProdukPendapatan.SelectedItem as ProdukModel;
@@ -113,7 +116,6 @@ namespace Shopee
                 MessageBoxShow.Warning($"Stok produk {item?.nama_produk} tidak mencukupi. Stok tersedia: {stokTersedia}");
                 return false;
             }
-            UpdateHargaProduk();
             return true;
         }
 
@@ -136,7 +138,7 @@ namespace Shopee
 
         private void AddPendapatan_UpdateStok(object? sender, EventArgs e)
         {
-            if (!CekStok_UpdateHarga()) return;
+            if (!CekStok()) return;
 
             if (comboProdukPendapatan.SelectedItem is not ProdukModel produk)
             {
@@ -188,7 +190,6 @@ namespace Shopee
             {
                 transaksiDetail.id_transaksi = id_transaksi;
                 int id_transaksi_detail = _transaksiDetailDal.InsertData(transaksiDetail); // data detail
-                MessageBox.Show(id_transaksi_detail.ToString());
                 _transaksiKomponenDetailDal.InsertData(transaksiDetail.id_produk, id_transaksi_detail);
             }
 
@@ -275,6 +276,8 @@ namespace Shopee
 
         private void InitComponentPengeluaran()
         {
+            numericHargaPengeluaran.Text = null;
+
             comboPengeluaran.DataSource = _pengeluaranDal.ListPengeluaranCombo();
             comboPengeluaran.DisplayMember = "nama_pengeluaran";
             comboPengeluaran.ValueMember = "id_pengeluaran";

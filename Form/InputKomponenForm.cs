@@ -35,6 +35,9 @@ namespace Shopee
             numericHarga.Minimum = 1;
             numericHarga.Maximum = 10000000;
             numericStok.Maximum = 10000;
+            numericHarga.Text = null;
+            numericStok.Text = null;
+            numericStokMinimum.Text = null;
 
             txtNama.Focus();
 

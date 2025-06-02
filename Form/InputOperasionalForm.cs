@@ -34,6 +34,7 @@ namespace Shopee
             txtNama.MaxLength = 50;
             numericBiaya.Minimum = 1;
             numericBiaya.Maximum = 10000000;
+            numericBiaya.Text = null;
         }
 
         #endregion
