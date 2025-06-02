@@ -92,7 +92,7 @@ namespace Shopee
         {
             btnSavePendapatan.Click += SaveDataPendapatan;
             btnAddPendapatan.Click += AddPendapatan_UpdateStok;
-            comboProdukPendapatan.SelectedIndexChanged += ComboProdukPendapatan_SelectedIndexChanged; ;
+            comboProdukPendapatan.SelectedIndexChanged += ComboProdukPendapatan_SelectedIndexChanged;
             gridPendapatan.CellMouseClick += GridPendapatan_CellMouseClick;
             deletePendapatan.Click += DeletePendapatan_Click;
             //numericHargaPendapatan.ValueChanged += (_,_) => CekStok_UpdateHarga();

@@ -76,14 +76,14 @@
             panel1.Controls.Add(txtSearch);
             panel1.Location = new Point(29, 78);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1095, 592);
+            panel1.Size = new Size(1133, 592);
             panel1.TabIndex = 0;
             // 
             // lblPaginationInfo
             // 
             lblPaginationInfo.Anchor = AnchorStyles.Bottom;
             lblPaginationInfo.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            lblPaginationInfo.Location = new Point(378, 538);
+            lblPaginationInfo.Location = new Point(397, 538);
             lblPaginationInfo.Name = "lblPaginationInfo";
             lblPaginationInfo.Size = new Size(331, 25);
             lblPaginationInfo.TabIndex = 17;
@@ -100,14 +100,14 @@
             panel2.Controls.Add(comboTotal);
             panel2.Location = new Point(25, 71);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1045, 433);
+            panel2.Size = new Size(1083, 433);
             panel2.TabIndex = 16;
             // 
             // lblPendapatan
             // 
             lblPendapatan.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             lblPendapatan.Font = new Font("Segoe UI Semibold", 14.2F, FontStyle.Bold, GraphicsUnit.Point);
-            lblPendapatan.Location = new Point(520, 393);
+            lblPendapatan.Location = new Point(558, 393);
             lblPendapatan.Name = "lblPendapatan";
             lblPendapatan.Size = new Size(517, 35);
             lblPendapatan.TabIndex = 7;
@@ -124,7 +124,7 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1043, 383);
+            dataGridView1.Size = new Size(1081, 383);
             dataGridView1.TabIndex = 2;
             // 
             // comboTotal
@@ -187,9 +187,9 @@
             // 
             lblPeriode.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lblPeriode.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            lblPeriode.Location = new Point(739, 15);
+            lblPeriode.Location = new Point(794, 15);
             lblPeriode.Name = "lblPeriode";
-            lblPeriode.Size = new Size(331, 25);
+            lblPeriode.Size = new Size(314, 25);
             lblPeriode.TabIndex = 5;
             lblPeriode.Text = "Periode : All time";
             lblPeriode.TextAlign = ContentAlignment.MiddleRight;
@@ -200,7 +200,7 @@
             lblPage.BackColor = Color.FromArgb(0, 86, 179);
             lblPage.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
             lblPage.ForeColor = Color.White;
-            lblPage.Location = new Point(940, 531);
+            lblPage.Location = new Point(978, 531);
             lblPage.Name = "lblPage";
             lblPage.Size = new Size(63, 38);
             lblPage.TabIndex = 9;
@@ -214,7 +214,7 @@
             btnPrevious.FlatStyle = FlatStyle.Flat;
             btnPrevious.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
             btnPrevious.ForeColor = Color.Black;
-            btnPrevious.Location = new Point(845, 531);
+            btnPrevious.Location = new Point(883, 531);
             btnPrevious.Name = "btnPrevious";
             btnPrevious.Size = new Size(98, 38);
             btnPrevious.TabIndex = 8;
@@ -228,7 +228,7 @@
             btnNext.FlatStyle = FlatStyle.Flat;
             btnNext.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
             btnNext.ForeColor = Color.Black;
-            btnNext.Location = new Point(1000, 531);
+            btnNext.Location = new Point(1038, 531);
             btnNext.Name = "btnNext";
             btnNext.Size = new Size(70, 38);
             btnNext.TabIndex = 7;
@@ -272,7 +272,7 @@
             label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(976, 25);
+            label2.Location = new Point(1014, 25);
             label2.Name = "label2";
             label2.Size = new Size(148, 35);
             label2.TabIndex = 6;
@@ -310,7 +310,7 @@
             Controls.Add(panel1);
             Controls.Add(btnAddData);
             Name = "TransaksiUC";
-            Size = new Size(1157, 704);
+            Size = new Size(1195, 704);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);

@@ -54,7 +54,7 @@ namespace Shopee
 
             // Sorting ComboBox
             comboSorting.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboSorting.Items.AddRange(new[] { "Terbaru ke terlama", "Terlama ke terbaru" });
+            comboSorting.Items.AddRange(new[] { "Default","Terbaru ke terlama", "Terlama ke terbaru" });
             comboSorting.SelectedIndex = 0;
 
             // Total ComboBox
@@ -267,7 +267,9 @@ namespace Shopee
             filterData.param.Add("@offset", offset);
 
             filterData.sql2 += comboSorting.SelectedIndex == 0
-                ? " ORDER BY t.tanggal DESC, t.id_transaksi DESC"
+                ? " ORDER BY t.id_transaksi DESC"
+                : comboSorting.SelectedIndex == 1 ?
+                  " ORDER BY t.tanggal DESC, t.id_transaksi DESC"
                 : " ORDER BY t.tanggal ASC, t.id_transaksi ASC";
 
             var listData = _transaksiDal.ListData(filterData)
