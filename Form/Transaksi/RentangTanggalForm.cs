@@ -28,7 +28,7 @@ namespace Shopee
         private void BtnOk_Click(object? sender, EventArgs e)
         {
             var date1 = dateTime1.Value.Date;
-            var date2 = dateTime2.Value.Date.AddDays(1); // +1 supaya di hari itu juga terdeteksi
+            var date2 = dateTime2.Value.Date.AddHours(23).AddMinutes(59).AddSeconds(59); // +1 supaya di hari itu juga terdeteksi
             TransaksiUC._date1 = date1;
             TransaksiUC._date2 = date2;
             this.DialogResult = DialogResult.OK;
