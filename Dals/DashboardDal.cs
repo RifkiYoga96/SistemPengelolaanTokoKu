@@ -126,11 +126,10 @@ namespace Shopee
                 FROM transaksi t
                 INNER JOIN transaksi_detail td 
                     ON t.id_transaksi = td.id_transaksi
-                WHERE t.tipe = 0 AND td.nama_transaksi = 'Biaya Iklan' AND (t.tanggal BETWEEN @tanggal1 AND @tanggal2)";
+                WHERE t.tipe = 0 AND (td.nama_transaksi = 'Biaya Iklan' OR td.nama_transaksi = 'Admin Biaya Iklan') AND (t.tanggal BETWEEN @tanggal1 AND @tanggal2)";
 
             using var koneksi = new SqlConnection(conn.connStr);
             return koneksi.QuerySingleOrDefault<int>(sql, filter.param);
-
         }
     }
 }
