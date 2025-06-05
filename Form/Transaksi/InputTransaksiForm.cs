@@ -324,6 +324,7 @@ namespace Shopee
 
             var transaksiDetail = new TransaksiDetailDto
             {
+                id_produk = null,
                 nama_transaksi = namaTransaksi,
                 harga = harga,
                 jumlah = jumlah

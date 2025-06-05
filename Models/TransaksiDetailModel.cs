@@ -17,6 +17,6 @@ namespace Shopee
 
     public class  TransaksiDetailDto : TransaksiDetailModel
     {
-        public int id_produk { get; set; }
+        public int? id_produk { get; set; }
     }
 }

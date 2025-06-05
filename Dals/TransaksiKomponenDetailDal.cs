@@ -10,7 +10,7 @@ namespace Shopee
 {
     public class TransaksiKomponenDetailDal
     {
-        public void InsertData(int id_produk, int id_transaksi_detail)
+        public void InsertData(int? id_produk, int id_transaksi_detail)
         {
             const string sql = @"
                 INSERT INTO transaksi_komponen_detail (id_transaksi_detail, id_komponen, nama_komponen, satuan, jumlah, harga)
