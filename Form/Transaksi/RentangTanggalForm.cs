@@ -16,7 +16,24 @@ namespace Shopee
         {
             InitializeComponent();
             GetData();
+            RegisterEvent();
+        }
+
+        private void RegisterEvent()
+        {
             btnOk.Click += BtnOk_Click;
+            btnSelectFormDate.Click += BtnSelectFormDate_Click;
+            btnSelectToDate.Click += BtnSelectToDate_Click;
+        }
+
+        private void BtnSelectToDate_Click(object? sender, EventArgs e)
+        {
+            dateTime1.Value = dateTime2.Value;
+        }
+
+        private void BtnSelectFormDate_Click(object? sender, EventArgs e)
+        {
+            dateTime2.Value = dateTime1.Value;
         }
 
         private void GetData()

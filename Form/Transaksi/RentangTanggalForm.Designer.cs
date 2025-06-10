@@ -33,6 +33,8 @@
             label1 = new Label();
             dateTime2 = new DateTimePicker();
             btnOk = new Button();
+            btnSelectFormDate = new Button();
+            btnSelectToDate = new Button();
             SuspendLayout();
             // 
             // dateTime1
@@ -74,18 +76,40 @@
             // btnOk
             // 
             btnOk.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btnOk.Location = new Point(124, 163);
+            btnOk.Location = new Point(163, 166);
             btnOk.Name = "btnOk";
             btnOk.Size = new Size(104, 31);
             btnOk.TabIndex = 2;
             btnOk.Text = "OK";
             btnOk.UseVisualStyleBackColor = true;
             // 
+            // btnSelectFormDate
+            // 
+            btnSelectFormDate.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSelectFormDate.Location = new Point(234, 48);
+            btnSelectFormDate.Name = "btnSelectFormDate";
+            btnSelectFormDate.Size = new Size(33, 27);
+            btnSelectFormDate.TabIndex = 17;
+            btnSelectFormDate.Text = "S";
+            btnSelectFormDate.UseVisualStyleBackColor = true;
+            // 
+            // btnSelectToDate
+            // 
+            btnSelectToDate.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSelectToDate.Location = new Point(234, 114);
+            btnSelectToDate.Name = "btnSelectToDate";
+            btnSelectToDate.Size = new Size(33, 27);
+            btnSelectToDate.TabIndex = 18;
+            btnSelectToDate.Text = "S";
+            btnSelectToDate.UseVisualStyleBackColor = true;
+            // 
             // RentangTanggalForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(262, 215);
+            ClientSize = new Size(287, 226);
+            Controls.Add(btnSelectToDate);
+            Controls.Add(btnSelectFormDate);
             Controls.Add(btnOk);
             Controls.Add(label1);
             Controls.Add(dateTime2);
@@ -106,5 +130,7 @@
         private Label label1;
         private DateTimePicker dateTime2;
         private Button btnOk;
+        private Button btnSelectFormDate;
+        private Button btnSelectToDate;
     }
 }
