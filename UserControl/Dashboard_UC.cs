@@ -105,15 +105,23 @@ namespace Shopee
 
         private FilterModel CreateFilter()
         {
+            var indexTime = comboRangeTime.SelectedIndex;
             var filterTime = comboRangeTime.SelectedItem;
-            var tanggal1 = ((RangeTimeModel)filterTime).TimeFilter1;
-            var tanggal2 = ((RangeTimeModel)filterTime).TimeFilter2;
 
             var filter = new FilterModel();
             var listFilter = new List<string>();
 
-            filter.param.Add("@tanggal1", tanggal1);
-            filter.param.Add("@tanggal2", tanggal2);
+            if (indexTime == 5)
+            {
+                filter.param.Add("@tanggal1", _date1);
+                filter.param.Add("@tanggal2", _date2);
+            }
+            else
+            {
+                var selectedItem = (RangeTimeModel)comboRangeTime.SelectedItem;
+                filter.param.Add("@tanggal1", selectedItem.TimeFilter1);
+                filter.param.Add("@tanggal2", selectedItem.TimeFilter2);
+            }
 
             return filter;
         }
