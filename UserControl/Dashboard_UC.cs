@@ -16,6 +16,9 @@ namespace Shopee
         private readonly DashboardDal _dashboardDal = new();
         private readonly CultureInfo _culture = new CultureInfo("id-ID");
         private ToolTip _toolTip = new ToolTip();
+        private int _indexFilterTimeActive = 0;
+        public static DateTime _date1 = DateTime.Today;
+        public static DateTime _date2 = DateTime.Today;
         public Dashboard_UC()
         {
             InitializeComponent();
@@ -33,6 +36,8 @@ namespace Shopee
             comboRangeTime.DisplayMember = "NameFilter";
             comboRangeTime.ValueMember = "NameFilter";
             comboRangeTime.SelectedIndex = 3;
+            //lblPeriode.Text = "Periode : ";
+            _indexFilterTimeActive = comboRangeTime.SelectedIndex;
 
             _toolTip.SetToolTip(infoProfit, "Daftar produk profit tertinggi.\nTidak termasuk nominal diskon");
             _toolTip.SetToolTip(infoAdmin, "Persentase biaya iklan setiap kali \nterjadi transaksi");
@@ -47,20 +52,55 @@ namespace Shopee
                     new RangeTimeModel { NameFilter = "Kemarin", TimeFilter1 = now.AddDays(-1), TimeFilter2 = now },
                     new RangeTimeModel { NameFilter = "7 hari lalu", TimeFilter1 = now.AddDays(-6), TimeFilter2 = now.AddDays(1) },
                     new RangeTimeModel { NameFilter = "30 hari lalu", TimeFilter1 = now.AddDays(-29), TimeFilter2 = now.AddDays(1) },
-                    new RangeTimeModel { NameFilter = "90 hari lalu", TimeFilter1 = now.AddDays(-89), TimeFilter2 = now.AddDays(1) }
+                    new RangeTimeModel { NameFilter = "90 hari lalu", TimeFilter1 = now.AddDays(-89), TimeFilter2 = now.AddDays(1) },
+                    new RangeTimeModel { NameFilter = "Atur rentang tanggal", TimeFilter1 = now, TimeFilter2 = now }
                 };
         }
 
         private void RegisterEvent()
         {
-            comboRangeTime.SelectedIndexChanged += (s, e) => LoadData();
+            comboRangeTime.SelectedIndexChanged += (s,e) => SetPeriode();
             numericAdmin.ValueChanged += UpdateAdmin;
+            this.Load += (s, e) => SetPeriode();
         }
+
 
         private void UpdateAdmin(object? sender, EventArgs e)
         {
             var admin = Convert.ToDecimal(100 - (int)numericAdmin.Value) / 100;
             _dashboardDal.UpdateAdminFee(admin);
+        }
+
+        private void SetPeriode()
+        {
+            int indexTime = comboRangeTime.SelectedIndex;
+            var selectedItem = (RangeTimeModel)comboRangeTime.SelectedItem;
+
+            if (indexTime == 5)
+            {
+                var filterForm = new RentangTanggalForm("dashboard")
+                {
+                    Location = new Point(Cursor.Position.X, Cursor.Position.Y - comboRangeTime.DropDownHeight)
+                };
+
+                if (filterForm.ShowDialog() == DialogResult.OK)
+                {
+                    lblPeriode.Text = $"Periode : {_date1:dd/MM/yyyy} - {_date2:dd/MM/yyyy}";
+                }
+                else
+                {
+                    comboRangeTime.SelectedIndex = _indexFilterTimeActive;
+                }
+            }
+            else
+            {
+                lblPeriode.Text = indexTime < 2
+                    ? $"Periode : {selectedItem.NameFilter}"
+                    : $"Periode : {selectedItem.TimeFilter1:dd/MM/yyyy} - {selectedItem.TimeFilter2.AddDays(-1):dd/MM/yyyy}";
+            }
+
+            LoadData();
+            _indexFilterTimeActive = comboRangeTime.SelectedIndex;
         }
 
         private FilterModel CreateFilter()

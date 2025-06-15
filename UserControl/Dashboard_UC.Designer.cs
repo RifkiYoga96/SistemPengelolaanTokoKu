@@ -41,6 +41,7 @@
             panel1 = new Panel();
             comboRangeTime = new ComboBox();
             panel2 = new Panel();
+            infoAdmin = new PictureBox();
             label11 = new Label();
             numericAdmin = new NumericUpDown();
             label4 = new Label();
@@ -55,20 +56,21 @@
             label1 = new Label();
             label2 = new Label();
             panel9 = new Panel();
+            infoRoas = new PictureBox();
             panel11 = new Panel();
             lblBiayaIklan = new Label();
             label12 = new Label();
             panel10 = new Panel();
             lblRoas = new Label();
             label7 = new Label();
-            infoRoas = new PictureBox();
-            infoAdmin = new PictureBox();
+            lblPeriode = new Label();
             tableLayoutPanel1.SuspendLayout();
             panel6.SuspendLayout();
             panel5.SuspendLayout();
             panel4.SuspendLayout();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)infoAdmin).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericAdmin).BeginInit();
             panel3.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
@@ -78,10 +80,9 @@
             panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridProdukTerjual).BeginInit();
             panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)infoRoas).BeginInit();
             panel11.SuspendLayout();
             panel10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)infoRoas).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)infoAdmin).BeginInit();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -230,6 +231,16 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(223, 115);
             panel2.TabIndex = 2;
+            // 
+            // infoAdmin
+            // 
+            infoAdmin.BackgroundImage = Properties.Resources.TandaTanya;
+            infoAdmin.BackgroundImageLayout = ImageLayout.Zoom;
+            infoAdmin.Location = new Point(102, 11);
+            infoAdmin.Name = "infoAdmin";
+            infoAdmin.Size = new Size(30, 30);
+            infoAdmin.TabIndex = 19;
+            infoAdmin.TabStop = false;
             // 
             // label11
             // 
@@ -387,6 +398,16 @@
             panel9.Size = new Size(559, 115);
             panel9.TabIndex = 8;
             // 
+            // infoRoas
+            // 
+            infoRoas.BackgroundImage = Properties.Resources.TandaTanya;
+            infoRoas.BackgroundImageLayout = ImageLayout.Zoom;
+            infoRoas.Location = new Point(82, 11);
+            infoRoas.Name = "infoRoas";
+            infoRoas.Size = new Size(30, 30);
+            infoRoas.TabIndex = 10;
+            infoRoas.TabStop = false;
+            // 
             // panel11
             // 
             panel11.BackColor = Color.White;
@@ -449,31 +470,22 @@
             label7.TabIndex = 10;
             label7.Text = "ROAS";
             // 
-            // infoRoas
+            // lblPeriode
             // 
-            infoRoas.BackgroundImage = Properties.Resources.TandaTanya;
-            infoRoas.BackgroundImageLayout = ImageLayout.Zoom;
-            infoRoas.Location = new Point(82, 11);
-            infoRoas.Name = "infoRoas";
-            infoRoas.Size = new Size(30, 30);
-            infoRoas.TabIndex = 10;
-            infoRoas.TabStop = false;
-            // 
-            // infoAdmin
-            // 
-            infoAdmin.BackgroundImage = Properties.Resources.TandaTanya;
-            infoAdmin.BackgroundImageLayout = ImageLayout.Zoom;
-            infoAdmin.Location = new Point(102, 11);
-            infoAdmin.Name = "infoAdmin";
-            infoAdmin.Size = new Size(30, 30);
-            infoAdmin.TabIndex = 19;
-            infoAdmin.TabStop = false;
+            lblPeriode.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            lblPeriode.Location = new Point(295, 16);
+            lblPeriode.Name = "lblPeriode";
+            lblPeriode.Size = new Size(314, 25);
+            lblPeriode.TabIndex = 9;
+            lblPeriode.Text = "Periode : All time";
+            lblPeriode.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // Dashboard_UC
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(230, 235, 240);
+            Controls.Add(lblPeriode);
             Controls.Add(panel9);
             Controls.Add(comboRangeTime);
             Controls.Add(label2);
@@ -492,6 +504,7 @@
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)infoAdmin).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericAdmin).EndInit();
             panel3.ResumeLayout(false);
             tableLayoutPanel2.ResumeLayout(false);
@@ -504,10 +517,9 @@
             ((System.ComponentModel.ISupportInitialize)gridProdukTerjual).EndInit();
             panel9.ResumeLayout(false);
             panel9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)infoRoas).EndInit();
             panel11.ResumeLayout(false);
             panel10.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)infoRoas).EndInit();
-            ((System.ComponentModel.ISupportInitialize)infoAdmin).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -549,5 +561,6 @@
         private PictureBox infoProfit;
         private PictureBox infoAdmin;
         private PictureBox infoRoas;
+        private Label lblPeriode;
     }
 }

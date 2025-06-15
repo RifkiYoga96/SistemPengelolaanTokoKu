@@ -20,7 +20,6 @@ namespace Shopee
         private int _indexFilterTimeActive = 0;
         private int _pageNow = 1;
         private int _totalPage = 0;
-        private string _periode = string.Empty;
         private readonly CultureInfo _culture;
         private readonly ImageCustomize _imageCustomize;
 
@@ -48,8 +47,7 @@ namespace Shopee
             comboTimeFilter.DropDownStyle = ComboBoxStyle.DropDownList;
             comboTimeFilter.DataSource = GetTimeFilterOptions(now);
             comboTimeFilter.DisplayMember = "NameFilter";
-            _periode = "Periode : Hari ini";
-            lblPeriode.Text = _periode;
+            lblPeriode.Text = "Periode : Hari ini";
             _indexFilterTimeActive = comboTimeFilter.SelectedIndex;
 
             // Sorting ComboBox
@@ -184,14 +182,14 @@ namespace Shopee
 
             if (indexTime == 5)
             {
-                var filterForm = new RentangTanggalForm
+                var filterForm = new RentangTanggalForm("transaksi")
                 {
                     Location = new Point(Cursor.Position.X, Cursor.Position.Y - comboTimeFilter.DropDownHeight)
                 };
 
                 if (filterForm.ShowDialog() == DialogResult.OK)
                 {
-                    _periode = $"Periode : {_date1:dd/MM/yyyy} - {_date2:dd/MM/yyyy}";
+                    lblPeriode.Text = $"Periode : {_date1:dd/MM/yyyy} - {_date2:dd/MM/yyyy}";
                 }
                 else
                 {
@@ -200,7 +198,7 @@ namespace Shopee
             }
             else
             {
-                _periode = indexTime < 2
+                lblPeriode.Text = indexTime < 2
                     ? $"Periode : {selectedItem.NameFilter}"
                     : $"Periode : {selectedItem.TimeFilter1:dd/MM/yyyy} - {selectedItem.TimeFilter2.AddDays(-1):dd/MM/yyyy}";
             }
@@ -208,7 +206,6 @@ namespace Shopee
             ResetPage();
             LoadData();
             _indexFilterTimeActive = comboTimeFilter.SelectedIndex;
-            lblPeriode.Text = _periode;
         }
 
         #endregion
