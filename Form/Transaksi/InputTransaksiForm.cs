@@ -26,6 +26,8 @@ namespace Shopee
         private readonly BindingList<TransaksiDetailDto> _listTransaksiPengeluaran = new();
         private readonly BindingList<ProdukModel> _produkComboList = new();
         private bool _isUpdatingUICombo = true;
+        private bool _openTanggal_Pendapatan = false;
+        private bool _openTanggal_Pengeluaran = false;
 
         public InputTransaksiForm(int tabIndex, int id = 0)
         {
@@ -95,7 +97,8 @@ namespace Shopee
             comboProdukPendapatan.SelectedIndexChanged += ComboProdukPendapatan_SelectedIndexChanged;
             gridPendapatan.CellMouseClick += GridPendapatan_CellMouseClick;
             deletePendapatan.Click += DeletePendapatan_Click;
-            //numericHargaPendapatan.ValueChanged += (_,_) => CekStok_UpdateHarga();
+            dtPendapatan.DropDown += (s,e) => _openTanggal_Pendapatan = true;
+            dtPengeluaran.DropDown += (s,e) => _openTanggal_Pengeluaran = true;
         }
 
         private void ComboProdukPendapatan_SelectedIndexChanged(object? sender, EventArgs e)
@@ -168,6 +171,11 @@ namespace Shopee
             if (_listTransaksiPendapatan.Count == 0)
             {
                 MessageBoxShow.Warning("Transaksi masih kosong!");
+                return;
+            }
+            if (!_openTanggal_Pendapatan)
+            {
+                MessageBoxShow.Warning("Atur tanggal terlebih dahulu!");
                 return;
             }
 
@@ -338,6 +346,11 @@ namespace Shopee
             if (_listTransaksiPengeluaran.Count == 0)
             {
                 MessageBoxShow.Warning("Transaksi masih kosong!");
+                return;
+            }
+            if (!_openTanggal_Pengeluaran)
+            {
+                MessageBoxShow.Warning("Atur tanggal terlebih dahulu!");
                 return;
             }
 
