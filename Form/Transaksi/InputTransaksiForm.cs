@@ -99,6 +99,13 @@ namespace Shopee
             deletePendapatan.Click += DeletePendapatan_Click;
             dtPendapatan.DropDown += (s,e) => _openTanggal_Pendapatan = true;
             dtPengeluaran.DropDown += (s,e) => _openTanggal_Pengeluaran = true;
+            dtPendapatan.ValueChanged += DtPendapatan_ValueChanged;
+        }
+
+        private void DtPendapatan_ValueChanged(object? sender, EventArgs e)
+        {
+            var time = dtPendapatan.Value.Date;
+            lblErrorTanggalPendapatan.Visible = time > DateTime.Now.Date;
         }
 
         private void ComboProdukPendapatan_SelectedIndexChanged(object? sender, EventArgs e)
@@ -176,6 +183,11 @@ namespace Shopee
             if (!_openTanggal_Pendapatan)
             {
                 MessageBoxShow.Warning("Atur tanggal terlebih dahulu!");
+                return;
+            }
+            if (lblErrorTanggalPendapatan.Visible)
+            {
+                MessageBoxShow.Warning("Tanggal maksimal hari ini!");
                 return;
             }
 
@@ -300,6 +312,13 @@ namespace Shopee
             btnAddPengeluaran.Click += AddPengeluaran;
             gridPengeluaran.CellMouseClick += GridPengeluaran_CellMouseClick;
             deletePengeluaran.Click += DeletePengeluaran_Click;
+            dtPengeluaran.ValueChanged += DtPengeluaran_ValueChanged;
+        }
+
+        private void DtPengeluaran_ValueChanged(object? sender, EventArgs e)
+        {
+            var time = dtPengeluaran.Value.Date;
+            lblErrorTanggalPengeluaran.Visible = time > DateTime.Now.Date;
         }
 
         private void DeletePengeluaran_Click(object? sender, EventArgs e)
@@ -351,6 +370,11 @@ namespace Shopee
             if (!_openTanggal_Pengeluaran)
             {
                 MessageBoxShow.Warning("Atur tanggal terlebih dahulu!");
+                return;
+            }
+            if (lblErrorTanggalPengeluaran.Visible)
+            {
+                MessageBoxShow.Warning("Tanggal maksimal hari ini!");
                 return;
             }
 

@@ -40,6 +40,7 @@
             lblJumlah = new Label();
             tabControl1 = new TabControl();
             tabPendapatan = new TabPage();
+            lblErrorTanggalPendapatan = new Label();
             label8 = new Label();
             numericNominalDiskon = new NumericUpDown();
             btnAddPendapatan = new Button();
@@ -63,6 +64,7 @@
             deletePendapatan = new ToolStripMenuItem();
             menuStripPengeluaran = new ContextMenuStrip(components);
             deletePengeluaran = new ToolStripMenuItem();
+            lblErrorTanggalPengeluaran = new Label();
             ((System.ComponentModel.ISupportInitialize)numericJumlahPendapatan).BeginInit();
             tabControl1.SuspendLayout();
             tabPendapatan.SuspendLayout();
@@ -173,6 +175,7 @@
             // 
             // tabPendapatan
             // 
+            tabPendapatan.Controls.Add(lblErrorTanggalPendapatan);
             tabPendapatan.Controls.Add(label8);
             tabPendapatan.Controls.Add(numericNominalDiskon);
             tabPendapatan.Controls.Add(btnAddPendapatan);
@@ -194,6 +197,19 @@
             tabPendapatan.TabIndex = 0;
             tabPendapatan.Text = "Pendapatan";
             tabPendapatan.UseVisualStyleBackColor = true;
+            // 
+            // lblErrorTanggalPendapatan
+            // 
+            lblErrorTanggalPendapatan.AutoSize = true;
+            lblErrorTanggalPendapatan.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            lblErrorTanggalPendapatan.ForeColor = Color.Red;
+            lblErrorTanggalPendapatan.Location = new Point(100, 27);
+            lblErrorTanggalPendapatan.Name = "lblErrorTanggalPendapatan";
+            lblErrorTanggalPendapatan.Size = new Size(188, 19);
+            lblErrorTanggalPendapatan.TabIndex = 103;
+            lblErrorTanggalPendapatan.Text = "⚠️ Tanggal maksimal hari ini!";
+            lblErrorTanggalPendapatan.TextAlign = ContentAlignment.MiddleRight;
+            lblErrorTanggalPendapatan.Visible = false;
             // 
             // label8
             // 
@@ -278,6 +294,7 @@
             // 
             // tabPengeluaran
             // 
+            tabPengeluaran.Controls.Add(lblErrorTanggalPengeluaran);
             tabPengeluaran.Controls.Add(btnAddPengeluaran);
             tabPengeluaran.Controls.Add(btnSavePengeluaran);
             tabPengeluaran.Controls.Add(gridPengeluaran);
@@ -425,14 +442,14 @@
             menuStripPendapatan.ImageScalingSize = new Size(20, 20);
             menuStripPendapatan.Items.AddRange(new ToolStripItem[] { deletePendapatan });
             menuStripPendapatan.Name = "menuStrip";
-            menuStripPendapatan.Size = new Size(215, 62);
+            menuStripPendapatan.Size = new Size(141, 34);
             // 
             // deletePendapatan
             // 
             deletePendapatan.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
             deletePendapatan.Image = (Image)resources.GetObject("deletePendapatan.Image");
             deletePendapatan.Name = "deletePendapatan";
-            deletePendapatan.Size = new Size(214, 30);
+            deletePendapatan.Size = new Size(140, 30);
             deletePendapatan.Text = "Delete";
             // 
             // menuStripPengeluaran
@@ -449,6 +466,19 @@
             deletePengeluaran.Name = "deletePengeluaran";
             deletePengeluaran.Size = new Size(140, 30);
             deletePengeluaran.Text = "Delete";
+            // 
+            // lblErrorTanggalPengeluaran
+            // 
+            lblErrorTanggalPengeluaran.AutoSize = true;
+            lblErrorTanggalPengeluaran.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            lblErrorTanggalPengeluaran.ForeColor = Color.Red;
+            lblErrorTanggalPengeluaran.Location = new Point(99, 32);
+            lblErrorTanggalPengeluaran.Name = "lblErrorTanggalPengeluaran";
+            lblErrorTanggalPengeluaran.Size = new Size(188, 19);
+            lblErrorTanggalPengeluaran.TabIndex = 104;
+            lblErrorTanggalPengeluaran.Text = "⚠️ Tanggal maksimal hari ini!";
+            lblErrorTanggalPengeluaran.TextAlign = ContentAlignment.MiddleRight;
+            lblErrorTanggalPengeluaran.Visible = false;
             // 
             // InputTransaksiForm
             // 
@@ -512,5 +542,7 @@
         private ToolStripMenuItem deletePendapatan;
         private ContextMenuStrip menuStripPengeluaran;
         private ToolStripMenuItem deletePengeluaran;
+        private Label lblErrorTanggalPendapatan;
+        private Label lblErrorTanggalPengeluaran;
     }
 }
