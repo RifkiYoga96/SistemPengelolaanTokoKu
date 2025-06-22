@@ -67,7 +67,7 @@ namespace Shopee
 
         private void UpdateAdmin(object? sender, EventArgs e)
         {
-            var admin = Convert.ToDecimal(100 - (int)numericAdmin.Value) / 100;
+            var admin = Convert.ToDecimal(100 - (decimal)numericAdmin.Value) / 100;
             _dashboardDal.UpdateAdminFee(admin);
         }
 
@@ -151,7 +151,7 @@ namespace Shopee
         private void LoadAdmin()
         {
             decimal admin = _dashboardDal.GetAdminFee();
-            int adminPercent = Convert.ToInt32((1 - admin) * 100);
+            decimal adminPercent = Convert.ToDecimal((1 - admin) * 100);
 
             numericAdmin.Value = adminPercent;
         }
