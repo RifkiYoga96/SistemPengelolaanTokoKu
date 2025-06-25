@@ -39,6 +39,7 @@
             btnKomponen = new Button();
             btnKomponenProduk = new Button();
             btnOperasional = new Button();
+            btnKalkulator = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
             flowLayoutPanel1.SuspendLayout();
@@ -98,6 +99,7 @@
             flowLayoutPanel1.Controls.Add(btnKomponen);
             flowLayoutPanel1.Controls.Add(btnKomponenProduk);
             flowLayoutPanel1.Controls.Add(btnOperasional);
+            flowLayoutPanel1.Controls.Add(btnKalkulator);
             flowLayoutPanel1.Dock = DockStyle.Left;
             flowLayoutPanel1.Location = new Point(0, 69);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -176,6 +178,20 @@
             btnOperasional.TextAlign = ContentAlignment.MiddleLeft;
             btnOperasional.UseVisualStyleBackColor = true;
             // 
+            // btnKalkulator
+            // 
+            btnKalkulator.FlatAppearance.BorderSize = 0;
+            btnKalkulator.FlatStyle = FlatStyle.Flat;
+            btnKalkulator.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            btnKalkulator.Location = new Point(0, 336);
+            btnKalkulator.Margin = new Padding(0);
+            btnKalkulator.Name = "btnKalkulator";
+            btnKalkulator.Size = new Size(280, 56);
+            btnKalkulator.TabIndex = 6;
+            btnKalkulator.Text = "     \U0001f9f0 Kalkulator Iklan && Laba";
+            btnKalkulator.TextAlign = ContentAlignment.MiddleLeft;
+            btnKalkulator.UseVisualStyleBackColor = true;
+            // 
             // DashboardForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -204,5 +220,6 @@
         private Button btnKomponen;
         private Button btnKomponenProduk;
         private Button btnOperasional;
+        private Button btnKalkulator;
     }
 }

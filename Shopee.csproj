@@ -12,6 +12,7 @@
     <PackageReference Include="Dapper" Version="2.1.35" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="RestSharp.Net2" Version="1.1.11" />
+    <PackageReference Include="Syncfusion.Core.WinForms" Version="28.1.41" />
     <PackageReference Include="Syncfusion.Tools.Windows" Version="26.2.5" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
   </ItemGroup>
