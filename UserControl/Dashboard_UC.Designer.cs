@@ -30,9 +30,12 @@
         {
             tableLayoutPanel1 = new TableLayoutPanel();
             panel6 = new Panel();
+            infoPrecentBersih = new PictureBox();
+            lblPercentBersih = new Label();
             lblPendapatanBersih = new Label();
             label10 = new Label();
             panel5 = new Panel();
+            label14 = new Label();
             lblPendapatanKotor = new Label();
             label8 = new Label();
             panel4 = new Panel();
@@ -56,6 +59,10 @@
             label1 = new Label();
             label2 = new Label();
             panel9 = new Panel();
+            infoACOS = new PictureBox();
+            panel12 = new Panel();
+            lblACOS = new Label();
+            label9 = new Label();
             infoRoas = new PictureBox();
             panel11 = new Panel();
             lblBiayaIklan = new Label();
@@ -66,6 +73,7 @@
             lblPeriode = new Label();
             tableLayoutPanel1.SuspendLayout();
             panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)infoPrecentBersih).BeginInit();
             panel5.SuspendLayout();
             panel4.SuspendLayout();
             panel1.SuspendLayout();
@@ -80,6 +88,8 @@
             panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridProdukTerjual).BeginInit();
             panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)infoACOS).BeginInit();
+            panel12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)infoRoas).BeginInit();
             panel11.SuspendLayout();
             panel10.SuspendLayout();
@@ -105,6 +115,8 @@
             // panel6
             // 
             panel6.BackColor = Color.YellowGreen;
+            panel6.Controls.Add(infoPrecentBersih);
+            panel6.Controls.Add(lblPercentBersih);
             panel6.Controls.Add(lblPendapatanBersih);
             panel6.Controls.Add(label10);
             panel6.Dock = DockStyle.Fill;
@@ -113,6 +125,29 @@
             panel6.Name = "panel6";
             panel6.Size = new Size(331, 154);
             panel6.TabIndex = 5;
+            // 
+            // infoPrecentBersih
+            // 
+            infoPrecentBersih.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            infoPrecentBersih.BackgroundImage = Properties.Resources.TandaTanya;
+            infoPrecentBersih.BackgroundImageLayout = ImageLayout.Zoom;
+            infoPrecentBersih.Location = new Point(214, 123);
+            infoPrecentBersih.Name = "infoPrecentBersih";
+            infoPrecentBersih.Size = new Size(30, 30);
+            infoPrecentBersih.TabIndex = 22;
+            infoPrecentBersih.TabStop = false;
+            // 
+            // lblPercentBersih
+            // 
+            lblPercentBersih.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            lblPercentBersih.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lblPercentBersih.ForeColor = Color.Maroon;
+            lblPercentBersih.Location = new Point(241, 121);
+            lblPercentBersih.Name = "lblPercentBersih";
+            lblPercentBersih.Size = new Size(85, 28);
+            lblPercentBersih.TabIndex = 12;
+            lblPercentBersih.Text = "41.49%";
+            lblPercentBersih.TextAlign = ContentAlignment.MiddleRight;
             // 
             // lblPendapatanBersih
             // 
@@ -138,6 +173,7 @@
             // panel5
             // 
             panel5.BackColor = Color.Goldenrod;
+            panel5.Controls.Add(label14);
             panel5.Controls.Add(lblPendapatanKotor);
             panel5.Controls.Add(label8);
             panel5.Dock = DockStyle.Fill;
@@ -146,6 +182,18 @@
             panel5.Name = "panel5";
             panel5.Size = new Size(331, 154);
             panel5.TabIndex = 4;
+            // 
+            // label14
+            // 
+            label14.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            label14.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label14.ForeColor = Color.Maroon;
+            label14.Location = new Point(218, 121);
+            label14.Name = "label14";
+            label14.Size = new Size(110, 28);
+            label14.TabIndex = 13;
+            label14.Text = "100%";
+            label14.TextAlign = ContentAlignment.MiddleRight;
             // 
             // lblPendapatanKotor
             // 
@@ -389,6 +437,9 @@
             // panel9
             // 
             panel9.BackColor = Color.White;
+            panel9.Controls.Add(infoACOS);
+            panel9.Controls.Add(panel12);
+            panel9.Controls.Add(label9);
             panel9.Controls.Add(infoRoas);
             panel9.Controls.Add(panel11);
             panel9.Controls.Add(label12);
@@ -396,8 +447,49 @@
             panel9.Controls.Add(label7);
             panel9.Location = new Point(307, 308);
             panel9.Name = "panel9";
-            panel9.Size = new Size(559, 115);
+            panel9.Size = new Size(761, 115);
             panel9.TabIndex = 8;
+            // 
+            // infoACOS
+            // 
+            infoACOS.BackgroundImage = Properties.Resources.TandaTanya;
+            infoACOS.BackgroundImageLayout = ImageLayout.Zoom;
+            infoACOS.Location = new Point(638, 11);
+            infoACOS.Name = "infoACOS";
+            infoACOS.Size = new Size(30, 30);
+            infoACOS.TabIndex = 19;
+            infoACOS.TabStop = false;
+            // 
+            // panel12
+            // 
+            panel12.BackColor = Color.White;
+            panel12.Controls.Add(lblACOS);
+            panel12.Location = new Point(576, 44);
+            panel12.Name = "panel12";
+            panel12.Size = new Size(158, 52);
+            panel12.TabIndex = 21;
+            // 
+            // lblACOS
+            // 
+            lblACOS.BackColor = Color.MistyRose;
+            lblACOS.Dock = DockStyle.Fill;
+            lblACOS.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            lblACOS.Location = new Point(0, 0);
+            lblACOS.Name = "lblACOS";
+            lblACOS.Size = new Size(158, 52);
+            lblACOS.TabIndex = 12;
+            lblACOS.Text = "4,76%";
+            lblACOS.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI Semibold", 12.5F, FontStyle.Bold, GraphicsUnit.Point);
+            label9.Location = new Point(576, 11);
+            label9.Name = "label9";
+            label9.Size = new Size(67, 30);
+            label9.TabIndex = 20;
+            label9.Text = "ACOS";
             // 
             // infoRoas
             // 
@@ -498,6 +590,7 @@
             tableLayoutPanel1.ResumeLayout(false);
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)infoPrecentBersih).EndInit();
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
             panel4.ResumeLayout(false);
@@ -518,6 +611,8 @@
             ((System.ComponentModel.ISupportInitialize)gridProdukTerjual).EndInit();
             panel9.ResumeLayout(false);
             panel9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)infoACOS).EndInit();
+            panel12.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)infoRoas).EndInit();
             panel11.ResumeLayout(false);
             panel10.ResumeLayout(false);
@@ -563,5 +658,12 @@
         private PictureBox infoAdmin;
         private PictureBox infoRoas;
         private Label lblPeriode;
+        private PictureBox infoACOS;
+        private Panel panel12;
+        private Label lblACOS;
+        private Label label9;
+        private Label lblPercentBersih;
+        private Label label14;
+        private PictureBox infoPrecentBersih;
     }
 }

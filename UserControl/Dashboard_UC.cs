@@ -42,6 +42,8 @@ namespace Shopee
             _toolTip.SetToolTip(infoProfit, "Daftar produk profit tertinggi.\nTidak termasuk nominal diskon");
             _toolTip.SetToolTip(infoAdmin, "Persentase biaya iklan setiap kali \nterjadi transaksi");
             _toolTip.SetToolTip(infoRoas, "ROAS (Return on Ad Spend) adalah rasio pendapatan\n yang dihasilkan dibanding biaya iklan.");
+            _toolTip.SetToolTip(infoPrecentBersih, "Persentase pendapatan bersih terhadap pendapatan kotor");
+            _toolTip.SetToolTip(infoACOS, "Persentase biaya iklan terhadap pendapatan kotor");
         }
 
         private List<RangeTimeModel> GetTimeFilterOptions(DateTime now)
@@ -140,12 +142,19 @@ namespace Shopee
         {
             int produkTerjual = _dashboardDal.GetProdukTerjual(filter);
             int pendapatanKotor = _dashboardDal.GetPendapatanKotor(filter);
-            int pendapatanBersih = 
+            int pendapatanBersih =
                 (_dashboardDal.GetPemasukanBersih(filter)) - (_dashboardDal.GetPengeluaran(filter));
 
             lblProdukTerjual.Text = produkTerjual.ToString();
             lblPendapatanKotor.Text = pendapatanKotor.ToString("C0", _culture);
             lblPendapatanBersih.Text = pendapatanBersih.ToString("C0", _culture);
+            lblPercentBersih.Text = CalculatePercent(pendapatanBersih, pendapatanKotor);
+        }
+
+        private string CalculatePercent(decimal value, decimal total)
+        {
+            decimal percent = (value / total) * 100;
+            return percent.ToString("0.##") + "%";
         }
 
         private void LoadAdmin()
@@ -158,10 +167,12 @@ namespace Shopee
 
         private void LoadIklan(FilterModel filter)
         {
+            int pendapatanKotor = _dashboardDal.GetPendapatanKotor(filter);
+
             int biayaIklan = _dashboardDal.GetBiayaIklan(filter);
             lblBiayaIklan.Text = biayaIklan.ToString("C0", _culture);
+            lblACOS.Text = biayaIklan == 0 ? "0.00%" : CalculatePercent(biayaIklan, pendapatanKotor);
 
-            int pendapatanKotor = _dashboardDal.GetPendapatanKotor(filter);
             decimal roas = biayaIklan == 0 ? 0.00m : pendapatanKotor/(decimal)biayaIklan;
 
             lblRoas.Text = roas.ToString("N2");
