@@ -16,10 +16,5 @@ namespace Shopee
         {
             InitializeComponent();
         }
-
-        private void percentTextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
