@@ -16,5 +16,15 @@ namespace Shopee
         {
             InitializeComponent();
         }
+
+        private bool ValidationRequiredInput()
+        {
+            if(currentPendapatanKotor.DecimalValue == 0 && txtProdukTerjual.Text == string.Empty)
+            {
+                MessageBoxShow.Warning("Pendapatan Kotor & Produk Terjual wajib diisi terlebih dahulu!");
+                return false;
+            }
+            return true;
+        }
     }
 }
