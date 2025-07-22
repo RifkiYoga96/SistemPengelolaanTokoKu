@@ -50,7 +50,7 @@
             percentBiayaLainnya = new Syncfusion.Windows.Forms.Tools.PercentTextBox();
             label2 = new Label();
             currentBiayaLainnya = new Syncfusion.Windows.Forms.Tools.CurrencyTextBox();
-            percentTextBox4 = new Syncfusion.Windows.Forms.Tools.PercentTextBox();
+            percentBiayaIklan = new Syncfusion.Windows.Forms.Tools.PercentTextBox();
             label3 = new Label();
             currentBiayaIklan = new Syncfusion.Windows.Forms.Tools.CurrencyTextBox();
             percentModal = new Syncfusion.Windows.Forms.Tools.PercentTextBox();
@@ -70,7 +70,7 @@
             ((System.ComponentModel.ISupportInitialize)currentPendapatanBersih).BeginInit();
             ((System.ComponentModel.ISupportInitialize)percentBiayaLainnya).BeginInit();
             ((System.ComponentModel.ISupportInitialize)currentBiayaLainnya).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)percentTextBox4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)percentBiayaIklan).BeginInit();
             ((System.ComponentModel.ISupportInitialize)currentBiayaIklan).BeginInit();
             ((System.ComponentModel.ISupportInitialize)percentModal).BeginInit();
             ((System.ComponentModel.ISupportInitialize)currentModal).BeginInit();
@@ -100,7 +100,7 @@
             panel1.Controls.Add(percentBiayaLainnya);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(currentBiayaLainnya);
-            panel1.Controls.Add(percentTextBox4);
+            panel1.Controls.Add(percentBiayaIklan);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(currentBiayaIklan);
             panel1.Controls.Add(percentModal);
@@ -117,13 +117,13 @@
             // 
             percentAdmin.AccessibilityEnabled = true;
             percentAdmin.BeforeTouchSize = new Size(182, 31);
-            percentAdmin.DoubleValue = 0.42D;
+            percentAdmin.DoubleValue = 0.135D;
             percentAdmin.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             percentAdmin.Location = new Point(335, 194);
             percentAdmin.Name = "percentAdmin";
             percentAdmin.Size = new Size(182, 31);
             percentAdmin.TabIndex = 48;
-            percentAdmin.Text = "42,00%";
+            percentAdmin.Text = "13,50%";
             percentAdmin.TextAlign = HorizontalAlignment.Center;
             // 
             // label14
@@ -347,18 +347,18 @@
             currentBiayaLainnya.TabIndex = 24;
             currentBiayaLainnya.Text = "Rp98.000";
             // 
-            // percentTextBox4
+            // percentBiayaIklan
             // 
-            percentTextBox4.AccessibilityEnabled = true;
-            percentTextBox4.BeforeTouchSize = new Size(182, 31);
-            percentTextBox4.DoubleValue = 0.065D;
-            percentTextBox4.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            percentTextBox4.Location = new Point(849, 115);
-            percentTextBox4.Name = "percentTextBox4";
-            percentTextBox4.Size = new Size(81, 31);
-            percentTextBox4.TabIndex = 23;
-            percentTextBox4.Text = "6,50%";
-            percentTextBox4.TextAlign = HorizontalAlignment.Center;
+            percentBiayaIklan.AccessibilityEnabled = true;
+            percentBiayaIklan.BeforeTouchSize = new Size(182, 31);
+            percentBiayaIklan.DoubleValue = 0.065D;
+            percentBiayaIklan.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
+            percentBiayaIklan.Location = new Point(849, 115);
+            percentBiayaIklan.Name = "percentBiayaIklan";
+            percentBiayaIklan.Size = new Size(81, 31);
+            percentBiayaIklan.TabIndex = 23;
+            percentBiayaIklan.Text = "6,50%";
+            percentBiayaIklan.TextAlign = HorizontalAlignment.Center;
             // 
             // label3
             // 
@@ -493,7 +493,7 @@
             ((System.ComponentModel.ISupportInitialize)currentPendapatanBersih).EndInit();
             ((System.ComponentModel.ISupportInitialize)percentBiayaLainnya).EndInit();
             ((System.ComponentModel.ISupportInitialize)currentBiayaLainnya).EndInit();
-            ((System.ComponentModel.ISupportInitialize)percentTextBox4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)percentBiayaIklan).EndInit();
             ((System.ComponentModel.ISupportInitialize)currentBiayaIklan).EndInit();
             ((System.ComponentModel.ISupportInitialize)percentModal).EndInit();
             ((System.ComponentModel.ISupportInitialize)currentModal).EndInit();
@@ -514,7 +514,7 @@
         private Syncfusion.Windows.Forms.Tools.PercentTextBox percentBiayaLainnya;
         private Label label2;
         private Syncfusion.Windows.Forms.Tools.CurrencyTextBox currentBiayaLainnya;
-        private Syncfusion.Windows.Forms.Tools.PercentTextBox percentTextBox4;
+        private Syncfusion.Windows.Forms.Tools.PercentTextBox percentBiayaIklan;
         private Label label3;
         private Syncfusion.Windows.Forms.Tools.CurrencyTextBox currentBiayaIklan;
         private Syncfusion.Windows.Forms.Tools.PercentTextBox percentModal;
