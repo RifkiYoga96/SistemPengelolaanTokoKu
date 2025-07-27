@@ -40,12 +40,13 @@ namespace Shopee
                             ISNULL(SUM(td.harga * td.jumlah),0)
                             - ISNULL(t.nominal_diskon, 0)
                         ) * ISNULL(t.admin, 0)
+                        - ISNULL(t.biaya_proses_pesanan, 0)
                         - ISNULL(SUM(dbo.HitungModalTransaksi(td.id_transaksi_detail) * td.jumlah), 0) 
                         AS pendapatan_bersih
                     FROM transaksi t
                     INNER JOIN transaksi_detail td ON t.id_transaksi = td.id_transaksi
                     WHERE (t.tanggal BETWEEN @tanggal1 AND @tanggal2) AND (t.tipe = 1)
-                    GROUP BY t.id_transaksi, t.nominal_diskon, t.admin
+                    GROUP BY t.id_transaksi, t.nominal_diskon, t.admin, t.biaya_proses_pesanan
                 )
                 SELECT ISNULL(SUM(pendapatan_bersih), 0) FROM Pemasukan;
                 ";

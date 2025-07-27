@@ -14,6 +14,7 @@ namespace Shopee
         public int? nominal_diskon { get; set; }
         public bool tipe { get; set; }
         public string status { get; set; }
+        public int biaya_proses_pesanan {  get; set; }
 
         public string nama_transaksi { get; set; }
         public int harga { get; set; }

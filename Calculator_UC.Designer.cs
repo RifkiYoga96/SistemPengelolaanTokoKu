@@ -30,9 +30,12 @@
         {
             components = new System.ComponentModel.Container();
             panel1 = new Panel();
+            percentBiayaIklan = new Label();
+            percentPendapatanBersih = new Label();
+            percentBiayaLainnya = new Label();
+            percentModal = new Label();
             percentAdmin = new Syncfusion.Windows.Forms.Tools.PercentTextBox();
             label14 = new Label();
-            percentAcos = new Syncfusion.Windows.Forms.Tools.PercentTextBox();
             txtProdukTerjual = new TextBox();
             label13 = new Label();
             btnReset = new Button();
@@ -40,20 +43,15 @@
             label10 = new Label();
             label9 = new Label();
             label8 = new Label();
-            label7 = new Label();
             currentBiayaPerKonversi = new Syncfusion.Windows.Forms.Tools.CurrencyTextBox();
             txtRoas = new TextBox();
             label6 = new Label();
-            percentPendapatanBersih = new Syncfusion.Windows.Forms.Tools.PercentTextBox();
             label5 = new Label();
             currentPendapatanBersih = new Syncfusion.Windows.Forms.Tools.CurrencyTextBox();
-            percentBiayaLainnya = new Syncfusion.Windows.Forms.Tools.PercentTextBox();
             label2 = new Label();
             currentBiayaLainnya = new Syncfusion.Windows.Forms.Tools.CurrencyTextBox();
-            percentBiayaIklan = new Syncfusion.Windows.Forms.Tools.PercentTextBox();
             label3 = new Label();
             currentBiayaIklan = new Syncfusion.Windows.Forms.Tools.CurrencyTextBox();
-            percentModal = new Syncfusion.Windows.Forms.Tools.PercentTextBox();
             label1 = new Label();
             currentModal = new Syncfusion.Windows.Forms.Tools.CurrencyTextBox();
             label4 = new Label();
@@ -63,16 +61,11 @@
             comboRangeTime = new ComboBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)percentAdmin).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)percentAcos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)infoRoas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)currentBiayaPerKonversi).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)percentPendapatanBersih).BeginInit();
             ((System.ComponentModel.ISupportInitialize)currentPendapatanBersih).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)percentBiayaLainnya).BeginInit();
             ((System.ComponentModel.ISupportInitialize)currentBiayaLainnya).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)percentBiayaIklan).BeginInit();
             ((System.ComponentModel.ISupportInitialize)currentBiayaIklan).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)percentModal).BeginInit();
             ((System.ComponentModel.ISupportInitialize)currentModal).BeginInit();
             ((System.ComponentModel.ISupportInitialize)currentPendapatanKotor).BeginInit();
             SuspendLayout();
@@ -80,9 +73,12 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
+            panel1.Controls.Add(percentBiayaIklan);
+            panel1.Controls.Add(percentPendapatanBersih);
+            panel1.Controls.Add(percentBiayaLainnya);
+            panel1.Controls.Add(percentModal);
             panel1.Controls.Add(percentAdmin);
             panel1.Controls.Add(label14);
-            panel1.Controls.Add(percentAcos);
             panel1.Controls.Add(txtProdukTerjual);
             panel1.Controls.Add(label13);
             panel1.Controls.Add(btnReset);
@@ -90,20 +86,15 @@
             panel1.Controls.Add(label10);
             panel1.Controls.Add(label9);
             panel1.Controls.Add(label8);
-            panel1.Controls.Add(label7);
             panel1.Controls.Add(currentBiayaPerKonversi);
             panel1.Controls.Add(txtRoas);
             panel1.Controls.Add(label6);
-            panel1.Controls.Add(percentPendapatanBersih);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(currentPendapatanBersih);
-            panel1.Controls.Add(percentBiayaLainnya);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(currentBiayaLainnya);
-            panel1.Controls.Add(percentBiayaIklan);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(currentBiayaIklan);
-            panel1.Controls.Add(percentModal);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(currentModal);
             panel1.Controls.Add(label4);
@@ -112,6 +103,51 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(967, 477);
             panel1.TabIndex = 0;
+            panel1.Paint += panel1_Paint;
+            // 
+            // percentBiayaIklan
+            // 
+            percentBiayaIklan.AutoSize = true;
+            percentBiayaIklan.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            percentBiayaIklan.Location = new Point(849, 117);
+            percentBiayaIklan.Name = "percentBiayaIklan";
+            percentBiayaIklan.Size = new Size(54, 25);
+            percentBiayaIklan.TabIndex = 52;
+            percentBiayaIklan.Text = "100%";
+            percentBiayaIklan.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // percentPendapatanBersih
+            // 
+            percentPendapatanBersih.AutoSize = true;
+            percentPendapatanBersih.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            percentPendapatanBersih.Location = new Point(523, 355);
+            percentPendapatanBersih.Name = "percentPendapatanBersih";
+            percentPendapatanBersih.Size = new Size(54, 25);
+            percentPendapatanBersih.TabIndex = 51;
+            percentPendapatanBersih.Text = "100%";
+            percentPendapatanBersih.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // percentBiayaLainnya
+            // 
+            percentBiayaLainnya.AutoSize = true;
+            percentBiayaLainnya.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            percentBiayaLainnya.Location = new Point(523, 275);
+            percentBiayaLainnya.Name = "percentBiayaLainnya";
+            percentBiayaLainnya.Size = new Size(54, 25);
+            percentBiayaLainnya.TabIndex = 50;
+            percentBiayaLainnya.Text = "100%";
+            percentBiayaLainnya.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // percentModal
+            // 
+            percentModal.AutoSize = true;
+            percentModal.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            percentModal.Location = new Point(523, 117);
+            percentModal.Name = "percentModal";
+            percentModal.Size = new Size(54, 25);
+            percentModal.TabIndex = 49;
+            percentModal.Text = "100%";
+            percentModal.TextAlign = ContentAlignment.MiddleRight;
             // 
             // percentAdmin
             // 
@@ -136,19 +172,6 @@
             label14.TabIndex = 47;
             label14.Text = "Admin Fee";
             label14.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // percentAcos
-            // 
-            percentAcos.AccessibilityEnabled = true;
-            percentAcos.BeforeTouchSize = new Size(182, 31);
-            percentAcos.DoubleValue = 0.42D;
-            percentAcos.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            percentAcos.Location = new Point(661, 352);
-            percentAcos.Name = "percentAcos";
-            percentAcos.Size = new Size(182, 31);
-            percentAcos.TabIndex = 46;
-            percentAcos.Text = "42,00%";
-            percentAcos.TextAlign = HorizontalAlignment.Center;
             // 
             // txtProdukTerjual
             // 
@@ -229,34 +252,28 @@
             label8.Text = "Biaya per konversi";
             label8.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            label7.Location = new Point(661, 324);
-            label7.Name = "label7";
-            label7.Size = new Size(59, 25);
-            label7.TabIndex = 36;
-            label7.Text = "ACOS";
-            label7.TextAlign = ContentAlignment.MiddleRight;
-            // 
             // currentBiayaPerKonversi
             // 
             currentBiayaPerKonversi.AccessibilityEnabled = true;
+            currentBiayaPerKonversi.BackGroundColor = Color.FromArgb(192, 255, 255);
             currentBiayaPerKonversi.BeforeTouchSize = new Size(182, 31);
             currentBiayaPerKonversi.DecimalValue = new decimal(new int[] { 13000000, 0, 0, 0 });
             currentBiayaPerKonversi.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             currentBiayaPerKonversi.Location = new Point(661, 273);
             currentBiayaPerKonversi.Name = "currentBiayaPerKonversi";
+            currentBiayaPerKonversi.ReadOnly = true;
+            currentBiayaPerKonversi.ReadOnlyBackColor = Color.FromArgb(192, 255, 255);
             currentBiayaPerKonversi.Size = new Size(182, 31);
             currentBiayaPerKonversi.TabIndex = 35;
             currentBiayaPerKonversi.Text = "Rp13.000.000";
             // 
             // txtRoas
             // 
+            txtRoas.BackColor = Color.FromArgb(192, 255, 255);
             txtRoas.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             txtRoas.Location = new Point(661, 194);
             txtRoas.Name = "txtRoas";
+            txtRoas.ReadOnly = true;
             txtRoas.Size = new Size(182, 31);
             txtRoas.TabIndex = 33;
             txtRoas.Text = "12,89";
@@ -272,20 +289,6 @@
             label6.TabIndex = 31;
             label6.Text = "ROAS";
             label6.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // percentPendapatanBersih
-            // 
-            percentPendapatanBersih.AccessibilityEnabled = true;
-            percentPendapatanBersih.BackGroundColor = Color.FromArgb(192, 255, 255);
-            percentPendapatanBersih.BeforeTouchSize = new Size(182, 31);
-            percentPendapatanBersih.DoubleValue = 0.4D;
-            percentPendapatanBersih.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            percentPendapatanBersih.Location = new Point(523, 352);
-            percentPendapatanBersih.Name = "percentPendapatanBersih";
-            percentPendapatanBersih.Size = new Size(81, 31);
-            percentPendapatanBersih.TabIndex = 29;
-            percentPendapatanBersih.Text = "40,00%";
-            percentPendapatanBersih.TextAlign = HorizontalAlignment.Center;
             // 
             // label5
             // 
@@ -307,22 +310,11 @@
             currentPendapatanBersih.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             currentPendapatanBersih.Location = new Point(335, 352);
             currentPendapatanBersih.Name = "currentPendapatanBersih";
+            currentPendapatanBersih.ReadOnly = true;
+            currentPendapatanBersih.ReadOnlyBackColor = Color.FromArgb(192, 255, 255);
             currentPendapatanBersih.Size = new Size(182, 31);
             currentPendapatanBersih.TabIndex = 27;
             currentPendapatanBersih.Text = "Rp6.560.000";
-            // 
-            // percentBiayaLainnya
-            // 
-            percentBiayaLainnya.AccessibilityEnabled = true;
-            percentBiayaLainnya.BeforeTouchSize = new Size(182, 31);
-            percentBiayaLainnya.DoubleValue = 0.003D;
-            percentBiayaLainnya.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            percentBiayaLainnya.Location = new Point(523, 273);
-            percentBiayaLainnya.Name = "percentBiayaLainnya";
-            percentBiayaLainnya.Size = new Size(81, 31);
-            percentBiayaLainnya.TabIndex = 26;
-            percentBiayaLainnya.Text = "0,30%";
-            percentBiayaLainnya.TextAlign = HorizontalAlignment.Center;
             // 
             // label2
             // 
@@ -347,19 +339,6 @@
             currentBiayaLainnya.TabIndex = 24;
             currentBiayaLainnya.Text = "Rp98.000";
             // 
-            // percentBiayaIklan
-            // 
-            percentBiayaIklan.AccessibilityEnabled = true;
-            percentBiayaIklan.BeforeTouchSize = new Size(182, 31);
-            percentBiayaIklan.DoubleValue = 0.065D;
-            percentBiayaIklan.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            percentBiayaIklan.Location = new Point(849, 115);
-            percentBiayaIklan.Name = "percentBiayaIklan";
-            percentBiayaIklan.Size = new Size(81, 31);
-            percentBiayaIklan.TabIndex = 23;
-            percentBiayaIklan.Text = "6,50%";
-            percentBiayaIklan.TextAlign = HorizontalAlignment.Center;
-            // 
             // label3
             // 
             label3.AutoSize = true;
@@ -382,19 +361,6 @@
             currentBiayaIklan.Size = new Size(182, 31);
             currentBiayaIklan.TabIndex = 21;
             currentBiayaIklan.Text = "Rp678.000";
-            // 
-            // percentModal
-            // 
-            percentModal.AccessibilityEnabled = true;
-            percentModal.BeforeTouchSize = new Size(182, 31);
-            percentModal.DoubleValue = 0.42D;
-            percentModal.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            percentModal.Location = new Point(523, 115);
-            percentModal.Name = "percentModal";
-            percentModal.Size = new Size(81, 31);
-            percentModal.TabIndex = 20;
-            percentModal.Text = "42,00%";
-            percentModal.TextAlign = HorizontalAlignment.Center;
             // 
             // label1
             // 
@@ -486,16 +452,11 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)percentAdmin).EndInit();
-            ((System.ComponentModel.ISupportInitialize)percentAcos).EndInit();
             ((System.ComponentModel.ISupportInitialize)infoRoas).EndInit();
             ((System.ComponentModel.ISupportInitialize)currentBiayaPerKonversi).EndInit();
-            ((System.ComponentModel.ISupportInitialize)percentPendapatanBersih).EndInit();
             ((System.ComponentModel.ISupportInitialize)currentPendapatanBersih).EndInit();
-            ((System.ComponentModel.ISupportInitialize)percentBiayaLainnya).EndInit();
             ((System.ComponentModel.ISupportInitialize)currentBiayaLainnya).EndInit();
-            ((System.ComponentModel.ISupportInitialize)percentBiayaIklan).EndInit();
             ((System.ComponentModel.ISupportInitialize)currentBiayaIklan).EndInit();
-            ((System.ComponentModel.ISupportInitialize)percentModal).EndInit();
             ((System.ComponentModel.ISupportInitialize)currentModal).EndInit();
             ((System.ComponentModel.ISupportInitialize)currentPendapatanKotor).EndInit();
             ResumeLayout(false);
@@ -508,22 +469,17 @@
         private Label label4;
         private TextBox txtRoas;
         private Label label6;
-        private Syncfusion.Windows.Forms.Tools.PercentTextBox percentPendapatanBersih;
         private Label label5;
         private Syncfusion.Windows.Forms.Tools.CurrencyTextBox currentPendapatanBersih;
-        private Syncfusion.Windows.Forms.Tools.PercentTextBox percentBiayaLainnya;
         private Label label2;
         private Syncfusion.Windows.Forms.Tools.CurrencyTextBox currentBiayaLainnya;
-        private Syncfusion.Windows.Forms.Tools.PercentTextBox percentBiayaIklan;
         private Label label3;
         private Syncfusion.Windows.Forms.Tools.CurrencyTextBox currentBiayaIklan;
-        private Syncfusion.Windows.Forms.Tools.PercentTextBox percentModal;
         private Label label1;
         private Syncfusion.Windows.Forms.Tools.CurrencyTextBox currentModal;
         private Syncfusion.Windows.Forms.Tools.CurrencyTextBox currentBiayaPerKonversi;
         private Label label9;
         private Label label8;
-        private Label label7;
         private Label label10;
         private Syncfusion.Windows.Forms.Tools.CurrencyTextBox currentPendapatanKotor;
         private PictureBox infoRoas;
@@ -533,8 +489,11 @@
         private Button btnReset;
         private TextBox txtProdukTerjual;
         private Label label13;
-        private Syncfusion.Windows.Forms.Tools.PercentTextBox percentAcos;
         private Syncfusion.Windows.Forms.Tools.PercentTextBox percentAdmin;
         private Label label14;
+        private Label percentBiayaIklan;
+        private Label percentPendapatanBersih;
+        private Label percentBiayaLainnya;
+        private Label percentModal;
     }
 }

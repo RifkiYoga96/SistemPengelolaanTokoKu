@@ -40,6 +40,8 @@
             lblJumlah = new Label();
             tabControl1 = new TabControl();
             tabPendapatan = new TabPage();
+            label3 = new Label();
+            numericBiayaProsesPesanan = new NumericUpDown();
             lblErrorTanggalPendapatan = new Label();
             label8 = new Label();
             numericNominalDiskon = new NumericUpDown();
@@ -49,6 +51,7 @@
             label7 = new Label();
             numericHargaPendapatan = new NumericUpDown();
             tabPengeluaran = new TabPage();
+            lblErrorTanggalPengeluaran = new Label();
             btnAddPengeluaran = new Button();
             btnSavePengeluaran = new Button();
             gridPengeluaran = new DataGridView();
@@ -64,10 +67,10 @@
             deletePendapatan = new ToolStripMenuItem();
             menuStripPengeluaran = new ContextMenuStrip(components);
             deletePengeluaran = new ToolStripMenuItem();
-            lblErrorTanggalPengeluaran = new Label();
             ((System.ComponentModel.ISupportInitialize)numericJumlahPendapatan).BeginInit();
             tabControl1.SuspendLayout();
             tabPendapatan.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numericBiayaProsesPesanan).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericNominalDiskon).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gridPendapatan).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericHargaPendapatan).BeginInit();
@@ -175,6 +178,8 @@
             // 
             // tabPendapatan
             // 
+            tabPendapatan.Controls.Add(label3);
+            tabPendapatan.Controls.Add(numericBiayaProsesPesanan);
             tabPendapatan.Controls.Add(lblErrorTanggalPendapatan);
             tabPendapatan.Controls.Add(label8);
             tabPendapatan.Controls.Add(numericNominalDiskon);
@@ -197,6 +202,30 @@
             tabPendapatan.TabIndex = 0;
             tabPendapatan.Text = "Pendapatan";
             tabPendapatan.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.Location = new Point(489, 316);
+            label3.Name = "label3";
+            label3.Size = new Size(115, 25);
+            label3.TabIndex = 105;
+            label3.Text = "Biaya Proses";
+            label3.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // numericBiayaProsesPesanan
+            // 
+            numericBiayaProsesPesanan.Font = new Font("Segoe UI", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
+            numericBiayaProsesPesanan.Location = new Point(489, 344);
+            numericBiayaProsesPesanan.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
+            numericBiayaProsesPesanan.Name = "numericBiayaProsesPesanan";
+            numericBiayaProsesPesanan.ReadOnly = true;
+            numericBiayaProsesPesanan.Size = new Size(143, 31);
+            numericBiayaProsesPesanan.TabIndex = 104;
+            numericBiayaProsesPesanan.TextAlign = HorizontalAlignment.Center;
+            numericBiayaProsesPesanan.Value = new decimal(new int[] { 1250, 0, 0, 0 });
+            numericBiayaProsesPesanan.ValueChanged += numericUpDown1_ValueChanged;
             // 
             // lblErrorTanggalPendapatan
             // 
@@ -228,7 +257,7 @@
             numericNominalDiskon.Location = new Point(309, 344);
             numericNominalDiskon.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             numericNominalDiskon.Name = "numericNominalDiskon";
-            numericNominalDiskon.Size = new Size(213, 31);
+            numericNominalDiskon.Size = new Size(159, 31);
             numericNominalDiskon.TabIndex = 29;
             numericNominalDiskon.TextAlign = HorizontalAlignment.Center;
             // 
@@ -313,6 +342,19 @@
             tabPengeluaran.TabIndex = 1;
             tabPengeluaran.Text = "Pengeluaran";
             tabPengeluaran.UseVisualStyleBackColor = true;
+            // 
+            // lblErrorTanggalPengeluaran
+            // 
+            lblErrorTanggalPengeluaran.AutoSize = true;
+            lblErrorTanggalPengeluaran.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            lblErrorTanggalPengeluaran.ForeColor = Color.Red;
+            lblErrorTanggalPengeluaran.Location = new Point(99, 32);
+            lblErrorTanggalPengeluaran.Name = "lblErrorTanggalPengeluaran";
+            lblErrorTanggalPengeluaran.Size = new Size(188, 19);
+            lblErrorTanggalPengeluaran.TabIndex = 104;
+            lblErrorTanggalPengeluaran.Text = "⚠️ Tanggal maksimal hari ini!";
+            lblErrorTanggalPengeluaran.TextAlign = ContentAlignment.MiddleRight;
+            lblErrorTanggalPengeluaran.Visible = false;
             // 
             // btnAddPengeluaran
             // 
@@ -467,19 +509,6 @@
             deletePengeluaran.Size = new Size(140, 30);
             deletePengeluaran.Text = "Delete";
             // 
-            // lblErrorTanggalPengeluaran
-            // 
-            lblErrorTanggalPengeluaran.AutoSize = true;
-            lblErrorTanggalPengeluaran.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
-            lblErrorTanggalPengeluaran.ForeColor = Color.Red;
-            lblErrorTanggalPengeluaran.Location = new Point(99, 32);
-            lblErrorTanggalPengeluaran.Name = "lblErrorTanggalPengeluaran";
-            lblErrorTanggalPengeluaran.Size = new Size(188, 19);
-            lblErrorTanggalPengeluaran.TabIndex = 104;
-            lblErrorTanggalPengeluaran.Text = "⚠️ Tanggal maksimal hari ini!";
-            lblErrorTanggalPengeluaran.TextAlign = ContentAlignment.MiddleRight;
-            lblErrorTanggalPengeluaran.Visible = false;
-            // 
             // InputTransaksiForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -495,6 +524,7 @@
             tabControl1.ResumeLayout(false);
             tabPendapatan.ResumeLayout(false);
             tabPendapatan.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numericBiayaProsesPesanan).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericNominalDiskon).EndInit();
             ((System.ComponentModel.ISupportInitialize)gridPendapatan).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericHargaPendapatan).EndInit();
@@ -544,5 +574,7 @@
         private ToolStripMenuItem deletePengeluaran;
         private Label lblErrorTanggalPendapatan;
         private Label lblErrorTanggalPengeluaran;
+        private Label label3;
+        private NumericUpDown numericBiayaProsesPesanan;
     }
 }

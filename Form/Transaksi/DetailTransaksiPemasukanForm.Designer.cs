@@ -46,6 +46,8 @@
             label2 = new Label();
             panel4 = new Panel();
             label4 = new Label();
+            lblBiayaProsesPesanan = new Label();
+            label8 = new Label();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)gridPendapatan).BeginInit();
             panel3.SuspendLayout();
@@ -122,6 +124,8 @@
             // panel3
             // 
             panel3.BackColor = Color.White;
+            panel3.Controls.Add(lblBiayaProsesPesanan);
+            panel3.Controls.Add(label8);
             panel3.Controls.Add(lblPendapatanBersih);
             panel3.Controls.Add(lblModal);
             panel3.Controls.Add(lblBiayaAdmin);
@@ -136,7 +140,7 @@
             panel3.Location = new Point(9, 251);
             panel3.Margin = new Padding(0);
             panel3.Name = "panel3";
-            panel3.Size = new Size(578, 193);
+            panel3.Size = new Size(578, 232);
             panel3.TabIndex = 1;
             // 
             // lblPendapatanBersih
@@ -144,7 +148,7 @@
             lblPendapatanBersih.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lblPendapatanBersih.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point);
             lblPendapatanBersih.ForeColor = Color.FromArgb(0, 192, 0);
-            lblPendapatanBersih.Location = new Point(422, 143);
+            lblPendapatanBersih.Location = new Point(422, 179);
             lblPendapatanBersih.Name = "lblPendapatanBersih";
             lblPendapatanBersih.Size = new Size(147, 34);
             lblPendapatanBersih.TabIndex = 24;
@@ -156,7 +160,7 @@
             lblModal.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lblModal.Font = new Font("Segoe UI Semibold", 9.8F, FontStyle.Bold, GraphicsUnit.Point);
             lblModal.ForeColor = Color.Black;
-            lblModal.Location = new Point(444, 113);
+            lblModal.Location = new Point(444, 149);
             lblModal.Name = "lblModal";
             lblModal.Size = new Size(125, 23);
             lblModal.TabIndex = 23;
@@ -205,7 +209,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI Semibold", 9.8F, FontStyle.Bold, GraphicsUnit.Point);
             label6.ForeColor = SystemColors.ControlDarkDark;
-            label6.Location = new Point(254, 152);
+            label6.Location = new Point(254, 188);
             label6.Name = "label6";
             label6.Size = new Size(152, 23);
             label6.TabIndex = 19;
@@ -218,7 +222,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI Semibold", 9.8F, FontStyle.Bold, GraphicsUnit.Point);
             label5.ForeColor = SystemColors.ControlDarkDark;
-            label5.Location = new Point(347, 113);
+            label5.Location = new Point(347, 149);
             label5.Name = "label5";
             label5.Size = new Size(59, 23);
             label5.TabIndex = 18;
@@ -256,7 +260,7 @@
             panel4.BackColor = Color.Silver;
             panel4.Location = new Point(412, 14);
             panel4.Name = "panel4";
-            panel4.Size = new Size(5, 163);
+            panel4.Size = new Size(5, 197);
             panel4.TabIndex = 15;
             // 
             // label4
@@ -272,12 +276,36 @@
             label4.Text = "Pendapatan Kotor";
             label4.TextAlign = ContentAlignment.MiddleRight;
             // 
+            // lblBiayaProsesPesanan
+            // 
+            lblBiayaProsesPesanan.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblBiayaProsesPesanan.Font = new Font("Segoe UI Semibold", 9.8F, FontStyle.Bold, GraphicsUnit.Point);
+            lblBiayaProsesPesanan.ForeColor = Color.Black;
+            lblBiayaProsesPesanan.Location = new Point(444, 113);
+            lblBiayaProsesPesanan.Name = "lblBiayaProsesPesanan";
+            lblBiayaProsesPesanan.Size = new Size(125, 23);
+            lblBiayaProsesPesanan.TabIndex = 26;
+            lblBiayaProsesPesanan.Text = "Rp1.250";
+            lblBiayaProsesPesanan.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // label8
+            // 
+            label8.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label8.Font = new Font("Segoe UI Semibold", 9.8F, FontStyle.Bold, GraphicsUnit.Point);
+            label8.ForeColor = SystemColors.ControlDarkDark;
+            label8.Location = new Point(214, 113);
+            label8.Name = "label8";
+            label8.Size = new Size(191, 23);
+            label8.TabIndex = 25;
+            label8.Text = "Biaya Proses Pesanan";
+            label8.TextAlign = ContentAlignment.MiddleRight;
+            // 
             // DetailTransaksiPemasukanForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(593, 449);
+            ClientSize = new Size(593, 490);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -312,5 +340,7 @@
         private Label label5;
         private Label lblTanggal;
         private Label label7;
+        private Label lblBiayaProsesPesanan;
+        private Label label8;
     }
 }

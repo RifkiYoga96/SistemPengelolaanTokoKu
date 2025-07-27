@@ -97,8 +97,8 @@ namespace Shopee
             comboProdukPendapatan.SelectedIndexChanged += ComboProdukPendapatan_SelectedIndexChanged;
             gridPendapatan.CellMouseClick += GridPendapatan_CellMouseClick;
             deletePendapatan.Click += DeletePendapatan_Click;
-            dtPendapatan.DropDown += (s,e) => _openTanggal_Pendapatan = true;
-            dtPengeluaran.DropDown += (s,e) => _openTanggal_Pengeluaran = true;
+            dtPendapatan.DropDown += (s, e) => _openTanggal_Pendapatan = true;
+            dtPengeluaran.DropDown += (s, e) => _openTanggal_Pengeluaran = true;
             dtPendapatan.ValueChanged += DtPendapatan_ValueChanged;
         }
 
@@ -194,6 +194,7 @@ namespace Shopee
             var tanggal = dtPendapatan.Value.Date;
             var nominalDiskon = (int)numericNominalDiskon.Value;
             var admin = _pengeluaranDal.GetAdmin();
+            var biayaProsesPesanan = (int)numericBiayaProsesPesanan.Value; 
 
             var transaksi = new TransaksiModel
             {
@@ -201,7 +202,8 @@ namespace Shopee
                 admin = admin,
                 tipe = true, // true karena pendapatan
                 nominal_diskon = nominalDiskon,
-                status = "selesai"
+                status = "selesai",
+                biaya_proses_pesanan = biayaProsesPesanan
             };
 
             int id_transaksi = _transaksiDal.InsertData(transaksi); //data induk
@@ -249,7 +251,7 @@ namespace Shopee
             {
                 string namaProduk = Regex.Replace(produkUpdate.nama_produk, @" \(\d+\)$", "");
 
-                if(addData)
+                if (addData)
                     produkUpdate.stok -= jumlah; // Kurangi stok produk
                 else
                     produkUpdate.stok += jumlah; // Tambah stok produk
@@ -442,5 +444,10 @@ namespace Shopee
         }
 
         #endregion
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

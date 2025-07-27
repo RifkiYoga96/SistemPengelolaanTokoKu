@@ -52,6 +52,7 @@ namespace Shopee
             lblPendapatanBersih.Text = pendapatanBersih?.ToString("C0", _culture) ?? "0";
             lblNominalDiskon.Text = nominalDiskon?.ToString("C0", _culture);
             lblBiayaAdmin.Text = ((pendapatanKotor - nominalDiskon) * adminConvert)?.ToString("C0", _culture);
+            lblBiayaProsesPesanan.Text = transaksi?.biaya_proses_pesanan.ToString("C0", _culture);
             lblTanggal.Text = transaksi?.tanggal.ToString("d MMMM yyyy");
 
             lblAdminKet.Text = $"Admin ({(adminConvert * 100).ToString()}%)";

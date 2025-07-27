@@ -27,6 +27,7 @@ namespace Shopee
                                 SUM(td.harga * td.jumlah)           -- total penjualan
                                 - t.nominal_diskon                  -- dikurangi diskon
                             ) * t.admin                             -- dikali admin
+                            - ISNULL(t.biaya_proses_pesanan, 0)                -- dikurangi biaya proses pesanan
                             - SUM(dbo.HitungModalTransaksi(td.id_transaksi_detail) * td.jumlah)   -- dikurangi modal
                             AS pendapatan_bersih
                         FROM transaksi t
@@ -37,7 +38,8 @@ namespace Shopee
                             t.tanggal,
                             t.admin,
                             t.tipe,
-                            t.nominal_diskon
+                            t.nominal_diskon,
+                            t.biaya_proses_pesanan
                         {filter.sql2}
                         OFFSET @offset ROWS FETCH NEXT @fetch ROWS ONLY";
 
@@ -64,13 +66,14 @@ namespace Shopee
                         (
                           SUM(CASE WHEN t.tipe = 1 THEN td.harga * td.jumlah ELSE 0 END)
                           - ISNULL(t.nominal_diskon, 0)                          
-                        ) * t.admin                                            
+                        ) * t.admin     
+                            - ISNULL(t.biaya_proses_pesanan, 0)               -- dikurangi biaya proses pesanan
                             - SUM(dbo.HitungModalTransaksi(td.id_transaksi_detail) * td.jumlah)                      
                             AS pendapatan_bersih
                     FROM transaksi t
                     INNER JOIN transaksi_detail td ON t.id_transaksi = td.id_transaksi
                     {filter.sql}
-                    GROUP BY t.id_transaksi, t.nominal_diskon, t.admin
+                    GROUP BY t.id_transaksi, t.nominal_diskon, t.admin, t.biaya_proses_pesanan
                 )
                 SELECT ISNULL(SUM(pendapatan_bersih), 0) FROM Pemasukan;
                 ";

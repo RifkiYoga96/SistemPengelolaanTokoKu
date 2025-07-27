@@ -22,18 +22,31 @@ namespace Shopee
 
         private void RegisterEvent()
         {
-            currentPendapatanKotor.TextChanged += (s, e) => Currency_TextChanged(currentPendapatanKotor);
-            currentModal.TextChanged += (s,e) => Currency_TextChanged(currentModal,percentModal);
-            currentBiayaLainnya.TextChanged += (s, e) => Currency_TextChanged(currentBiayaLainnya,percentBiayaLainnya);
-            currentBiayaIklan.TextChanged += (s, e) => Currency_TextChanged(currentBiayaIklan,percentBiayaIklan);
+            currentPendapatanKotor.TextChanged += (s, e) => Currency_ValueChanged(currentPendapatanKotor);
+            currentModal.TextChanged += (s, e) => Currency_ValueChanged(currentModal, percentModal);
+            currentBiayaLainnya.TextChanged += (s, e) => Currency_ValueChanged(currentBiayaLainnya, percentBiayaLainnya);
+            currentBiayaIklan.TextChanged += (s, e) => Currency_ValueChanged(currentBiayaIklan, percentBiayaIklan);
+            txtProdukTerjual.TextChanged += (s, e) => Currency_ValueChanged(null, null, false, true);
 
+            currentBiayaIklan.TextChanged += (s, e) => Iklan_ValueChanged();
         }
 
-        private async void Currency_TextChanged(CurrencyTextBox currencyTextBox = null, PercentTextBox? percentTextBox = null)
+        private async void Iklan_ValueChanged()
         {
             await Task.Delay(500);
 
             if (!ValidationRequiredInput()) return;
+
+            txtRoas.Text = (currentPendapatanKotor.DecimalValue / currentBiayaIklan.DecimalValue).ToString("N2");
+            currentBiayaPerKonversi.DecimalValue = (currentPendapatanKotor.DecimalValue == 0) ? 0 : currentBiayaIklan.DecimalValue / int.Parse(txtProdukTerjual.Text);
+        }
+
+        private async void Currency_ValueChanged(CurrencyTextBox? currencyTextBox = null, Label? lbl = null, bool nominal = true, bool produkTerjualChange = false)
+        {
+            await Task.Delay(500);
+
+            if (!ValidationRequiredInput()) return;
+
 
             //nominal
             decimal pendapatanKotor = currentPendapatanKotor.DecimalValue;
@@ -48,33 +61,29 @@ namespace Shopee
             currentPendapatanBersih.DecimalValue = pendapatanBersih;
 
             //persentase
-            if(currencyTextBox == currentPendapatanKotor)
+            if (currencyTextBox == currentPendapatanKotor || produkTerjualChange)
             {
                 //update all percent
-                percentModal.DoubleValue = (double)(modal * 100 / pendapatanKotor) / 100;
-                percentAdmin.DoubleValue = (double)adminFee;
-                percentBiayaIklan.DoubleValue = (double)(biayaIklan * 100 / pendapatanKotor) / 100;
-                percentBiayaLainnya.DoubleValue = (double)(biayaLainnya * 100 / pendapatanKotor) / 100;
-                percentAcos.DoubleValue = (double)(biayaIklan * 100 / pendapatanBersih) / 100;
+                percentModal.Text = ((modal * 100 / pendapatanKotor) / 100).ToString("P2");
+                percentBiayaIklan.Text = ((biayaIklan * 100 / pendapatanKotor) / 100).ToString("P2");
+                percentBiayaLainnya.Text = ((biayaLainnya * 100 / pendapatanKotor) / 100).ToString("P2");
+
+                currentBiayaPerKonversi.DecimalValue = (pendapatanKotor == 0) ? 0 : biayaIklan / produkTerjual;
+                txtRoas.Text = (pendapatanKotor == 0) ? "0" : (pendapatanKotor / biayaIklan).ToString("N2");
             }
 
-            if(currencyTextBox != null && percentTextBox != null)
+            if (currencyTextBox != null && lbl != null)
             {
-                percentTextBox.DoubleValue = (double)((currencyTextBox.DecimalValue * 100 / pendapatanKotor) / 100);
+                lbl.Text = ((currencyTextBox.DecimalValue * 100 / pendapatanKotor) / 100).ToString("P2");
             }
-            
-            double percentResult = 1 - percentModal.DoubleValue
-                                    - percentAdmin.DoubleValue
-                                    - percentBiayaIklan.DoubleValue
-                                    - percentBiayaLainnya.DoubleValue;
-            percentPendapatanBersih.DoubleValue = percentResult;
 
-            //MessageBox.Show((1 - adminFee).ToString());
+            string percentBersih = ((pendapatanBersih * 100 / pendapatanKotor) / 100).ToString("P2");
+            percentPendapatanBersih.Text = percentBersih;
         }
 
         private bool ValidationRequiredInput()
         {
-            if(currentPendapatanKotor.DecimalValue == 0 && txtProdukTerjual.Text == string.Empty)
+            if (currentPendapatanKotor.DecimalValue == 0 && txtProdukTerjual.Text == string.Empty)
             {
                 MessageBoxShow.Warning("Pendapatan Kotor & Produk Terjual wajib diisi terlebih dahulu!");
                 return false;
@@ -86,7 +95,7 @@ namespace Shopee
         {
             decimal pendapatanBersih = currentPendapatanBersih.DecimalValue;
 
-            if(pendapatanBersih < nominal)
+            if (pendapatanBersih < nominal)
             {
                 MessageBoxShow.Warning($"Nominal yang dimasukkan tidak boleh lebih dari {pendapatanBersih.ToString("C0")}");
                 return false;
@@ -94,16 +103,21 @@ namespace Shopee
             return true;
         }
 
-        private bool ValidationPrecent(double percent)
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
-            double pendapatanBersihPercent = percentPendapatanBersih.PercentValue;
 
-            if (pendapatanBersihPercent < percent)
-            {
-                MessageBoxShow.Warning($"Persentase yang dimasukkan tidak boleh lebih dari {pendapatanBersihPercent.ToString("P2")}");
-                return false;
-            }
-            return true;
         }
+
+        /* private bool ValidationPrecent(double percent)
+         {
+             double pendapatanBersihPercent = percentPendapatanBersih.PercentValue;
+
+             if (pendapatanBersihPercent < percent)
+             {
+                 MessageBoxShow.Warning($"Persentase yang dimasukkan tidak boleh lebih dari {pendapatanBersihPercent.ToString("P2")}");
+                 return false;
+             }
+             return true;
+         }*/
     }
 }

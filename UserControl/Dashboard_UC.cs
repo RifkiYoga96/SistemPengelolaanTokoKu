@@ -39,7 +39,7 @@ namespace Shopee
             //lblPeriode.Text = "Periode : ";
             _indexFilterTimeActive = comboRangeTime.SelectedIndex;
 
-            _toolTip.SetToolTip(infoProfit, "Daftar produk profit tertinggi.\nTidak termasuk nominal diskon");
+            _toolTip.SetToolTip(infoProfit, "Daftar produk profit tertinggi.\nTidak termasuk nominal diskon dan biaya proses pesanan");
             _toolTip.SetToolTip(infoAdmin, "Persentase biaya iklan setiap kali \nterjadi transaksi");
             _toolTip.SetToolTip(infoRoas, "ROAS (Return on Ad Spend) adalah rasio pendapatan\n yang dihasilkan dibanding biaya iklan.");
             _toolTip.SetToolTip(infoPrecentBersih, "Persentase pendapatan bersih terhadap pendapatan kotor");
