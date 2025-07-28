@@ -153,7 +153,7 @@ namespace Shopee
 
         private string CalculatePercent(decimal value, decimal total)
         {
-            decimal percent = (value / total) * 100;
+            decimal percent = total == 0 ? 0 : (value / total) * 100;
             return percent.ToString("0.##") + "%";
         }
 
