@@ -220,11 +220,9 @@
             numericBiayaProsesPesanan.Location = new Point(489, 344);
             numericBiayaProsesPesanan.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             numericBiayaProsesPesanan.Name = "numericBiayaProsesPesanan";
-            numericBiayaProsesPesanan.ReadOnly = true;
             numericBiayaProsesPesanan.Size = new Size(143, 31);
             numericBiayaProsesPesanan.TabIndex = 104;
             numericBiayaProsesPesanan.TextAlign = HorizontalAlignment.Center;
-            numericBiayaProsesPesanan.Value = new decimal(new int[] { 1250, 0, 0, 0 });
             numericBiayaProsesPesanan.ValueChanged += numericUpDown1_ValueChanged;
             // 
             // lblErrorTanggalPendapatan

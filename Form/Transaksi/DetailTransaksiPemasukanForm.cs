@@ -42,17 +42,18 @@ namespace Shopee
             decimal? biayaAdmin = transaksi?.admin;
             decimal? adminConvert = 1 - biayaAdmin;
             int? nominalDiskon = transaksi?.nominal_diskon;
+            int? biayaProsesPesanan = transaksi?.biaya_proses_pesanan;
 
             int pendapatanKotor = listTransaksiDetail.Sum(x => x.harga * x.jumlah); 
             int? modal = listTransaksiDetail.Sum(x => x.modal * x.jumlah); 
-            int? pendapatanBersih = Convert.ToInt32((pendapatanKotor - nominalDiskon) * biayaAdmin) - modal;
+            int? pendapatanBersih = Convert.ToInt32((pendapatanKotor - nominalDiskon) * biayaAdmin) - biayaProsesPesanan - modal;
 
             lblPendapatanKotor.Text = pendapatanKotor.ToString("C0", _culture);
             lblModal.Text = modal?.ToString("C0", _culture) ?? "0";
             lblPendapatanBersih.Text = pendapatanBersih?.ToString("C0", _culture) ?? "0";
             lblNominalDiskon.Text = nominalDiskon?.ToString("C0", _culture);
             lblBiayaAdmin.Text = ((pendapatanKotor - nominalDiskon) * adminConvert)?.ToString("C0", _culture);
-            lblBiayaProsesPesanan.Text = transaksi?.biaya_proses_pesanan.ToString("C0", _culture);
+            lblBiayaProsesPesanan.Text = biayaProsesPesanan?.ToString("C0", _culture);
             lblTanggal.Text = transaksi?.tanggal.ToString("d MMMM yyyy");
 
             lblAdminKet.Text = $"Admin ({(adminConvert * 100).ToString()}%)";

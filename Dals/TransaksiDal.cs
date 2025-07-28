@@ -49,7 +49,7 @@ namespace Shopee
         public TransaksiModel? GetData(int id)
         {
             const string sql = @" SELECT 
-                            id_transaksi, tanggal, tipe, admin, nominal_diskon
+                            id_transaksi, tanggal, tipe, admin, nominal_diskon, biaya_proses_pesanan
                         FROM transaksi
                         WHERE id_transaksi = @id";
 
@@ -129,10 +129,10 @@ namespace Shopee
         {
             const string sql = @"
                 INSERT INTO transaksi 
-                    (tanggal, tipe, admin, nominal_diskon, status) 
+                    (tanggal, tipe, admin, nominal_diskon, status, biaya_proses_pesanan) 
                 OUTPUT INSERTED.id_transaksi
                 VALUES 
-                    (@tanggal, @tipe, @admin, @nominal_diskon, @status)";
+                    (@tanggal, @tipe, @admin, @nominal_diskon, @status, @biaya_proses_pesanan)";
 
             using var koneksi = new SqlConnection(conn.connStr);
             return koneksi.QuerySingle<int>(sql, pendapatan);
