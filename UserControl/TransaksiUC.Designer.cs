@@ -283,23 +283,23 @@
             menuStrip.ImageScalingSize = new Size(20, 20);
             menuStrip.Items.AddRange(new ToolStripItem[] { deleteMenuStrip, detailMenuStrip });
             menuStrip.Name = "menuStrip";
-            menuStrip.Size = new Size(141, 64);
+            menuStrip.Size = new Size(215, 92);
             // 
             // deleteMenuStrip
             // 
             deleteMenuStrip.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
             deleteMenuStrip.Image = (Image)resources.GetObject("deleteMenuStrip.Image");
             deleteMenuStrip.Name = "deleteMenuStrip";
-            deleteMenuStrip.Size = new Size(140, 30);
+            deleteMenuStrip.Size = new Size(214, 30);
             deleteMenuStrip.Text = "Delete";
             // 
             // detailMenuStrip
             // 
             detailMenuStrip.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            detailMenuStrip.Image = Properties.Resources.pencil;
+            detailMenuStrip.Image = (Image)resources.GetObject("detailMenuStrip.Image");
             detailMenuStrip.Name = "detailMenuStrip";
-            detailMenuStrip.Size = new Size(140, 30);
-            detailMenuStrip.Text = "Edit";
+            detailMenuStrip.Size = new Size(214, 30);
+            detailMenuStrip.Text = "View Details";
             // 
             // TransaksiUC
             // 

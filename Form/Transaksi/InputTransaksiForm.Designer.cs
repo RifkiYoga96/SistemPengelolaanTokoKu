@@ -223,6 +223,7 @@
             numericBiayaProsesPesanan.Size = new Size(143, 31);
             numericBiayaProsesPesanan.TabIndex = 104;
             numericBiayaProsesPesanan.TextAlign = HorizontalAlignment.Center;
+            numericBiayaProsesPesanan.Value = new decimal(new int[] { 1250, 0, 0, 0 });
             numericBiayaProsesPesanan.ValueChanged += numericUpDown1_ValueChanged;
             // 
             // lblErrorTanggalPendapatan
