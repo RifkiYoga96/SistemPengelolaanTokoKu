@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DashboardForm));
             pictureBoxLogoToko = new PictureBox();
             panel2 = new Panel();
@@ -42,10 +43,17 @@
             btnOperasional = new Button();
             btnKalkulator = new Button();
             btnGantiToko = new Button();
+            menuStripGantiToko = new ContextMenuStrip(components);
+            editMenuStrip = new ToolStripMenuItem();
+            shopeeToolStripMenuItem = new ToolStripMenuItem();
+            tikTokToolStripMenuItem = new ToolStripMenuItem();
+            riyosaStoreToolStripMenuItem = new ToolStripMenuItem();
+            shopeeToolStripMenuItem1 = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)pictureBoxLogoToko).BeginInit();
             panel2.SuspendLayout();
             panel1.SuspendLayout();
             flowLayoutPanel1.SuspendLayout();
+            menuStripGantiToko.SuspendLayout();
             SuspendLayout();
             // 
             // pictureBoxLogoToko
@@ -221,6 +229,51 @@
             btnGantiToko.TextAlign = ContentAlignment.MiddleLeft;
             btnGantiToko.UseVisualStyleBackColor = true;
             // 
+            // menuStripGantiToko
+            // 
+            menuStripGantiToko.ImageScalingSize = new Size(20, 20);
+            menuStripGantiToko.Items.AddRange(new ToolStripItem[] { editMenuStrip, riyosaStoreToolStripMenuItem });
+            menuStripGantiToko.Name = "menuStrip";
+            menuStripGantiToko.Size = new Size(249, 144);
+            // 
+            // editMenuStrip
+            // 
+            editMenuStrip.DropDownItems.AddRange(new ToolStripItem[] { shopeeToolStripMenuItem, tikTokToolStripMenuItem });
+            editMenuStrip.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            editMenuStrip.Image = (Image)resources.GetObject("editMenuStrip.Image");
+            editMenuStrip.ImageScaling = ToolStripItemImageScaling.None;
+            editMenuStrip.Name = "editMenuStrip";
+            editMenuStrip.Size = new Size(258, 70);
+            editMenuStrip.Text = "Scurity Sensor";
+            // 
+            // shopeeToolStripMenuItem
+            // 
+            shopeeToolStripMenuItem.Name = "shopeeToolStripMenuItem";
+            shopeeToolStripMenuItem.Size = new Size(160, 30);
+            shopeeToolStripMenuItem.Text = "Shopee";
+            // 
+            // tikTokToolStripMenuItem
+            // 
+            tikTokToolStripMenuItem.Name = "tikTokToolStripMenuItem";
+            tikTokToolStripMenuItem.Size = new Size(160, 30);
+            tikTokToolStripMenuItem.Text = "TikTok";
+            // 
+            // riyosaStoreToolStripMenuItem
+            // 
+            riyosaStoreToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { shopeeToolStripMenuItem1 });
+            riyosaStoreToolStripMenuItem.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            riyosaStoreToolStripMenuItem.Image = (Image)resources.GetObject("riyosaStoreToolStripMenuItem.Image");
+            riyosaStoreToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
+            riyosaStoreToolStripMenuItem.Name = "riyosaStoreToolStripMenuItem";
+            riyosaStoreToolStripMenuItem.Size = new Size(258, 70);
+            riyosaStoreToolStripMenuItem.Text = "Riyosa Store";
+            // 
+            // shopeeToolStripMenuItem1
+            // 
+            shopeeToolStripMenuItem1.Name = "shopeeToolStripMenuItem1";
+            shopeeToolStripMenuItem1.Size = new Size(160, 30);
+            shopeeToolStripMenuItem1.Text = "Shopee";
+            // 
             // DashboardForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -236,6 +289,7 @@
             panel2.ResumeLayout(false);
             panel1.ResumeLayout(false);
             flowLayoutPanel1.ResumeLayout(false);
+            menuStripGantiToko.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -253,5 +307,11 @@
         private Button btnKalkulator;
         private Panel panel1;
         private Button btnGantiToko;
+        private ContextMenuStrip menuStripGantiToko;
+        private ToolStripMenuItem editMenuStrip;
+        private ToolStripMenuItem shopeeToolStripMenuItem;
+        private ToolStripMenuItem tikTokToolStripMenuItem;
+        private ToolStripMenuItem riyosaStoreToolStripMenuItem;
+        private ToolStripMenuItem shopeeToolStripMenuItem1;
     }
 }

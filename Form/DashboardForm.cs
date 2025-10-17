@@ -35,6 +35,13 @@ namespace Shopee
             btnKomponenProduk.Click += btnMenu_Click;
             btnOperasional.Click += btnMenu_Click;
             btnKalkulator.Click += btnMenu_Click;
+
+            btnGantiToko.Click += BtnGantiToko_Click;
+        }
+
+        private void BtnGantiToko_Click(object? sender, EventArgs e)
+        {
+            menuStripGantiToko.Show(btnGantiToko, new Point(0, btnGantiToko.Height));
         }
 
         private void btnMenu_Click(object? sender, EventArgs e)
@@ -89,5 +96,7 @@ namespace Shopee
             form.Dock = DockStyle.Fill;
             mainPanel.Controls.Add(form);
         }
+
+
     }
 }
