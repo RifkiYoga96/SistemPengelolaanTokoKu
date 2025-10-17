@@ -67,6 +67,8 @@
             deletePendapatan = new ToolStripMenuItem();
             menuStripPengeluaran = new ContextMenuStrip(components);
             deletePengeluaran = new ToolStripMenuItem();
+            label11 = new Label();
+            comboBulan = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)numericJumlahPendapatan).BeginInit();
             tabControl1.SuspendLayout();
             tabPendapatan.SuspendLayout();
@@ -508,12 +510,36 @@
             deletePengeluaran.Size = new Size(140, 30);
             deletePengeluaran.Text = "Delete";
             // 
+            // label11
+            // 
+            label11.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            label11.AutoSize = true;
+            label11.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            label11.Location = new Point(366, 65);
+            label11.Name = "label11";
+            label11.Size = new Size(144, 23);
+            label11.TabIndex = 106;
+            label11.Text = "Mulai dari bulan :";
+            label11.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // comboBulan
+            // 
+            comboBulan.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBulan.Font = new Font("Segoe UI", 9.2F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBulan.FormattingEnabled = true;
+            comboBulan.Location = new Point(516, 62);
+            comboBulan.Name = "comboBulan";
+            comboBulan.Size = new Size(163, 28);
+            comboBulan.TabIndex = 106;
+            // 
             // InputTransaksiForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(694, 521);
+            Controls.Add(comboBulan);
+            Controls.Add(label11);
             Controls.Add(tabControl1);
             Controls.Add(panel1);
             Controls.Add(label1);
@@ -535,6 +561,7 @@
             menuStripPendapatan.ResumeLayout(false);
             menuStripPengeluaran.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -575,5 +602,7 @@
         private Label lblErrorTanggalPengeluaran;
         private Label label3;
         private NumericUpDown numericBiayaProsesPesanan;
+        private Label label11;
+        private ComboBox comboBulan;
     }
 }

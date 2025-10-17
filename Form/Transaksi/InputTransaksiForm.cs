@@ -36,11 +36,29 @@ namespace Shopee
 
             _id = id;
 
+            InitComponent();
             InitializePendapatan();
             InitializePengeluaran();
 
             if (_id != 0)
                 LoadUpdateData(tabIndex);
+        }
+
+        private void InitComponent()
+        {
+            comboBulan.DataSource =
+                new List<string>()
+                {
+                    "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+                    "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+                };
+            comboBulan.SelectedIndex = globalVariable.indexBulan -1;
+            SetDateTime();
+
+            comboBulan.SelectedIndexChanged += (_, _) =>
+            {
+                SetDateTime();
+            };
         }
 
         private void LoadUpdateData(int tabIndex)
@@ -57,6 +75,19 @@ namespace Shopee
             }
 
             tabControl1.Selecting += (_, e) => e.Cancel = true;
+        }
+
+        private void SetDateTime()
+        {
+            int bulan = comboBulan.SelectedIndex + 1;
+            dtPendapatan.Value = GetDateTime(bulan);
+            dtPengeluaran.Value = GetDateTime(bulan);
+        }
+
+        private DateTime GetDateTime(int nomorBulan)
+        {
+            globalVariable.indexBulan = nomorBulan;
+            return new DateTime(DateTime.Now.Year, nomorBulan, 1);
         }
 
         #region PENDAPATAN
@@ -194,7 +225,7 @@ namespace Shopee
             var tanggal = dtPendapatan.Value.Date;
             var nominalDiskon = (int)numericNominalDiskon.Value;
             var admin = _pengeluaranDal.GetAdmin();
-            var biayaProsesPesanan = (int)numericBiayaProsesPesanan.Value; 
+            var biayaProsesPesanan = (int)numericBiayaProsesPesanan.Value;
 
             var transaksi = new TransaksiModel
             {
