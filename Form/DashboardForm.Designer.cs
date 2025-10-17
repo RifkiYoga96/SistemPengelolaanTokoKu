@@ -29,37 +29,41 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DashboardForm));
-            pictureBox1 = new PictureBox();
+            pictureBoxLogoToko = new PictureBox();
             panel2 = new Panel();
             mainPanel = new Panel();
-            btnDashboard = new Button();
+            panel1 = new Panel();
             flowLayoutPanel1 = new FlowLayoutPanel();
+            btnDashboard = new Button();
             btnTransaksi = new Button();
             btnProduk = new Button();
             btnKomponen = new Button();
             btnKomponenProduk = new Button();
             btnOperasional = new Button();
             btnKalkulator = new Button();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            btnGantiToko = new Button();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxLogoToko).BeginInit();
             panel2.SuspendLayout();
+            panel1.SuspendLayout();
             flowLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
-            // pictureBox1
+            // pictureBoxLogoToko
             // 
-            pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
-            pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox1.Location = new Point(12, 8);
-            pictureBox1.Margin = new Padding(3, 4, 3, 4);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(124, 52);
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
+            pictureBoxLogoToko.BackgroundImage = (Image)resources.GetObject("pictureBoxLogoToko.BackgroundImage");
+            pictureBoxLogoToko.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBoxLogoToko.Dock = DockStyle.Left;
+            pictureBoxLogoToko.Location = new Point(0, 0);
+            pictureBoxLogoToko.Margin = new Padding(3, 4, 3, 4);
+            pictureBoxLogoToko.Name = "pictureBoxLogoToko";
+            pictureBoxLogoToko.Size = new Size(277, 69);
+            pictureBoxLogoToko.TabIndex = 0;
+            pictureBoxLogoToko.TabStop = false;
             // 
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(10, 17, 40);
-            panel2.Controls.Add(pictureBox1);
+            panel2.Controls.Add(pictureBoxLogoToko);
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 0);
             panel2.Margin = new Padding(3, 4, 3, 4);
@@ -71,11 +75,36 @@
             // 
             mainPanel.BackColor = Color.FromArgb(230, 235, 240);
             mainPanel.Dock = DockStyle.Fill;
-            mainPanel.Location = new Point(280, 69);
+            mainPanel.Location = new Point(283, 69);
             mainPanel.Margin = new Padding(3, 4, 3, 4);
             mainPanel.Name = "mainPanel";
-            mainPanel.Size = new Size(710, 608);
+            mainPanel.Size = new Size(707, 608);
             mainPanel.TabIndex = 2;
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(flowLayoutPanel1);
+            panel1.Controls.Add(btnGantiToko);
+            panel1.Dock = DockStyle.Left;
+            panel1.Location = new Point(0, 69);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(283, 608);
+            panel1.TabIndex = 4;
+            // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.Controls.Add(btnDashboard);
+            flowLayoutPanel1.Controls.Add(btnTransaksi);
+            flowLayoutPanel1.Controls.Add(btnProduk);
+            flowLayoutPanel1.Controls.Add(btnKomponen);
+            flowLayoutPanel1.Controls.Add(btnKomponenProduk);
+            flowLayoutPanel1.Controls.Add(btnOperasional);
+            flowLayoutPanel1.Controls.Add(btnKalkulator);
+            flowLayoutPanel1.Dock = DockStyle.Top;
+            flowLayoutPanel1.Location = new Point(0, 0);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(283, 549);
+            flowLayoutPanel1.TabIndex = 3;
             // 
             // btnDashboard
             // 
@@ -90,21 +119,6 @@
             btnDashboard.Text = "     🏠 Dashboard";
             btnDashboard.TextAlign = ContentAlignment.MiddleLeft;
             btnDashboard.UseVisualStyleBackColor = true;
-            // 
-            // flowLayoutPanel1
-            // 
-            flowLayoutPanel1.Controls.Add(btnDashboard);
-            flowLayoutPanel1.Controls.Add(btnTransaksi);
-            flowLayoutPanel1.Controls.Add(btnProduk);
-            flowLayoutPanel1.Controls.Add(btnKomponen);
-            flowLayoutPanel1.Controls.Add(btnKomponenProduk);
-            flowLayoutPanel1.Controls.Add(btnOperasional);
-            flowLayoutPanel1.Controls.Add(btnKalkulator);
-            flowLayoutPanel1.Dock = DockStyle.Left;
-            flowLayoutPanel1.Location = new Point(0, 69);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(280, 608);
-            flowLayoutPanel1.TabIndex = 3;
             // 
             // btnTransaksi
             // 
@@ -192,19 +206,35 @@
             btnKalkulator.TextAlign = ContentAlignment.MiddleLeft;
             btnKalkulator.UseVisualStyleBackColor = true;
             // 
+            // btnGantiToko
+            // 
+            btnGantiToko.Dock = DockStyle.Bottom;
+            btnGantiToko.FlatAppearance.BorderSize = 0;
+            btnGantiToko.FlatStyle = FlatStyle.Flat;
+            btnGantiToko.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            btnGantiToko.Location = new Point(0, 552);
+            btnGantiToko.Margin = new Padding(0);
+            btnGantiToko.Name = "btnGantiToko";
+            btnGantiToko.Size = new Size(283, 56);
+            btnGantiToko.TabIndex = 7;
+            btnGantiToko.Text = "     \U0001f9f0 Ganti Toko";
+            btnGantiToko.TextAlign = ContentAlignment.MiddleLeft;
+            btnGantiToko.UseVisualStyleBackColor = true;
+            // 
             // DashboardForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(990, 677);
             Controls.Add(mainPanel);
-            Controls.Add(flowLayoutPanel1);
+            Controls.Add(panel1);
             Controls.Add(panel2);
             Margin = new Padding(3, 4, 3, 4);
             Name = "DashboardForm";
             Text = "DashboardForm";
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxLogoToko).EndInit();
             panel2.ResumeLayout(false);
+            panel1.ResumeLayout(false);
             flowLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -212,7 +242,7 @@
         #endregion
         private Panel panel2;
         private Panel mainPanel;
-        private PictureBox pictureBox1;
+        private PictureBox pictureBoxLogoToko;
         private Button btnDashboard;
         private FlowLayoutPanel flowLayoutPanel1;
         private Button btnTransaksi;
@@ -221,5 +251,7 @@
         private Button btnKomponenProduk;
         private Button btnOperasional;
         private Button btnKalkulator;
+        private Panel panel1;
+        private Button btnGantiToko;
     }
 }
