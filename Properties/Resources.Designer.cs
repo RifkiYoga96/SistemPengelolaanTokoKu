@@ -113,9 +113,39 @@ namespace Shopee.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap riyosa_store_shopee {
+            get {
+                object obj = ResourceManager.GetObject("riyosa store shopee", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap sampah {
             get {
                 object obj = ResourceManager.GetObject("sampah", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap scurity_sensor_shopee {
+            get {
+                object obj = ResourceManager.GetObject("scurity sensor shopee", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap scurity_sensor_tiktok {
+            get {
+                object obj = ResourceManager.GetObject("scurity sensor tiktok", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

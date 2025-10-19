@@ -45,10 +45,10 @@
             btnGantiToko = new Button();
             menuStripGantiToko = new ContextMenuStrip(components);
             editMenuStrip = new ToolStripMenuItem();
-            shopeeToolStripMenuItem = new ToolStripMenuItem();
-            tikTokToolStripMenuItem = new ToolStripMenuItem();
+            menuStripScuritySensorShopee = new ToolStripMenuItem();
+            menuStripScuritySensorTikTok = new ToolStripMenuItem();
             riyosaStoreToolStripMenuItem = new ToolStripMenuItem();
-            shopeeToolStripMenuItem1 = new ToolStripMenuItem();
+            menuStripRiyosaStoreShopee = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)pictureBoxLogoToko).BeginInit();
             panel2.SuspendLayout();
             panel1.SuspendLayout();
@@ -58,7 +58,7 @@
             // 
             // pictureBoxLogoToko
             // 
-            pictureBoxLogoToko.BackgroundImage = (Image)resources.GetObject("pictureBoxLogoToko.BackgroundImage");
+            pictureBoxLogoToko.BackgroundImage = Properties.Resources.scurity_sensor_shopee;
             pictureBoxLogoToko.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBoxLogoToko.Dock = DockStyle.Left;
             pictureBoxLogoToko.Location = new Point(0, 0);
@@ -238,29 +238,29 @@
             // 
             // editMenuStrip
             // 
-            editMenuStrip.DropDownItems.AddRange(new ToolStripItem[] { shopeeToolStripMenuItem, tikTokToolStripMenuItem });
+            editMenuStrip.DropDownItems.AddRange(new ToolStripItem[] { menuStripScuritySensorShopee, menuStripScuritySensorTikTok });
             editMenuStrip.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
             editMenuStrip.Image = (Image)resources.GetObject("editMenuStrip.Image");
             editMenuStrip.ImageScaling = ToolStripItemImageScaling.None;
             editMenuStrip.Name = "editMenuStrip";
-            editMenuStrip.Size = new Size(258, 70);
+            editMenuStrip.Size = new Size(248, 70);
             editMenuStrip.Text = "Scurity Sensor";
             // 
-            // shopeeToolStripMenuItem
+            // menuStripScuritySensorShopee
             // 
-            shopeeToolStripMenuItem.Name = "shopeeToolStripMenuItem";
-            shopeeToolStripMenuItem.Size = new Size(160, 30);
-            shopeeToolStripMenuItem.Text = "Shopee";
+            menuStripScuritySensorShopee.Name = "menuStripScuritySensorShopee";
+            menuStripScuritySensorShopee.Size = new Size(224, 30);
+            menuStripScuritySensorShopee.Text = "Shopee";
             // 
-            // tikTokToolStripMenuItem
+            // menuStripScuritySensorTikTok
             // 
-            tikTokToolStripMenuItem.Name = "tikTokToolStripMenuItem";
-            tikTokToolStripMenuItem.Size = new Size(160, 30);
-            tikTokToolStripMenuItem.Text = "TikTok";
+            menuStripScuritySensorTikTok.Name = "menuStripScuritySensorTikTok";
+            menuStripScuritySensorTikTok.Size = new Size(224, 30);
+            menuStripScuritySensorTikTok.Text = "TikTok";
             // 
             // riyosaStoreToolStripMenuItem
             // 
-            riyosaStoreToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { shopeeToolStripMenuItem1 });
+            riyosaStoreToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { menuStripRiyosaStoreShopee });
             riyosaStoreToolStripMenuItem.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
             riyosaStoreToolStripMenuItem.Image = (Image)resources.GetObject("riyosaStoreToolStripMenuItem.Image");
             riyosaStoreToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
@@ -268,11 +268,11 @@
             riyosaStoreToolStripMenuItem.Size = new Size(258, 70);
             riyosaStoreToolStripMenuItem.Text = "Riyosa Store";
             // 
-            // shopeeToolStripMenuItem1
+            // menuStripRiyosaStoreShopee
             // 
-            shopeeToolStripMenuItem1.Name = "shopeeToolStripMenuItem1";
-            shopeeToolStripMenuItem1.Size = new Size(160, 30);
-            shopeeToolStripMenuItem1.Text = "Shopee";
+            menuStripRiyosaStoreShopee.Name = "menuStripRiyosaStoreShopee";
+            menuStripRiyosaStoreShopee.Size = new Size(224, 30);
+            menuStripRiyosaStoreShopee.Text = "Shopee";
             // 
             // DashboardForm
             // 
@@ -309,9 +309,9 @@
         private Button btnGantiToko;
         private ContextMenuStrip menuStripGantiToko;
         private ToolStripMenuItem editMenuStrip;
-        private ToolStripMenuItem shopeeToolStripMenuItem;
-        private ToolStripMenuItem tikTokToolStripMenuItem;
+        private ToolStripMenuItem menuStripScuritySensorShopee;
+        private ToolStripMenuItem menuStripScuritySensorTikTok;
         private ToolStripMenuItem riyosaStoreToolStripMenuItem;
-        private ToolStripMenuItem shopeeToolStripMenuItem1;
+        private ToolStripMenuItem menuStripRiyosaStoreShopee;
     }
 }

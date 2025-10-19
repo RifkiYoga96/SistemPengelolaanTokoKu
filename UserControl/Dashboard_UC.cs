@@ -154,7 +154,7 @@ namespace Shopee
         private string CalculatePercent(decimal value, decimal total)
         {
             decimal percent = total == 0 ? 0 : (value / total) * 100;
-            return percent.ToString("0.##") + "%";
+            return percent.ToString("0.00") + "%";
         }
 
         private void LoadAdmin()
@@ -171,7 +171,7 @@ namespace Shopee
 
             int biayaIklan = _dashboardDal.GetBiayaIklan(filter);
             lblBiayaIklan.Text = biayaIklan.ToString("C0", _culture);
-            lblACOS.Text = biayaIklan == 0 ? "0.00%" : CalculatePercent(biayaIklan, pendapatanKotor);
+            lblACOS.Text = CalculatePercent(biayaIklan, pendapatanKotor);
 
             decimal roas = biayaIklan == 0 ? 0.00m : pendapatanKotor/(decimal)biayaIklan;
 

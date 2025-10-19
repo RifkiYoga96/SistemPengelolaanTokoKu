@@ -136,10 +136,19 @@
   <data name="sampah" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\sampah.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="TandaTanya" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TandaTanya.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Habis" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Habis.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="TandaTanya" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TandaTanya.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="riyosa store shopee" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\riyosa store shopee2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="scurity sensor tiktok" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\scurity sensor tiktok1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="scurity sensor shopee" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\scurity sensor shopee1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

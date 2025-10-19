@@ -14,6 +14,9 @@ namespace Shopee
     public partial class DashboardForm : Form
     {
         private Button? _buttonActive = null;
+        private Image _scurity_sensor_shopee = Properties.Resources.scurity_sensor_shopee;
+        private Image _scurity_sensor_tiktok = Properties.Resources.scurity_sensor_tiktok;
+        private Image _riyosa_store_shopee = Properties.Resources.riyosa_store_shopee;
         public DashboardForm()
         {
             InitializeComponent();
@@ -37,6 +40,50 @@ namespace Shopee
             btnKalkulator.Click += btnMenu_Click;
 
             btnGantiToko.Click += BtnGantiToko_Click;
+            menuStripScuritySensorShopee.Click += MenuStripScuritySensorShopee_Click;
+            menuStripScuritySensorTikTok.Click += MenuStripScuritySensorTikTok_Click;
+            menuStripRiyosaStoreShopee.Click += MenuStripRiyosaStoreShopee_Click;
+        }
+
+        private async void MenuStripRiyosaStoreShopee_Click(object? sender, EventArgs e)
+        {
+            bool sukses = await conn.GantiDatabaseAsync("db_scuritysensor_tiktok");
+
+            if (sukses)
+                MessageBox.Show($"Berhasil Pindah Ke Toko Riyosa Store - Shopee");
+            else
+                MessageBox.Show("Gagal pindah toko!");
+
+            pictureBoxLogoToko.BackgroundImage = _riyosa_store_shopee;
+
+            btnDashboard.PerformClick();
+        }
+
+        private async void MenuStripScuritySensorTikTok_Click(object? sender, EventArgs e)
+        {
+            bool sukses = await conn.GantiDatabaseAsync("db_scuritysensor_tiktok");
+
+            if (sukses)
+                MessageBox.Show($"Berhasil Pindah Ke Toko Scurity Sensor - TikTok");
+            else
+                MessageBox.Show("Gagal pindah toko!");
+
+            pictureBoxLogoToko.BackgroundImage = _scurity_sensor_tiktok;
+
+            btnDashboard.PerformClick();
+        }
+
+        private async void MenuStripScuritySensorShopee_Click(object? sender, EventArgs e)
+        {
+            bool sukses = await conn.GantiDatabaseAsync("db_scuritysensor_shopee");
+
+            if (sukses)
+                MessageBox.Show($"Berhasil Pindah Ke Toko Scurity Sensor - Shopee");
+            else
+                MessageBox.Show("Gagal pindah toko!");
+
+            pictureBoxLogoToko.BackgroundImage = _scurity_sensor_shopee;
+            btnDashboard.PerformClick();
         }
 
         private void BtnGantiToko_Click(object? sender, EventArgs e)
@@ -96,7 +143,6 @@ namespace Shopee
             form.Dock = DockStyle.Fill;
             mainPanel.Controls.Add(form);
         }
-
 
     }
 }
