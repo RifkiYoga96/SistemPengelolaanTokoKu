@@ -47,14 +47,14 @@ namespace Shopee
 
         private async void MenuStripRiyosaStoreShopee_Click(object? sender, EventArgs e)
         {
-            bool sukses = await conn.GantiDatabaseAsync("db_scuritysensor_tiktok");
+            bool sukses = await conn.GantiDatabaseAsync("db_riyosastore_shopee");
 
             if (sukses)
                 MessageBox.Show($"Berhasil Pindah Ke Toko Riyosa Store - Shopee");
             else
                 MessageBox.Show("Gagal pindah toko!");
 
-            pictureBoxLogoToko.BackgroundImage = _riyosa_store_shopee;
+            pictureBoxLogoToko.BackgroundImage = _riyosa_store_shopee; 
 
             btnDashboard.PerformClick();
         }

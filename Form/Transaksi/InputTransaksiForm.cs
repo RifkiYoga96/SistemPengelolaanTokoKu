@@ -21,6 +21,7 @@ namespace Shopee
         private readonly TransaksiDal _transaksiDal = new();
         private readonly TransaksiDetailDal _transaksiDetailDal = new();
         private readonly TransaksiKomponenDetailDal _transaksiKomponenDetailDal = new();
+        private readonly DashboardDal _dashboardDal = new();
         private readonly int _id;
         private readonly BindingList<TransaksiDetailDto> _listTransaksiPendapatan = new();
         private readonly BindingList<TransaksiDetailDto> _listTransaksiPengeluaran = new();
@@ -97,6 +98,15 @@ namespace Shopee
             InitComponentPendapatan();
             RegisterEventPendapatan();
             SetupPendapatanGrid();
+            LoadAdmin();
+        }
+
+        private void LoadAdmin()
+        {
+            decimal admin = _dashboardDal.GetAdminFee();
+            decimal adminPercent = Convert.ToDecimal((1 - admin) * 100);
+
+            numericAdmin.Value = adminPercent;
         }
 
         private void InitComponentPendapatan()
@@ -226,6 +236,8 @@ namespace Shopee
             var nominalDiskon = (int)numericNominalDiskon.Value;
             var admin = _pengeluaranDal.GetAdmin();
             var biayaProsesPesanan = (int)numericBiayaProsesPesanan.Value;
+
+            MessageBox.Show(admin.ToString()); return;
 
             var transaksi = new TransaksiModel
             {

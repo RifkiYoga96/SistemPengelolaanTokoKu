@@ -308,7 +308,6 @@
             numericAdmin.DecimalPlaces = 1;
             numericAdmin.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
             numericAdmin.Location = new Point(27, 56);
-            numericAdmin.Minimum = new decimal(new int[] { 10, 0, 0, 0 });
             numericAdmin.Name = "numericAdmin";
             numericAdmin.Size = new Size(92, 31);
             numericAdmin.TabIndex = 14;

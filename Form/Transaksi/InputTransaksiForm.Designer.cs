@@ -69,6 +69,9 @@
             deletePengeluaran = new ToolStripMenuItem();
             label11 = new Label();
             comboBulan = new ComboBox();
+            label12 = new Label();
+            label13 = new Label();
+            numericAdmin = new NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)numericJumlahPendapatan).BeginInit();
             tabControl1.SuspendLayout();
             tabPendapatan.SuspendLayout();
@@ -82,6 +85,7 @@
             ((System.ComponentModel.ISupportInitialize)numericJumlahPengeluaran).BeginInit();
             menuStripPendapatan.SuspendLayout();
             menuStripPengeluaran.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numericAdmin).BeginInit();
             SuspendLayout();
             // 
             // comboProdukPendapatan
@@ -98,7 +102,7 @@
             // 
             label1.Anchor = AnchorStyles.Top;
             label1.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(183, -3);
+            label1.Location = new Point(227, -3);
             label1.Name = "label1";
             label1.Size = new Size(330, 41);
             label1.TabIndex = 6;
@@ -111,7 +115,7 @@
             panel1.BackColor = Color.DimGray;
             panel1.Location = new Point(21, 42);
             panel1.Name = "panel1";
-            panel1.Size = new Size(651, 4);
+            panel1.Size = new Size(740, 4);
             panel1.TabIndex = 7;
             // 
             // dtPendapatan
@@ -175,11 +179,14 @@
             tabControl1.Location = new Point(21, 61);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(661, 446);
+            tabControl1.Size = new Size(744, 446);
             tabControl1.TabIndex = 19;
             // 
             // tabPendapatan
             // 
+            tabPendapatan.Controls.Add(numericAdmin);
+            tabPendapatan.Controls.Add(label13);
+            tabPendapatan.Controls.Add(label12);
             tabPendapatan.Controls.Add(label3);
             tabPendapatan.Controls.Add(numericBiayaProsesPesanan);
             tabPendapatan.Controls.Add(lblErrorTanggalPendapatan);
@@ -200,7 +207,7 @@
             tabPendapatan.Location = new Point(4, 32);
             tabPendapatan.Name = "tabPendapatan";
             tabPendapatan.Padding = new Padding(3);
-            tabPendapatan.Size = new Size(653, 410);
+            tabPendapatan.Size = new Size(736, 410);
             tabPendapatan.TabIndex = 0;
             tabPendapatan.Text = "Pendapatan";
             tabPendapatan.UseVisualStyleBackColor = true;
@@ -209,7 +216,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(489, 316);
+            label3.Location = new Point(469, 316);
             label3.Name = "label3";
             label3.Size = new Size(115, 25);
             label3.TabIndex = 105;
@@ -219,10 +226,10 @@
             // numericBiayaProsesPesanan
             // 
             numericBiayaProsesPesanan.Font = new Font("Segoe UI", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
-            numericBiayaProsesPesanan.Location = new Point(489, 344);
+            numericBiayaProsesPesanan.Location = new Point(469, 344);
             numericBiayaProsesPesanan.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             numericBiayaProsesPesanan.Name = "numericBiayaProsesPesanan";
-            numericBiayaProsesPesanan.Size = new Size(143, 31);
+            numericBiayaProsesPesanan.Size = new Size(115, 31);
             numericBiayaProsesPesanan.TabIndex = 104;
             numericBiayaProsesPesanan.TextAlign = HorizontalAlignment.Center;
             numericBiayaProsesPesanan.Value = new decimal(new int[] { 1250, 0, 0, 0 });
@@ -258,7 +265,7 @@
             numericNominalDiskon.Location = new Point(309, 344);
             numericNominalDiskon.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             numericNominalDiskon.Name = "numericNominalDiskon";
-            numericNominalDiskon.Size = new Size(159, 31);
+            numericNominalDiskon.Size = new Size(145, 31);
             numericNominalDiskon.TabIndex = 29;
             numericNominalDiskon.TextAlign = HorizontalAlignment.Center;
             // 
@@ -297,7 +304,7 @@
             gridPendapatan.Name = "gridPendapatan";
             gridPendapatan.RowHeadersWidth = 51;
             gridPendapatan.RowTemplate.Height = 29;
-            gridPendapatan.Size = new Size(323, 283);
+            gridPendapatan.Size = new Size(410, 283);
             gridPendapatan.TabIndex = 20;
             // 
             // label7
@@ -339,7 +346,7 @@
             tabPengeluaran.Location = new Point(4, 32);
             tabPengeluaran.Name = "tabPengeluaran";
             tabPengeluaran.Padding = new Padding(3);
-            tabPengeluaran.Size = new Size(653, 410);
+            tabPengeluaran.Size = new Size(736, 410);
             tabPengeluaran.TabIndex = 1;
             tabPengeluaran.Text = "Pengeluaran";
             tabPengeluaran.UseVisualStyleBackColor = true;
@@ -392,7 +399,7 @@
             gridPengeluaran.Name = "gridPengeluaran";
             gridPengeluaran.RowHeadersWidth = 51;
             gridPengeluaran.RowTemplate.Height = 29;
-            gridPengeluaran.Size = new Size(321, 353);
+            gridPengeluaran.Size = new Size(409, 353);
             gridPengeluaran.TabIndex = 38;
             // 
             // label5
@@ -515,7 +522,7 @@
             label11.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point);
-            label11.Location = new Point(366, 65);
+            label11.Location = new Point(455, 65);
             label11.Name = "label11";
             label11.Size = new Size(144, 23);
             label11.TabIndex = 106;
@@ -527,17 +534,52 @@
             comboBulan.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBulan.Font = new Font("Segoe UI", 9.2F, FontStyle.Regular, GraphicsUnit.Point);
             comboBulan.FormattingEnabled = true;
-            comboBulan.Location = new Point(516, 62);
+            comboBulan.Location = new Point(600, 62);
             comboBulan.Name = "comboBulan";
             comboBulan.Size = new Size(163, 28);
             comboBulan.TabIndex = 106;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point);
+            label12.Location = new Point(599, 315);
+            label12.Name = "label12";
+            label12.Size = new Size(67, 25);
+            label12.TabIndex = 107;
+            label12.Text = "Admin";
+            label12.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // label13
+            // 
+            label13.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            label13.AutoSize = true;
+            label13.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label13.Location = new Point(690, 344);
+            label13.Name = "label13";
+            label13.Size = new Size(29, 28);
+            label13.TabIndex = 109;
+            label13.Text = "%";
+            label13.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // numericAdmin
+            // 
+            numericAdmin.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            numericAdmin.DecimalPlaces = 1;
+            numericAdmin.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
+            numericAdmin.Location = new Point(599, 344);
+            numericAdmin.Name = "numericAdmin";
+            numericAdmin.Size = new Size(91, 31);
+            numericAdmin.TabIndex = 108;
+            numericAdmin.TextAlign = HorizontalAlignment.Center;
+            numericAdmin.Value = new decimal(new int[] { 10, 0, 0, 0 });
             // 
             // InputTransaksiForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(694, 521);
+            ClientSize = new Size(783, 521);
             Controls.Add(comboBulan);
             Controls.Add(label11);
             Controls.Add(tabControl1);
@@ -560,6 +602,7 @@
             ((System.ComponentModel.ISupportInitialize)numericJumlahPengeluaran).EndInit();
             menuStripPendapatan.ResumeLayout(false);
             menuStripPengeluaran.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)numericAdmin).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -604,5 +647,8 @@
         private NumericUpDown numericBiayaProsesPesanan;
         private Label label11;
         private ComboBox comboBulan;
+        private Label label12;
+        private NumericUpDown numericAdmin;
+        private Label label13;
     }
 }
