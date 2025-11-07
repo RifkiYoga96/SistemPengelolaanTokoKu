@@ -234,10 +234,9 @@ namespace Shopee
 
             var tanggal = dtPendapatan.Value.Date;
             var nominalDiskon = (int)numericNominalDiskon.Value;
-            var admin = _pengeluaranDal.GetAdmin();
+            //var admin = _pengeluaranDal.GetAdmin();
+            var admin = Convert.ToDecimal(100 - (decimal)numericAdmin.Value) / 100;
             var biayaProsesPesanan = (int)numericBiayaProsesPesanan.Value;
-
-            MessageBox.Show(admin.ToString()); return;
 
             var transaksi = new TransaksiModel
             {

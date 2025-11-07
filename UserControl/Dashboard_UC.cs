@@ -26,6 +26,12 @@ namespace Shopee
             RegisterEvent();
             LoadData();
             CustomGrids();
+
+            button1.Click += (_, _) =>
+            {
+                Form n = new PopupSwitchStore();
+                n.Show();
+            };
         }
 
         private void InitComponent()

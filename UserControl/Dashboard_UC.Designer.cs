@@ -71,6 +71,7 @@
             lblRoas = new Label();
             label7 = new Label();
             lblPeriode = new Label();
+            button1 = new Button();
             tableLayoutPanel1.SuspendLayout();
             panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)infoPrecentBersih).BeginInit();
@@ -352,6 +353,7 @@
             // panel8
             // 
             panel8.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panel8.Controls.Add(button1);
             panel8.Controls.Add(infoProfit);
             panel8.Controls.Add(gridProdukProfit);
             panel8.Controls.Add(label3);
@@ -572,6 +574,15 @@
             lblPeriode.Text = "Periode : All time";
             lblPeriode.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // button1
+            // 
+            button1.Location = new Point(285, 4);
+            button1.Name = "button1";
+            button1.Size = new Size(94, 29);
+            button1.TabIndex = 10;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            // 
             // Dashboard_UC
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -664,5 +675,6 @@
         private Label lblPercentBersih;
         private Label label14;
         private PictureBox infoPrecentBersih;
+        private Button button1;
     }
 }

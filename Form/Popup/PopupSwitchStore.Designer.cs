@@ -1,0 +1,92 @@
+﻿namespace Shopee
+{
+    partial class PopupSwitchStore
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PopupSwitchStore));
+            lbl1 = new Label();
+            pictureBox1 = new PictureBox();
+            lbl2 = new Label();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            SuspendLayout();
+            // 
+            // lbl1
+            // 
+            lbl1.Font = new Font("Segoe UI Semibold", 12.8F, FontStyle.Bold, GraphicsUnit.Point);
+            lbl1.Location = new Point(4, 90);
+            lbl1.Name = "lbl1";
+            lbl1.Size = new Size(316, 80);
+            lbl1.TabIndex = 0;
+            lbl1.Text = "Berhasil Pindah Ke Toko\r\n";
+            lbl1.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
+            pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox1.Location = new Point(130, 17);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(70, 70);
+            pictureBox1.TabIndex = 1;
+            pictureBox1.TabStop = false;
+            // 
+            // lbl2
+            // 
+            lbl2.BackColor = SystemColors.Control;
+            lbl2.Font = new Font("Segoe UI Semibold", 12.8F, FontStyle.Bold, GraphicsUnit.Point);
+            lbl2.ForeColor = SystemColors.MenuHighlight;
+            lbl2.Location = new Point(4, 129);
+            lbl2.Name = "lbl2";
+            lbl2.Size = new Size(316, 41);
+            lbl2.TabIndex = 2;
+            lbl2.Text = "Riyosa Store - Shopee\r\n\r\n";
+            lbl2.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // PopupForm
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(324, 178);
+            Controls.Add(lbl2);
+            Controls.Add(pictureBox1);
+            Controls.Add(lbl1);
+            FormBorderStyle = FormBorderStyle.None;
+            Name = "PopupForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "PopUpForm";
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ResumeLayout(false);
+        }
+
+        #endregion
+
+        private Label lbl1;
+        private PictureBox pictureBox1;
+        private Label lbl2;
+    }
+}
