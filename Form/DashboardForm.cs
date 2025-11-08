@@ -50,12 +50,12 @@ namespace Shopee
             bool sukses = await conn.GantiDatabaseAsync("db_riyosastore_shopee");
 
             if (sukses)
-                MessageBox.Show($"Berhasil Pindah Ke Toko Riyosa Store - Shopee");
+                new PopupSwitchStore("Riyosa Store - Shopee").Show();
             else
-                MessageBox.Show("Gagal pindah toko!");
+                new PopupIncorrect("Gagal pindah toko!").Show();
 
             pictureBoxLogoToko.BackgroundImage = _riyosa_store_shopee; 
-
+            await Task.Delay(800);
             btnDashboard.PerformClick();
         }
 
@@ -64,12 +64,12 @@ namespace Shopee
             bool sukses = await conn.GantiDatabaseAsync("db_scuritysensor_tiktok");
 
             if (sukses)
-                MessageBox.Show($"Berhasil Pindah Ke Toko Scurity Sensor - TikTok");
+                new PopupSwitchStore("Scurity Sensor - TikTok").Show();
             else
-                MessageBox.Show("Gagal pindah toko!");
+                new PopupIncorrect("Gagal pindah toko!").Show();
 
             pictureBoxLogoToko.BackgroundImage = _scurity_sensor_tiktok;
-
+            await Task.Delay(800);
             btnDashboard.PerformClick();
         }
 
@@ -78,11 +78,12 @@ namespace Shopee
             bool sukses = await conn.GantiDatabaseAsync("db_scuritysensor_shopee");
 
             if (sukses)
-                MessageBox.Show($"Berhasil Pindah Ke Toko Scurity Sensor - Shopee");
+                new PopupSwitchStore("Scurity Sensor - Shopee").Show();
             else
-                MessageBox.Show("Gagal pindah toko!");
+                new PopupIncorrect("Gagal pindah toko!").Show();
 
             pictureBoxLogoToko.BackgroundImage = _scurity_sensor_shopee;
+            await Task.Delay(800);
             btnDashboard.PerformClick();
         }
 

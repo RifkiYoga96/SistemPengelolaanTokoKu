@@ -63,6 +63,16 @@ namespace Shopee.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap benar_icon {
+            get {
+                object obj = ResourceManager.GetObject("benar_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Habis {
             get {
                 object obj = ResourceManager.GetObject("Habis", resourceCulture);
@@ -116,6 +126,16 @@ namespace Shopee.Properties {
         internal static System.Drawing.Bitmap riyosa_store_shopee {
             get {
                 object obj = ResourceManager.GetObject("riyosa store shopee", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap salah_icon {
+            get {
+                object obj = ResourceManager.GetObject("salah_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

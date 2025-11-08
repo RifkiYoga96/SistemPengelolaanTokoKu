@@ -29,7 +29,7 @@ namespace Shopee
 
             button1.Click += (_, _) =>
             {
-                Form n = new PopupSwitchStore();
+                Form n = new PopupCorrect("Data Berhasil Di Hapus!");
                 n.Show();
             };
         }

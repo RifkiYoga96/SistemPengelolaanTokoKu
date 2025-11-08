@@ -10,16 +10,16 @@ using System.Windows.Forms;
 
 namespace Shopee
 {
-    public partial class PopupInformation : Form
+    public partial class PopupCorrect : Form
     {
-        public PopupInformation(string txtLabel = null, Image icon = null)
+        public PopupCorrect(string txtLabel = null)
         {
             InitializeComponent();
             this.TopMost = true; // agar selalu diatas atau tidak tertimpa
 
             this.Load += async (s, e) =>
             {
-                FormAnimator.FadeIn(this, "lbl2", txtLabel,"PictureBox1",icon);
+                FormAnimator.FadeIn(this, "lbl2", txtLabel);
                 await Task.Delay(2000);
                 FormAnimator.FadeOut(this);
             };

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Shopee
 {
-    public partial class PopupSwitchStore : Form
+    public partial class PopupIncorrect : Form
     {
-        public PopupSwitchStore(string txtLabel = "")
+        public PopupIncorrect(string txtLabel = null)
         {
             InitializeComponent();
             this.TopMost = true; // agar selalu diatas atau tidak tertimpa

@@ -8,20 +8,13 @@ namespace Shopee
 {
     public static class FormAnimator
     {
-        public static void FadeIn(Form form, string labelName = null, string labelText = null, string pictureBoxName = null, Image icon = null, int interval = 20, double step = 0.05)
+        public static void FadeIn(Form form, string labelName = null, string labelText = null, int interval = 20, double step = 0.05)
         {
             // Ubah teks label jika parameter ada
             if (!string.IsNullOrEmpty(labelName) && !string.IsNullOrEmpty(labelText))
             {
                 if (FindControlRecursive(form, labelName) is Label lbl)
                     lbl.Text = labelText;
-            }
-
-            // Ubah gambar PictureBox jika parameter ada
-            if (!string.IsNullOrEmpty(pictureBoxName) && icon != null)
-            {
-                if (FindControlRecursive(form, pictureBoxName) is PictureBox pic)
-                    pic.Image = icon;
             }
 
             form.Opacity = 0;
