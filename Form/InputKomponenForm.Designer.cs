@@ -148,6 +148,7 @@
             numericStokMinimum.Font = new Font("Segoe UI", 10.5F, FontStyle.Regular, GraphicsUnit.Point);
             numericStokMinimum.Location = new Point(193, 249);
             numericStokMinimum.Maximum = new decimal(new int[] { 100000000, 0, 0, 0 });
+            numericStokMinimum.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numericStokMinimum.Name = "numericStokMinimum";
             numericStokMinimum.Size = new Size(138, 31);
             numericStokMinimum.TabIndex = 4;

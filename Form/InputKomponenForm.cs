@@ -109,6 +109,8 @@ namespace Shopee
             numericHarga.Value = (int)data.harga;
             numericStok.Value = (int)data.stok;
             numericStokMinimum.Value = (int)data.stok_minimum;
+
+            label1.Text = ((int)data.stok_minimum).ToString();
         }
         #endregion
     }

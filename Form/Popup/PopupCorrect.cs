@@ -19,7 +19,7 @@ namespace Shopee
 
             this.Load += async (s, e) =>
             {
-                FormAnimator.FadeIn(this, "lbl2", txtLabel);
+                FormAnimator.FadeIn(this, "lbl1", txtLabel);
                 await Task.Delay(2000);
                 FormAnimator.FadeOut(this);
             };

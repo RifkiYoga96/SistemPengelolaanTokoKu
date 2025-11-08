@@ -38,9 +38,9 @@
             lbl1.Font = new Font("Segoe UI Semibold", 12.8F, FontStyle.Bold, GraphicsUnit.Point);
             lbl1.Location = new Point(3, 95);
             lbl1.Name = "lbl1";
-            lbl1.Size = new Size(281, 36);
+            lbl1.Size = new Size(362, 36);
             lbl1.TabIndex = 0;
-            lbl1.Text = "Data Berhasil Disimpan!\r\n";
+            lbl1.Text = "Perubahan data telah disimpan!\r\n";
             lbl1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // pictureBox1
@@ -48,7 +48,7 @@
             pictureBox1.BackgroundImage = Properties.Resources.benar_icon;
             pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox1.ErrorImage = null;
-            pictureBox1.Location = new Point(110, 17);
+            pictureBox1.Location = new Point(152, 17);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(70, 70);
             pictureBox1.TabIndex = 1;
@@ -58,7 +58,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(287, 149);
+            ClientSize = new Size(367, 149);
             Controls.Add(pictureBox1);
             Controls.Add(lbl1);
             FormBorderStyle = FormBorderStyle.None;

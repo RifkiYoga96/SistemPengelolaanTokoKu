@@ -73,6 +73,7 @@ namespace Shopee
             {
                 int id = (int)dataGridView1.CurrentRow.Cells[0].Value;
                 _komponenDal.DeleteData(id);
+                new PopupCorrect("Data berhasil dihapus!").Show();
             }
             catch (Exception ex)
             {
@@ -87,6 +88,7 @@ namespace Shopee
             int id = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value);
 
             if (new InputKomponenForm(id).ShowDialog() != DialogResult.OK) return;
+            new PopupCorrect("Perubahan data telah disimpan!").Show();
             LoadData();
         }
 
@@ -106,6 +108,7 @@ namespace Shopee
         {
             if (new InputKomponenForm().ShowDialog() == DialogResult.OK)
             {
+                new PopupCorrect("Data berhasil ditambahkan!").Show();
                 LoadData();
             } 
         }

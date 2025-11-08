@@ -114,6 +114,7 @@ namespace Shopee
 
             int id = (int)dataGridView1.CurrentRow.Cells[0].Value;
             _transaksiDal.DeleteData(id);
+            new PopupCorrect("Data berhasil dihapus!").Show();
             LoadData();
         }
 
@@ -134,6 +135,7 @@ namespace Shopee
         {
             if (new InputTransaksiForm(0).ShowDialog() == DialogResult.OK)
             {
+                new PopupCorrect("Data berhasil ditambahkan!").Show();
                 LoadData();
             }
         }

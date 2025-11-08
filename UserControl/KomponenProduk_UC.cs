@@ -82,7 +82,13 @@ namespace Shopee
             btnSave.Click += SaveData;
             editModeTool.Click += EditModeTool_Click;
             normalModeTool.Click += NormalModeTool_Click;
+            KebutuhanGrid.CellEndEdit += KebutuhanGrid_CellEndEdit;
             RegisterMouseClickEvent(this);
+        }
+
+        private void KebutuhanGrid_CellEndEdit(object? sender, DataGridViewCellEventArgs e)
+        {
+            SetTotalHarga(); // reset harga setelah update jumlah komponen
         }
 
         private void RegisterMouseClickEvent(Control control)
